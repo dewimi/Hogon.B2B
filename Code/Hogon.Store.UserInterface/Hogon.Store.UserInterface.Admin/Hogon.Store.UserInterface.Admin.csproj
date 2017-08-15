@@ -405,8 +405,6 @@
     <Content Include="Areas\Security\Views\User\Index.cshtml" />
     <Content Include="Areas\GoodsMan\Views\web.config" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Index.cshtml" />
-    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\Add.cshtml" />
-    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\Detail.cshtml" />
     <Content Include="Areas\Security\Views\Role\Index.cshtml" />
     <Content Include="Areas\Security\Views\Menu\Edit.cshtml" />
     <Content Include="Areas\Security\Views\Menu\Detail.cshtml" />
