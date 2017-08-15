@@ -4,6 +4,14 @@
     var render = ViewBag.ListRender;
 }
 
+@section formHeader{
+
+    <div class="header">
+        <span class="headerline">@ViewBag.Title</span>
+
+    </div>
+    <div style="clear:both"></div>
+}
 <style>
     .role {
         float: left;
@@ -193,7 +201,7 @@
                     $http({
                         method: 'POST',
                         url: '/Security/User/GetAuthorityByUserId',
-                        data: JSON.stringify({ userName: userName })
+                        data: JSON.stringify({userName:userName})
                     }).then(function successCallback(response) {
                         // 请求成功执行代码
 
@@ -401,7 +409,7 @@
     }
     //节点选中
     var nodeCheckedSilent = false;
-    function nodeChecked(event, node) {
+    function nodeChecked(event, node){
         if (nodeCheckedSilent) {
             return;
         }
@@ -409,7 +417,7 @@
         checkAllParent(node);
         checkAllSon(node);
         nodeCheckedSilent = false;
-        // SaveNode(node);
+       // SaveNode(node);
 
     }
     //节点取消选中
@@ -489,14 +497,14 @@
             $(".staffrelevance").append("<h5 class = 'staffname '><span class = 'glyphicon glyphicon-unchecked' value='" + v.Id + "' name='check'/>&nbsp" + v.Name + "</span></h5>");
         });
         $("[name='check']").on("click", function () {
-            var flag = $(this).attr('class');
-            if (flag == 'glyphicon glyphicon-check') {
-                $(this).removeClass();
-                $(this).attr('class', 'glyphicon glyphicon-unchecked');
+           var flag = $(this).attr('class');
+           if (flag == 'glyphicon glyphicon-check') {
+               $(this).removeClass();
+               $(this).attr('class', 'glyphicon glyphicon-unchecked');
 
-            } else if (flag == 'glyphicon glyphicon-unchecked') {
-                $(this).removeClass();
-                $(this).attr('class', 'glyphicon glyphicon-check');
+           } else if (flag == 'glyphicon glyphicon-unchecked') {
+               $(this).removeClass();
+               $(this).attr('class', 'glyphicon glyphicon-check');
 
             }
 
@@ -516,133 +524,82 @@
 
 
 </script>
-<div class="wrapper wrapper-content  animated fadeInRight">
-    <div class="row">
-        <div class="col-sm-3">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>角色信息</h5>
+<form>
+
+        <div class="role">
+            <span>角色信息：</span>
+
+            <table class="table table-hover">
+                <thead class="listheader">
+                    <tr>
+                        <th>角色名</th>
+                    </tr>
+                </thead>
+                <tbody class="roletbody"></tbody>
+            </table>
+            <div class="operation">
+                <span class="rolename">角色名:</span><input type="text" name="roleName" class="form-control txt" ng-model="roleName" id="roleName">
+                <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
+                <button name="confirmButton" id="edit" type="button" class="btn btn-primary but">修改</button>
+                <button name="confirmButton" id="del" type="button" class="btn btn-primary but">删除</button>
+            </div>
+        </div>
+
+
+
+    <div class="authority">
+        <span>权限配置：</span>
+
+        <div id="treeview-checkable"></div>
+        <button name="confirmButton" id="save" type="button" class="btn btn-primary but">保存</button>
+
+    </div>
+
+    <div class="staff">
+        <span>人员关联：</span>
+        <div class="staffrelevance">
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增</h4>
                 </div>
-                <div class="ibox-content">
-                    <table class="table table-hover">
-                        <thead class="listheader">
-                            <tr>
-                                <th>角色名</th>
-                            </tr>
-                        </thead>
-                        <tbody class="roletbody"></tbody>
+                <div class="modal-body">
+                    <input type="hidden" name="id" ng-model="roleId" />
+                    <table class="functional">
+                        <tr>
+                            <td>角色名称</td>
+                            <td><input type="text" name="txt_departmentname" ng-model="rolename" class="form-control" id="txt_Rolename" placeholder="角色名称"></td>
+                        </tr>
+                        <tr>
+                            <td>启用状态</td>
+                            <td><input type="checkbox" id="isEnabled" ng-model="enabled">是否启用</td>
+                        </tr>
+                        <tr>
+                            <td>启用状态</td>
+                            <td><input type="checkbox" id="isAdministrator" ng-model="isAdministrator">是否管理员</td>
+                        </tr>
+                        <tr>
+                            <td><span>创建日期:</span></td>
+                            <td><label ng-model="createdtime" id="createdtime">@ViewBag.CreatedTime</label></td>
+                        </tr>
+                        <tr>
+                            <td><span>修改日期:</span></td>
+                            <td><label ng-model="updatedtime" id="updatedtime">@ViewBag.UpdatedTime</label></td>
+                        </tr>
                     </table>
-                    <div class="operation">
-                        <span class="rolename">角色名:</span><input type="text" name="roleName" class="form-control txt" ng-model="roleName" id="roleName">
-                        <br />
-                        <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
-                        <button name="confirmButton" id="edit" type="button" class="btn btn-primary but">修改</button>
-                        <button name="confirmButton" id="del" type="button" class="btn btn-primary but">删除</button>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-sm-5">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>权限配置</h5>
                 </div>
-                <div class="ibox-content">
-                    <div id="treeview-checkable"></div>
-                    <br />
-                    <button class="btn btn-primary" type="button" id="save">保存内容</button>
-                    <button class="btn btn-white" type="button">取消</button>
-                </div>
-            </div>
-        </div>
-        <div class="col-sm-3">
-            <div class="ibox ">
-                <div class="ibox-title">
-                    <h5>人员关联</h5>
-                </div>
-                <div class="ibox-content">
-                    <div class="staffrelevance">
-
-                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" ng-click="saveChange()" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
                 </div>
             </div>
         </div>
     </div>
-
-
-</div>
-@*<div class="role">
-    <span>角色信息：</span>
-
-    <table class="table table-hover">
-        <thead class="listheader">
-            <tr>
-                <th>角色名</th>
-            </tr>
-        </thead>
-        <tbody class="roletbody"></tbody>
-    </table>
-    <div class="operation">
-        <span class="rolename">角色名:</span><input type="text" name="roleName" class="form-control txt" ng-model="roleName" id="roleName">
-        <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
-        <button name="confirmButton" id="edit" type="button" class="btn btn-primary but">修改</button>
-        <button name="confirmButton" id="del" type="button" class="btn btn-primary but">删除</button>
-    </div>
-</div>
-
-<div class="authority">
-    <span>权限配置：</span>
-
-    <div id="treeview-checkable"></div>
-    <button name="confirmButton" id="save" type="button" class="btn btn-primary but">保存</button>
-
-</div>
-
-<div class="staff">
-    <span>人员关联：</span>
-    <div class="staffrelevance">
-
-    </div>
-</div>*@
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">新增</h4>
-            </div>
-            <div class="modal-body">
-                <input type="hidden" name="id" ng-model="roleId" />
-                <table class="functional">
-                    <tr>
-                        <td>角色名称</td>
-                        <td><input type="text" name="txt_departmentname" ng-model="rolename" class="form-control" id="txt_Rolename" placeholder="角色名称"></td>
-                    </tr>
-                    <tr>
-                        <td>启用状态</td>
-                        <td><input type="checkbox" id="isEnabled" ng-model="enabled">是否启用</td>
-                    </tr>
-                    <tr>
-                        <td>启用状态</td>
-                        <td><input type="checkbox" id="isAdministrator" ng-model="isAdministrator">是否管理员</td>
-                    </tr>
-                    <tr>
-                        <td><span>创建日期:</span></td>
-                        <td><label ng-model="createdtime" id="createdtime">@ViewBag.CreatedTime</label></td>
-                    </tr>
-                    <tr>
-                        <td><span>修改日期:</span></td>
-                        <td><label ng-model="updatedtime" id="updatedtime">@ViewBag.UpdatedTime</label></td>
-                    </tr>
-                </table>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
-                <button type="button" id="btn_submit" class="btn btn-primary" ng-click="saveChange()" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
-            </div>
-        </div>
-    </div>
-</div>
+</form>

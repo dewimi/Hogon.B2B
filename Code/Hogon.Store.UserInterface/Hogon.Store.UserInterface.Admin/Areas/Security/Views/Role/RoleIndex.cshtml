@@ -21,7 +21,6 @@
                     </table>
                     <div class="operation">
                         <span class="rolename">角色名:</span><input type="text" name="roleName" class="form-control txt" ng-model="roleName" id="roleName">
-                        <br />
                         <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
                         <button name="confirmButton" id="edit" type="button" class="btn btn-primary but">修改</button>
                         <button name="confirmButton" id="del" type="button" class="btn btn-primary but">删除</button>
@@ -39,9 +38,11 @@
                     <div class="dd" id="nestable2">
                         <ol class="dd-list" id="pareent"></ol>
                     </div>
-                    <br />
-                    <button class="btn btn-primary" type="button" id="save">保存内容</button>
-                    <button class="btn btn-white" type="button">取消</button>
+                    <div class="m-t-md">
+        <h5>数据：</h5>
+    </div>
+    <textarea id="nestable2-output" class="form-control"></textarea>
+
                 </div>
             </div>
         </div>
@@ -72,36 +73,6 @@
     var roleId = null;
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
-
-        //查询用户、菜单
-        $scope.GetUser_Menus = function () {
-            //获取菜单
-            $http({
-                method: 'POST',
-                url: '/Security/Menu/GetTreeMenus',
-                data: null
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                CreateTreeMenu(response.data);
-
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-            //获取用户
-            $http({
-                method: 'POST',
-                url: '/Security/User/GetAllUsers',
-                data: null
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                CreateStaffRelevance(response.data);
-
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-
-            });
-        };
-        $scope.GetUser_Menus();
 
         //查询角色
         $scope.GetRole = function () {
@@ -144,17 +115,6 @@
                     }).then(function successCallback(response) {
                         // 请求成功执行代码
                         //CreateTreeMenu(response.data);
-                        var menu = $(".dd-item");
-                        $.each(response.data, function (index, v) {
-
-                            for (var i = 0; i < menu.length; i++) {
-                                var menuId = $(".dd-item").eq(i).attr("data-id");
-
-                                if (v.Id == menuId) {
-                                    $(".dd-item").eq(i).children("div").addClass("dd-handle-checked");
-                                }
-                            }
-                        });
 
                     }, function errorCallback(response) {
                         // 请求失败执行代码
@@ -185,6 +145,36 @@
             });
         };
         $scope.GetRole();
+
+        //查询用户、菜单
+        $scope.GetUser_Menus = function () {
+            //获取菜单
+            $http({
+                method: 'POST',
+                url: '/Security/Menu/GetTreeMenus',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTreeMenu(response.data);
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+            //获取用户
+            $http({
+                method: 'POST',
+                url: '/Security/User/GetAllUsers',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateStaffRelevance(response.data);
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        };
+        $scope.GetUser_Menus();
 
         //根据用户名称查询相应的菜单权限
         $scope.UserByIdMenus = function () {
@@ -218,6 +208,7 @@
 
             });
         };
+       
 
         //保存角色信息
         $scope.saveChange = function () {
@@ -354,26 +345,19 @@
         });
         //保存角色权限和用户
         $("#save").click(function () {
-            var checkedNodes = $(".dd-handle-y");//获取所有节点
+
+            var checkedNodes = findCheckedNodes();//获取选中节点
+            var unCheckedNodes = findunCheckedNode();//获取未选中节点
             var roleid = roleId;
-            var checkedArr = Array();
+            var arr = Array();
             var unCheckedArr = Array();
             for (var i = 0; i < checkedNodes.length; i++) {
-                var sp = $(".dd-handle-y").eq(i).attr("class");
-                if (sp == "dd-handle-y dd-handle-checked") {
-                    var checkedId = $(".dd-handle-y").eq(i).parent().attr("data-id");
-                    checkedArr[i] = { Id: checkedId };
-
-                } else if (sp == "dd-handle-y") {
-                    var uncheckedId = $(".dd-handle-y").eq(i).parent().attr("data-id");
-                    unCheckedArr[i] = { Id: uncheckedId };
-
-                }
-                //arr[i] = { Id: checkedNodes[i].Id, state: checkedNodes[i].state };
+                arr[i] = { Id: checkedNodes[i].Id, state: checkedNodes[i].state };
             }
-            //for (var i = 0; i < unCheckedNodes.length; i++) {
-            //    unCheckedArr[i] = { Id: unCheckedNodes[i].Id, state: unCheckedNodes[i].state };
-            //}
+            for (var i = 0; i < unCheckedNodes.length; i++) {
+                unCheckedArr[i] = { Id: unCheckedNodes[i].Id, state: unCheckedNodes[i].state };
+
+            }
 
             var checkUsersArray = Array();
             var unCheckUsersArray = Array();
@@ -393,7 +377,7 @@
                 method: 'POST',
                 url: '/Security/Role/SaveAuthority',
                 data: JSON.stringify({
-                    listTreeNode: checkedArr, roleId: roleid, userNode: checkUsersArray,
+                    listTreeNode: arr, roleId: roleid, userNode: checkUsersArray,
                     unCheckedNode: unCheckedArr, unCheckUsers: unCheckUsersArray
                 })
             }).then(function successCallback(response) {
@@ -408,32 +392,22 @@
     });
     //创建树形菜单
     function CreateTreeMenu(data) {
-
         $.each(data, function (index, items) {
+
             var parentmenu = "";
             if (items.nodes.length > 0) {
                 //创建父菜单
-                parentmenu = $("<li class='dd-item' data-id='" + items.Id + "' value = '" + items.state + "'>"
-                               + "<div class='dd-handle-y'>"
-                                + "<span class='label label-info'><i class='fa fa-" + items.Icon + "'></i></span> " + items.text + "</div></li>");
+                parentmenu = $("<li class='dd-item' data-id='"+ items.Id +"'>"
+                               + "<div class='dd-handle'>"
+                                +"<span class='label label-info'><i class='fa fa-"+items.Icon+"'></i></span> "+items.text+"</div></li>");
                 //添加子菜单
                 var childmenu = ($("<ol class='dd-list'></ol>"));
                 $.each(items.nodes, function (index, sitems) {
 
-                    childmenu.append("<li class='dd-item' data-id='" + sitems.Id + "' value = '"+sitems.state+"'>"
-                                    + "<div class='dd-handle-y'>"
+                    childmenu.append("<li class='dd-item' data-id='" + sitems.Id + "'>"
+                                    + "<div class='dd-handle'>"
                                       + "<span class='label label-info'><i class='fa fa-" + items.Icon + "'></i></span>                         " + sitems.text + ""
-                                      + "</div></li>");
-                    var grandson = ($("<ol class='dd-list'></ol>"));
-                    $.each(sitems.nodes, function (index, v) {
-
-                        grandson.append("<li class='dd-item' data-id='" + v.Id + "' value = '" + v.state + "'>"
-                                    + "<div class='dd-handle-y'>"
-                                      + "<span class='label label-info'><i class='fa fa-" + v.Icon + "'></i></span>                         " + v.text + ""
-                                      + "</div></li>");
-
-                    })
-                    childmenu.append(grandson);
+                                      +"</div></li>");
                 })
                 parentmenu.append(childmenu);
             }
@@ -446,11 +420,7 @@
 
             $("#pareent").append(parentmenu);
 
-        });
-
-        $(".dd-handle-y").on("click", function () {
-            $(this).toggleClass("dd-handle-checked");
-        });
+        })
     }
 
     //创建角色列表
@@ -489,33 +459,32 @@
 
     $(function () {
 
-        var updateOutput = function (e) {
-            var list = e.length ? e : $(e.target),
-                output = list.data('output');
-            if (window.JSON) {
-                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-            } else {
-                output.val('浏览器不支持');
-            }
-        };
-        $('#nestable2').nestable({
-            group: 1
-        }).on('change', updateOutput);
+            var updateOutput = function (e) {
+                var list = e.length ? e : $(e.target),
+                    output = list.data('output');
+                if (window.JSON) {
+                    output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+                } else {
+                    output.val('浏览器不支持');
+                }
+            };
+            $('#nestable2').nestable({
+                group: 1
+            }).on('change', updateOutput);
 
-        // output initial serialised data
-        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
-
-        $('#nestable-menu').on('click', function (e) {
-            var target = $(e.target),
-                action = target.data('action');
-            if (action === 'expand-all') {
-                $('.dd').nestable('expandAll');
-            }
-            if (action === 'collapse-all') {
-                $('.dd').nestable('collapseAll');
-            }
+            // output initial serialised data
+            updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+          
+            $('#nestable-menu').on('click', function (e) {
+                var target = $(e.target),
+                    action = target.data('action');
+                if (action === 'expand-all') {
+                    $('.dd').nestable('expandAll');
+                }
+                if (action === 'collapse-all') {
+                    $('.dd').nestable('collapseAll');
+                }
+            });
         });
-
-    });
 </script>
 

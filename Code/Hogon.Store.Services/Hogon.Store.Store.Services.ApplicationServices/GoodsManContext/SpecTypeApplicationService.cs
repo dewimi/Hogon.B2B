@@ -25,25 +25,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public IQueryable<DtoSpecType> GetAllSpecTypes()
         {
             var specTypes = spectypeReps.FindAll();
-            //var dtospecTypes = specTypes.ConvertTo
-            //      <SpecType, DtoSpecType>();
-            var dtospecTypes = specTypes.Select(m => new DtoSpecType()
-            {
-                Id = m.Id,
-                SpecName = m.SpecName,
-                SpecCatalog = m.SpecCatalog,
-                SpecRemark = m.SpecRemark,
-                SpecSecondName = m.SpecSecondName,
-                DisplayName = m.DisplayName,
-                DisplayMode = m.DisplayMode,
-                ProductTypeId = m.ProductType.Id,
-                CreatePerson = m.CreatePerson,
-                CreateTime = m.CreateTime,
-                UpdatePerson = m.UpdatePerson,
-                UpdateTime = m.UpdateTime,
-                
+            var dtospecTypes = specTypes.ConvertTo
+                  <SpecType, DtoSpecType>();
 
-            });
             return dtospecTypes;
         }
 
@@ -97,54 +81,28 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="dtoSpecTypeParameter">规格参数</param>
         /// <param name="specTypeId">规格类型Id</param>
-        public Guid SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId, Guid? fileId)
+        public void SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId, Guid fileId)
         {
 
             var specType = spectypeReps.FindBy(s => s.Id == specTypeId).First();
-            var parameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
+           var parameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
                 .Where(s=>s.ParameterName == dtoSpecTypeParameter.ParameterName).FirstOrDefault();
             if (parameter == null)
             {
-                //Id为空就进行添加操作
-                if (dtoSpecTypeParameter.Id == new Guid()&& !string.IsNullOrEmpty(dtoSpecTypeParameter.ParameterName))
+                if (dtoSpecTypeParameter.Id == new Guid())
                 {
+
+                    //Id为空就进行添加操作
                     SpecParameterTemplate specParameterTemplate = new SpecParameterTemplate();
                     specParameterTemplate.SpecType = spectypeReps.FindBy(s => s.Id == specTypeId).First();
                     specParameterTemplate.SpecType.ProductType = spectypeReps.FindBy(s =>
                     s.Id == specTypeId).Select(p => p.ProductType).First();
                     specParameterTemplate.ParameterName = dtoSpecTypeParameter.ParameterName;
-                   
-                    if (fileId != null)
-                    {
-                        specParameterTemplate.FileUpload = fileReps.FindBy(m => m.Id == fileId).First();
-                    }
-                    else
-                    {
-                        specParameterTemplate.FileUpload = null;
-
-                    }
+                    specParameterTemplate.FileUpload = fileReps.FindBy(m => m.Id == fileId).First();
                     specType.SpecParameterTemplate.Add(specParameterTemplate);
-                    Commit();
-                    return specParameterTemplate.Id;
-
-                }
-                //编辑
-                else if(dtoSpecTypeParameter.Id != new Guid() && !string.IsNullOrEmpty(dtoSpecTypeParameter.ParameterName))
-                {
-                    var specTypeParameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
-                                     .Where(s => s.Id == dtoSpecTypeParameter.Id).FirstOrDefault();
-                    if (specTypeParameter != null)
-                    {
-                        dtoSpecTypeParameter.SpecType = specType;
-                        Mapper.Initialize(cfg => cfg.CreateMap<DtoSpecTypeParameter, SpecParameterTemplate>());
-                        Mapper.Map(dtoSpecTypeParameter, specTypeParameter);
-                    }
 
                     Commit();
-                    return specType.Id;
-                 
                 }
-                return new Guid();
             }
             else
             {

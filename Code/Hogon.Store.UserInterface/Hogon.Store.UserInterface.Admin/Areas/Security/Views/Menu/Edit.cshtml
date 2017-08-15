@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">上级菜单</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" name="PreviousMenu" id="parent">
+                                    <select class="form-control" ng-model="previousMenu" name="PreviousMenu" id="parent">
                                         <option ng-model="previousMenu" class="typename"></option>
                                     </select>
                                 </div>
@@ -187,6 +187,7 @@
                 });
             }
 
+
             //绑定父菜单
             $scope.bindParentMenu = function () {
                 $http({
@@ -215,27 +216,6 @@
                     // 请求失败执行代码
                 });
             }
-
-            //判断Code是否存在
-            $scope.CodeIsExist = function (menucode) {
-                if (menucode == $scope.code) {
-
-                } else {
-                    $http({
-                        method: 'POST',
-                        url: '/Security/Menu/CodeIsExist',
-                        data: JSON.stringify({ code: $scope.code })
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码
-                        if (response.data == true)
-                            console.log("存在");
-                        else
-                            console.log("不存在");
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
-                }
-            }
            
             if (id != "") {
                 $http({
@@ -245,11 +225,13 @@
                 }).then(function successCallback(response) {
                     // 请求成功执行代码
                     $.each(response.data, function (index, v) {
+
                         if (v.ParentId == null) {
                             var option = $("<option value = '" + v.Id + "'></option>").text(v.Name);
                             $("#parent").append(option);
                         }
                     })
+
                     $scope.createdFunction();
                 }, function errorCallback(response) {
                     // 请求失败执行代码
@@ -263,7 +245,6 @@
                     menuId = response.data.Id;
                     $("#parent option[value='meren']").remove();
                     $(".typename").text(response.data.ParentName);
-                    $(".typename").val(response.data.ParentId);
                     $scope.code = response.data.Code;
                     $scope.parentname = response.data.Name;
                     $scope.parentUrl = response.data.URL;
@@ -274,16 +255,33 @@
                         $scope.enabled = false;
                     $("#createdTime").text(response.data.DisplayCreatedTime);
                     $(".purviewMenus").show();
-                    $("[name='code']").blur(function () {
-                          $scope.CodeIsExist(response.data.Code);
-                    })
                     $scope.bindMenuFunction();
                 }, function errorCallback(response) {
                     // 请求失败执行代码
+
                 });
             } else {
                 $scope.bindParentMenu();
             }
+
+            ///小图标上传
+            //$("#input-1a").fileinput({
+            //    'theme': 'explorer',
+            //    'uploadUrl': '/FileUpload/FileUpload',
+            //    overwriteInitial: false,
+            //    initialPreviewAsData: true,
+            //    uploadLabel: "",
+            //    uploadTitle: "上传文件",
+            //    removeLabel: "",
+            //    removeTitle: "删除文件",
+            //    browseLabel: "",
+            //    maxFileCount: 1,
+            //    previewFileType: "image",
+            //    browseLabel: "",
+            //    browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            //    //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+            //    // maxFileCount:5 //最大文件上传数
+            //});
 
             //保存基本信息
             $scope.saveChange = function () {
@@ -298,7 +296,7 @@
                                 IsEnable: true
                             }
                         }
-                    });                   
+                    });
                     var previousMenu = $("#parent").val();
                     var enabled = $("#enabled").parent().attr('class');
                     if (enabled == "icheckbox_square-green checked") {
