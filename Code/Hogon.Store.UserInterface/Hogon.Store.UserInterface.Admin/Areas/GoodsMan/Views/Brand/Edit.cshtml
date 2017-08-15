@@ -127,7 +127,7 @@
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-8">
                                     <button type="button" class="btn btn-primary" ng-click="SaveBrand()" ng-disabled="myForm.$invalid">保存</button>
-                                    <button type="button" class="btn btn-white" ng-click="BackBrand()" ng-disabled="myForm.$invalid">返回</button>
+                                    <button type="button" class="btn btn-white" ng-click="BackBrand()" >返回</button>
                                 </div>
                             </div>
                         </form>
@@ -154,14 +154,14 @@
     <script src="js/plugins/fileinput/fileinput.min.js"></script>
     <script src="js/plugins/fileinput/fileinput-zh.js"></script>
     <script type="text/javascript">
-        $(function () {
-            $('#file-Portrait1').fileinput({
-                language:'zh',
-                showUpload: false,
-                mainClass: "input-group-lg",
-                allowedFileExtensions: ["jpg", "png", "gif","pdf"]
-            });
-        });
+        //$(function () {
+        //    $('#file-Portrait1').fileinput({
+        //        language:'zh',
+        //        showUpload: false,
+        //        mainClass: "input-group-lg",
+        //        allowedFileExtensions: ["jpg", "png", "gif","pdf"]
+        //    });
+        //});
     </script>
 </div>
 
@@ -347,8 +347,17 @@
             fileType = data.response.fileType;
         });
 
+        //$('#file-Portrait1').fileinput({
+        //    language: 'zh',
+        //   // showUpload: false,
+        //    mainClass: "input-group-lg",
+        //    allowedFileExtensions: ["jpg", "png", "gif", "pdf"]
+        //});
+
         //创建图片上传控件
         $(".file-loading").fileinput({
+            mainClass: "input-group-lg",
+            language: 'zh',
             uploadUrl: '/FileUpload/FileUpload',
             allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
             maxImageWidth: 50,

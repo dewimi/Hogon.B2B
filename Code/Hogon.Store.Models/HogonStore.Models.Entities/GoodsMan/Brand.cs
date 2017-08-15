@@ -9,7 +9,6 @@ namespace Hogon.Store.Models.Entities.GoodsMan
     /// </summary>
     public class Brand : BaseEntity
     {
-
         public Brand()
         {
             Rela_Brand_GoodsType = new HashSet<Rela_Brand_GoodsType>();
