@@ -8,6 +8,7 @@ namespace Hogon.Store.Test.UnitTest
         [TestMethod]
         public void TestMethod1()
         {
+
         }
     }
 }
