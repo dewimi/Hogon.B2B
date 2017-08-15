@@ -1,1 +1,90 @@
-﻿
+﻿@{
+    ViewBag.Title = "禾工大型B2B行业平台";
+    Layout = "~/Views/Shared/_EditableLayout.cshtml";
+}
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>赠品选择列表：</h5>
+                </div>
+                <div class="ibox-content">
+                    <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
+                        <thead>
+                            <tr>
+                                <th>单选按钮</th>
+                                <th>产品名称</th>
+                                <th>产品编码</th>
+                                <th>产品分类</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tbodylist">
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary" type="submit" ng-click="SaveResult()">保存</button>
+                <button class="btn btn-white" type="submit" ng-click="ReturnEdit()">返回</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 全局js -->
+<script src="~/Scripts/hogon/js/jquery-2.1.1.min.js"></script>
+<script src="~/Scripts/hogon/js/bootstrap.min.js"></script>
+<script src="~/Scripts/hogon/js/plugins/jeditable/jquery.jeditable.js"></script>
+
+<!-- Data Tables -->
+<script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
+<script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
+<!-- 自定义js -->
+<script src="~/Scripts/hogon/js/content.js"></script>
+
+<!-- Page-Level Scripts -->
+<script type="text/javascript">
+
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        $http({
+            method: 'POST',
+            url: '/MarketingMan/Freebie/GetAllFreebie',
+            data: null
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            $.each(response.data, function (index, v) {
+                var $tr = $("<tr name='DataTr'></tr>");
+                var $td0 = $("<td><input type='radio' id='freebieRadio'  value='" + v.Id + "' name='select'  /></td>");
+                var $td1 = $("<td></td>").text(v.ProductName);
+                var $td2 = $("<td></td>").text(v.ProductCode);
+                var $td3 = $("<td></td>").text(v.ProductTypeName);
+                $tr.append($td0).append($td1).append($td2).append($td3);
+                $("#tbodylist").append($tr);
+            });
+            $('#editable').DataTable({
+                //"bInfo":false,
+                " bScrollInfinite": false
+            });
+        }, function errorCallback(response) {
+            alert("失败");
+            // 请求失败执行代码
+        })
+
+        $scope.SaveResult = function () {
+            var id = $('#freebieRadio:checked').val();
+            window.location.href = "/MarketingMan/Freebie/Edit?Id%20=" + id;
+        }
+
+        $scope.ReturnEdit = function () {
+            window.location.href = "/MarketingMan/Freebie/Edit";
+        }
+    });
+
+
+
+</script>
