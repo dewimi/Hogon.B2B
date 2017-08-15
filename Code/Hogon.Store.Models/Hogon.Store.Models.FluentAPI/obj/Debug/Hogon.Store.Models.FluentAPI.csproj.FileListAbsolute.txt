@@ -1,3 +1,186 @@
+<<<<<<< HEAD
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll.config
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.init.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateGoods.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.ServiceGoodsNew.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateResponsor.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.UpdateResponser.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateAccount.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.Brand_Area.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.update.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor1.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefile.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefileupload.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csproj.GenerateResource.Cache
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateProductGoods.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.upAccount.resources
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addProductGoodsSearchDefault.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll.config
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.init.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateGoods.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.ServiceGoodsNew.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateResponsor.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.UpdateResponser.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateAccount.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.Brand_Area.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.update.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor1.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefile.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefileupload.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateProductGoods.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.upAccount.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addProductGoodsSearchDefault.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csproj.GenerateResource.Cache
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateMenu.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateMarketing.resources
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatePromotiontables.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll.config
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.init.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateGoods.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.ServiceGoodsNew.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateResponsor.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.UpdateResponser.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateAccount.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.Brand_Area.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.update.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor1.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefile.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefileupload.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateProductGoods.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.upAccount.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addProductGoodsSearchDefault.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateMenu.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateMarketing.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatePromotiontables.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csproj.GenerateResource.Cache
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateFreebie.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateFreebie1.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addLine.resources
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.AddIsAvailable.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll.config
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.FluentAPI.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.UnitOfWork.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Practices.Unity.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.Owin.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.Mvc.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.Razor.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.Razor.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Web.Infrastructure.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.Deployment.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\EntityFramework.SqlServer.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.UnitOfWork.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Practices.Unity.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Hogon.Framework.Core.Owin.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.Mvc.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.Razor.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.Razor.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\System.Web.WebPages.Deployment.xml
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.Razor.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.init.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateGoods.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.ServiceGoodsNew.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateResponsor.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.UpdateResponser.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateAccount.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.Brand_Area.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.update.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateResponsor1.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefile.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatefileupload.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateProductGoods.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.upAccount.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addProductGoodsSearchDefault.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateMenu.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.CreateMarketing.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updatePromotiontables.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateFreebie.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.updateFreebie1.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addLine.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.AddIsAvailable.resources
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csproj.GenerateResource.Cache
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.dll
+C:\HeGong\Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.pdb
+=======
 C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.csprojResolveAssemblyReference.cache
 C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.init.resources
 C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.user.resources
@@ -120,3 +303,4 @@ D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.addLine.resources
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\Hogon.Store.Models.FluentAPI\obj\Debug\Hogon.Store.Models.FluentAPI.Migrations.AddIsAvailable.resources
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4

@@ -1,3 +1,354 @@
+<<<<<<< HEAD
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll.config
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.SmartList.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Owin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebActivatorEx.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebGrease.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Optimization.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll.config
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.SmartList.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Owin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebActivatorEx.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebGrease.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Optimization.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\备份\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll.config
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.Owin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.UnitOfWork.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.SmartList.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Owin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebActivatorEx.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebGrease.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.pdb
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Optimization.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.csprojResolveAssemblyReference.cache
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.dll
+C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll.config
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.Owin.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.UnitOfWork.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.SmartList.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Web.Infrastructure.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Owin.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebActivatorEx.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\WebGrease.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\NPOI.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\ICSharpCode.SharpZipLib.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Dto.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.Entities.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Repositories.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.DomainServices.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Services.ApplicationServices.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Utilities.Constants.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Web.Extension.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\AutoMapper.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.Owin.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Core.UnitOfWork.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.SmartList.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.ServiceLocation.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Configuration.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.Mvc.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Newtonsoft.Json.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Helpers.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Mvc.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Optimization.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.Razor.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Deployment.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\System.Web.WebPages.Razor.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Antlr3.Runtime.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\EntityFramework.SqlServer.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Core.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.Models.FluentAPI.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.pdb
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\NPOI.xml
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Helpers.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Mvc.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Optimization.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.Razor.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\EntityFramework.SqlServer.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Core.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.Owin.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\zh-Hans\Microsoft.AspNet.Identity.EntityFramework.resources.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.dll
+C:\HeGong\Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\obj\Debug\Hogon.Store.UserInterface.Admin.pdb
+=======
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll.config
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.dll
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Store.UserInterface.Admin.pdb
@@ -92,3 +443,4 @@ D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterf
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Web.pdb
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\Hogon.Framework.Utilities.DataExporter.pdb
 D:\Projects\Hogon.Store\03 Code\Hogon.Store.UserInterface\Hogon.Store.UserInterface.Admin\bin\NPOI.xml
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4

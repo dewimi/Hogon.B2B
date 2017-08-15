@@ -202,7 +202,11 @@
     <Compile Include="Areas\MarketingMan\Controllers\FreebieCatalogController.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieController.cs" />
     <Compile Include="Areas\MarketingMan\MarketingManAreaRegistration.cs" />
+<<<<<<< HEAD
+    <Compile Include="Areas\MarketingMan\Models\FreebieLineViewModel.cs" />
+=======
     <Compile Include="Areas\MarketingMan\Models\FreebieViewModel.cs" />
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Compile Include="Areas\MarketingMan\Models\Promotion\FreebieCatalogViewModel.cs" />
     <Compile Include="Areas\Security\Controllers\RoleController.cs" />
     <Compile Include="Areas\Security\Models\Role\RoleViewModel.cs" />
@@ -223,6 +227,21 @@
     <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
+    <Content Include="Content\bootstrap-fileinput\css\fileinput.css" />
+    <Content Include="Content\bootstrap-fileinput\css\fileinput.min.css" />
+    <Content Include="Content\bootstrap-fileinput\img\loading-sm.gif" />
+    <Content Include="Content\bootstrap-fileinput\img\loading.gif" />
+    <Content Include="Content\bootstrap-fileinput\themes\explorer\theme.css" />
+    <Content Include="Content\bootstrap-fileinput\themes\explorer\theme.js" />
+    <Content Include="Content\bootstrap-fileinput\themes\explorer\theme.min.css" />
+    <Content Include="Content\bootstrap-fileinput\themes\explorer\theme.min.js" />
+    <Content Include="Content\bootstrap-fileinput\themes\fa\theme.js" />
+    <Content Include="Content\bootstrap-fileinput\themes\fa\theme.min.js" />
+    <Content Include="Content\bootstrap-fileinput\themes\gly\theme.js" />
+    <Content Include="Content\bootstrap-fileinput\themes\gly\theme.min.js" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap-treeview.css" />
@@ -384,6 +403,10 @@
     <Content Include="Scripts\angular.min.js.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+<<<<<<< HEAD
+    <Content Include="Content\bootstrap-fileinput\sass\fileinput.scss" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Areas\Security\Views\web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -440,6 +463,11 @@
     <Content Include="Areas\MarketingMan\Views\FreebieCatalog\Index.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Edit.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Detail.cshtml" />
+<<<<<<< HEAD
+    <Content Include="Areas\MarketingMan\Views\Freebie\Test.cshtml" />
+    <Content Include="Areas\MarketingMan\Views\Freebie\Index.cshtml" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
@@ -457,6 +485,10 @@
     <Content Include="Scripts\hogon\js\plugins\layer\layim\data\group.json" />
     <Content Include="Scripts\hogon\js\plugins\layer\layim\data\groups.json" />
     <Content Include="Scripts\hogon\js\plugins\suggest\data.json" />
+<<<<<<< HEAD
+    <None Include="Scripts\jquery-1.10.2-vsdoc.js" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Scripts\hogon\js\bootstrap-table-zh-CN.min.js" />
     <Content Include="Scripts\hogon\js\bootstrap-table.min.js" />
     <Content Include="Scripts\hogon\js\bootstrap-treeview.min.js" />
@@ -823,10 +855,16 @@
     <Content Include="Scripts\hogon\js\plugins\webuploader\webuploader.withoutimage.js" />
     <Content Include="Scripts\hogon\js\plugins\webuploader\webuploader.withoutimage.min.js" />
     <Content Include="Scripts\hogon\js\welcome.js" />
+<<<<<<< HEAD
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+=======
     <None Include="Scripts\jquery-2.1.4.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.4.js" />
     <Content Include="Scripts\jquery-2.1.4.min.js" />
     <Content Include="Scripts\jquery-2.1.4.min.map" />
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -835,6 +873,11 @@
     <Content Include="Scripts\bootstrap-treeview.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+<<<<<<< HEAD
+    <Content Include="Scripts\fileinput.js" />
+    <Content Include="Scripts\fileinput.min.js" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Scripts\hogon\common.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
     <Content Include="Scripts\jquery-3.1.1.min.js" />
@@ -845,6 +888,46 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+<<<<<<< HEAD
+    <Content Include="Scripts\locales\ar.js" />
+    <Content Include="Scripts\locales\bg.js" />
+    <Content Include="Scripts\locales\ca.js" />
+    <Content Include="Scripts\locales\cr.js" />
+    <Content Include="Scripts\locales\cz.js" />
+    <Content Include="Scripts\locales\da.js" />
+    <Content Include="Scripts\locales\de.js" />
+    <Content Include="Scripts\locales\el.js" />
+    <Content Include="Scripts\locales\es.js" />
+    <Content Include="Scripts\locales\et.js" />
+    <Content Include="Scripts\locales\fa.js" />
+    <Content Include="Scripts\locales\fi.js" />
+    <Content Include="Scripts\locales\fr.js" />
+    <Content Include="Scripts\locales\gl.js" />
+    <Content Include="Scripts\locales\hu.js" />
+    <Content Include="Scripts\locales\id.js" />
+    <Content Include="Scripts\locales\it.js" />
+    <Content Include="Scripts\locales\ja.js" />
+    <Content Include="Scripts\locales\kr.js" />
+    <Content Include="Scripts\locales\kz.js" />
+    <Content Include="Scripts\locales\LANG.js" />
+    <Content Include="Scripts\locales\nl.js" />
+    <Content Include="Scripts\locales\no.js" />
+    <Content Include="Scripts\locales\pl.js" />
+    <Content Include="Scripts\locales\pt-BR.js" />
+    <Content Include="Scripts\locales\pt.js" />
+    <Content Include="Scripts\locales\ro.js" />
+    <Content Include="Scripts\locales\ru.js" />
+    <Content Include="Scripts\locales\sk.js" />
+    <Content Include="Scripts\locales\sl.js" />
+    <Content Include="Scripts\locales\sv.js" />
+    <Content Include="Scripts\locales\th.js" />
+    <Content Include="Scripts\locales\tr.js" />
+    <Content Include="Scripts\locales\uk.js" />
+    <Content Include="Scripts\locales\vi.js" />
+    <Content Include="Scripts\locales\zh-TW.js" />
+    <Content Include="Scripts\locales\zh.js" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\moment-with-locales.js" />
     <Content Include="Scripts\moment-with-locales.min.js" />
@@ -853,6 +936,15 @@
     <Content Include="Scripts\plugins\china_area.js" />
     <Content Include="Scripts\plugins\chosen.jquery.js" />
     <Content Include="Scripts\plugins\content.js" />
+<<<<<<< HEAD
+    <Content Include="Scripts\plugins\piexif.js" />
+    <Content Include="Scripts\plugins\piexif.min.js" />
+    <Content Include="Scripts\plugins\purify.js" />
+    <Content Include="Scripts\plugins\purify.min.js" />
+    <Content Include="Scripts\plugins\sortable.js" />
+    <Content Include="Scripts\plugins\sortable.min.js" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\smalot-datetimepicker\bootstrap-datetimepicker.js" />
