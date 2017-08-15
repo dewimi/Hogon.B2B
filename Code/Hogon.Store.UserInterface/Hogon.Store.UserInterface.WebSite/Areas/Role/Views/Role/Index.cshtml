@@ -1,0 +1,607 @@
+﻿@{
+    ViewBag.Title = "角色管理";
+    Layout = "~/Views/Shared/_RoleLayout.cshtml";
+    var render = ViewBag.ListRender;
+}
+
+@section formHeader{
+
+    <div class="header">
+        <span class="headerline">@ViewBag.Title</span>
+
+    </div>
+    <div style="clear:both"></div>
+}
+<style>
+    .role {
+      
+        float: left;
+        display: inline;
+        width: 300px;
+        height: 500px;
+        margin-right: 20px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .authority {
+       
+        float: left;
+        display: inline;
+        margin-right: 20px;
+        width: 500px;
+        height: 500px;
+    }
+
+    .staff {
+      
+        float: left;
+        display: inline;
+        margin-right: 20px;
+        width: 300px;
+        height: 500px;
+    }
+
+    .txt {
+        height: 30px;
+        width: 200px;
+        float: left;
+    }
+
+    .rolename {
+        float: left;
+        display: inline;
+        margin-top: 5px;
+        margin-left: 5px;
+        margin-right: 5px;
+    }
+
+    .but {
+        height: 30px;
+        width: 70px;
+        margin-top: 15px;
+    }
+
+    .parentmenu {
+        margin-left: 20px;
+    }
+
+    .staffname {
+        margin-left: 20px;
+    }
+
+    .childmenu {
+        margin-left: 40px;
+    }
+    .operation {
+        margin-bottom:0px;
+    }
+</style>
+<script>
+    var roleId = null;
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+        var tr;
+        //查询角色
+        $scope.GetRole = function () {
+            $http({
+                method: 'POST',
+                url: '/Role/Role/GetAllRole',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTable(response.data);
+                //点击角色查看相关权限
+                $.each(response.data, function (index, v) {
+                    //根据登录账号找到相应角色
+                    $http({
+                        method: 'POST',
+                        url: '/Security/Personal/GetRoleByUserName',
+                        data: null
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        if (response.data.Id == v.Id) {
+                            $(".roletbody").find("#" + v.Id + "").addClass("active").siblings("tr").removeClass("active");
+                            roleId = v.Id;
+                        }
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                });
+
+                roleId = $(this).attr('id');
+
+                $("._tr").on("click", function () {
+                    $(this).addClass("active").siblings("tr").removeClass("active");
+                    tr = $(this);
+                    roleId = $(this).attr('id');
+                    $http({
+                        method: 'POST',
+                        url: '/Security/Menu/MenusByRoleId',
+                        data: JSON.stringify({ roleId: roleId })
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        CreateTreeMenu(response.data);
+
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                    //根据角色Id查询相应用户
+                    $http({
+                        method: 'POST',
+                        url: '/Role/Role/GetUsersByRoleId',
+                        data: JSON.stringify({ roleId: roleId })
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        $("[name='check']").attr('class', 'glyphicon glyphicon-unchecked');
+                        
+                        $.each(response.data, function (index, v) {
+
+                            $("[value='" + v.Id + "']").attr('class', 'glyphicon glyphicon-check');
+                        });
+
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                });
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        };
+        $scope.GetRole();
+
+        //查询用户、菜单
+        $scope.GetUser_Menus = function () {
+            //获取菜单
+            $http({
+                method: 'POST',
+                url: '/Security/Menu/GetTreeMenus',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTreeMenu(response.data);
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+
+            ////获取用户
+            $http({
+                method: 'POST',
+                url: '/Security/Personal/GetAllUsers',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateStaffRelevance(response.data);
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        };
+        $scope.GetUser_Menus();
+
+        //根据用户名称查询相应的菜单权限
+        $scope.UserByIdMenus = function () {
+           
+            //判断是否管理员
+            $http({
+                method: 'POST',
+                url: '/Security/Personal/GetRoleByUserName',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                if (response.data.IsAdministrator == true) {
+                    $('#treeview-checkable').treeview('checkAll', { silent: true });
+                } else {
+                    var userName = response.data.Name;
+                    // 获取菜单权限
+                    $http({
+                        method: 'POST',
+                        url: '/Security/Personal/GetAuthorityByUserId',
+                        data: JSON.stringify({userName:userName})
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        };
+        $scope.UserByIdMenus();
+
+        //保存角色信息
+        $scope.saveChange = function () {
+            var roleId = $scope.roleId;
+            var roleName = $("#txt_Rolename").val();
+            var enabled;
+            if ($scope.enabled == true) {
+                enabled = 'true';
+            } else {
+                enabled = 'false';
+            }
+            var isAdministrator;
+            if ($scope.isAdministrator == true) {
+                isAdministrator = 'true';
+            } else {
+                isAdministrator = 'false';
+            }
+            var createdTime = $("#createdtime").text();
+            var updatedTime = $("#updatedtime").text();
+            var jsondata = { "Id": roleId, "RoleName": roleName, "IsEnable": enabled, "IsAdministrator": isAdministrator, "createdTime": createdTime, "updatedTime": updatedTime, "CreatorId": 'e0a24d1b-e530-4de9-8598-14b213a8e3cb', "UpdaterId": 'e0a24d1b-e530-4de9-8598-14b213a8e3cb' }
+            $http({
+                method: 'POST',
+                url: '/Role/Role/AddRole',
+                data: JSON.stringify(jsondata)
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                swal("保存成功！")
+                $scope.GetRole();
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        }
+        //条件查询
+        $scope.inquire = function () {
+            $http({
+                method: 'POST',
+                url: '/Role/Role/GetRoleByName',
+                data: JSON.stringify({ roleName: $scope.roleName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTable(response.data);
+                $("._tr").on("click", function () {
+                    $(this).addClass("active").siblings("tr").removeClass("active");
+                    tr = $(this);
+
+                    var roleId = $(this).attr('id');
+                    $http({
+                        method: 'POST',
+                        url: '/Security/Menu/MenusByRoleId',
+                        data: JSON.stringify({ roleId: roleId })
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        CreateTreeMenu(response.data);
+
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                });
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+
+        };
+        //查询
+        $("#roleName").keydown(function (event) {
+            if (event.which == 13)
+                $scope.inquire();
+        });
+        //添加
+        $("#add").click(function () {
+            $scope.roleId = null;
+
+            $("#txt_Rolename").val("");
+            $("#myModalLabel").text("添加角色");
+            $('#myModal').modal();
+        });
+        //修改
+        $("#edit").click(function () {
+            $scope.roleId = tr.attr('id');
+            $scope.enabled = true;
+            $scope.isAdministrator = false;
+            $http({
+                method: 'POST',
+                url: '/Role/Role/GetRoleById',
+                data: JSON.stringify({ roleId: $scope.roleId })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $("#myModalLabel").text("编辑角色");
+                $('#myModal').modal();
+                $scope.rolename = response.data.RoleName;
+                if (response.data.IsEnable == "True") {
+                    $scope.enabled = true;
+                }
+                if (response.data.IsAdministrator == true) {
+                    $scope.isAdministrator = true;
+                }
+                $("#createdtime").text(response.data.DisplayCreatedTime);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        });
+        //删除
+        $("#del").click(function () {
+            swal({
+                title: "操作提示",
+                text: "确认删除该角色吗?",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                cancelButtonText: "取消",
+                confirmButtonText: "确定",
+                closeOnConfirm: false
+            },
+                 function () {
+                     $scope.roleId = tr.attr('id');
+                     $http({
+                         method: 'POST',
+                         url: '/Role/Role/DeleteRole',
+                         data: JSON.stringify({ roleId: $scope.roleId })
+                     }).then(function successCallback(response) {
+                         // 请求成功执行代码
+                         swal("删除成功", "", "success");
+                         $scope.GetRole();
+                     }, function errorCallback(response) {
+                         // 请求失败执行代码
+
+                     });
+
+                 });
+        });
+        //保存角色权限和用户
+        $("#save").click(function () {
+
+            var checkedNodes = findCheckedNodes();//获取选中节点
+            var unCheckedNodes = findunCheckedNode();//获取未选中节点
+            var roleid = roleId;
+            var arr = Array();
+            var unCheckedArr = Array();
+            for (var i = 0; i < checkedNodes.length; i++) {
+                arr[i] = { Id: checkedNodes[i].Id, state: checkedNodes[i].state };
+            }
+            for (var i = 0; i < unCheckedNodes.length; i++) {
+                unCheckedArr[i] = { Id: unCheckedNodes[i].Id, state: unCheckedNodes[i].state };
+
+            }
+
+            var checkUsersArray = Array();
+            var unCheckUsersArray = Array();
+            var spanlenth = $(".staffrelevance").find("span").length;
+            for (var i = 0; i < spanlenth; i++) {
+                var sp = $(".staffrelevance").find("span").eq(i).attr("class");
+
+                if (sp == 'glyphicon glyphicon-check') {//人员选中
+                    checkUsersArray[i] = $(".staffrelevance").find("span").eq(i).attr("value");
+
+                } else if (sp == 'glyphicon glyphicon-unchecked') {//人员为选中
+                    unCheckUsersArray[i] = $(".staffrelevance").find("span").eq(i).attr("value");
+                }
+            }
+
+            $http({
+                method: 'POST',
+                url: '/Role/Role/SaveAuthority',
+                data: JSON.stringify({
+                    listTreeNode: arr, roleId: roleid, userNode: checkUsersArray,
+                    unCheckedNode: unCheckedArr, unCheckUsers: unCheckUsersArray
+                })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+
+        });
+
+    });
+    //创建树形菜单
+    function CreateTreeMenu(data) {
+        $('#treeview-checkable').treeview({
+            showCheckbox: true,
+            data: data,
+            onNodeChecked: nodeChecked,
+            onNodeUnchecked: nodeUnchecked
+        });
+    }
+    //节点选中
+    var nodeCheckedSilent = false;
+    function nodeChecked(event, node){
+        if (nodeCheckedSilent) {
+            return;
+        }
+        nodeCheckedSilent = true;
+        checkAllParent(node);
+        checkAllSon(node);
+        nodeCheckedSilent = false;
+       // SaveNode(node);
+
+    }
+    //节点取消选中
+    var nodeUncheckedSilent = false;
+    function nodeUnchecked(event, node) {
+        if (nodeUncheckedSilent)
+            return;
+        nodeUncheckedSilent = true;
+        uncheckAllParent(node);
+        uncheckAllSon(node);
+        nodeUncheckedSilent = false;
+    }
+    //选中全部父节点
+    function checkAllParent(node) {
+        $('#treeview-checkable').treeview('checkNode', node.nodeId, { silent: true });
+        var parentNode = $('#treeview-checkable').treeview('getParent', node.nodeId);
+        if (!("nodeId" in parentNode)) {
+            return;
+        } else {
+            checkAllParent(parentNode);
+        }
+    }
+    ////取消全部父节点
+    function uncheckAllParent(node) {
+        $('#treeview-checkable').treeview('uncheckNode', node.nodeId, { silent: true });
+        var siblings = $('#treeview-checkable').treeview('getSiblings', node.nodeId);
+        var parentNode = $('#treeview-checkable').treeview('getParent', node.nodeId);
+        if (!("nodeId" in parentNode)) {
+            return;
+        }
+        var isAllUnchecked = true;  //是否全部没选中
+        for (var i in siblings) {
+            if (siblings[i].state.checked) {
+                isAllUnchecked = false;
+                break;
+            }
+        }
+        if (isAllUnchecked) {
+            uncheckAllParent(parentNode);
+        }
+    }
+    //级联选中所有子节点
+    function checkAllSon(node) {
+        $('#treeview-checkable').treeview('checkNode', node.nodeId, { silent: true });
+        if (node.nodes != null && node.nodes.length > 0) {
+            for (var i in node.nodes) {
+                checkAllSon(node.nodes[i]);
+            }
+        }
+    }
+    //级联取消所有子节点
+    function uncheckAllSon(node) {
+        $('#treeview-checkable').treeview('uncheckNode', node.nodeId, { silent: true });
+        if (node.nodes != null && node.nodes.length > 0) {
+            for (var i in node.nodes) {
+                uncheckAllSon(node.nodes[i]);
+            }
+        }
+    }
+ 
+    //创建角色信息列表
+    function CreateTable(data) {
+        $("tr[name='DataTr']").remove();
+        $.each(data, function (index, v) {
+            var $tr = $("<tr name='DataTr' class = '_tr' id = '" + v.Id + "'></tr>");
+            var $td1 = $("<td></td>").text(v.RoleName);
+            $tr.append($td1);
+            $(".roletbody").append($tr);
+        });
+
+    }
+    //创建人员列表
+    function CreateStaffRelevance(data) {
+
+        $.each(data, function (index, v) {
+
+            $(".staffrelevance").append("<h5 class = 'staffname '><span class = 'glyphicon glyphicon-unchecked' value='" + v.Id + "' name='check'/>&nbsp" + v.Name + "</span></h5>");
+        });
+        $("[name='check']").on("click", function () {
+           var flag = $(this).attr('class');
+           if (flag == 'glyphicon glyphicon-check') {
+               $(this).removeClass();
+               $(this).attr('class', 'glyphicon glyphicon-unchecked');
+            
+           } else if (flag == 'glyphicon glyphicon-unchecked') {
+               $(this).removeClass();
+               $(this).attr('class', 'glyphicon glyphicon-check');
+             
+            }
+
+        });
+       
+    }
+    //获取选中的节点
+    var findCheckedNodes = function () {
+        return $('#treeview-checkable').treeview('getChecked');
+      
+    };
+    //获取未选中的节点
+    var findunCheckedNode = function () {
+        return $('#treeview-checkable').treeview('getUnchecked');
+    };
+
+
+
+</script>
+<form>
+    <div>
+        <div class="role">
+            <span>角色信息：</span>
+
+            <table class="table table-hover">
+                <thead class="listheader">
+                    <tr>
+                        <th>角色名</th>
+                    </tr>
+                </thead>
+                <tbody class="roletbody"></tbody>
+            </table>
+            <div class="operation">
+                <span class="rolename">角色名:</span><input type="text" name="roleName" class="form-control txt" ng-model="roleName" id="roleName">
+                <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
+                <button name="confirmButton" id="edit" type="button" class="btn btn-primary but">修改</button>
+                <button name="confirmButton" id="del" type="button" class="btn btn-primary but">删除</button>
+            </div>
+        </div>
+    </div>
+
+  
+    <div class="authority">
+        <span>权限配置：</span>
+
+        <div id="treeview-checkable"></div> 
+        <button name="confirmButton" id="save" type="button" class="btn btn-primary but">保存</button>
+      
+    </div>
+  
+    <div class="staff">
+        <span>人员关联：</span>
+        <div class="staffrelevance">
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel">新增</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="id" ng-model="roleId" />
+                    <table class="functional">
+                        <tr>
+                            <td>角色名称</td>
+                            <td><input type="text" name="txt_departmentname" ng-model="rolename" class="form-control" id="txt_Rolename" placeholder="角色名称"></td>
+                        </tr>
+                        <tr>
+                            <td>启用状态</td>
+                            <td><input type="checkbox" id="isEnabled" ng-model="enabled">是否启用</td>
+                        </tr>
+                        <tr>
+                            <td>启用状态</td>
+                            <td><input type="checkbox" id="isAdministrator" ng-model="isAdministrator">是否管理员</td>
+                        </tr>
+                        <tr>
+                            <td><span>创建日期:</span></td>
+                            <td><label ng-model="createdtime" id="createdtime">@ViewBag.CreatedTime</label></td>
+                        </tr>
+                        <tr>
+                            <td><span>修改日期:</span></td>
+                            <td><label ng-model="updatedtime" id="updatedtime">@ViewBag.UpdatedTime</label></td>
+                        </tr>
+                    </table>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>关闭</button>
+                    <button type="button" id="btn_submit" class="btn btn-primary" ng-click="saveChange()" data-dismiss="modal"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

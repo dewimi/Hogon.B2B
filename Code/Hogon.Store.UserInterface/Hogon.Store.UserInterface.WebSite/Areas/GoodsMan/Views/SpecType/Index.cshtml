@@ -1,0 +1,47 @@
+﻿@*@{
+    ViewBag.Title = "规格列表";
+    Layout = "~/Views/Shared/_ListLayout.cshtml";
+    var render = ViewBag.ListRender;
+}
+
+@section formHeader{
+
+    <div class="header">
+        <span class="headerline">@ViewBag.Title</span>
+        <button name="confirmButton" id="AddInstrument" type="button" class="btn btn-primary headerbut"><i class="glyphicon glyphicon-plus" style="margin-right:5px;"></i>添加</button>
+
+    </div>
+    <div style="clear:both"></div>
+}
+
+@section searchImport{
+
+    @Html.Raw(Server.HtmlDecode(render.RenderSearchImport()))
+}
+
+@section jointJson{
+
+    @Html.Raw(Server.HtmlDecode(render.RenderJointJson()))
+}
+@section pagingImport{
+
+    @Html.Raw(Server.HtmlDecode(render.RenderSearchImport()))
+}
+
+@section pagingJson{
+
+    @Html.Raw(Server.HtmlDecode(render.RenderJointJson()))
+}
+
+<script>
+  
+    $(function () {
+        $("#AddInstrument").click(function () {
+
+            window.location.href = "Add";
+        });
+    });
+
+    @Html.Raw(Server.HtmlDecode(render.RenderAllList()))
+
+</script>*@

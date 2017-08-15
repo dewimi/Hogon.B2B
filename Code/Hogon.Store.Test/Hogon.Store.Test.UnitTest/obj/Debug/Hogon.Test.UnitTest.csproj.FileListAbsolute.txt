@@ -1,0 +1,7 @@
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\bin\Debug\Hogon.Test.UnitTest.dll
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\bin\Debug\Hogon.Test.UnitTest.pdb
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.csprojResolveAssemblyReference.cache
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.dll
+C:\Hogon_Store\03 Code\Hogon.Test\Hogon.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.pdb

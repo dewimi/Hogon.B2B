@@ -1,0 +1,147 @@
+﻿
+@{
+    ViewBag.Title = "营销管理";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<div class="form-group">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>赠品编辑</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" class="form-horizontal" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="must">*</span>赠品名称：</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control"  ng-model="freebieName">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">赠品编号：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">选择所属分类：</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control" ng-model="freebieCatalog" placeholder="请选择">
+                                        <option value="">请选择</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">是否发布:</label>
+                                <label><input type="radio" value="True" name="IsPublish" checked="checked" style="width:20px; margin-left:40px;" />是</label>
+                                <label style="margin-left:50px;"><input type="radio" value="False" name="IsPublish" style="width:20px;" />否</label>
+                             </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">排序：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="freebieName" id="freebieName" class="form-control" ng-model="freebieName" placeholder="请输入排序号" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="must">*</span>每单限购数量：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" name="freebieName" id="freebieName" class="form-control" ng-model="freebieName" placeholder="请输入限购数量" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">描述：</label>
+                                <div class="col-sm-5">
+                                    <textarea id="" type="text" name="" class="form-control" ng-model="freebieDescription"></textarea>
+                                    <label class="col-sm-6 ">简短的商品介绍请不要超过70字 </label>
+                                </div>                            
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3"></label>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary" type="submit" ng-click="saveChange()">保存</button>
+                                    <button class="btn btn-white" type="submit" ng-click="returnHigherLever()">返回</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .must {
+            padding-right: 4px;
+            color: #ff0000;
+        }
+    </style>
+
+    <!-- jQuery 表单验证-->
+    <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Scripts/hogon/js/content.js"></script>
+    <!-- iCheck-->
+    <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+    <script type="text/javascript">
+
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search;
+        id = id.substring(id.indexOf('=') + 1);
+        if (id != "") {
+            $http({
+                method: 'POST',
+                url: '/MarketingMan/FreebieCatalog/EditFreebie',
+                data: { Id: id }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                var Data = response.data;
+                $scope.freebieName = response.data.FreebieCatalogName;
+                $("#sortNum").val(Data.Sort);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            })
+        }
+
+        var id = window.location.search;
+        id = id.substring(id.indexOf('=') + 1);
+        $scope.saveChange = function (){
+        $scope.user = {
+            "FreebieCatalogName": $scope.freebieName, "Sort": $scope.sortNum, "Id": id
+        };
+
+        if ($scope.freebieName == null || $scope.sortNum == null)
+        { return;}
+        //console.log(JSON.stringify($scope.user));
+        $http({
+            method: 'POST',
+            url: '/MarketingMan/FreebieCatalog/SaveFreebie',
+            data: JSON.stringify($scope.user)
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            //window.location.href = "/MarketingMan/FreebieCatalog/Index";
+            swal("保存成功！");
+        }, function errorCallback(response) {
+            swal("保存失败！");
+            // 请求失败执行代码
+        });
+        }
+
+        $scope.returnHigherLever = function () {
+            window.location.href = "/MarketingMan/FreebieCatalog/Index";
+        }
+
+        })
+    </script>
+</div>

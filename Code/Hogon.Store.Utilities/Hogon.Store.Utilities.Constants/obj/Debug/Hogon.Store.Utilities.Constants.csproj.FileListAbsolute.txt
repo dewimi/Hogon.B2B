@@ -1,0 +1,14 @@
+C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.dll
+C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.csprojResolveAssemblyReference.cache
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.dll
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.csprojResolveAssemblyReference.cache

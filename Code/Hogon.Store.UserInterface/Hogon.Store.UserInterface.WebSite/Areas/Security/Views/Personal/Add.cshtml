@@ -1,0 +1,191 @@
+﻿@{
+    ViewBag.Title = "禾工大型B2B行业平台";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+@section formHeader{
+
+    <div class="header">
+        <h2 class="headerline">人员管理</h2>
+    </div>
+}
+<style>
+  
+</style>
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search; //获取ID
+        id = id.substring(id.indexOf('=') + 1);
+        $("#enabled").attr("checked", true);
+       
+            //新增
+            $scope.saveChange = function () {
+                if ($("#enabled").attr("checked", false)) {
+                    $scope.enabled = 'false';
+                } else {
+                    $scope.enabled = 'true';
+                }
+                var createdTime = $("#createdTime").text();
+                var updatedTime = $("#updatedTime").text();
+                $scope.user = {
+                    "Id":id, "NickName": $scope.nickName, "Name": $scope.name, "Password": $scope.password,
+                    "Email": $scope.email, "IsEnable": $scope.enabled, "CreatedTime": createdTime,
+                    "UpdatedTime": updatedTime, "CreatorId": 1, "UpdaterId": 1
+                };
+                console.log(JSON.stringify($scope.user));
+                $http({
+                    method: 'POST',
+                    url: '/Security/Personal/Save',
+                    data: JSON.stringify($scope.user)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+
+                    swal("保存成功！")
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+
+                });
+            };
+      if (id != "") {
+            //编辑
+            $http({
+                method: 'POST',
+                url: '/Security/Personal/GetUserById',
+                data: JSON.stringify({ id:id})
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data);
+                $scope.nickName = response.data.NickName;
+                $scope.name = response.data.Name;
+                $scope.password = response.data.Password;
+                $scope.passwordagain = response.data.Password;
+                $scope.email = response.data.Email;
+                if (response.data.IsEnable == true) {
+                    $("#enabled").attr("checked", true);
+                } else {
+                    $("#enabled").attr("checked", false);
+                }
+                //$scope.enabled = response.data.IsEnable
+                $("#createdTime").text(response.data.DisplayCreatedTime);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+
+        }
+      
+        $("[name='nickName']").blur(function () {
+           // var userName = $scope.nickName;
+            $http({
+                method: 'POST',
+                url: '/Security/Personal/IsExist',
+                data: JSON.stringify({ userName: $scope.nickName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data);
+                if (response.data == 1) {
+                  
+                    $("#userName").show();
+                } else {
+                    $("#userName").hide();
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        })
+    });
+
+</script>
+<form name="myForm" novalidate>
+
+    <div class="form-group">
+        <div class="basic">
+
+            <input type="hidden" name="id" ng-model="menuid" />
+            <table>
+                <tr>
+                    <td><span>用户名</span></td>
+                    <td>
+                        <input type="text" name="nickName" class="form-control" ng-model="nickName" placeholder="请输入用户名..." required>
+                    </td>
+                   <td>
+                       <p>
+                           <span style="color:red" ng-show="myForm.nickName.$dirty && myForm.nickName.$invalid">
+                               <span ng-show="myForm.nickName.$error.required">用户名不能为空</span>
+                           </span>
+                       </p>
+                        <span style="display:none;color:red" id="userName">用户名已存在</span>
+                   </td>
+                </tr>
+                <tr>
+                    <td><span>姓名:</span></td>
+                    <td><input type="text" name="name" class="form-control" ng-model="name" placeholder="请输入姓名..." required></td>
+                   
+                </tr>
+                <tr>
+                    <td><span>密码:</span></td>
+                    <td>
+                        <input type="password" class="form-control" ng-model="password" ng-minlength="6"
+                               ng-maxlength="20" name="password" id="password" placeholder="请输入密码..." required>
+                    </td>
+                    <td>
+                        <p>
+                            <span style="color: red" ng-show="myForm.password.$invalid">
+                                <span ng-show="myForm.password.$error.minlength">密码长度不小于6</span>
+                                <span ng-show="myForm.password.$error.maxlength">密码长度不超过20</span>
+                            </span>
+                        </p>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td><span>重复密码:</span></td>
+                    <td>
+                        <input type="password" class="form-control" ng-model="passwordagain" name="passwordagain"
+                               id="passwordagain" placeholder="请再输一遍密码..." required>
+                    </td>
+                    <td>
+                        <p>
+                            <span style="color: red" ng-show="myForm.password.$valid">
+                                <span ng-show="passwordagain!=password">*两次密码输入不一致</span>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>邮箱:</span></td>
+                    <td>
+                        <input type="email" class="form-control" ng-model="email" name="email" id="email"
+                               placeholder="请输入电子邮箱..." required>
+                    </td>
+                    <td>
+                        <span style="color: red" ng-show=" myForm.email.$invalid">
+                            <span ng-show="myForm.email.$error.email">*请输入正确的email地址</span>
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>启用状态:</span></td>
+                    <td><input type="checkbox" id="enabled">是否启用</td>
+                </tr>
+
+                <tr>
+                    <td><span>创建日期:</span></td>
+                    <td><label id="createdTime">@ViewBag.CreatedTime</label></td>
+                </tr>
+                <tr>
+                    <td><span>修改日期:</span></td>
+                    <td><label id="updatedTime">@ViewBag.UpdatedTime</label></td>
+                </tr>
+            </table>
+        
+        </div>
+
+    </div>
+
+
+
+</form>

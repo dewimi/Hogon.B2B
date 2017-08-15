@@ -1,0 +1,125 @@
+﻿@{
+    ViewBag.Title = "查看明细";
+    Layout = "~/Views/Shared/_DetailLayout.cshtml";
+}
+
+@section formHeader{
+
+    <div class="header margin-left20">
+        <span class="headerline">查看明细</span>
+    </div>
+}
+
+<script type="text/javascript">
+
+    var menuId = 0;
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search; //获取ID
+        id = id.substring(id.indexOf('=') + 1);
+        $scope.specId = id;
+        if ($scope.specId != "")
+        {
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/SpecType/GetSpecTypeBySpecTypeId',
+                data: JSON.stringify({ specTypeId: id })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $(".SpecName").text(response.data.SpecName);
+                $(".SpecCatalog").text(response.data.SpecCatalog);
+                $(".SpecRemark").text(response.data.SpecRemark);
+                $(".SpecSecondName").text(response.data.SpecSecondName);
+                $(".DisplayName").text(response.data.DisplayName);
+                $(".DisplayMode").text(response.data.DisplayMode);
+                $(".CreatePerson").text(response.data.CreatePerson);
+                $(".IsEnable").text(response.data.DisplayIsDeleted);
+                $(".CreatedTime").text(response.data.DisplayCreatedTime);
+                $(".UpdatedTime").text(response.data.DisplayUpdateTime);
+                $(".UpdatePerson").text(response.data.UpdatePerson);
+                $scope.GetSpecParameter(response.data.Id);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        }
+
+        //根据规格类型Id查询规格参数
+        $scope.GetSpecParameter = function (Id) {
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/SpecType/GetParametersById',
+                data: JSON.stringify({ specTypeId: Id })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTable();
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        }
+
+    });
+
+    function CreateTable(data) {
+        $("tr[name='DataTr']").remove();
+        $.each(data, function (index, v) {
+            var $tr = $("<tr name='DataTr'></tr>");
+            var $td1 = $("<td></td>").text(v.ParameterName);
+
+            $tr.append($td1);
+            $(".tbodylist").append($tr);
+        });
+    }
+
+</script>
+<form name="myForm" novalidate>
+
+    <div class="form-group">
+        <div class="panelWrapper">
+            <span class="secondHead">基本信息</span>
+            <input type="hidden" name="id" ng-model="specId" />
+            <table>
+                <tr>
+                    <td>规格名称：<span class="SpecName"></span></td>
+                    <td>商品类型：<span class="SpecCatalog"></span></td>
+                    <td>规格备注：<span class="SpecRemark"></span></td>
+                </tr>
+                <tr>
+                    <td>规格别名：<span class="SpecSecondName"></span></td>
+                    <td>显示类型：<span class="DisplayName"></span></td>
+                    <td>显示方式：<span class="DisplayMode"></span></td>
+                </tr>
+                <tr>
+                    <td>创建人：<span class="CreatePerson"></span></td>
+                    <td>创建时间：<span class="CreatedTime"></span></td>
+                    <td>修改时间：<span class="UpdatedTime"></span></td>
+                </tr>
+                <tr>
+                 
+                    <td>更新人：<span class="UpdatePerson"></span></td>
+                   
+                </tr>
+            </table>
+        </div>
+        <div style="margin-top:2%;margin-left:1.5%">
+            规格参数:
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>参数名称</th>
+                    </tr>
+                </thead>
+                <tbody class="tbodylist"></tbody>
+            </table>
+        </div>
+
+    </div>
+
+
+
+</form>
+
+

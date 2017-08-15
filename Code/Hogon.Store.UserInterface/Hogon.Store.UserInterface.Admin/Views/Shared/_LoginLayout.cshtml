@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html style="overflow-x:hidden; height:100%; margin:0;padding:0;">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+ <script type="text/javascript">
+     $(function () {
+         var totalwidth = $(window).width();//总宽
+        
+
+
+         //给DIV设置默认宽高
+         $(".total").width(totalwidth).height(800);
+     });
+ </script>
+</head>
+
+<body>
+    <div>
+        @RenderSection("header", false)
+        <div class="total" style="top:89px;bottom:0px;">
+                @RenderBody()
+        </div>
+
+         @*@RenderSection("footer", false)*@
+    </div>
+</body>
+</html>

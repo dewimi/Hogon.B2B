@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/plugins/chosen/chosen.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-5 ibox">
+            <div class="col-sm-4">
+                <select id="s_province" name="s_province" class="form-control ">
+                    <option value="省份">省份</option>
+                    <option value="北京市">北京市</option>
+                    <option value="天津市">天津市</option>
+                    <option value="上海市">上海市</option>
+                    <option value="重庆市">重庆市</option>
+                    <option value="河北省">河北省</option>
+                    <option value="山西省">山西省</option>
+                    <option value="内蒙古">内蒙古</option>
+                    <option value="辽宁省">辽宁省</option>
+                    <option value="吉林省">吉林省</option>
+                    <option value="黑龙江省">黑龙江省</option>
+                    <option value="江苏省">江苏省</option>
+                    <option value="浙江省">浙江省</option>
+                    <option value="安徽省">安徽省</option>
+                    <option value="福建省">福建省</option>
+                    <option value="江西省">江西省</option>
+                    <option value="山东省">山东省</option>
+                    <option value="河南省">河南省</option>
+                    <option value="湖北省">湖北省</option>
+                    <option value="湖南省">湖南省</option>
+                    <option value="广东省">广东省</option>
+                    <option value="广西">广西</option>
+                    <option value="海南省">海南省</option>
+                    <option value="四川省">四川省</option>
+                    <option value="贵州省">贵州省</option>
+                    <option value="云南省">云南省</option>
+                    <option value="西藏">西藏</option>
+                    <option value="陕西省">陕西省</option>
+                    <option value="甘肃省">甘肃省</option>
+                    <option value="青海省">青海省</option>
+                    <option value="宁夏">宁夏</option>
+                    <option value="新疆">新疆</option>
+                    <option value="香港">香港</option>
+                    <option value="澳门">澳门</option>
+                    <option value="台湾省">台湾省</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select id="s_city" name="s_city" class="form-control col-sm-4">
+                    <option value="地级市">地级市</option>
+                </select>
+            </div>
+            <div class="col-sm-4">
+                <select id="s_county" name="s_county" class="form-control col-sm-4">
+                    <option value="市、县级市">市、县级市</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-5">
+            <div class="">
+                <select data-placeholder="多项选择" class="chosen-select" multiple style="width:350px;" tabindex="4">
+                    <option value="">请选择省份</option>
+                    <option value="110000" hassubinfo="true">北京</option>
+                    <option value="120000" hassubinfo="true">天津</option>
+                    <option value="130000" hassubinfo="true">河北省</option>
+                    <option value="140000" hassubinfo="true">山西省</option>
+                    <option value="150000" hassubinfo="true">内蒙古自治区</option>
+                    <option value="210000" hassubinfo="true">辽宁省</option>
+                    <option value="220000" hassubinfo="true">吉林省</option>
+                    <option value="230000" hassubinfo="true">黑龙江省</option>
+                    <option value="310000" hassubinfo="true">上海</option>
+                    <option value="320000" hassubinfo="true">江苏省</option>
+                    <option value="330000" hassubinfo="true">浙江省</option>
+                    <option value="340000" hassubinfo="true">安徽省</option>
+                    <option value="350000" hassubinfo="true">福建省</option>
+                    <option value="360000" hassubinfo="true">江西省</option>
+                    <option value="370000" hassubinfo="true">山东省</option>
+                    <option value="410000" hassubinfo="true">河南省</option>
+                    <option value="420000" hassubinfo="true">湖北省</option>
+                    <option value="430000" hassubinfo="true">湖南省</option>
+                    <option value="440000" hassubinfo="true">广东省</option>
+                    <option value="450000" hassubinfo="true">广西壮族自治区</option>
+                    <option value="460000" hassubinfo="true">海南省</option>
+                    <option value="500000" hassubinfo="true">重庆</option>
+                    <option value="510000" hassubinfo="true">四川省</option>
+                    <option value="520000" hassubinfo="true">贵州省</option>
+                    <option value="530000" hassubinfo="true">云南省</option>
+                    <option value="540000" hassubinfo="true">西藏自治区</option>
+                    <option value="610000" hassubinfo="true">陕西省</option>
+                    <option value="620000" hassubinfo="true">甘肃省</option>
+                    <option value="630000" hassubinfo="true">青海省</option>
+                    <option value="640000" hassubinfo="true">宁夏回族自治区</option>
+                    <option value="650000" hassubinfo="true">新疆维吾尔自治区</option>
+                    <option value="710000" hassubinfo="true">台湾省</option>
+                    <option value="810000" hassubinfo="true">香港特别行政区</option>
+                    <option value="820000" hassubinfo="true">澳门特别行政区</option>
+                    <option value="990000" hassubinfo="true">海外</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 全局js -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap.min.js?v=3.4.0"></script>
+<script src="js/plugins/chosen/chosen.jquery.js"></script>
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
+<script src="js/demo/china_area.js" type="text/javascript"></script>
+
+
+<script>
+    $(document).ready(function () {
+
+        var config = {
+            '.chosen-select': {},
+            '.chosen-select-deselect': {
+                allow_single_deselect: true
+            },
+            '.chosen-select-no-single': {
+                disable_search_threshold: 10
+            },
+            '.chosen-select-no-results': {
+                no_results_text: 'Oops, nothing found!'
+            },
+            '.chosen-select-width': {
+                width: "95%"
+            }
+        }
+        for (var selector in config) {
+            $(selector).chosen(config[selector]);
+        }
+
+
+        //初始化全国三级联动
+        _init_area();
+    });
+
+</script>
+</body>
+
+</html>

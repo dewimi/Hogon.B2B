@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{075C4E40-C031-47E9-8F34-1A8C21093C27}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Hogon.Store.Models.FluentAPI</RootNamespace>
+    <AssemblyName>Hogon.Store.Models.FluentAPI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Hogon.Framework.Core.UnitOfWork">
+      <HintPath>..\..\Libraries\Hogon.Framework.Core.UnitOfWork.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GoodsMan\ProductConfiguration.cs" />
+    <Compile Include="GoodsMan\ProductGoodsConfiguration.cs" />
+    <Compile Include="GoodsMan\Rela_Brand_GoodsTypeConfiguration.cs" />
+    <Compile Include="GoodsMan\Rela_Goods_GoodsTypeConfiguration.cs" />
+    <Compile Include="GoodsMan\GoodsConfiguration.cs" />
+    <Compile Include="GoodsMan\ServiceGoodsConfiguration.cs" />
+    <Compile Include="GoodsMan\InstructionConfiguration.cs" />
+    <Compile Include="GoodsMan\AppCaseConfiguration.cs" />
+    <Compile Include="GoodsMan\GoodsTypeConfiguration.cs" />
+    <Compile Include="GoodsMan\ProductTypeConfiguration.cs" />
+    <Compile Include="GoodsMan\ProductTypeCategoryConfiguration.cs" />
+    <Compile Include="GoodsMan\SpecTypeConfiguration.cs" />
+    <Compile Include="GoodsMan\SpecParameterTemplateConfiguration.cs" />
+    <Compile Include="MarketingMan\FreebieCatalogConfiguration.cs" />
+    <Compile Include="MarketingMan\FreebieConfiguration.cs" />
+    <Compile Include="MarketingMan\FreebieLineConfiguration.cs" />
+    <Compile Include="MarketingMan\PackageGoodsConfiguration.cs" />
+    <Compile Include="MarketingMan\PromotinRuleConfiguration.cs" />
+    <Compile Include="MarketingMan\Rel_Promotion_GoodsConfiguration.cs" />
+    <Compile Include="MemberMan\AccountConfiguration.cs" />
+    <Compile Include="Migrations\201707261006261_init.cs" />
+    <Compile Include="Migrations\201707261006261_init.Designer.cs">
+      <DependentUpon>201707261006261_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707270522557_CreateGoods.cs" />
+    <Compile Include="Migrations\201707270522557_CreateGoods.Designer.cs">
+      <DependentUpon>201707270522557_CreateGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707270618290_ServiceGoodsNew.cs" />
+    <Compile Include="Migrations\201707270618290_ServiceGoodsNew.Designer.cs">
+      <DependentUpon>201707270618290_ServiceGoodsNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707280600404_CreateResponsor.cs" />
+    <Compile Include="Migrations\201707280600404_CreateResponsor.Designer.cs">
+      <DependentUpon>201707280600404_CreateResponsor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707280814357_UpdateResponser.cs" />
+    <Compile Include="Migrations\201707280814357_UpdateResponser.Designer.cs">
+      <DependentUpon>201707280814357_UpdateResponser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707310737005_updateAccount.cs" />
+    <Compile Include="Migrations\201707310737005_updateAccount.Designer.cs">
+      <DependentUpon>201707310737005_updateAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707310748208_Brand_Area.cs" />
+    <Compile Include="Migrations\201707310748208_Brand_Area.Designer.cs">
+      <DependentUpon>201707310748208_Brand_Area.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707310958353_update.cs" />
+    <Compile Include="Migrations\201707310958353_update.Designer.cs">
+      <DependentUpon>201707310958353_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708010258451_updateResponsor.cs" />
+    <Compile Include="Migrations\201708010258451_updateResponsor.Designer.cs">
+      <DependentUpon>201708010258451_updateResponsor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708010312268_updateResponsor1.cs" />
+    <Compile Include="Migrations\201708010312268_updateResponsor1.Designer.cs">
+      <DependentUpon>201708010312268_updateResponsor1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708010745331_updatefile.cs" />
+    <Compile Include="Migrations\201708010745331_updatefile.Designer.cs">
+      <DependentUpon>201708010745331_updatefile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708010749183_updatefileupload.cs" />
+    <Compile Include="Migrations\201708010749183_updatefileupload.Designer.cs">
+      <DependentUpon>201708010749183_updatefileupload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708030034068_CreateProductGoods.cs" />
+    <Compile Include="Migrations\201708030034068_CreateProductGoods.Designer.cs">
+      <DependentUpon>201708030034068_CreateProductGoods.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708030229178_upAccount.cs" />
+    <Compile Include="Migrations\201708030229178_upAccount.Designer.cs">
+      <DependentUpon>201708030229178_upAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708030251253_addProductGoodsSearchDefault.cs" />
+    <Compile Include="Migrations\201708030251253_addProductGoodsSearchDefault.Designer.cs">
+      <DependentUpon>201708030251253_addProductGoodsSearchDefault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708040044263_updateMenu.cs" />
+    <Compile Include="Migrations\201708040044263_updateMenu.Designer.cs">
+      <DependentUpon>201708040044263_updateMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708070257312_CreateMarketing.cs" />
+    <Compile Include="Migrations\201708070257312_CreateMarketing.Designer.cs">
+      <DependentUpon>201708070257312_CreateMarketing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708070658519_updatePromotiontables.cs" />
+    <Compile Include="Migrations\201708070658519_updatePromotiontables.Designer.cs">
+      <DependentUpon>201708070658519_updatePromotiontables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708080942459_updateFreebie.cs" />
+    <Compile Include="Migrations\201708080942459_updateFreebie.Designer.cs">
+      <DependentUpon>201708080942459_updateFreebie.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708090145152_updateFreebie1.cs" />
+    <Compile Include="Migrations\201708090145152_updateFreebie1.Designer.cs">
+      <DependentUpon>201708090145152_updateFreebie1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708090839097_addLine.cs" />
+    <Compile Include="Migrations\201708090839097_addLine.Designer.cs">
+      <DependentUpon>201708090839097_addLine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708090839517_AddIsAvailable.cs" />
+    <Compile Include="Migrations\201708090839517_AddIsAvailable.Designer.cs">
+      <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Security\AuthorityConfiguration.cs" />
+    <Compile Include="Security\FunctionConfiguration.cs" />
+    <Compile Include="Security\MenuConfiguration.cs" />
+    <Compile Include="Security\Rela_Authority_FunctionConfiguration.cs" />
+    <Compile Include="Security\Rela_Role_UserConfiguration.cs" />
+    <Compile Include="Security\RoleConfiguration.cs" />
+    <Compile Include="Security\UserConfiguration.cs" />
+    <Compile Include="HogonContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\TestContext\InformationConfiguration.cs" />
+    <Compile Include="Security\TestContext\UserConfiguration.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HogonStore.Models.Entities\Hogon.Store.Models.Entities.csproj">
+      <Project>{4cf3a89c-099a-46ad-ab39-060b45b2c17b}</Project>
+      <Name>Hogon.Store.Models.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201707261006261_init.resx">
+      <DependentUpon>201707261006261_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707270522557_CreateGoods.resx">
+      <DependentUpon>201707270522557_CreateGoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707270618290_ServiceGoodsNew.resx">
+      <DependentUpon>201707270618290_ServiceGoodsNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707280600404_CreateResponsor.resx">
+      <DependentUpon>201707280600404_CreateResponsor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707280814357_UpdateResponser.resx">
+      <DependentUpon>201707280814357_UpdateResponser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707310737005_updateAccount.resx">
+      <DependentUpon>201707310737005_updateAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707310748208_Brand_Area.resx">
+      <DependentUpon>201707310748208_Brand_Area.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707310958353_update.resx">
+      <DependentUpon>201707310958353_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708010258451_updateResponsor.resx">
+      <DependentUpon>201708010258451_updateResponsor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708010312268_updateResponsor1.resx">
+      <DependentUpon>201708010312268_updateResponsor1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708010745331_updatefile.resx">
+      <DependentUpon>201708010745331_updatefile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708010749183_updatefileupload.resx">
+      <DependentUpon>201708010749183_updatefileupload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708030034068_CreateProductGoods.resx">
+      <DependentUpon>201708030034068_CreateProductGoods.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708030229178_upAccount.resx">
+      <DependentUpon>201708030229178_upAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708030251253_addProductGoodsSearchDefault.resx">
+      <DependentUpon>201708030251253_addProductGoodsSearchDefault.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708040044263_updateMenu.resx">
+      <DependentUpon>201708040044263_updateMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708070257312_CreateMarketing.resx">
+      <DependentUpon>201708070257312_CreateMarketing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708070658519_updatePromotiontables.resx">
+      <DependentUpon>201708070658519_updatePromotiontables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708080942459_updateFreebie.resx">
+      <DependentUpon>201708080942459_updateFreebie.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708090145152_updateFreebie1.resx">
+      <DependentUpon>201708090145152_updateFreebie1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708090839097_addLine.resx">
+      <DependentUpon>201708090839097_addLine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708090839517_AddIsAvailable.resx">
+      <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

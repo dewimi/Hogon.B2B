@@ -1,0 +1,7 @@
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\bin\Debug\Hogon.Models.Dto.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\bin\Debug\Hogon.Models.Dto.pdb
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\bin\Debug\Newtonsoft.Json.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\bin\Debug\Newtonsoft.Json.xml
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\obj\Debug\Hogon.Models.Dto.csprojResolveAssemblyReference.cache
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\obj\Debug\Hogon.Models.Dto.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Dto\obj\Debug\Hogon.Models.Dto.pdb
