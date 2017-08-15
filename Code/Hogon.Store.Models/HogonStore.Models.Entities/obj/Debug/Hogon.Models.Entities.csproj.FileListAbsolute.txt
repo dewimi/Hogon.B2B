@@ -1,0 +1,6 @@
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Models.Entities.dll.config
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Models.Entities.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Models.Entities.pdb
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Models.Entities.csprojResolveAssemblyReference.cache
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Models.Entities.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Models.Entities.pdb

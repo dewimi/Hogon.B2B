@@ -1,0 +1,93 @@
+﻿
+@{
+	ViewBag.Title = "服务商品详情";
+	Layout = "~/Views/Shared/_DetailLayout.cshtml";
+}
+
+@section formHeader{
+	<div class="header">
+		<h2 class="headerline">服务商品详情</h2>
+	</div>
+}
+
+
+
+<form name="myForm" novalidate>
+	<div class="form-group">
+		<div class="basic">
+			<input type="hidden" name="id" ng-model="Guid" />
+			<table>
+				<tr>
+					<td><span>服务名称</span></td>
+					<td>
+						<span id="GoodsName"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>商品分类:</span></td>
+					<td>
+						<span id="Name"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>商品编码:</span></td>
+					<td>
+						<span id="GoodsCode"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>销售价:</span></td>
+					<td>
+						<span id="SalePrice"></span>
+					</td>
+				</tr>
+                <tr>
+                    <td><span>商品描述:</span></td>
+                    <td>
+                        <span id="GoodsDesription"></span>
+                    </td>
+                </tr>
+				<tr>
+					<td><span>图片:</span></td>
+					<td>
+						@*<span id="Pic"></span>*@
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</form>
+<script type="text/javascript">
+	var app = angular.module('myApp', []);
+	app.controller('validateCtrl', function ($scope, $http) {
+
+		var id = window.location.search; //获取ID
+		id = id.substring(id.indexOf('=') + 1);
+
+		if (id != "") {
+			//详情
+			$http({
+				method: 'POST',
+				url: '/GoodsMan/ServiceGoods/FindServiceGoodsById',
+				data: { Id: id }
+			}).then(function successCallback(response) {
+				// 请求成功执行代码
+				$scope.Guid = response.data.Id;
+				$("#GoodsName").text(response.data.GoodsName);
+				var goodsTypeNames = "";
+				$.each(response.data.GoodsTypeNames, function (index, v) {
+				    goodsTypeNames += v + ",";
+				})
+				$("#Name").text(goodsTypeNames);
+				$("#GoodsCode").text(response.data.GoodsCode);
+				$("#SalePrice").text(response.data.SalePrice);
+				$("#GoodsDesription").text(response.data.GoodsDesription);
+				//$("#Pic").text(response.data.Pic);
+
+			}, function errorCallback(response) {
+				// 请求失败执行代码
+			});
+		}
+	});
+</script>
+

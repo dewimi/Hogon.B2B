@@ -1,0 +1,163 @@
+﻿
+@{
+    ViewBag.Title = "商品管理";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+
+
+@section formHeader{
+
+    <div class="header">
+        <h2 class="headerline">商品管理</h2>
+    </div>
+}
+<form name="myForm" novalidate>
+    <div class="form-group">
+        <div class="basic">
+            <input type="hidden" name="id" ng-model="Guid" />
+            <table>
+                <tr>
+                    <td><span>类型分类名称</span></td>
+                    <td>
+                        <input id="ProductTypeCategoryName" type="text" name="ProductTypeCategoryName" class="form-control" ng-model="ProductTypeCategoryName" required>
+                    </td>
+                    <td>
+                        <p>
+                            <span style="color:red" ng-show="myForm.ProductTypeCategoryName.$dirty && myForm.ProductTypeCategoryName.$invalid">
+                                <span ng-show="myForm.ProductTypeCategoryName.$error.required">类型分类名不能重复或为空</span>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>所属类型分类:</span></td>
+                    <td>
+                        <select class="form-control" name="ParentId" id="parent"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>类型分类编码:</span></td>
+                    <td>
+                        <input id="Code" type="text" name="Code" class="form-control" ng-model="Code" required>
+                    </td>
+                    <td>
+                        <p>
+                            <span style="color:red" ng-show="myForm.Code.$dirty && myForm.Code.$invalid">
+                                <span ng-show="myForm.Code.$error.required">类型分类编码不能为空</span>
+                            </span>
+                        </p>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        //下拉框绑值
+        $http({
+            method: 'POST',
+            url: '@Url.Action("GetProductTypeCategoryNameForDrop")',
+            data: null
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            console.log(response);
+            $("#parent").append("<option value=''  selected='selected'>－－请选择上级分类－－</option>");
+
+            $.each(response.data, function (index, v) {
+                if (id != "" && v.Id == id) {
+
+                } else {
+                    $("#parent").append($("<option value = '" + v.Id + "'></option>").text(v.ProductTypeCategoryName));
+                }
+            })
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+        var id = window.location.search;
+        id = id.substring(id.indexOf('=') + 1);
+        if (id != "") {
+            //编辑
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductTypeCategory/GetProductTypeCategoryById',
+                data: { Id: id }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $scope.Guid = response.data.Id;
+                $scope.ProductTypeCategoryName = response.data.ProductTypeCategoryName;
+                $scope.Code = response.data.Code;
+                $("#parent ").val(response.data.ParentId);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+
+        //判断分类名是否重复
+        $("[name='ProductTypeCategoryName']").blur(
+            function () {
+                Repetition();
+            })
+
+        //新增
+        $scope.saveChange = function () {
+
+            Repetition();
+            var parentId = $("#parent option:selected").val();
+            var code = $scope.Code;
+            if (parentId == "－－请选择二级分类－－") {
+                parentId = "";
+            };
+            $scope.ProductTypeCategory = {
+                "Id": $scope.Guid,
+                "ProductTypeCategoryName": $scope.ProductTypeCategoryName,
+                "ParentId": parentId,
+                "Code": code
+            };
+
+            console.log(JSON.stringify($scope.ProductTypeCategory));
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductTypeCategory/Save',
+                data: $scope.ProductTypeCategory
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                location.href = "/GoodsMan/ProductTypeCategory/Index";
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+
+
+
+        //判断重复
+        function Repetition() {
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductTypeCategory/GetRepetitionForProductTypeCategoryName',
+                data: JSON.stringify({ ProductTypeCategoryName: $scope.ProductTypeCategoryName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response);
+                console.log(response.data);
+                if (response.data == 1) {
+                    //编辑时不清空类型名称
+                    if ((id != "")) {
+                    }
+                    else {
+                        //新增时清空类型名称
+                        $scope.ProductTypeCategoryName = "";
+                    }
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+    });
+</script>

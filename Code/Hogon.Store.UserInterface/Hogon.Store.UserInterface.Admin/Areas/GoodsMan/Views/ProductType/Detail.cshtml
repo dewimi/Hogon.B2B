@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "产品类型详情";
+    Layout = "~/Views/Shared/_DetailLayout.cshtml";
+}
+
+@section formHeader{
+    <div class="header">
+        <h2 class="headerline">产品类型详情</h2>
+    </div>
+}
+@{
+    var render = ViewBag.ListRender;
+}
+<form name="myForm" novalidate>
+    <div class="form-group">
+        <div class="basic">
+            <input type="hidden" name="id" ng-model="proTypeId" />
+            <table>
+                <tr>
+                    <td><span>类型名称：</span></td>
+                    <td>
+                        <span id="TypeName" ></span>
+                   </td>
+                </tr>
+                <tr>
+                    <td><span>所属分类 ：</span></td>
+                    <td>
+                        <span id="CategoryName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>操作人：</span></td>
+                    <td>
+                        <span id="UpdatePerson"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>操作时间：</span></td>
+                    <td>
+                        <span id="UpdateTime"></span>
+                    </td>
+                </tr>
+            </table>
+
+            <span>规格类型</span>
+            <div class="tablelist">
+                <table class="table" id="table_local">
+                    <thead>
+                        <tr>
+                            <th>规格名称</th>
+                            <th>规格备注</th>
+                            <th>规格别名</th>
+                            <th>显示类型</th>
+                            <th>显示方式</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodylist"></tbody>
+                </table>
+            </div>
+            <div class="paging ">
+                <ul class="pagination" id="pagination"></ul><br>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript">
+
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+        var id = window.location.search; //获取ID
+        id = id.substring(id.indexOf('=') + 1);
+
+        if (id != "") {
+            //详情
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductType/GetProductTypeById',
+                data: { Id: id }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $scope.proTypeId = response.data.Id;
+                $("#TypeName").text(response.data.TypeName);
+                $("#CategoryName").text(response.data.ProductTypeCategoryName);
+                $("#UpdatePerson").text(response.data.UpdatePerson);
+                $("#UpdateTime").text(response.data.DisplayUpdateTime);
+                $scope.GetSpecTypeByProId();
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+        //根据产品Id查询规格类型
+        $scope.GetSpecTypeByProId = function ()
+        {
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductType/GetSpecTypeByProTypeId',
+                data: { productId: id }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTable(response.data);
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+
+        };
+
+    });
+
+    function CreateTable(data) {
+        $("tr[name='DataTr']").remove();
+        $.each(data, function (index, v) {
+            var $tr = $("<tr name='DataTr'></tr>");
+            var $td1 = $("<td></td>").text(v.SpecName);
+            var $td2 = $("<td></td>").text(v.SpecRemark);
+            var $td3 = $("<td></td>").text(v.SpecSecondName);
+            var $td4 = $("<td></td>").text(v.DisplayName);
+            var $td5 = $("<td></td>").text(v.DisplayMode);
+            var $td6 = $("<td></td>").append("<a title='查看明细' class='detail' "
+               +" id = '" + v.Id + "'> <span class='glyphicon glyphicon-zoom-in aria-hidden=' true''></span></a>");
+            $tr.append($td1).append($td2).append($td3).append($td4).append($td5).append($td6);
+            $(".tbodylist").append($tr);
+        });
+
+        $(".detail").on("click", function () {
+            var id = $(this).attr("id");
+            window.location.href = "/GoodsMan/SpecType/Detail?Id=" + id;
+        });
+    }
+
+</script>

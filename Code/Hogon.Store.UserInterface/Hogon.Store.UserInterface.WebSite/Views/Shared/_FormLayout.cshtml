@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html style=" height:100%; margin:0;padding:0; ">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/hogon/common")
+    @Styles.Render("~/Content/css/form")
+  
+    <script>
+
+        var fileUploadName = "";
+        $(document).ready(function () {
+
+           //上传完成后返回的数据
+            $('#kv-explorer').on('fileuploaded', function (event, response, previewId, index) {
+                var fileName = "";
+                console.log(previewId);
+                console.log(response);
+                fileName += "," + response.fileUrl;
+                fileUploadName += fileName;
+                
+            });
+
+            $('#kv-explorer').on('filesuccessremove', function (event, response, previewId) {
+                console.log('response = ' + response);
+                console.log('previewId =' + previewId);
+            });
+        });
+
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope, $http) {
+
+            $scope.init = function (model) {
+
+                $scope.model = model;
+            }
+            //文件上传
+            $("#kv-explorer").fileinput({
+                'theme': 'explorer',
+                'uploadUrl': '/FileUpload/FileUpload',
+                overwriteInitial: false,
+                initialPreviewAsData: true,
+                initialPreview: [
+                   
+                    'http://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/FullMoon2010.jpg/631px-FullMoon2010.jpg'
+                ],
+                previewFileIconSettings: {
+                    'docx': '<i class="fa fa-file-word-o text-primary"></i>',
+                    'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
+                    'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+                    'jpg': '<i class="fa fa-file-photo-o text-warning"></i>',
+                    'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+                    'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+                },
+                uploadLabel: "上传",
+                uploadTitle: "上传文件",
+                removeLabel: "删除",
+                removeTitle: "删除文件",
+                browseLabel: "浏览",
+                initialPreviewAsData: true, // defaults markup
+                initialPreviewConfig: [
+                    // 绑定文件名称、大小、路径
+                    { caption: "aaaaa.jpg", size: 111, url: "$urlD", key: 11 },
+                    { previewAsData: false, size: 823782, caption: "Business 2.jpg", key: 13 },
+                    { caption: "Lorem Ipsum.txt", type: "text", size: 1430,key: 12 },
+                    { type: "pdf", size: 8000, caption: "PDF Sample.pdf",key: 14 },
+                    { type: "video", size: 375000, filetype: "video/mp4", caption: "Krajee Sample.mp4", key: 15 },
+                ],
+                //maxFileSize: 0,//单位为kb，如果为0表示不限制文件大小
+                // maxFileCount:5 //最大文件上传数
+
+            });
+            //保存
+            $scope.saveChange = function () {
+
+                $scope.model.UploadName = fileUploadName;
+                $http({
+                    method: 'POST',
+                    url: '/Test/Information/Save',
+                    data: JSON.stringify($scope.model)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    notifySuccess("保存成功!");
+
+                    parent.history.back();
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                    notifyFailure(response.data);
+                });
+            };
+    
+        });
+    </script>
+</head>
+
+<body>
+    <div style="width:100%;height:100%">
+        @RenderSection("formHeader", false)
+
+        <div class="basicparameter" ng-app="myApp" ng-controller="validateCtrl" ng-init=init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))>
+            <form name="myForm" novalidate>
+                @RenderBody()
+            </form>
+            @*<div class="butdiv">
+                <button type="button" class="btn btn-info"   ng-click="saveChange() " ng-disabled="myForm.$invalid">保存</button>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-info" onclick="parent.history.back()">返回</button>
+
+            </div>*@
+            <br />
+        </div>
+    </div>
+</body>
+</html>

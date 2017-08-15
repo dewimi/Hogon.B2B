@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "菜单管理";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+@section formHeader{
+
+    <div class="header margin-left20">
+        <span class="headerline">菜单管理</span>
+    </div>
+}
+
+<script type="text/javascript">
+
+    var menuId = 0;
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search; //获取ID
+        id = id.substring(id.indexOf('=') + 1);
+        $scope.userid = id;
+        if ($scope.userid != "")
+        {
+            //$http({
+            //    method: 'POST',
+            //    url: '/Security/User/GetUserById',
+            //    data: null
+            //}).then(function successCallback(response) {
+            //    // 请求成功执行代码
+
+            //}, function errorCallback(response) {
+            //    // 请求失败执行代码
+
+            //});
+        }
+    });
+
+
+</script>
+<form name="myForm" novalidate>
+
+    <div class="form-group">
+        <div class="panelWrapper">
+            <span class="secondHead">基本信息</span>
+            <input type="hidden" name="id" ng-model="userid" />
+            <table>
+                <tr>
+                    <td>用户名称：<span ng-model="Name"></span></td>
+                    <td>昵称：<span ng-model="NickName"></span></td>
+                    <td>邮箱：<span ng-model="Email"></span></td>
+                </tr>
+                <tr>
+                    <td>启用状态：<span ng-model="IsEnable"></span></td>
+                    <td>创建时间：<span ng-model="CreatedTime"></span></td>
+                    <td>修改时间：<span ng-model="UpdatedTime"></span></td>
+                </tr>
+            </table>
+        </div>
+
+
+    </div>
+
+
+
+</form>

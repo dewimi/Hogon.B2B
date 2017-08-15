@@ -1,0 +1,718 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\Projects\HG2017\Publish\Test</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Areas/Test/Views/Information/Compile.cshtml">
+      <publishTime>06/15/2017 15:37:49</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Information/Edit.cshtml">
+      <publishTime>06/02/2017 08:49:38</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Information/InstrumentManagement.cshtml">
+      <publishTime>06/19/2017 08:48:52</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Information/Upload.cshtml">
+      <publishTime>05/31/2017 15:16:32</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/ListTest/Index.cshtml">
+      <publishTime>06/07/2017 09:07:54</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/Create.cshtml">
+      <publishTime>06/02/2017 11:28:51</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/Delete.cshtml">
+      <publishTime>06/02/2017 12:16:31</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/Detail.cshtml">
+      <publishTime>06/02/2017 11:28:51</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/fileUpload.cshtml">
+      <publishTime>05/28/2017 06:27:22</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/Index.cshtml">
+      <publishTime>06/02/2017 11:28:51</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Management/Update.cshtml">
+      <publishTime>06/02/2017 11:28:51</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/Shared/_Layout.cshtml">
+      <publishTime>05/25/2017 23:49:13</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/View.cshtml">
+      <publishTime>05/26/2017 05:53:35</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/web.config">
+      <publishTime>05/19/2017 07:04:51</publishTime>
+    </File>
+    <File Include="Areas/Test/Views/_ViewStart.cshtml">
+      <publishTime>05/26/2017 05:53:40</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>02/23/2013 00:43:40</publishTime>
+    </File>
+    <File Include="bin/AutoMapper.dll">
+      <publishTime>03/22/2017 22:11:18</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/03/2015 01:32:26</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>03/03/2015 01:32:26</publishTime>
+    </File>
+    <File Include="bin/Hogon.Core.dll">
+      <publishTime>06/19/2017 09:29:45</publishTime>
+    </File>
+    <File Include="bin/Hogon.Core.UnitOfWork.dll">
+      <publishTime>06/19/2017 09:29:46</publishTime>
+    </File>
+    <File Include="bin/Hogon.Models.Dto.dll">
+      <publishTime>06/19/2017 09:29:45</publishTime>
+    </File>
+    <File Include="bin/Hogon.Models.Entities.dll">
+      <publishTime>06/19/2017 09:29:45</publishTime>
+    </File>
+    <File Include="bin/Hogon.Models.FluentAPI.dll">
+      <publishTime>06/19/2017 09:29:47</publishTime>
+    </File>
+    <File Include="bin/Hogon.Models.Module.dll">
+      <publishTime>06/19/2017 09:29:46</publishTime>
+    </File>
+    <File Include="bin/Hogon.Repositories.dll">
+      <publishTime>06/19/2017 09:29:46</publishTime>
+    </File>
+    <File Include="bin/Hogon.Services.ApplicationServices.dll">
+      <publishTime>06/19/2017 09:29:47</publishTime>
+    </File>
+    <File Include="bin/Hogon.UserInterface.OperationCenter.dll">
+      <publishTime>06/19/2017 09:29:48</publishTime>
+    </File>
+    <File Include="bin/Hogon.Utilities.SmartList.dll">
+      <publishTime>06/19/2017 09:29:45</publishTime>
+    </File>
+    <File Include="bin/Hogon.Web.dll">
+      <publishTime>06/19/2017 09:29:47</publishTime>
+    </File>
+    <File Include="bin/Hogon.Web.Extension.dll">
+      <publishTime>06/19/2017 09:29:46</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>04/04/2015 08:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>04/04/2015 08:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>04/04/2015 08:07:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.ServiceLocation.dll">
+      <publishTime>05/06/2014 02:25:44</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Configuration.dll">
+      <publishTime>10/06/2015 00:37:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.dll">
+      <publishTime>10/06/2015 00:37:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.Mvc.dll">
+      <publishTime>10/06/2015 00:37:22</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Practices.Unity.RegistrationByConvention.dll">
+      <publishTime>10/06/2015 00:37:20</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>07/26/2012 02:48:56</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>08/04/2014 11:33:56</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/14/2012 04:19:34</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 20:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 20:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>02/12/2014 07:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>01/28/2015 20:02:32</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/28/2015 20:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/28/2015 20:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/28/2015 20:04:30</publishTime>
+    </File>
+    <File Include="bin/WebActivatorEx.dll">
+      <publishTime>02/09/2013 08:42:28</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>07/18/2013 08:03:52</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.resources.dll">
+      <publishTime>03/02/2015 09:32:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/EntityFramework.SqlServer.resources.dll">
+      <publishTime>03/02/2015 09:32:38</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.Core.resources.dll">
+      <publishTime>04/04/2015 08:09:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.EntityFramework.resources.dll">
+      <publishTime>04/04/2015 08:09:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/Microsoft.AspNet.Identity.Owin.resources.dll">
+      <publishTime>04/04/2015 08:09:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Helpers.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Mvc.resources.dll">
+      <publishTime>01/28/2015 04:02:22</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Optimization.resources.dll">
+      <publishTime>02/11/2014 15:28:40</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.Razor.resources.dll">
+      <publishTime>01/28/2015 04:02:34</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="bin/zh-Hans/System.Web.WebPages.resources.dll">
+      <publishTime>01/28/2015 04:04:32</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/css/fileinput.css">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/css/fileinput.min.css">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/img/loading-sm.gif">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/img/loading.gif">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/sass/fileinput.scss">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/explorer/theme.css">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/explorer/theme.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/explorer/theme.min.css">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/explorer/theme.min.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/fa/theme.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/fa/theme.min.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/gly/theme.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-fileinput/themes/gly/theme.min.js">
+      <publishTime>05/27/2017 06:06:10</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>05/20/2017 08:19:55</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>05/20/2017 08:19:56</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>05/20/2017 08:19:56</publishTime>
+    </File>
+    <File Include="Content/css/form.css">
+      <publishTime>06/15/2017 15:37:49</publishTime>
+    </File>
+    <File Include="Content/css/public.css">
+      <publishTime>06/15/2017 10:29:59</publishTime>
+    </File>
+    <File Include="Content/html/default.html">
+      <publishTime>05/27/2017 05:21:13</publishTime>
+    </File>
+    <File Include="Content/Images/btn_left.gif">
+      <publishTime>05/19/2017 06:58:19</publishTime>
+    </File>
+    <File Include="Content/Images/btn_right.gif">
+      <publishTime>05/19/2017 06:58:19</publishTime>
+    </File>
+    <File Include="Content/Images/defaultPage.jpg">
+      <publishTime>05/27/2017 05:21:26</publishTime>
+    </File>
+    <File Include="Content/Images/ico_footer_01.gif">
+      <publishTime>05/17/2017 05:38:31</publishTime>
+    </File>
+    <File Include="Content/Images/logo_3.png">
+      <publishTime>05/17/2017 05:38:31</publishTime>
+    </File>
+    <File Include="Content/Images/l_t_bg.gif">
+      <publishTime>05/19/2017 06:58:19</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>05/16/2017 23:25:39</publishTime>
+    </File>
+    <File Include="Content/smalot-datetimepicker/bootstrap-datetimepicker.css">
+      <publishTime>06/08/2017 13:25:59</publishTime>
+    </File>
+    <File Include="Content/smalot-datetimepicker/bootstrap-datetimepicker.min.css">
+      <publishTime>06/08/2017 13:25:59</publishTime>
+    </File>
+    <File Include="Content/toastr.css">
+      <publishTime>05/27/2017 00:36:28</publishTime>
+    </File>
+    <File Include="Content/toastr.less">
+      <publishTime>05/27/2017 00:36:28</publishTime>
+    </File>
+    <File Include="Content/toastr.min.css">
+      <publishTime>05/27/2017 00:36:28</publishTime>
+    </File>
+    <File Include="Content/toastr.scss">
+      <publishTime>05/27/2017 00:36:28</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>05/16/2017 23:25:41</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>05/20/2017 08:19:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>05/20/2017 08:19:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>05/20/2017 08:19:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>05/20/2017 08:19:58</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff2">
+      <publishTime>05/20/2017 08:19:58</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>05/16/2017 23:25:39</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/13/2017 11:28:22</publishTime>
+    </File>
+    <File Include="Scripts/angular-mocks.js">
+      <publishTime>05/26/2017 01:59:33</publishTime>
+    </File>
+    <File Include="Scripts/angular.js">
+      <publishTime>05/26/2017 01:59:33</publishTime>
+    </File>
+    <File Include="Scripts/angular.min.js">
+      <publishTime>05/26/2017 01:59:33</publishTime>
+    </File>
+    <File Include="Scripts/angular.min.js.map">
+      <publishTime>05/26/2017 01:59:33</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap-paginator.js">
+      <publishTime>06/08/2017 13:26:00</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>05/20/2017 08:19:56</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/fileinput.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/fileinput.min.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/hogon/common.js">
+      <publishTime>05/27/2017 07:38:37</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.min.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.min.map">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.min.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.slim.min.map">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>05/20/2017 08:19:57</publishTime>
+    </File>
+    <File Include="Scripts/locales/ar.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/bg.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/ca.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/cr.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/cz.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/da.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/de.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/el.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/es.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/et.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/fa.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/fi.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/fr.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/gl.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/hu.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/id.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/it.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/ja.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/kr.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/kz.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/LANG.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/nl.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/no.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/pl.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/pt-BR.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/pt.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/ro.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/ru.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/sk.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/sl.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/sv.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/th.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/tr.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/uk.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/vi.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/zh-TW.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/locales/zh.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>05/16/2017 23:25:40</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-locales.js">
+      <publishTime>06/08/2017 13:26:00</publishTime>
+    </File>
+    <File Include="Scripts/moment-with-locales.min.js">
+      <publishTime>06/08/2017 13:26:00</publishTime>
+    </File>
+    <File Include="Scripts/moment.js">
+      <publishTime>06/08/2017 13:26:00</publishTime>
+    </File>
+    <File Include="Scripts/moment.min.js">
+      <publishTime>06/08/2017 13:26:00</publishTime>
+    </File>
+    <File Include="Scripts/plugins/piexif.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/plugins/piexif.min.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/plugins/purify.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/plugins/purify.min.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/plugins/sortable.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/plugins/sortable.min.js">
+      <publishTime>05/27/2017 06:06:11</publishTime>
+    </File>
+    <File Include="Scripts/respond.js">
+      <publishTime>05/16/2017 23:25:40</publishTime>
+    </File>
+    <File Include="Scripts/respond.min.js">
+      <publishTime>05/16/2017 23:25:40</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/bootstrap-datetimepicker.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/bootstrap-datetimepicker.min.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ar.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.bg.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ca.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.cs.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.da.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.de.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ee.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.el.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.es.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.fi.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.fr.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.he.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.hr.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.hu.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.id.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.is.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.it.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ja.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ko.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.lt.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.lv.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ms.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.nb.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.nl.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.no.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.pl.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.pt-BR.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.pt.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ro.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.rs-latin.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.rs.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ru.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.sk.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.sl.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.sv.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.sw.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.th.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.tr.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.ua.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.uk.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/smalot-datetimepicker/locales/bootstrap-datetimepicker.zh-TW.js">
+      <publishTime>06/08/2017 13:26:01</publishTime>
+    </File>
+    <File Include="Scripts/toastr.js">
+      <publishTime>05/27/2017 00:36:29</publishTime>
+    </File>
+    <File Include="Scripts/toastr.min.js">
+      <publishTime>05/27/2017 00:36:29</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>06/05/2017 09:13:33</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>06/19/2017 08:48:53</publishTime>
+    </File>
+    <File Include="Views/Home/_Layout.cshtml">
+      <publishTime>06/16/2017 09:04:03</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>05/16/2017 23:25:41</publishTime>
+    </File>
+    <File Include="Views/Shared/Main.cshtml">
+      <publishTime>05/27/2017 00:36:29</publishTime>
+    </File>
+    <File Include="Views/Shared/_FormLayout.cshtml">
+      <publishTime>06/13/2017 17:38:44</publishTime>
+    </File>
+    <File Include="Views/Shared/_ListLayout.cshtml">
+      <publishTime>06/16/2017 09:04:04</publishTime>
+    </File>
+    <File Include="Views/Shared/_LoginLayout.cshtml">
+      <publishTime>06/05/2017 08:42:49</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>05/16/2017 23:25:41</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>05/27/2017 04:58:02</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>06/19/2017 09:29:54</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

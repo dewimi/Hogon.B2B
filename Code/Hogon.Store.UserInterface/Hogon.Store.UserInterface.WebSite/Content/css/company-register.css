@@ -1,0 +1,146 @@
+.register-option{
+	margin-left:80px;
+}
+.registe-ad {
+    position: relative;
+    height: 258px;
+    /*background:url(../img/reg_top.png) center no-repeat;*/
+    background-image: url('../Images/reg_top.png');
+    opacity: 0.8;
+}
+.audit{
+	position: absolute;
+	top:224px;
+	left:20px;
+	padding-right: 50px;
+	line-height:21px;
+}
+.register-btn{
+	position:relative;
+	margin:0 0 50px 146px;
+	width:300px;
+	height:40px;
+}
+.register-btn input{
+	display: block;
+	width:300px;
+	height:40px;
+	letter-spacing: 5px;
+	color:#fff;
+	background-color:#3d5d99;
+	border:1px solid #3d5d99;
+	}
+.centinfo{
+	margin-bottom: 40px;
+}
+.centinfo h4{
+	padding-left: 30px;
+	color:#fff;
+	line-height: 36px;
+	background-color: rgba(61,93,153,1);
+	margin-bottom: 20px;
+}
+.filed{
+	margin:10px 0 0 60px;
+}
+.filed input{
+	display: inline-block;
+	width:280px;
+	height:36px;
+	padding-left: 10px;
+	border:1px solid #cfcfcf;
+	background-color:#fafafa;
+}
+.filed span{
+	font-size: 12px;
+	color:#ff0000;
+	padding-left:10px;
+}
+.l-item{
+	display: inline-block;
+	width:104px;
+	height:36px;
+	margin-right: 10px;
+	text-align: right;
+	font-weight: normal;
+}
+.must{
+	padding-right: 4px;
+	color:#ff0000;
+}
+select{
+	display: inline-block;
+	width:100px;
+	height:36px;
+	border:1px solid #cfcfcf;
+	background-color:#fafafa;
+}
+#gain-authcode{
+	width:90px;
+}
+.business-filed{
+	position:relative;
+	height:130px;
+}
+.authcode-img{
+	display: inline-block;
+	width:108px;
+	height:36px;
+}
+.thumbnail{
+	position: relative;
+	top:-50px;
+	left:114px;
+	width:90px;
+	height:120px;
+	border:1px solid #cfcfcf;
+	overflow: hidden;
+	background-color:#fafafa;
+}
+.thumbnail img{
+	display: block;
+	width:150px;
+	max-height: 120px;
+}
+.uploading{
+	position: relative;
+	top:-106px;
+	left:230px;
+	border:none;
+}
+.checkbox-filed{
+	margin:0 0 20px 146px;
+}
+.authcode,
+.verifyCode{
+	width:150px !important;
+}
+.error{
+	font-weight: normal;
+	font-style: normal !important;
+	padding-left:20px;
+}
+.checkbox-filed{
+	position:relative;
+}
+#agree-error{
+	position:absolute;
+	top:3px;
+	left:180px;
+	color:#ff0000;
+}
+#user-error,
+#pwd-error,
+#repwd-error,
+#username-error,
+#phone-error,
+#department-error,
+#email-error,
+#companyname-error,
+#address-error,
+#industry-error,
+#province-error,
+#city-error,
+#country-error{
+	color:#ff0000;
+}

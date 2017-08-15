@@ -1,0 +1,182 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>企业用户注册</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/css/base.css" rel="stylesheet" />
+    <link href="~/Content/css/register.css" rel="stylesheet" />
+    <link href="~/Content/css/company-register.css" rel="stylesheet" />
+    <script src="~/Scripts/hogon/jquery.js"></script>
+    <script src="~/Scripts/hogon/jquery.validate.min.js"></script>
+    <script src="~/Scripts/hogon/company-register.js"></script>
+
+    @*<link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="css/base.css">
+        <link rel="stylesheet" type="text/css" href="css/register.css">
+        <link rel="stylesheet" href="css/company-register.css" />
+        <script src="js/jquery.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/company-register.js"></script>*@
+</head>
+<body>
+    <div class="top">
+        <div class="container clearfix">
+            <a class="top-logo" href="index.html" target="_blank"><h1>LOGO</h1></a>
+            <span class="top-weclome">欢迎注册</span>
+        </div>
+    </div>
+    <div class="content">
+        <div class="register-box clearfix">
+            <div class="register-tittie">
+                <a class="register-option" href="UserRegister">新用户注册</a>
+                <a class="register-active" href="CompanyRegister">企业用户注册</a>
+                <span class="register-if">已有账号？ <a class="register-link" href="~/Views/Account/Login.cshtml">请登录</a></span>
+            </div>
+            <div class="registe-ad">
+                <p class="audit">
+                    审核时间72小时(法定节假日有延迟)
+                    如有疑问，请拨打服务电话：0000-000-000或联系邮箱：hg@163.com
+                </p>
+            </div>
+            <!--注册表单-->
+            <form action="" method="post" id="register-form" class="register-form">
+                <!--账户信息-->
+                <div class="centinfo">
+                    <h4 class="user-tittle">账户信息</h4>
+                    <div class="filed">
+                        <label class="l-item" for="user"><span class="must">*</span>用户名：</label>
+                        <input type="text" id="user" name="Name" placeholder="支持中文,字母,数字,下划线，4-16个字符" />
+                        <span id="check-user"></span>
+                    </div>
+                    <div class="filed user-field">
+                        <label class="l-item" for="pwd"><span class="must">*</span>密码：</label>
+                        <input type="password" id="pwd" name="password" placeholder="支持字母,数字,下划线，6-20个字符" />
+                        <span id="check-pwd"></span>
+                    </div>
+                    <div class="filed user-field">
+                        <label class="l-item" for="repwd"><span class="must">*</span>确认密码：</label>
+                        <input type="password" id="repwd" name="repwd" placeholder="请再次输入密码" />
+                        <span id="check-repwd"></span>
+                    </div>
+                </div>
+                <!--联系人信息-->
+                <div class="centinfo">
+                    <h4>联系人信息</h4>
+                    <div class="filed username-filed">
+                        <label class="l-item" for="username"><span class="must">*</span>联系人姓名：</label>
+                        <input type="text" id="username" name="PersonName" placeholder="请输入真实姓名" />
+                        <span id="check-username"></span>
+                    </div>
+                    <div class="filed">
+                        <label class="l-item" for="department"><span class="must">*</span>所在部门：</label>
+                        <select id="department" name="department" title="请选择所在部门" required>
+                            <option value=""></option>
+                            <option value="1">请选择</option>
+                            <option value="2">请选择</option>
+                            <option value="3">请选择</option>
+                        </select>
+                        <span class="error"></span>
+                    </div>
+                    <div class="filed phone-field">
+                        <label class="l-item" for="phone"><span class="must">*</span>验证手机：</label>
+                        <input type="text" id="phone" name="phoneNumber" placeholder="请输入常用手机号" />
+                        <span id="check-phone"></span>
+                    </div>
+                    <div class="filed phone-field">
+                        <label class="l-item" for="verifyCode"><span class="must">*</span>短信验证码：</label>
+                        <input type="text" id="verifyCode" class="verifyCode" name="verifyCode" />
+                        <input type="button" id="gain-authcode" value="获取验证码" style="padding: 0;" />
+                        <span class="check-pwd" for="verifyCode"></span>
+                    </div>
+                    <div class="filed phone-field">
+                        <label class="l-item" for="email"><span class="must">*</span>联系人邮箱：</label>
+                        <input type="text" id="email" name="emailAddress" />
+                        <span id="check-email"></span>
+                    </div>
+                    <div class="filed phone-field">
+                        <label class="l-item" for="authcode"><span class="must">*</span>验证码：</label>
+                        <input type="text" id="authcode" class="authcode" name="authcode" />
+                        <img src="~/Content/Images/image.jpg" class="authcode-img" />
+                        <span style="color: #333;">看不清？<a href="">换一张</a></span>
+                        <span id="check-authcode"></span>
+                    </div>
+                </div>
+                <!--公司信息-->
+                <div class="centinfo">
+                    <h4>公司信息</h4>
+                    <div class="filed">
+                        <label class="l-item" for="companyname"><span class="must">*</span>公司名称：</label>
+                        <input type="text" id="companyname" name="enterpriseName" placeholder="请输入公司全称" />
+                        <span id="check-companyname"></span>
+                    </div>
+                    <div class="filed">
+                        <label class="l-item"><span class="must">*</span>公司所在地：</label>
+                        <select class="province" id="province" name="province" title="请选择省份" required>
+                            <option></option>
+                            <option>请选择省份</option>
+                        </select>
+                        <select class="city" id="city" name="city" title="请选择城市" required>
+                            <option></option>
+                            <option>请选择城市</option>
+                        </select>
+                        <select id="country" name="country" title="请选择区县" required>
+                            <option></option>
+                            <option class="county">请选择区县</option>
+                        </select>
+                        <span class="error"></span>
+                    </div>
+                    <div class="filed">
+                        <label class="l-item" for="address"><span class="must">*</span>公司地址：</label>
+                        <input type="text" id="address" name="enterpriseAddress" />
+                        <span id="check-address"></span>
+                    </div>
+                    <div class="filed">
+                        <label class="l-item" for="industry"><span class="must">*</span>所属行业：</label>
+                        <select id="industry" name="enterpriseType" title="请选择行业" required>
+                            <option value=""></option>
+                            <option value="1">请选择</option>
+                            <option value="2">请选择</option>
+                            <option value="3">请选择</option>
+                        </select>
+                        <span class="check-industry" class="error"></span>
+                    </div>
+                    <div class="filed business-filed">
+                        <label class="l-item"><span class="must">*</span>营业执照：</label>
+                        <div id="thumbnail" class="thumbnail"></div>
+                        <input type="file" class="uploading" value="上传" onchange="preview(this)" style="border: none;" accept="image/*" />
+                    </div>
+                    <div class="checkbox-filed">
+                        <input type="checkbox" checked="checked" id="agree" name="agree" title="请同意用户注册协议" required="">
+                        阅读并同意
+                        <label for="agree"><a href="javascript:;" id="protocol">《用户注册协议》</a></label>
+                        <span class="error"> </span>
+                    </div>
+                    <div class="register-btn">
+                        <input type="submit" value="立即注册" class="submit-btn" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p class="ft-copyright">Copyright©2004-2016  XXXXXXXXXX版权所有 </p>
+        <p class="ft_footer_link">
+            <a href="" target="_blank">关于我们</a>|
+            <a href="" target="_blank">我们的团队</a>|
+            <a href="" target="_blank">网站联盟</a>|
+            <a href="" target="_blank">热门搜索</a>|
+            <a href="" target="_blank">友情链接</a>|
+            <a href="" target="_blank">诚征英才</a>|
+            <a href="" target="_blank">商家登录</a>|
+            <a href="" target="_blank">供应商登录</a>|
+            <a href="" target="_blank">放心搜</a>|
+            <a href="" target="_blank">1号店新品</a>|
+            <a href="" target="_blank">开放平台</a>|
+            <a href="" target="_blank">沃尔玛</a>
+        </p>
+    </div>
+</body>
+</html>
+
