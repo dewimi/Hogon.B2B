@@ -22,3 +22,11 @@ C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Test\Hogon.St
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.dll
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.pdb
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Store.Test.UnitTest.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\bin\Debug\Hogon.Test.UnitTest.dll
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\bin\Debug\Hogon.Test.UnitTest.pdb
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Store.Test.UnitTest.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.dll
+C:\HeGong\Code\Hogon.Store.Test\Hogon.Store.Test.UnitTest\obj\Debug\Hogon.Test.UnitTest.pdb

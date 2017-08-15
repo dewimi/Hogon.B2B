@@ -12,3 +12,8 @@ C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Utilities\Hog
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.dll
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.pdb
 C:\Users\henry\Desktop\SourceCode\HG2017_Store\03 Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.dll
+C:\HeGong\Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+C:\HeGong\Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.csprojResolveAssemblyReference.cache
+C:\HeGong\Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.dll
+C:\HeGong\Code\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\obj\Debug\Hogon.Store.Utilities.Constants.pdb
