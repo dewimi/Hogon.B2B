@@ -1,7 +1,0 @@
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\bin\Debug\Hogon.Web.Extension.dll
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\bin\Debug\Hogon.Web.Extension.pdb
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\bin\Debug\Hogon.Utilities.SmartList.dll
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\bin\Debug\Hogon.Utilities.SmartList.pdb
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\obj\Debug\Hogon.Web.Extension.csprojResolveAssemblyReference.cache
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\obj\Debug\Hogon.Web.Extension.dll
-C:\Hogon_Store\03 Code\Hogon.Web\Hogon.Web.Extension\obj\Debug\Hogon.Web.Extension.pdb

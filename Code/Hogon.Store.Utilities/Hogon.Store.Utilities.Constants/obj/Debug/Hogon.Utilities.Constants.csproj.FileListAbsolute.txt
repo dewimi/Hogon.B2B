@@ -1,5 +1,0 @@
-C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Utilities.Constants.dll
-C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\bin\Debug\Hogon.Utilities.Constants.pdb
-C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Utilities.Constants.csprojResolveAssemblyReference.cache
-C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Utilities.Constants.dll
-C:\Hogon_Store\03 Code\Hogon.Utilities\Hogon.Utilities.Constants\obj\Debug\Hogon.Utilities.Constants.pdb
