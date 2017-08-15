@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using AutoMapper;
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.Owin;
@@ -7,6 +8,10 @@ using Hogon.Store.Models.Dto.MarketingMan;
 using Hogon.Store.Models.Entities.GoodsMan;
 using Hogon.Store.Models.Entities.MarketingMan;
 using Hogon.Store.Repositories.GoodsMan;
+=======
+﻿using Hogon.Framework.Core.Owin;
+using Hogon.Framework.Core.UnitOfWork;
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
 using Hogon.Store.Repositories.MarketingMan;
 using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
@@ -20,15 +25,19 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
     public class FreebieApplicationService: BaseApplicationService
     {
         FreebieRepository freebieRepository = new FreebieRepository();
+<<<<<<< HEAD
         FreebieLineRepository freebieLineRes = new FreebieLineRepository();
         ProductRepository productRepository = new ProductRepository();
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
         ProductGoodsRepository productGoodsRes = new ProductGoodsRepository();
 
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
         AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
         public FreebieApplicationService()
+<<<<<<< HEAD
         {
 
         }
@@ -128,5 +137,11 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         //{
         //    var productgoods=productGoodsRes.FindBy(m=>m)
         //}
+=======
+        { }
+
+
+
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     }
 }

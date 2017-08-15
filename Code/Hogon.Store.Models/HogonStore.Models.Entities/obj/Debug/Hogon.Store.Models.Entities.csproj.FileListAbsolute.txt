@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll.config
 C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll
 C:\Users\henry\Desktop\HG2017_Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.pdb
@@ -69,3 +70,54 @@ C:\HeGong\Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\S
 C:\HeGong\Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.csprojResolveAssemblyReference.cache
 C:\HeGong\Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.dll
 C:\HeGong\Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.pdb
+=======
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll.config
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.dll
+C:\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.pdb
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll.config
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.pdb
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.csprojResolveAssemblyReference.cache
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.dll
+C:\迅雷下载\Hogon_Store\03 Code\Hogon.Models\Hogon.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll.config
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Models.Entities.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\obj\Debug\Hogon.Store.Models.Entities.csprojResolveAssemblyReference.cache
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Utilities.Constants.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Store.Utilities.Constants.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.UnitOfWork.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.Owin.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Practices.Unity.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Practices.ServiceLocation.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.Mvc.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.Razor.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.Razor.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Web.Infrastructure.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.Deployment.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Practices.Unity.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.Owin.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Practices.ServiceLocation.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Microsoft.Practices.ServiceLocation.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.Mvc.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.Razor.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.Razor.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\System.Web.WebPages.Deployment.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\System.Web.Mvc.resources.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\System.Web.Razor.resources.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\System.Web.WebPages.Razor.resources.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\System.Web.WebPages.resources.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\EntityFramework.dll
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\Hogon.Framework.Core.UnitOfWork.pdb
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\EntityFramework.xml
+D:\Projects\Hogon.Store\03 Code\Hogon.Store.Models\HogonStore.Models.Entities\bin\Debug\zh-Hans\EntityFramework.resources.dll
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4

@@ -15,7 +15,11 @@ using Hogon.Framework.Core.Common;
 
 namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
 {
+<<<<<<< HEAD
     public class FreebieCatalogApplicationService : BaseApplicationService
+=======
+ public   class FreebieCatalogApplicationService : BaseApplicationService
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     {
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
         AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
@@ -96,8 +100,13 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         public IQueryable<DtoFreebieCatalog> FindAllFreebie()
         {
             var freebieRes = freebieCatalogRepository.FindAll();
+<<<<<<< HEAD
             var dtoFreebieRes = freebieRes.ConvertTo<FreebieCatalog, DtoFreebieCatalog>();
 
+=======
+            var dtoFreebieRes = freebieRes.ConvertTo<FreebieCatalog,DtoFreebieCatalog>();
+       
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
             return dtoFreebieRes;
         }
 

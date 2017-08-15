@@ -61,7 +61,10 @@
     <Compile Include="GoodsMan\DtoInstruction.cs" />
     <Compile Include="GoodsMan\DtoProduct.cs" />
     <Compile Include="MarketingMan\DtoFreebie.cs" />
+<<<<<<< HEAD
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Compile Include="MemberMan\DtoAccount.cs" />
     <Compile Include="MemberMan\DtoUserInfo.cs" />
     <Compile Include="MarketingMan\DtoFreebieCatalog.cs" />

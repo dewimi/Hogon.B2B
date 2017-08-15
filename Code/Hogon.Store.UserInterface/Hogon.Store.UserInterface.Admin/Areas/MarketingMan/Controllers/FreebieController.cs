@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using Hogon.Framework.Utilities.SmartList;
@@ -7,6 +8,9 @@ using Hogon.Store.Models.Dto.MarketingMan;
 using Hogon.Store.Services.ApplicationServices.MarketingManContext;
 using Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Models;
 using System;
+=======
+﻿using System;
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +18,7 @@ using System.Web.Mvc;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
 {
+<<<<<<< HEAD
     public class FreebieController: SmartListController<FreebieLineViewModel>
     {
         FreebieApplicationService _freebie;
@@ -27,6 +32,10 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
         {
             _freebie = new FreebieApplicationService();
         }
+=======
+    public class FreebieController:Controller
+    {
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
 
         public ActionResult Index()
         {
@@ -34,17 +43,25 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
             return View();
         }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
         public ActionResult Edit()
         {
             return View();
         }
 
+<<<<<<< HEAD
         //public ActionResult 
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
         public ActionResult Detail()
         {
             return View();
         }
 
+<<<<<<< HEAD
         [HttpPost]
         /// <summary>
         /// 获取全部赠品信息
@@ -119,5 +136,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
 
         //    return viewModels;
         //}
+=======
+
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     }
 }

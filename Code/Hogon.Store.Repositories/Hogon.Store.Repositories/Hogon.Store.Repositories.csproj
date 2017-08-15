@@ -69,7 +69,10 @@
     <Compile Include="GoodsMan\SpecParameterTemplateRepository.cs" />
     <Compile Include="GoodsMan\SpecTypeParameterRepository.cs" />
     <Compile Include="GoodsMan\SpecTypeRepository.cs" />
+<<<<<<< HEAD
     <Compile Include="MarketingMan\FreebieLineRepository.cs" />
+=======
+>>>>>>> f80cd5d8ef8824bfbf25d550271c21c819442cf4
     <Compile Include="MarketingMan\FreebieRepository.cs" />
     <Compile Include="MemberMan\AccountRepository.cs" />
     <Compile Include="MarketingMan\FreebieCatalogRepository.cs" />
