@@ -198,7 +198,6 @@
     <Compile Include="Areas\GoodsMan\Models\ProductTypeCategoryViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ProductTypeViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ServiceGoodsViewModel.cs" />
-    <Compile Include="Areas\GoodsMan\Models\SpecTypeParameterViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\SpecTypeViewModel.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieCatalogController.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieController.cs" />
