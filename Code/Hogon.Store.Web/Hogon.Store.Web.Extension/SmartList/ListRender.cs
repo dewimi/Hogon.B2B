@@ -41,7 +41,7 @@ namespace Hogon.Store.Web.Extension
                 //sb.Append("</td>");
                 if (attr.DisplayName == "至")
                 {
-                    sb.Append("<label  class=\"pull-left searchcategory text-right\" style=\"width:30px;\">" + attr.DisplayName + ":" + "</label>");
+                    sb.Append("<label  class=\"pull-left searchcategory text-right\">" + attr.DisplayName + ":" + "</label>");
                 }
                 else
                 {
