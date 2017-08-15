@@ -160,6 +160,10 @@
     <Compile Include="Migrations\201708090839517_AddIsAvailable.Designer.cs">
       <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708150938408_moveToGit.cs" />
+    <Compile Include="Migrations\201708150938408_moveToGit.Designer.cs">
+      <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -254,6 +258,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708090839517_AddIsAvailable.resx">
       <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708150938408_moveToGit.resx">
+      <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
