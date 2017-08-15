@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta charset="utf-8">
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/hogon/common")
+    @Styles.Render("~/Content/css/form")
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+<script type="text/javascript">
+   
+
+</script>
+</head>
+
+<body>
+    <div>
+        <div style="width:100%;height:100%">
+            @RenderSection("formHeader", false)
+
+            <div class="basicparameter" ng-app="myApp" ng-controller="validateCtrl" ng-init=init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))>
+                <form name="myForm" novalidate>
+                    @RenderBody()
+                </form>
+                @*<div class="butdiv">
+                    <button type="button" class="btn btn-info" ng-click="saveChange() " ng-disabled="myForm.$invalid">确定</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-info" onclick="parent.history.back()">返回</button>
+
+                </div>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

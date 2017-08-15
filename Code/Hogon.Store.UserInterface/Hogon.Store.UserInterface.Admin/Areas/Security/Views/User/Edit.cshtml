@@ -1,0 +1,327 @@
+﻿
+@{
+    ViewBag.Title = "人员管理";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<style>
+
+</style>
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search; //获取ID
+        id = id.substring(id.indexOf('=') + 1);
+        $("#enabled").attr("checked", true);
+
+            //新增
+            $scope.saveChange = function () {
+                if ($("#enabled").attr("checked", false)) {
+                    $scope.enabled = 'false';
+                } else {
+                    $scope.enabled = 'true';
+                }
+                var createdTime = $("#createdTime").text();
+                var updatedTime = $("#updatedTime").text();
+                $scope.user = {
+                    "Id":id, "NickName": $scope.nickName, "Name": $scope.name, "Password": $scope.password,
+                    "Email": $scope.email, "IsEnable": $scope.enabled, "CreatedTime": createdTime,
+                    "UpdatedTime": updatedTime, "CreatorId": 1, "UpdaterId": 1
+                };
+                console.log(JSON.stringify($scope.user));
+                $http({
+                    method: 'POST',
+                    url: '/Security/User/Save',
+                    data: JSON.stringify($scope.user)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+
+                    swal("保存成功！")
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+
+                });
+            };
+      if (id != "") {
+            //编辑
+            $http({
+                method: 'POST',
+                url: '/Security/User/GetUserById',
+                data: JSON.stringify({ id:id})
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data);
+                $scope.nickName = response.data.NickName;
+                $scope.name = response.data.Name;
+                $scope.password = response.data.Password;
+                $scope.passwordagain = response.data.Password;
+                $scope.email = response.data.Email;
+                if (response.data.IsEnable == true) {
+                    $("#enabled").attr("checked", true);
+                } else {
+                    $("#enabled").attr("checked", false);
+                }
+                //$scope.enabled = response.data.IsEnable
+                $("#createdTime").text(response.data.DisplayCreatedTime);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+
+        }
+
+        $("[name='nickName']").blur(function () {
+           // var userName = $scope.nickName;
+            $http({
+                method: 'POST',
+                url: '/Security/User/IsExist',
+                data: JSON.stringify({ userName: $scope.nickName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data);
+                if (response.data == 1) {
+
+                    $("#userName").show();
+                } else {
+                    $("#userName").hide();
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+
+            });
+        })
+    });
+
+</script>
+
+<div class="form-group">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>基本信息</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" class="form-horizontal" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">用户名</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="name" class="form-control" ng-model="name" placeholder="请输入用户名" required>
+                                </div>
+                                <input style="display:none" type="text" name="name" class="form-control" ng-model="isexist">
+                                <span style="display:none;color:red" id="name-error">用户名已存在</span>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">姓 名</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="nickName" class="form-control" ng-model="nickName" placeholder="请输入姓名" required>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">密 码</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" ng-model="password" ng-minlength="6"
+                                           ng-maxlength="20" name="password" id="password" placeholder="请输入密码" required>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">重复密码</label>
+                                <div class="col-sm-7">
+                                    <input type="password" class="form-control" ng-model="passwordagain" name="passwordagain"
+                                           id="passwordagain" placeholder="请再输一遍密码" required>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">邮 箱</label>
+                                <div class="col-sm-7">
+                                    <input type="email" class="form-control" ng-model="email" name="email" id="email"
+                                           placeholder="请输入电子邮箱" required>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">启用状态</label>
+                                <div class="col-sm-7">
+                                    <div class="checkbox i-checks">
+                                        <label>
+                                            <input type="checkbox" value="" id="enabled"> <i></i> 是否启用
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">创建时间</label>
+                                <div class="col-sm-7">
+                                    <div class="checkbox i-checks">
+                                        <label id="createdTime">@ViewBag.CreatedTime</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">修改时间</label>
+                                <div class="col-sm-7">
+                                    <div class="checkbox i-checks">
+                                        <label id="updatedTime">@ViewBag.UpdatedTime</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3"></label>
+                                <div class="col-sm-8">
+                                    <button class="btn btn-primary" type="submit" ng-click="saveChange()">保存内容</button>
+                                    <button class="btn btn-white" type="submit">取消</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- jQuery 表单验证-->
+    <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Scripts/hogon/js/content.js"></script>
+    <!-- iCheck-->
+    <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            $.validator.setDefaults({
+                highlight: function (element) {
+                    $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+                },
+                success: function (element) {
+                    element.closest('.form-group').removeClass('has-error').addClass('has-success');
+                },
+                errorElement: "span",
+                errorPlacement: function (error, element) {
+                    if (element.is(":radio") || element.is(":checkbox")) {
+                        error.appendTo(element.parent().parent().parent());
+                    } else {
+                        error.appendTo(element.parent());
+                    }
+                },
+                errorClass: "help-block m-b-none",
+                validClass: "help-block m-b-none"
+            });
+
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
+            $("#commentForm").validate();
+
+
+        });
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope, $http) {
+
+            var id = window.location.search; //获取ID
+            id = id.substring(id.indexOf('=') + 1);
+            $("#enabled").attr("checked", true);
+            if (id != "") {
+                //编辑
+                $http({
+                    method: 'POST',
+                    url: '/Security/User/GetUserById',
+                    data: JSON.stringify({ id: id })
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                 
+                    $scope.nickName = response.data.NickName;
+                    $scope.name = response.data.Name;
+                    $scope.password = response.data.Password;
+                    $scope.passwordagain = response.data.Password;
+                    $scope.email = response.data.Email;
+                    if (response.data.IsEnable == true) {
+                        $("#enabled").attr('checked', true);
+                    } else {
+                        $("#enabled").attr("checked", false);
+                    }
+                    $("#createdTime").text(response.data.DisplayCreatedTime);
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+
+                });
+
+            }
+            //新增
+            $scope.saveChange = function () {
+                if ($scope.name != null && $scope.nickName != null && $scope.password != null
+                    && $scope.email != null && $scope.isexist != 1) {
+                    
+                    var enabled = $("#enabled").parent().attr('class');
+
+                    if (enabled == "icheckbox_square-green checked") {
+                        enabled = true;
+                    } else if (enabled == "icheckbox_square-green") {
+                        enabled = false;
+                    }
+                    var createdTime = $("#createdTime").text();
+                    var updatedTime = $("#updatedTime").text();
+                    $scope.user = {
+                        "Id": id, "NickName": $scope.nickName, "Name": $scope.name, "Password": $scope.password,
+                        "Email": $scope.email, "IsEnable": enabled, "CreatedTime": createdTime,
+                        "UpdatedTime": updatedTime, "CreatorId": 1, "UpdaterId": 1
+                    };
+                    console.log(JSON.stringify($scope.user));
+                    $http({
+                        method: 'POST',
+                        url: '/Security/User/Save',
+                        data: JSON.stringify($scope.user)
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        swal("保存成功！")
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                };
+            };
+
+            //判断用户名是否存在
+            $scope.IsExist = function () {
+                $("[name='name']").blur(function () {
+                    $http({
+                        method: 'POST',
+                        url: '/Security/User/IsExist',
+                        data: { userName: $scope.name }
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        console.log(response.data);
+                        if (response.data == 1) {
+                            $("#name-error").show();
+                            $scope.isexist = response.data;
+                        } else {
+                            $("#name-error").hide();
+                            $scope.isexist = response.data;
+                        }
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+
+                    });
+                });
+            };
+            $scope.IsExist();
+        });
+
+    </script>
+
+</div>

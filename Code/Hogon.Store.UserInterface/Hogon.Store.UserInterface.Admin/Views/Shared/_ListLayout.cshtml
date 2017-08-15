@@ -1,0 +1,278 @@
+﻿@using Hogon.Framework.Web
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/angular")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css/form")
+    <link href="~/Content/sweetalert.css" rel="stylesheet" />
+    <link href="~/Content/css/bootstrap-table.min.css" rel="stylesheet" />
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+    @{
+        var render = ViewBag.ListRender;
+    }
+    <style>
+        a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
+    <script type="text/javascript">
+        var pageSize = 3; //每页多少条
+        var pageIndex = 1; //页的索引
+        var rowCount = 0; //总行数
+        var pageSum = 0; //总页数
+        //查询
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope, $http) {
+            var jsondata = { "PageSize": pageSize, "PageIndex": pageIndex }
+            $http({
+                method: 'POST',
+                url: '@Url.Action("FindModelList")',
+                data: JSON.stringify(jsondata)
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                CreateTable(response.data.DataList);
+                rowCount = response.data.TotalCount;
+                pageSum = response.data.PageSum;
+                $scope.operate();
+                var options = {
+                    bootstrapMajorVersion: 3,
+                    currentPage: pageIndex,
+                    totalPages: pageSum,
+                    numberOfPages: 5,
+                    itemTexts: function (type, page, current) { //修改显示文字
+                        switch (type) {
+                            case "first":
+                                return "第一页";
+                            case "prev":
+                                return "上一页";
+                            case "next":
+                                return "下一页";
+                            case "last":
+                                return "最后一页";
+                            case "page":
+                                return page;
+                        }
+                    },
+                    onPageClicked: function (event, originalEvent, type, page) {
+                        pageIndex = page;
+                        pageSize = pageSize;
+                        $scope.pagingquery();
+                    }
+                }
+
+                $('#pagination').bootstrapPaginator(options);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+
+            $("#btnExport").click(function () {
+                @Html.Raw(Server.HtmlDecode(render.RenderSearchImport()))
+                @Html.Raw(Server.HtmlDecode(render.RenderJointJson()))
+
+                var queryData = jsondata.queryData;
+                var queryString = "?";
+
+                for (var key in queryData) {
+                    if (queryData.hasOwnProperty(key)) {
+                        if (queryString != "?")
+                            queryString = queryString + "&";
+                        queryString += key + "=" + queryData[key];
+                    }
+                }
+
+                var searchString = '@Url.Action("ExportToExcel")';
+                searchString += queryString;
+
+                window.location = searchString;
+            });
+
+            //条件查询
+            $scope.inquire = function () {
+                pageIndex = 1;
+                @RenderSection("searchImport", false)
+                @RenderSection("jointJson", false)
+                $http({
+                    method: 'POST',
+                    url: '@Url.Action("FindModelList")',
+                    data: JSON.stringify(jsondata)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    CreateTable(response.data.DataList);
+                    rowCount = response.data.TotalCount;
+                    pageSum = response.data.PageSum;
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: pageIndex,
+                        totalPages: pageSum,
+                        numberOfPages: 5,
+                        onPageClicked: function (event, originalEvent, type, page) {
+                            pageIndex = page;
+                            pageSize = pageSize;
+                            $scope.pagingquery();
+                        }
+                    }
+                    $('#pagination').bootstrapPaginator(options);
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            };
+
+            //分页查询
+            $scope.pagingquery = function () {
+                @RenderSection("pagingImport", false)
+                @RenderSection("pagingJson", false)
+                $http({
+                    method: 'POST',
+                    url: '@Url.Action("FindModelList")',
+                    data: JSON.stringify(jsondata)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    CreateTable(response.data.DataList);
+                    rowCount = response.data.TotalCount;
+                    pageSum = response.data.PageSum;
+
+                    var options = {
+                        bootstrapMajorVersion: 3,
+                        currentPage: pageIndex,
+                        totalPages: pageSum,
+                        numberOfPages: 5,
+                        onPageClicked: function (event, originalEvent, type, page) {
+                            pageIndex = page;
+                            pageSize = pageSize;
+                            $scope.pagingquery();
+                        }
+                    }
+                    $('#pagination').bootstrapPaginator(options);
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            };
+
+            //$http({
+            //    method: 'POST',
+            //    url: '/Dictionary/FindBrands',
+            //    data: null
+            //}).then(function successCallback(response) {
+            //    console.log(response);
+            //    $.each(response, function (i) {
+            //        $("#search_Brand").append("<option value=" + response[i].key + ">" + response[i].value + "</option>");
+            //    });
+            //}, function errorCallback(response) {
+            //    // 请求失败执行代码
+            //});
+
+            //操作列
+            $scope.operate = function () {
+                $(".tablelist").on("click", function (e) {
+                    var $btn = $(e.target).parent();
+                    if ($btn.hasClass("edit")) {
+                        var id = $btn.attr('id');
+                        window.location.href = "Edit?Id =" + id;
+                    } else if ($btn.hasClass("detail")) {
+                        var id = $btn.attr('id');
+                        window.location.href = "Detail?Id =" + id;
+                    } else if ($btn.hasClass("delet")) {
+                        swal({
+                            title: "操作提示",
+                            text: "确认删除吗?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            cancelButtonText: "取消",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        }, function () {
+                            var id = $btn.attr('id');
+                            $http({
+                                method: 'POST',
+                                url: '@Url.Action("Remove")',
+                                data: JSON.stringify({ Id: id })
+                            }).then(function successCallback(response) {
+                                // 请求成功执行代码
+                                swal("删除成功", "", "success");
+                                $scope.inquire();
+                            }, function errorCallback(response) {
+                                // 请求失败执行代码
+                                swal(response.data, "", "warning");
+                            });
+                        });
+                    }
+                });
+                $(".index").on("click", function (e) {
+                    var id = $(this).attr('id');
+                    window.location.href = "Detail?Id =" + id;
+                });
+            };
+        });
+
+        $(function () {
+            $("#after_CreatedTimedatetimepicker").datetimepicker({
+                minView: "month", //选择日期后，不会再跳转去选择时分秒
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                todayBtn: 1,
+                autoclose: 1,
+                pickerPosition: "bottom-left"
+            });
+            $("#before_CreatedTimedatetimepicker").datetimepicker({
+                minView: "month", //选择日期后，不会再跳转去选择时分秒
+                language: 'zh-CN',
+                format: 'yyyy-mm-dd',
+                todayBtn: 1,
+                autoclose: 1,
+                pickerPosition: "bottom-left"
+            });
+        });
+
+    </script>
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper-content animated fadeInRight">
+            <div class="header clearfix">
+                <span class="headerline">@ViewBag.Title</span>
+                @*@if (Html.IsAuthorized("Add"))
+                {*@
+                    <button name="confirmButton" id="AddInstrument" type="button" class="btn btn-sm btn-primary headerbut pull-right"><i class="glyphicon glyphicon-plus" style="margin-right:5px;"></i>添加</button>
+                @*}*@
+                @if (Html.IsAuthorized("Export"))
+                {
+                    <button name="btnExport" id="btnExport" type="button" class="btn btn-sm btn-primary headerbut pull-right"><i class="glyphicon glyphicon-plus" style="margin-right:5px;"></i>导出</button>
+                }
+            </div>
+            <div class="basicparameter" ng-app="myApp" ng-controller="validateCtrl">
+                @RenderBody()
+                <form name="myForm" novalidate>
+                    <div class="searching clearfix">
+                        @Html.Raw(Server.HtmlDecode(render.RenderSearch()))
+
+                        <button name="confirmButton" id="chaxun" type="button" class="btn btn-sm btn-primary pull-right searchingbut" ng-click="inquire()"><i class="glyphicon glyphicon-search" style="margin-right:5px;"></i>查询</button>
+                    </div>
+                    <div class="tablelist">
+                        <table class="table table-striped table-bordered table-hover dataTable" id="table_local">
+                            <thead>
+                                @Html.Raw(Server.HtmlDecode(render.RenderListHead()))
+
+                            </thead>
+                            <tbody class="tbodylist"></tbody>
+                        </table>
+                    </div>
+                    <div class="paging clearfix">
+                        <ul class="pagination" id="pagination"></ul>
+                    </div>
+                </form>
+                <br />
+            </div>
+        </div>
+</body>
+</html>

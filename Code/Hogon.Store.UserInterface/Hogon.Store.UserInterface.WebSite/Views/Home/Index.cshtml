@@ -1,0 +1,675 @@
+﻿@{
+    ViewBag.Title = "禾工大型B2B行业平台";
+    Layout = "~/Views/Home/_Layout.cshtml";
+}
+
+@section header{
+    <div class="headerWrapper" id="headerWrapper">
+        <div class="top_nav">
+            <div class="wrapper clearfix">
+                <ul class="pull-left">
+                    <li>欢迎来到禾工B2B大型商城</li>
+                </ul>
+                <ul class="pull-right">
+                    <li class="top_nav_li_login"><span>你好，请</span><a href="../Account/Login">登录</a></li>
+                    <li class="top_nav_li"><a class="color_63" target="_blank" href="../Account/UserRegister">免费注册</a></li>
+                    <li class="top_nav_li">
+                        <div class="top_nav_li_menu"><a href="">我的订单</a><i></i></div>
+                        <div class="top_nav_li_menu_item">
+                            <a target="_blank" href="">待付款</a>
+                            <a target="_blank" href="">待收货</a>
+                            <a target="_blank" href="">待评价</a>
+                            <a target="_blank" href="">退换/售后</a>
+                        </div>
+                    </li>
+                    <li class="top_nav_li">
+                        <div class="top_nav_li_menu"><a href="">我的收藏</a><i></i></div>
+                        <div class="top_nav_li_menu_item">
+                            <a target="_blank" href="">收藏商品</a>
+                            <a target="_blank" href="">收藏品牌</a>
+                            <a target="_blank" href="">收藏店铺</a>
+                        </div>
+                    </li>
+                    <li class="top_nav_li">
+                        <div class="top_nav_li_menu"><a href="">客户服务</a><i></i></div>
+                        <div class="top_nav_li_menu_item">
+                            <a target="_blank" href="">售后服务</a>
+                            <a target="_blank" href="">帮助中心</a>
+                            <a target="_blank" href="">联系客服</a>
+                            <a target="_blank" href="">建议反馈</a>
+                            <a target="_blank" href="">我要投诉</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="wrapper logo_tab clearfix">
+            <div class="logo pull-left">
+                <a href=""><img alt="" src="" /></a>
+            </div>
+            <div class="searchBar pull-left" id="searchBar">
+                <form id="searchBox" method="get" name="" action="">
+                    <div id="searchTermWrapper" class="search clearfix">
+                        <input class="searchText pull-left" id="SimpleSearchForm_SearchTerm" name="searchTerm" autocomplete="off" type="text" value="" placeholder="卤素水分测定仪" maxlength="50">
+                        <input class="searchBtn pull-left" id="searchFormLabel" for="SimpleSearchForm_SearchTerm" type="button" value="搜索">
+                    </div>
+                    <div class="hotWords mt5">
+                        <a class="hot" href="" onclick="javascript:$('#SimpleSearchForm_SearchTerm').val(' ');$('#searchBox').submit();">纯水机</a>
+                        <a href="">纯水机</a>
+                        <a href="">纯水机</a>
+                        <a href="">纯水机</a>
+                        <a href="">纯水机</a>
+                        <a href="">纯水机</a>
+                    </div>
+                </form>
+                <ul class="search_list clearfix" id="searchList_ul">
+                    <li><a href="">纯水机</a><span>约998个商品</span></li>
+                    <li><a href="">纯水机</a><span>约998个商品</span></li>
+                    <li><a href="">纯水机</a><span>约998个商品</span></li>
+                </ul>
+            </div>
+            <div class="mini_car pull-right" id="miniCart">
+                <a class="hd_prism_cart" href="">
+                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                    <span>我的购物车</span>
+                </a>
+                <div class="hd_cart_show" id="showMiniCartDetail">
+                    <div class="hd_none_tips">
+                        <span class="hd_none_icon"></span>
+                        <p class="hd_none_text">您的购物车里暂时没有商品！</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wrapper hd_headwe clearfix">
+            <!--水平导航开始-->
+            <div class="hd_headwe_nav rel">
+                <ul class="hd_nav_list">
+                    <li><a class="highlight" href="" target="_blank">智能检测</a></li>
+                    <li><a href="" target="_blank">限时特惠</a></li>
+                    <li><a href="" target="_blank">优惠促销</a></li>
+                    <li><a href="" target="_blank">新品上市</a></li>
+                    <li><a href="" target="_blank">领券中心</a></li>
+                </ul>
+            </div>
+            <!--水平导航结束-->
+            <div class="category" id="category">
+                <h2 class="hd rel">
+                    <a href="" target="_blank">全部商品分类 </a>
+                </h2>
+
+                <div class="bd rel">
+                    <!-- 坚导航开始 -->
+                    <ul class="cate_mune clearfix">
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                            <div class="hd_show_sort clearfix">
+                                <div class="hd_good_category">
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">纸品湿巾</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">抽纸</a>
+                                            <a href="" target="_blank">卷筒纸</a>
+                                            <a href="" target="_blank">手帕纸</a>
+                                            <a href="" target="_blank">厨房用纸</a>
+                                            <a href="" target="_blank">湿巾</a>
+                                            <a href="" target="_blank">湿厕纸</a>
+                                            <a href="" target="_blank">平板卫生纸</a>
+                                            <a href="" target="_blank">商务用纸</a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">衣物清洁</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">衣物除菌液</a>
+                                            <a href="" target="_blank">洗衣粉</a>
+                                            <a href="" target="_blank">洗衣皂</a>
+                                            <a href="" target="_blank">衣领净</a>
+                                            <a href="" target="_blank">去渍剂</a>
+                                            <a href="" target="_blank">彩漂</a>
+                                            <a href="" target="_blank">天然皂粉</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="hd_good_logo">
+                                    <ul>
+                                        <li class="seller_logo">
+                                            <a target="_blank" href="" title="" alt="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                            <div class="hd_show_sort clearfix">
+                                <div class="hd_good_category">
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">纸品湿巾</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">抽纸</a>
+                                            <a href="" target="_blank">卷筒纸</a>
+                                            <a href="" target="_blank">手帕纸</a>
+                                            <a href="" target="_blank">厨房用纸</a>
+                                            <a href="" target="_blank">湿巾</a>
+                                            <a href="" target="_blank">湿厕纸</a>
+                                            <a href="" target="_blank">平板卫生纸</a>
+                                            <a href="" target="_blank">商务用纸</a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">衣物清洁</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">衣物除菌液</a>
+                                            <a href="" target="_blank">洗衣粉</a>
+                                            <a href="" target="_blank">洗衣皂</a>
+                                            <a href="" target="_blank">衣领净</a>
+                                            <a href="" target="_blank">去渍剂</a>
+                                            <a href="" target="_blank">彩漂</a>
+                                            <a href="" target="_blank">天然皂粉</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="hd_good_logo">
+                                    <ul>
+                                        <li class="seller_logo">
+                                            <a target="_blank" href="" title="" alt="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                            <div class="hd_show_sort clearfix">
+                                <div class="hd_good_category">
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">纸品湿巾</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">抽纸</a>
+                                            <a href="" target="_blank">卷筒纸</a>
+                                            <a href="" target="_blank">手帕纸</a>
+                                            <a href="" target="_blank">厨房用纸</a>
+                                            <a href="" target="_blank">湿巾</a>
+                                            <a href="" target="_blank">湿厕纸</a>
+                                            <a href="" target="_blank">平板卫生纸</a>
+                                            <a href="" target="_blank">商务用纸</a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">衣物清洁</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">衣物除菌液</a>
+                                            <a href="" target="_blank">洗衣粉</a>
+                                            <a href="" target="_blank">洗衣皂</a>
+                                            <a href="" target="_blank">衣领净</a>
+                                            <a href="" target="_blank">去渍剂</a>
+                                            <a href="" target="_blank">彩漂</a>
+                                            <a href="" target="_blank">天然皂粉</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="hd_good_logo">
+                                    <ul>
+                                        <li class="seller_logo">
+                                            <a target="_blank" href="" title="" alt="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                            <div class="hd_show_sort clearfix">
+                                <div class="hd_good_category">
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">纸品湿巾</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">抽纸</a>
+                                            <a href="" target="_blank">卷筒纸</a>
+                                            <a href="" target="_blank">手帕纸</a>
+                                            <a href="" target="_blank">厨房用纸</a>
+                                            <a href="" target="_blank">湿巾</a>
+                                            <a href="" target="_blank">湿厕纸</a>
+                                            <a href="" target="_blank">平板卫生纸</a>
+                                            <a href="" target="_blank">商务用纸</a>
+                                        </dd>
+                                    </dl>
+                                    <dl class="clearfix">
+                                        <dt>
+                                            <a href="" target="_blank">衣物清洁</a><i> &gt;</i>
+                                        </dt>
+                                        <dd>
+                                            <a href="" target="_blank" class="hd_higlight_red">衣物除菌液</a>
+                                            <a href="" target="_blank">洗衣粉</a>
+                                            <a href="" target="_blank">洗衣皂</a>
+                                            <a href="" target="_blank">衣领净</a>
+                                            <a href="" target="_blank">去渍剂</a>
+                                            <a href="" target="_blank">彩漂</a>
+                                            <a href="" target="_blank">天然皂粉</a>
+                                        </dd>
+                                    </dl>
+                                </div>
+                                <div class="hd_good_logo">
+                                    <ul>
+                                        <li class="seller_logo">
+                                            <a target="_blank" href="" title="" alt="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                            <a target="_blank" href="" title="">
+                                                <img src="" alt="">
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                        <li class="cate_mune_item">
+                            <div class="cate_mune_item_h3">
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a> /
+                                <a class="cate_mune_lk" target="_blank" href="">测量</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <!-- 坚导航结束 -->
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="contentWrapper" id="contentWrapper">
+    <div class="wrapper carousel_wrapper clearfix">
+        <div id="myCarousell" class="carousel slide myCarousell pull-left" data-ride="carousel">
+            <!-- 轮播指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousell" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousell" data-slide-to="1"></li>
+                <li data-target="#myCarousell" data-slide-to="2"></li>
+            </ol>
+            <!-- 轮播项目 -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <a href="" target="_blank">
+                        <img src="~/Content/Images/sample img/web-101-101-4.jpg" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" target="_blank">
+                        <img src="~/Content/Images/sample img/web-101-101-4.jpg" />
+                    </a>
+                </div>
+                <div class="item">
+                    <a href="" target="_blank">
+                        <img src="~/Content/Images/sample img/web-101-101-4.jpg" />
+                    </a>
+                </div>
+            </div>
+            <!-- 左右切换 -->
+            <a class="left carousel-control" href="#myCarousell" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousell" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <div class="carousel_advertising pull-right">
+            <div class="advertising_up"><a href="" target="_blank"></a></div>
+            <div class="advertising_bott"><a href="" target="_blank"></a></div>
+        </div>
+    </div>
+    <div class="wrapper item_advertising clearfix">
+        <div class="item_advertising_left">
+            <div><a href="" target="_blank"><img src="" alt="" /></a></div>
+            <div><a href="" target="_blank"><img src="" alt="" /></a></div>
+            <div><a href="" target="_blank"><img src="" alt="" /></a></div>
+            <div><a href="" target="_blank"><img src="" alt="" /></a></div>
+        </div>
+        <div class="item_advertising_right">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active"><a href="#notice" data-toggle="tab">公告</a></li>
+                <li><a href="#information" data-toggle="tab">资讯</a></li>
+                <li><a href="#case" data-toggle="tab">案例</a></li>
+            </ul>
+            <div id="myTabContent" class="tab-content myTabContent">
+                <div class="tab-pane fade in active" id="notice">
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                </div>
+                <div class="tab-pane fade" id="information">
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                </div>
+                <div class="tab-pane fade" id="case">
+                    <p><a href="" target="_blank">国家仪器蓬勃发展国家仪器蓬勃发展国家仪器蓬勃发</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="horizontal_advertising">
+        <div class="horizontal_advertising_item"><a href=""><img alt="" src="~/Content/Images/sample img/horizontal_advertising.jpg" /></a></div>
+        <div class="horizontal_advertising_item"><a href=""><img alt="" src="~/Content/Images/sample img/horizontal_advertising.jpg" /></a></div>
+        <div class="horizontal_advertising_item"><a href=""><img alt="" src="~/Content/Images/sample img/horizontal_advertising.jpg" /></a></div>
+    </div>
+
+    <div class="wrapper recommend_pro">
+        <ul class="recommend_title clearfix">
+            <li class="recommend_title_re pull-left">热卖商品</li>
+            <li class="recommend_title_mo pull-right"><a href="" target="_blank">更多>></a></li>
+        </ul>
+        <div class="madden_pro">
+            <ul class="recommend_com clearfix">
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="recommend_com_item">
+                    <a href="" title="" id="" name="" target="_blank"><img class="recommend_img" src="" title=""></a>
+                    <div class="inforBox">
+                        <p class="txtBt"><a title="" href="" target="_blank">上海禾工</a></p>
+                        <p class="txtInfor"><a title="" href="" target="_blank">高精确卤素水分测定仪</a></p>
+                        <div class="buy-btn ">
+                            <span class="bold pull-left">￥3200.00</span>
+                            <span class="del">￥3800.00</span>
+                            <span class="sold pull-right"> 已售：589</span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="wrapper recommend_pro">
+        <ul class="recommend_title clearfix">
+            <li class="recommend_title_re pull-left">热卖品牌</li>
+            <li class="recommend_title_mo pull-right"><a href="" target="_blank">更多>></a></li>
+        </ul>
+        <div class="madden_pro">
+            <ul class="recommend_com clearfix">
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+                <li class="recommend_com_brand"><a href="" target="_blank"><img src="~/Content/Images/sample img/pinpai.jpg" alt="" /></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!---侧边栏菜单-->
+    <div class="wm-toolbar" style="right: -276px;">
+        <div class="toolbar-left">
+            <div class="wm-toolbar-top" style="top: 117.5px;">
+                <div class="wm-toolbar-tab wm-trigger wm-toolbar-hd cart">
+                    <em class="glyphicon glyphicon-shopping-cart"></em>购物车<span class="suspendcart_totalamount">0</span>
+                    <input id="suspendcart_items_amount" name="smallcart_items_amount" type="hidden" value="0" data-count="0">
+                </div>
+                <div class="wm-toolbar-footer">
+                    <ul>
+                        <li class="wm-toolbar-tab"><a href="" target="_blank"><span>我的优惠券</span><em class="glyphicon glyphicon-star-empty"></em></a></li>
+                        <li class="wm-toolbar-tab"><a href="" target="_blank"><span>我的收藏</span><em class="glyphicon glyphicon-heart-empty"></em></a></li>
+                        <li class="wm-toolbar-tab"><a href="" target="_blank"><span>在线充值</span><em class="glyphicon glyphicon-usd"></em></a></li>
+                        <li class="wm-toolbar-tab"><a href="#headerWrapper"><span>返回顶部</span><em class="glyphicon glyphicon-menu-up"></em></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="pop-up">
+            <div class="pop-layer wm-cart" id="suspendcart" data-first="no" style="left: 0px;">
+                <h3 class="pop-title">我的购物车<em></em></h3>
+                <div class="scroll-box" id="suspendcart_cont" data-visible="0" style="height: 358px;">
+                    <div class="nothing">
+                        <dl>
+                            <dt><img src="/zhongliang/city/common/images/no-cart.jpg"></dt>
+                            <dd><p>购物车空空的，赶快去挑选心仪的商品吧~</p><p><a href="/index-31154-0.htm">去首页看看</a></p></dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $('.wm-toolbar-tab').hover(function(){
+            $(this).addClass('cur').siblings('.wm-toolbar-tab').removeClass('cur');
+        },function(){
+            $(this).removeClass('cur');
+        })
+    </script>
+</div>
+
+@section footer{
+
+    <div class="wrapper clearfix" id="footerWrapper">
+        <div class="ft_warp">
+            <ul>
+                <li><span class="line_ide"></span> <span class="icon_ide"> <img style="width: 60px;" src="http://www.yph.cn/data/upload/shop/contracticon/7day_60.gif"> </span> <span class="name_ide"> 7天退货，15天换货 </span> </li>
+                <li><span class="line_ide"></span> <span class="icon_ide"> <img style="width: 60px;" src="http://www.yph.cn/data/upload/shop/contracticon/pz_60.gif"> </span> <span class="name_ide"> 品质承诺 </span> </li>
+                <li><span class="line_ide"></span> <span class="icon_ide"> <img style="width: 60px;" src="http://www.yph.cn/data/upload/shop/contracticon/psbf_60.gif"> </span> <span class="name_ide"> 破损补寄 </span> </li>
+                <li><span class="line_ide"></span> <span class="icon_ide"> <img style="width: 60px;" src="http://www.yph.cn/data/upload/shop/contracticon/jswl_60.gif"> </span> <span class="name_ide"> 急速物流 </span> </li>
+            </ul>
+        </div>
+        <div id="footer">
+            <p class="wrapper ft_footer_link">
+                <a href="" target="_blank">关于我们</a>|
+                <a href="" target="_blank">我们的团队</a>|
+                <a href="" target="_blank">网站联盟</a>|
+                <a href="" target="_blank">热门搜索</a>|
+                <a href="" target="_blank">友情链接</a>|
+                <a href="" target="_blank">诚征英才</a>|
+                <a href="" target="_blank">商家登录</a>|
+                <a href="" target="_blank">供应商登录</a>|
+                <a href="" target="_blank">放心搜</a>|
+                <a href="" target="_blank">开放平台</a>
+            </p>
+            <p class="ft_footer_cp">Copyright© 上海禾工网上商城 2007-2017，All Rights Reserved</p>
+            <p class="ft_footer_cp">
+                <a href="" target="_blank">京公安网备</a>|
+                <a href="" target="_blank">京ICP证</a>|
+                <a href="" target="_blank">营业执照</a>
+            </p>
+            <small id="footerbanner2LazyLoad" class="ft_pic_link">
+                <a href="https://online.unionpay.com/" target="_blank" rel="nofollow">
+                    <img src="//d8.yihaodianimg.com/N00/M01/1A/30/CgMBmVDzwyaAaIMBAAAJZgSEr6I65200.webp" alt="" data-imgattr="original">
+                </a>
+                <a href="http://www.gsxt.gov.cn/index.html" target="_blank" rel="nofollow">
+                    <img src="//d8.yihaodianimg.com/N01/M08/19/94/CgQCrlDzwnKAUkfSAAAIPrrML6M92400.webp" alt="" data-imgattr="original">
+                </a>
+                <a href="http://www.zx110.org/" target="_blank" rel="nofollow">
+                    <img src="//d8.yihaodianimg.com/N02/M05/19/94/CgQCsVDzw0GABUElAADHlvRfNUk94600.webp" alt="" data-imgattr="original">
+                </a>
+                <a href="http://www.shodr.org/" target="_blank" rel="nofollow">
+                    <img src="//d6.yihaodianimg.com/N00/M00/46/FC/CgMBmVLfYZGALWNHAAAOxFbda9472600.gif" alt="" data-imgattr="original">
+                </a>
+                <a href="http://net.china.com.cn/index.htm" target="_blank" rel="nofollow">
+                    <img src="//d9.yihaodianimg.com/N01/M0A/95/FD/CgQCr1PQy1CAF7vaAABDexsiEYM24800.webp" alt="" data-imgattr="original">
+                </a>
+                <a href="http://shwg.dianping.com/index.html" target="_blank">
+                    <img src="//d9.yihaodianimg.com/N08/M06/6C/9C/ChEi1VcfPl2AC1T8AAANFrEfJlw97300.webp" alt="" data-imgattr="original">
+                </a>
+                <a href="http://www.shjbzx.cn" target="_blank">
+                    <img src="//d6.yihaodianimg.com/N10/M09/0E/1F/ChEi2lh171KAJrGlAAALl_uZt0E75600.webp" alt="" data-imgattr="original">
+                </a>
+            </small>
+        </div>
+    </div>
+    <div class="margin-b-50"></div>
+}

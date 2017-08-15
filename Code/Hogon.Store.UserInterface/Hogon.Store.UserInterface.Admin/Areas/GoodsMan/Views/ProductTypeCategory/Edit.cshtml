@@ -1,0 +1,157 @@
+﻿
+@{
+    ViewBag.Title = "产品类型分类管理";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+<div class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <form name="myForm" method="get" class="form-horizontal" id="commentForm" novalidate>
+                        <input type="hidden" name="id" ng-model="Guid" />
+                        <div class="ibox-title">
+                            <h5>产品类型分类管理</h5>
+                        </div>
+
+                        <div class="ibox-content">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">类型分类名称<i class="fa fa-asterisk fa-red"></i></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="ProductTypeCategoryName" ng-model="ProductTypeCategoryName" name="ProductTypeCategoryName" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">所属类型分类</label>
+                                <div class="col-sm-7">
+                                    <select class="form-control m-b" name="ParentId" id="parent"></select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">类型分类编码<i class="fa fa-asterisk fa-red"></i></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="Code" ng-model="Code" name="Code" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div style="width:200px;margin:0px auto;text-align:center;">
+                                <span><button id="btnSave" type="button" class="btn btn-primary" ng-click="SaveProductTypeCategory()">保存</button></span>
+                                <span><button id="btnBack" type="button" class="btn btn-white " ng-click="BackProductTypeCategory()">返回</button></span>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        var id = window.location.search;
+        id = id.substring(id.indexOf('=') + 1);
+
+        //下拉框绑值->编辑绑值
+        $http({
+            method: 'POST',
+            url: '@Url.Action("GetProductTypeCategoryNameForDrop")',
+            data: null
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            console.log(response);
+            $("#parent").append("<option value=''  selected='selected'>－－请选择上级分类－－</option>");
+            $.each(response.data, function (index, v) {
+                if (id != "" && v.Id == id) {
+                    //当前类型不可绑定自己
+                } else {
+                    $("#parent").append($("<option value = '" + v.Id + "'></option>").text(v.ProductTypeCategoryName));
+                }
+            });
+
+            if (id != "") {
+                //编辑
+                $http({
+                    method: 'POST',
+                    url: '/GoodsMan/ProductTypeCategory/GetProductTypeCategoryById',
+                    data: { Id: id }
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    $scope.Guid = response.data.Id;
+                    $scope.ProductTypeCategoryName = response.data.ProductTypeCategoryName;
+                    $scope.Code = response.data.Code;
+                    $("#parent ").val(response.data.ParentId);
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            }
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
+
+
+        //判断分类名是否重复
+        $("[name='ProductTypeCategoryName']").blur(
+            function () {
+                Repetition();
+            })
+
+        //保存
+        $scope.SaveProductTypeCategory = function () {
+            Repetition();
+            var parentId = $("#parent option:selected").val();
+            if (parentId == "－－请选择二级分类－－") {
+                parentId = "";
+            };
+            $scope.ProductTypeCategory = {
+                "Id": $scope.Guid,
+                "ProductTypeCategoryName": $scope.ProductTypeCategoryName,
+                "ParentId": parentId,
+                "Code": $scope.Code
+            };
+            console.log(JSON.stringify($scope.ProductTypeCategory));
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductTypeCategory/Save',
+                data: $scope.ProductTypeCategory
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                location.href = "/GoodsMan/ProductTypeCategory/Index";
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+
+        //返回
+        $scope.BackProductTypeCategory = function () {
+            window.location.href = "/GoodsMan/ProductTypeCategory/Index";
+        }
+
+        //判断重复
+        function Repetition() {
+            $http({
+                method: 'POST',
+                url: '/GoodsMan/ProductTypeCategory/GetRepetitionForProductTypeCategoryName',
+                data: JSON.stringify({ ProductTypeCategoryName: $scope.ProductTypeCategoryName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response);
+                console.log(response.data);
+                if (response.data == 1) {
+                    //编辑时不清空类型名称
+                    if ((id != "")) {
+                    }
+                    else {
+                        //新增时清空类型名称
+                        $scope.ProductTypeCategoryName = "";
+                    }
+                }
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+    });
+</script>

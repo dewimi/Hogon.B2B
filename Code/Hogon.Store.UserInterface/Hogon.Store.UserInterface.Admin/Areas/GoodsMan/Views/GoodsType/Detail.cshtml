@@ -1,0 +1,112 @@
+﻿
+@{
+	ViewBag.Title = "商品类型详情";
+	Layout = "~/Views/Shared/_DetailLayout.cshtml";
+}
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/font-awesome.css" rel="stylesheet">
+<link href="css/animate.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
+<style>
+    .form-horizontal .control-label {
+        padding-top: 0px;
+    }
+
+    .form-group span {
+        margin-right: 15px;
+    }
+</style>
+
+<div class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>商品类型详情</h5>
+                    </div>
+                    <div class="ibox-content form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类型名称：</label>
+                            <div class="col-sm-7">
+                                <span id="Name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">类型描述：</label>
+                            <div class="col-sm-7">
+                                <span id="Describe"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">上级类型：</label>
+                            <div class="col-sm-7">
+                                <span id="ParentName"></span>
+                           </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">产品类型：</label>
+                            <div class="col-sm-7">
+                                <span id="ProductTypeName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">排序：</label>
+                            <div class="col-sm-7">
+                                <span id="Order"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">是否启用：</label>
+                            <div class="col-sm-7">
+                                <span id="IsEnabled"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+</div>
+
+<script type="text/javascript">
+
+	var app = angular.module('myApp', []);
+	app.controller('validateCtrl', function ($scope, $http) {
+		var id = window.location.search;
+		id = id.substring(id.indexOf('=') + 1);
+		//详情绑值
+		$http({
+			method: 'POST',
+			url: '/GoodsMan/GoodsType/FindGoodsTypeById',
+			data: { Id: id }
+		}).then(function successCallback(response) {
+			// 请求成功执行代码
+			$("#Name").text(response.data.Name);
+			$("#Describe").text(response.data.Describe);
+			if (response.data.ParentName != null) {
+				$("#ParentName").text(response.data.ParentName);
+			}
+			$("#ProductTypeName").text(response.data.ProductTypeName);
+			$("#Order").text(response.data.Order);
+			$("#IsEnabled").text(response.data.IsEnabled == true ? "是" : "否");
+		}, function errorCallback(response) {
+			// 请求失败执行代码
+		});
+    //返回
+		$scope.BackGoodsType = function () {
+            window.location.href="/GoodsMan/GoodsType/Index"
+		}
+	});
+</script>
+
+
+

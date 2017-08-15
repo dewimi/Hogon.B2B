@@ -1,0 +1,262 @@
+
+
+
+/*.header {
+    height: 60px;
+    line-height: 70px;
+    width: 100%;
+    z-index: 5;
+    top: 0;
+    border-bottom: 1px solid #e5dfdf;
+}*/
+
+/*.headerline {
+    width: 80px;
+    height: 30px;
+    margin-top: 2%;
+    margin-left: 3%;
+    float: left;
+    display: inline;
+    font-size: 18px;
+    font-weight: bold;
+}*/
+
+#sumbut {
+    width: 80px;
+    height: 30px;
+    margin-top: 1.3%;
+    margin-right: 3%;
+    float: right;
+    display: inline;
+}
+
+.basic {
+    background: #F6F9FF;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+
+.basictitle {
+    margin-left: 2%;
+    color: #0094ff;
+    font-size: 16px;
+    font-weight: bolder;
+    font-family: "宋体";
+    margin-top: 0.4%;
+    margin-bottom: 0.4%;
+}
+
+.basicparameter {
+    background: #F6F9FF;
+    width: 96%;
+    margin-left: 2%;
+    margin-top: 0.4%;
+    margin-bottom: 0.4%;
+}
+
+.star {
+    color: red;
+}
+
+.field {
+    width: 120px;
+    text-align: right;
+    font-family: "新宋体";
+    font-size: 13px;
+    font-weight: 500;
+    float: right;
+    display: inline;
+    line-height: 40px;
+}
+/*table {
+    width:480px;
+}*/
+td {
+    padding: 4px;
+
+}
+
+.filediv {
+    margin-left: 8%;
+}
+
+#select-control {
+    line-height: 40px;
+    width: 260px;
+    height: 30px;
+    float: left;
+    display: inline;
+}
+
+.hint {
+    margin-left: 8px;
+    font-family: 新宋体;
+    font-size: 8px;
+    color: #aeacac;
+    line-height: 30px;
+}
+
+.currency {
+    font-family: "新宋体";
+    font-size: 13px;
+    font-weight: 500;
+    float: left;
+    display: inline;
+    line-height: 30px;
+}
+
+.parameterhint {
+    margin-left: 8px;
+    font-family: 新宋体;
+    font-size: 8px;
+    color: #6BBA9D;
+    line-height: 30px;
+}
+
+.butdiv {
+    margin-left: 15%;
+    margin-bottom: 3%;
+}
+
+.listheader {
+    text-align: center;
+    height: 20px;
+    font-size: 10px;
+}
+
+.secondHead {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0da1ed;
+    display: inline-block;
+    margin: 5px 0 10px 0;
+}
+
+.functional {
+    margin-left: 60px;
+    margin-right: 60px;
+    width: 450px;
+}
+
+.panelWrapper {
+    width: 96%;
+    margin-left: 12px;
+}
+
+    .panelWrapper table {
+        width: 500px;
+        text-align: left;
+    }
+
+.margin-left20 {
+    margin-left: 20px;
+}
+
+input, button, select, textarea:focus {
+    outline: 0 !important;
+}
+
+.btn:active {
+    background: #286090 !important;
+}
+
+.header {
+    height: 60px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #d9d0d0;
+}
+
+.clearfu {
+    overflow: hidden;
+}
+
+
+.headerline {
+    font-family: "微软雅黑";
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 60px;
+    margin-left: 20px;
+}
+
+.headerbut {
+    float: right;
+    display: inline;
+    margin-top: 15px;
+    margin-right: 15px;
+    height: 30px;
+    width: 100px;
+}
+
+.titletr {
+    background: #E9F3FF;
+    height: 40px;
+    font-family: "微软雅黑";
+    color: #716d6d;
+    font-size: 13px;
+}
+
+.searching {
+    margin-top: 2px;
+    margin-bottom: 20px;
+}
+
+.searchcategory {
+    line-height: 35px;
+    margin-left: 15px;
+    font-size: 15px;
+    float: right;
+    display: inline;
+    margin-right: 10px;
+}
+
+.searchingput {
+    height: 30px;
+    width: 210px;
+    float: right;
+    display: inline;
+    margin-top: 2px;
+    margin-right: 20px;
+}
+
+.searchtime {
+    height: 30px;
+    width: 210px;
+    float: left;
+    display: inline;
+}
+
+.datepicker {
+    float: left;
+    display: inline;
+    height: 30px;
+    width: 210px;
+}
+
+.searchingbut {
+    width: 100px;
+    height: 30px;
+    line-height: 18px;
+    float: right;
+    margin: -35px 15px 10px 0;
+}
+
+.tablelist {
+    min-height: 430px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.tbodylist td {
+    border-bottom: 1px solid #D3D3D3;
+}
+
+.searchtable td {
+    height: 35px;
+    padding: 0 40px 3px 0;
+}
+
+.paging {
+    margin-left: 10px;
+}
