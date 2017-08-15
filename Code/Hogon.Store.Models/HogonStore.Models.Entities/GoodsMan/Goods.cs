@@ -13,6 +13,7 @@ namespace Hogon.Store.Models.Entities.GoodsMan
 
         public Goods()
         {
+
             Rela_Goods_GoodsType = new HashSet<Rela_Goods_GoodsType>();
             Rel_Promotion_Goods = new HashSet<Rel_Promotion_Goods>();
         }

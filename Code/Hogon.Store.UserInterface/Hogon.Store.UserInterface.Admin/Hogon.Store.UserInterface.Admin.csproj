@@ -198,6 +198,7 @@
     <Compile Include="Areas\GoodsMan\Models\ProductTypeCategoryViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ProductTypeViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ServiceGoodsViewModel.cs" />
+    <Compile Include="Areas\GoodsMan\Models\SpecTypeParameterViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\SpecTypeViewModel.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieCatalogController.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieController.cs" />
@@ -404,6 +405,8 @@
     <Content Include="Areas\Security\Views\User\Index.cshtml" />
     <Content Include="Areas\GoodsMan\Views\web.config" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Index.cshtml" />
+    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\Add.cshtml" />
+    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\Detail.cshtml" />
     <Content Include="Areas\Security\Views\Role\Index.cshtml" />
     <Content Include="Areas\Security\Views\Menu\Edit.cshtml" />
     <Content Include="Areas\Security\Views\Menu\Detail.cshtml" />
@@ -415,6 +418,7 @@
     <Content Include="Areas\GoodsMan\Views\SpecType\Edit.cshtml" />
     <Content Include="Areas\GoodsMan\Views\ProductType\Edit.cshtml" />
     <Content Include="Areas\GoodsMan\Views\GoodsType\Index.cshtml" />
+    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\index.cshtml" />
     <Content Include="Areas\GoodsMan\Views\GoodsType\Edit.cshtml" />
     <Content Include="Areas\GoodsMan\Views\GoodsType\Detail.cshtml" />
     <Content Include="Areas\GoodsMan\Views\ServiceGoods\Index.cshtml" />
@@ -450,8 +454,6 @@
     <Content Include="Areas\MarketingMan\Views\FreebieCatalog\Index.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Edit.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Detail.cshtml" />
-    <Content Include="Areas\GoodsMan\Views\ProductGoods\Detail.cshtml" />
-    <Content Include="Areas\GoodsMan\Views\ProductTypeCategory\index.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />

@@ -45,8 +45,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             return View();
         }
 
-
         #region + 查询 根据Id查询
+
         /// <summary>
         /// 获取上级菜单
         /// </summary>
@@ -187,6 +187,19 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         {
             menuSvc.DeleteMenu(Id);
             return Json("");
+        }
+        #endregion
+
+        #region + 判断菜单编码是否存在
+        /// <summary>
+        /// 判断菜单编码是否存在
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public ActionResult CodeIsExist(string code)
+        {
+           var result = menuSvc.CodeIsExist(code);
+            return Json(result);
         } 
         #endregion
 

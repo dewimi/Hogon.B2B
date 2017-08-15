@@ -98,6 +98,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             return treeNodeList;
 
         }
+
         /// <summary>
         /// 生成菜单集合
         /// </summary>
@@ -192,6 +193,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
 
             return nodeList;
         }
+
         /// <summary>
         /// 获取通用功能
         /// </summary>
@@ -401,6 +403,24 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
 
             return menuData;
 
+        }
+
+        /// <summary>
+        /// 判断菜单编码是否存在
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public bool CodeIsExist(string code)
+        {
+            bool result = true;
+            var menu = menuReps.FindBy(m => m.Code == code).FirstOrDefault();
+
+            if (menu == null)
+                result = false;
+            else
+                result = true;
+
+            return result;
         }
     }
 }

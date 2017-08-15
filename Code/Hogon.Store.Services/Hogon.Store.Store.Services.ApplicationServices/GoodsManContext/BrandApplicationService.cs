@@ -4,7 +4,6 @@ using Hogon.Framework.Core.Owin;
 using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Store.Models.Dto.GoodsMan;
 using Hogon.Store.Models.Entities.GoodsMan;
-using Hogon.Store.Repositories.Common;
 using Hogon.Store.Repositories.GoodsMan;
 using System;
 using System.Collections.Generic;
@@ -19,8 +18,6 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         BrandRepository brandReps = new BrandRepository();
 
         GoodsTypeRepository goodsTypeReps = new GoodsTypeRepository();
-
-        FileUploadRepository fileUploadReps = new FileUploadRepository();
 
         /// <summary>
         /// 查询所有品牌
@@ -45,7 +42,6 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Nation = s.Nation,
                 Country = s.Country,
                 City = s.City,
-                Url=s.Url,
             });
 
             return dtoBrands;
@@ -94,7 +90,6 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Nation = s.Nation,
                 Country = s.Country,
                 City = s.City,
-                Url=s.Url,
             }).First();
 
             return dtoBrand;
@@ -126,7 +121,6 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                         brand.Rela_Brand_GoodsType.Add(rela_Brand_GoodsType);
                     }
                 }
-                brand.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoBrand.FileUploadId).First();
                 brandReps.Add(brand);
                 Commit();
                 return brand.Id;

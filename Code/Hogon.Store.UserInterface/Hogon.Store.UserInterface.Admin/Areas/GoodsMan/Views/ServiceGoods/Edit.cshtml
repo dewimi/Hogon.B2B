@@ -1,231 +1,182 @@
 ﻿@{
-    ViewBag.Title = "服务商品管理";
-    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+	ViewBag.Title = "服务商品新增";
+	Layout = "~/Views/Shared/_MenuLayout.cshtml";
+	<link href="~/Content/css/style.css" rel="stylesheet" />
+	<link href="~/Content/css/chosen.css" rel="stylesheet" />
+	<script src="~/Scripts/plugins/chosen.jquery.js"></script>
 }
-<link href="~/Content/css/style.css" rel="stylesheet" />
-<link href="~/Content/css/chosen.css" rel="stylesheet" />
-<script src="~/Scripts/plugins/chosen.jquery.js"></script>
-<!-- iCheck-->
-<script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
-<script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
-<script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
+@section formHeader{
+
+	<div class="header">
+		<h2 class="headerline">服务商品管理</h2>
+	</div>
+}
 <form name="myForm" novalidate>
-    <div class="form-group">
-        <div class="basic">
-            <input type="hidden" name="id" ng-model="Guid" />
-            <table>
-                <tr>
-                    <td><span>服务商品名称:</span></td>
-                    <td>
-                        <input type="text" id="GoodsName" name="GoodsName " class="form-control" ng-model="GoodsName " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsName .$dirty && myForm.GoodsName .$invalid">
-                                <span ng-show="myForm.GoodsName .$error.required">服务商品名称不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>服务商品编码:</span></td>
-                    <td>
-                        <input type="text" name="GoodsCode" id="GoodsCode" class="form-control" ng-model="GoodsCode " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsCode .$dirty && myForm.GoodsCode .$invalid">
-                                <span ng-show="myForm.GoodsCode .$error.required">服务商品编码不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>销售价:</span></td>
-                    <td>
-                        <input type="number" ngMin="0" id="SalePrice" ng-pattern="/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/" name="SalePrice " class="form-control" ng-model="SalePrice " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.SalePrice .$dirty && myForm.SalePrice .$invalid">
-                                <span ng-show="myForm.SalePrice .$error.required">销售价不能为0或负数</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品描述:</span></td>
-                    <td>
-                        <textarea id="GoodsDesription" rows="2" cols="27" class="form-control" ng-model="GoodsDesription"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品类型:</span></td>
-                    <td>
-                        <select data-placeholder="多项选择" class="chosen-select" multiple style="width:350px;" tabindex="4" id="goodsType"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        @*图片上传控件*@
-                        <div class="form-group" id="fileupload">
-                            <label class="col-sm-4 control-label">文件上传</label>
-                            <div class="col-sm-7">
-                                <input type="file" id="input-dim-2" class="file-loading">
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div style="width:200px;margin:0px auto;">
-                <button type="button" class="btn btn-info" ng-click="BackServiceGoods()" ng-disabled="myForm.$invalid">返回</button>
-                <button type="button" class="btn btn-info" ng-click="SaveServiceGoods()" ng-disabled="myForm.$invalid">保存</button>
-            </div>
-        </div>
-    </div>
+	<div class="form-group">
+		<div class="basic">
+			<input type="hidden" name="id" ng-model="Guid" />
+			<table>
+				<tr>
+					<td><span>服务商品名称:</span></td>
+					<td>
+						<input type="text" id="GoodsName" name="GoodsName " class="form-control" ng-model="GoodsName " required>
+					</td>
+					<td>
+						<p>
+							<span style="color:red" ng-show="myForm.GoodsName .$dirty && myForm.GoodsName .$invalid">
+								<span ng-show="myForm.GoodsName .$error.required">服务商品名称不能重复或为空</span>
+							</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><span>服务商品编码:</span></td>
+					<td>
+						<input type="text" name="GoodsCode" id="GoodsCode" class="form-control" ng-model="GoodsCode " required>
+					</td>
+					<td>
+						<p>
+							<span style="color:red" ng-show="myForm.GoodsCode .$dirty && myForm.GoodsCode .$invalid">
+								<span ng-show="myForm.GoodsCode .$error.required">服务商品编码不能重复或为空</span>
+							</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><span>销售价:</span></td>
+					<td>
+						<input type="number" ngMin="0" id="SalePrice" ng-pattern="/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/" name="SalePrice " class="form-control" ng-model="SalePrice " required>
+					</td>
+					<td>
+						<p>
+							<span style="color:red" ng-show="myForm.SalePrice .$dirty && myForm.SalePrice .$invalid">
+								<span ng-show="myForm.SalePrice .$error.required">销售价不能为0或负数</span>
+							</span>
+						</p>
+					</td>
+				</tr>
+				<tr>
+					<td><span>商品描述:</span></td>
+					<td>
+						<textarea id="GoodsDesription" rows="2" cols="27" class="form-control" ng-model="GoodsDesription"></textarea>
+					</td>
+				</tr>
+				<tr>
+					<td><span>商品类型:</span></td>
+					<td>
+						<select data-placeholder="多项选择" class="chosen-select" multiple style="width:350px;" tabindex="4" id="goodsType"></select>
+					</td>
+				</tr>
+				<tr>
+					<td><span>商品显示图片:</span></td>
+					<td>
+						@*图片上传控件*@
+						@*<select class="form-control" name="ParentId" id="parent"></select>*@
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </form>
 
 
 <script type="text/javascript">
-    var app = angular.module('myApp', []);
-    app.controller('validateCtrl', function ($scope, $http) {
-        var id = window.location.search;
-        id = id.substring(id.indexOf('=') + 1);
-        //下拉框绑值->编辑绑值
-        $http({
-            method: 'POST',
-            url: '@Url.Action("FindGoodsTypeForDrop")'
-        }).then(function successCallback(response) {
-            // 请求成功执行代码
-            $.each(response.data, function (index, v) {
-                $("#goodsType").append("<option hassubinfo='true' value='" + v.Id + "'>" + v.Name + "</option>");
-            })
-            $(".chosen-select").chosen();
-            //编辑绑值
-            if (id != "") {
-                $http({
-                    method: 'POST',
-                    url: '@Url.Action("FindServiceGoodsById")',
-                    data: { Id: id }
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    $scope.Guid = response.data.Id;
-                    $scope.GoodsName = response.data.GoodsName;
-                    $scope.GoodsCode = response.data.GoodsCode;
-                    $scope.GoodsDesription = response.data.GoodsDesription;
-                    $scope.SalePrice = response.data.SalePrice;
-                    $.each(response.data.GoodsTypeId, function (index, v) {
-                        $("#goodsType option[value='" + v + "']").attr("selected", "true");
-                    });
-                    $(".chosen-select").trigger("chosen:updated");
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
-            }
+	var app = angular.module('myApp', []);
+	app.controller('validateCtrl', function ($scope, $http) {
+		//下拉框绑值
+		$http({
+			method: 'POST',
+			url: '@Url.Action("FindGoodsTypeForDrop")'
+		}).then(function successCallback(response) {
+			// 请求成功执行代码
+			$.each(response.data, function (index, v) {
+				$("#goodsType").append("<option hassubinfo='true' value='" + v.Id + "'>" + v.Name + "</option>");
+			})
+			$(".chosen-select").chosen();
+		}, function errorCallback(response) {
+			// 请求失败执行代码
+		});
 
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-        });
+		var id = window.location.search;
+		id = id.substring(id.indexOf('=') + 1);
+		if (id != "") {
+			//编辑
+			$http({
+				method: 'POST',
+				url: '@Url.Action("FindServiceGoodsById")',
+				data: { Id: id }
+			}).then(function successCallback(response) {
+				// 请求成功执行代码
+				$scope.Guid = response.data.Id;
+				$scope.GoodsName = response.data.GoodsName;
+				$scope.GoodsCode = response.data.GoodsCode;
+				$scope.GoodsDesription = response.data.GoodsDesription;
+				$scope.SalePrice = response.data.SalePrice;
+				$.each(response.data.GoodsTypeId, function (index, v) {
+					$("#goodsType option[value='" + v + "']").attr("selected", "true");
+				});
+				$(".chosen-select").trigger("chosen:updated");
+			}, function errorCallback(response) {
+				// 请求失败执行代码
+			});
+		}
+
+		//判断编码是否重复
+		$("#GoodsCode").blur(function () {
+			Repetition();
+		})
+
+		//保存
+		$scope.saveChange = function () {
+			Repetition();
+			$("#goodsType").val();
+			var goodsType = $("#goodsType").val();
+			if (goodsType == "") {
+				goodsType = "";
+			};
+			$scope.ServiceGoods = {
+				"Id": $scope.Guid,
+				"GoodsName": $scope.GoodsName,
+				"GoodsCode": $scope.GoodsCode,
+				"GoodsTypeId": goodsType,
+				"SalePrice": $scope.SalePrice,
+				'GoodsDesription': $scope.GoodsDesription
+			};
+			$http({
+				method: 'POST',
+				url: '@Url.Action("Save")',
+				data: $scope.ServiceGoods
+			}).then(function successCallback(response) {
+				// 请求成功执行代码
+				location.href = "/GoodsMan/ServiceGoods/Index";
+			}, function errorCallback(response) {
+				// 请求失败执行代码
+				swal(response.data, "", "warning");
+			});
+		}
+
+		//判断重复
+		function Repetition() {
+
+			$scope.ServiceGoods = {
+				"Id": $scope.Guid,
+				"GoodsCode": $scope.GoodsCode,
+			};
+			$http({
+				method: 'POST',
+				url: '@Url.Action("FindServiceGoodsByGoodsCode")',
+				data: $scope.ServiceGoods
+			}).then(function successCallback(response) {
+				// 请求成功执行代码
+				if (response.data == 1) {
+					$scope.GoodsCode = "";
+
+				}
+			}, function errorCallback(response) {
+				// 请求失败执行代码
+			});
+		}
 
 
-        //判断编码是否重复
-        $("#GoodsCode").blur(function () {
-            Repetition();
-        })
-
-        //保存
-        $scope.SaveServiceGoods = function () {
-            Repetition();
-            //上传图片后保存使用说明
-            if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
-                swal("请上传图片");
-            } else {
-                $http({
-                    method: 'POST',
-                    url: '/FileUpload/SeveFile',
-                    data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
-                }).then(function successCallback(response) {
-                    $("#goodsType").val();
-                    var goodsType = $("#goodsType").val();
-                    if (goodsType == "") {
-                        goodsType = "";
-                    };
-                    $scope.ServiceGoods = {
-                        "Id": $scope.Guid,
-                        "GoodsName": $scope.GoodsName,
-                        "GoodsCode": $scope.GoodsCode,
-                        "GoodsTypeId": goodsType,
-                        "SalePrice": $scope.SalePrice,
-                        'GoodsDesription': $scope.GoodsDesription,
-                        'FIleUploadId': response.data,
-                    };
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("Save")',
-                        data: $scope.ServiceGoods
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码
-                        location.href = "/GoodsMan/ServiceGoods/Index";
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                        swal(response.data, "", "warning");
-                    });
-                }, function errorCallback(response) {
-                    //请求失败执行代码
-                });
-            }
-        }
-
-        //判断重复
-        function Repetition() {
-            $scope.ServiceGoods = {
-                "Id": $scope.Guid,
-                "GoodsCode": $scope.GoodsCode,
-            };
-            $http({
-                method: 'POST',
-                url: '@Url.Action("FindServiceGoodsByGoodsCode")',
-                data: $scope.ServiceGoods
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                if (response.data == 1) {
-                    $scope.GoodsCode = "";
-
-                }
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }
-        //返回
-        $scope.BackServiceGoods = function () {
-            window.location.href = "/GoodsMan/ServiceGoods/Index";
-        }
-    });
-    //图片上传
-    $(document).ready(function () {
-        //图片上传成功回调函数
-        $(".file-loading").on("fileuploaded", function (event, data, previewId, index) {
-            fileUrl = data.response.fileUrl;
-            fileName = data.response.fileName;
-            fileSize = data.response.fileSize;
-            fileType = data.response.fileType;
-        });
-
-        //创建图片上传控件
-        $(".file-loading").fileinput({
-            uploadUrl: '/FileUpload/FileUpload',
-            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
-            maxImageWidth: 50,
-            maxImageHeight: 50,
-            uploadLabel: "",
-            uploadTitle: "上传文件",
-            removeLabel: "",
-            removeTitle: "删除文件",
-            browseLabel: "",
-            maxFileCount: 1,
-            previewFileType: "image",
-            browseLabel: "",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-        });
-    });
+	});
 </script>

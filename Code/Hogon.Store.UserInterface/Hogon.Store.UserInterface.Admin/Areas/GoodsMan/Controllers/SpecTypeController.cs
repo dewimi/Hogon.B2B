@@ -21,6 +21,10 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         {
 
         }
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            base.OnException(filterContext);
+        }
 
         // GET: GoodsMan/SpecType
         public ActionResult Index()
@@ -64,11 +68,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="dtoSpecTypeParameter">规格参数</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId,Guid fileId)
+        public ActionResult SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId,Guid? fileId)
         {
-            specTypeSvc.SaveSpecParameter(dtoSpecTypeParameter, specTypeId, fileId);
+           var parameterId = specTypeSvc.SaveSpecParameter(dtoSpecTypeParameter, specTypeId, fileId);
 
-            return Json("");
+            return Json(parameterId);
         }
 
         /// <summary>
@@ -80,8 +84,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         public ActionResult GetParametersById(Guid specTypeId)
         {
             var specTypeParameters = specTypeSvc.GetParametersById(specTypeId);
-
-            return Json(specTypeParameters);
+            Mapper.Initialize(cfg => cfg.CreateMap<DtoSpecTypeParameter, SpecTypeParameterViewModel>());
+            var specTypeParameterViewModels = specTypeParameters.ProjectTo<SpecTypeParameterViewModel>();
+            return Json(specTypeParameterViewModels);
         }
 
         /// <summary>

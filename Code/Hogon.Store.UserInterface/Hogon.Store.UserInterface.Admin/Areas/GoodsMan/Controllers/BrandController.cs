@@ -16,7 +16,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 	public class BrandController : SmartListController<BrandViewModel>
 	{
 		BrandApplicationService brandSvc = new BrandApplicationService();
-        
+
+		GoodsApplicationService goodsSvc = new GoodsApplicationService();
+
 		GoodsTypeApplicationService goodsTypeSvc = new GoodsTypeApplicationService();
 
 		protected override void OnException(ExceptionContext filterContext)
@@ -50,6 +52,16 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 		public ActionResult Detail()
 		{
 			return View(); 
+		}
+
+		/// <summary>
+		/// 查询所有产品
+		/// </summary>
+		/// <returns></returns>
+		public ActionResult FindProductForDrop()
+		{
+			var products = goodsSvc.GetAllProductInfo();
+			return Json(products);
 		}
 
 		/// <summary>
@@ -94,7 +106,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 			var Id = brandSvc.SaveBrand(dtoBrand);
 			return Json(Id);
 		}
-        
+
+
+
 		/// <summary>
 		/// 删除
 		/// </summary>
@@ -105,7 +119,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 			brandSvc.Remove(Id);
 			return Json("");
 		}
-        
+
+
 		/// <summary>
 		///获取所有品牌 
 		/// </summary>

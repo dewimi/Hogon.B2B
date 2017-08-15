@@ -79,14 +79,20 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// </summary>
         public Product Product { get; set; }
 
+
+        /// <summary>
+        /// 服务商品名称
+        /// </summary>
+        public string ServiccGoodsNames{ get; set; }
+
+        /// <summary>
+        /// 服务商品集合
+        /// </summary>
+        public IEnumerable<ServiceGoods> ServiceGoods { get; set; }
+
         /// <summary>
         /// 配件
         /// </summary>
-       // public ICollection<Goods> ChildrenGoods { get; set; }
-
-        /// <summary>
-        /// 显示规格参数，格式：（规格类型：规格参数）
-        /// </summary>
-        public string DisplaySpecParameterTemplateName { get; set; }
+        public IEnumerable<Goods> ChildrenGoods { get; set; }
     }
 }

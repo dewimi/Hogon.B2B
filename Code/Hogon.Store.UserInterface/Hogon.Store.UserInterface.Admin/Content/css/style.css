@@ -2558,6 +2558,25 @@ textarea.form-control{
 /**
 * Nestable Extras
 */
+.dd-handle-y {
+    display: block;
+    margin: 5px 0;
+    padding: 5px 10px;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #e7eaec;
+    background: #f5f5f5;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+#nestable2 .dd-handle-y {
+    color: inherit;
+    border: 1px dashed #e7eaec;
+    background: #f3f3f4;
+    padding: 10px;
+}
 
 .nestable-lists {
     display: block;
@@ -7735,4 +7754,10 @@ body.skin-3 {
     display: inline-block;
     margin-right: 5px;
 
+}
+.dd-handle-checked{    
+    color: #fff !important;
+    background-color: #33a5e0 !important;
+    border: 1px solid #d9edf7 !important;
+    font-weight: bold !important;
 }

@@ -1,82 +1,57 @@
 ﻿
 @{
 	ViewBag.Title = "商品类型详情";
-	Layout = "~/Views/Shared/_DetailLayout.cshtml";
+	Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+@section formHeader{
+
+	<div class="header">
+		<h2 class="headerline">商品类型详情</h2>
+	</div>
 }
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/font-awesome.css" rel="stylesheet">
-<link href="css/animate.css" rel="stylesheet">
-<link href="css/style.css" rel="stylesheet">
-<style>
-    .form-horizontal .control-label {
-        padding-top: 0px;
-    }
-
-    .form-group span {
-        margin-right: 15px;
-    }
-</style>
-
-<div class="gray-bg">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-title">
-                        <h5>商品类型详情</h5>
-                    </div>
-                    <div class="ibox-content form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">类型名称：</label>
-                            <div class="col-sm-7">
-                                <span id="Name"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">类型描述：</label>
-                            <div class="col-sm-7">
-                                <span id="Describe"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">上级类型：</label>
-                            <div class="col-sm-7">
-                                <span id="ParentName"></span>
-                           </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">产品类型：</label>
-                            <div class="col-sm-7">
-                                <span id="ProductTypeName"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">排序：</label>
-                            <div class="col-sm-7">
-                                <span id="Order"></span>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">是否启用：</label>
-                            <div class="col-sm-7">
-                                <span id="IsEnabled"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- 全局js -->
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-
-    <!-- 自定义js -->
-    <script src="js/content.js"></script>
-</div>
-
+<form name="myForm" novalidate>
+	<div class="form-group">
+		<div class="basic">
+			<input type="hidden" name="id" ng-model="Guid" />
+			<table>
+				<tr>
+					<td><span>类型名称</span></td>
+					<td>
+						<span id="Name"></span>
+					</td>
+				<tr>
+					<td><span>类型描述：</span></td>
+					<td>
+						<span id="Describe"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>上级类型:</span></td>
+					<td>
+						<span id="ParentName"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>产品类型:</span></td>
+					<td>
+						<span id="ProductTypeName"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>排&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;序:</span></td>
+					<td>
+						<span id="Order"></span>
+					</td>
+				</tr>
+				<tr>
+					<td><span>是否启用:</span></td>
+					<td><span id="IsEnabled"></span></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</form>
 <script type="text/javascript">
 
 	var app = angular.module('myApp', []);
@@ -101,10 +76,6 @@
 		}, function errorCallback(response) {
 			// 请求失败执行代码
 		});
-    //返回
-		$scope.BackGoodsType = function () {
-            window.location.href="/GoodsMan/GoodsType/Index"
-		}
 	});
 </script>
 

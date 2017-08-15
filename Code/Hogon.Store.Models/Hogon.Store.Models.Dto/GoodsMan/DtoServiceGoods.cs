@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.Common;
-using Hogon.Store.Models.Entities.GoodsMan;
+﻿using Hogon.Store.Models.Entities.GoodsMan;
 using System;
 using System.Collections.Generic;
 
@@ -55,20 +54,5 @@ namespace Hogon.Store.Models.Dto.GoodsMan
 		/// 商品分类名称
 		/// </summary>
 		public IEnumerable<string> GoodsTypeNames { get; set; }
-
-        /// <summary>
-        /// 图片Id
-        /// </summary>
-        public Guid FIleUploadId { get; set; }
-
-        /// <summary>
-        /// 图片名字
-        /// </summary>
-        public string FileUploadName { get; set; }
-
-        /// <summary>
-        /// 图片文件
-        /// </summary>
-        public FileUpload FileUpload { get; set; }
     }
 }

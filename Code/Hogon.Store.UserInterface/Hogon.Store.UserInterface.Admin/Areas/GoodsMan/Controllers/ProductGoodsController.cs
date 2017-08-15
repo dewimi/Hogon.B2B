@@ -24,11 +24,6 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
         GoodsDomainService goodsDomainSvc = new GoodsDomainService();
 
-        protected override void OnException(ExceptionContext filterContext)
-        {
-            base.OnException(filterContext);
-        }
-
         public ProductGoodsController(BaseViewRender<ProductViewModel> listRender) : base(listRender)
         {
             //构造函数
@@ -63,13 +58,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
             return View();
         }
 
-
         #region 下拉框赋值
         /// <summary>
         /// 查询所有品牌赋值给下拉框
         /// </summary>
         /// <returns></returns>
-      //  [HttpPost]
         public ActionResult FindAllBrandForDrop()
         {
             var dtoBrandS = goodsSvc.FindAllBrand();
@@ -93,18 +86,6 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         {
             var dtoGoodsType = goodsSvc.FindAllGoodsType();
             return Json(dtoGoodsType);
-        }
-
-        /// <summary>
-        /// 根据产品类型查询规格类型
-        /// </summary>
-        /// <param name="productTypeId"></param>
-        /// <returns></returns>
-        public ActionResult FindSpecTypeByProductType(Guid productTypeId)
-        {
-            var dtoSpecTypes = goodsSvc.FindSpecTypeByProductTypeId(productTypeId);
-
-            return Json(dtoSpecTypes);
         }
 
         /// <summary>
@@ -214,7 +195,6 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         public ActionResult CreateSpec(DtoProduct dtoProduct, ICollection<ICollection<DtoSpecTypeParameter>> typeJsonArray)
         {
             var dtoProductGoodsS = goodsDomainSvc.CreateGoods(dtoProduct, typeJsonArray);
-            goodsSvc.ProductAddSepcTypePara(dtoProductGoodsS, dtoProduct);
             return Json(dtoProductGoodsS);
         }
 
@@ -231,20 +211,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
             {
                 throw new UserFriendlyException("商品编码不可重复");
             }
-
             var productGoods = goodsSvc.SaveProductGoods(dtoProductGoods);
             return Json(productGoods);
-        }
-
-        /// <summary>
-        /// 根据产品查询商品数据
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        public ActionResult FindProductGoodsByProduct(Guid Id)
-        {
-            var dtoProductGoods = goodsSvc.FindProductGoodsByProduct(Id);
-            return Json(dtoProductGoods);
         }
 
         ///// <summary>
@@ -298,25 +266,14 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
         #region 应用案列信息操作
         /// <summary>
-        /// 应用案例模糊查询
+        /// 获取所有应用案例信息
         /// </summary>
-        /// <param name="dtoInstruction"></param>
         /// <returns></returns>
-        public ActionResult FindAppCaseByLike(DtoAppCase dtoAppCase)
+        public ActionResult GetAllAppCase()
         {
-            var appCases = goodsSvc.FindAppCaseByLike(dtoAppCase);
-            return Json(appCases);
-        }
+            var AppCase = goodsSvc.GetAllAppCase().ToList();
 
-        /// <summary>
-        /// 根据产品查询应用案例
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
-        public ActionResult FindAppCaseByProductId(Guid productId)
-        {
-          var appCases =  goodsSvc.FindAppCaseByProductId(productId);
-            return Json(appCases);
+            return Json(AppCase);
         }
 
         /// <summary>
@@ -325,9 +282,61 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="AppCaseId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult FindAppCaseById(Guid Id)
+        public ActionResult GetAppCaseById(Guid AppCaseId)
         {
-            var appCaseInfos = goodsSvc.FindAppCaseById(Id);
+            var appCaseInfos = goodsSvc.GetAppCaseById(AppCaseId);
+
+            return Json(appCaseInfos);
+        }
+
+        /// <summary>
+        /// 根据主题查询指定应用案例列表
+        /// </summary>
+        /// <param name="Subject"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetAppCaseInfoBySubject(string Subject)
+        {
+            var appCaseInfos = goodsSvc.GetAppCaseInfoBySubject(Subject);
+
+            return Json(appCaseInfos);
+        }
+
+        /// <summary>
+        /// 根据作者查询指定应用案例列表
+        /// </summary>
+        /// <param name="Author"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetAppCaseInfoByAuthor(string Author)
+        {
+            var appCaseInfos = goodsSvc.GetAppCaseInfoByAuthor(Author);
+
+            return Json(appCaseInfos);
+        }
+
+        /// <summary>
+        /// 根据用途查询指定应用案例列表
+        /// </summary>
+        /// <param name="Usage"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetAppCaseInfoByAppUsage(string Usage)
+        {
+            var appCaseInfos = goodsSvc.GetAppCaseInfoByAppUsage(Usage);
+
+            return Json(appCaseInfos);
+        }
+
+        /// <summary>
+        /// 根据应用行业查询指定应用案例列表
+        /// </summary>
+        /// <param name="AppIndustry"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult GetAppCaseInfoByAppIndustry(string AppIndustry)
+        {
+            var appCaseInfos = goodsSvc.GetAppCaseInfoByAppIndustry(AppIndustry);
 
             return Json(appCaseInfos);
         }
@@ -338,11 +347,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="dtoAppCase">应用案例DTO</param>
         /// <param name="AppCaseId">应用案例Id</param>
         /// <returns></returns>
-        public ActionResult SaveAppCase(DtoAppCase dtoAppCase)
+        public ActionResult SaveAppCaseInfo(DtoAppCase dtoAppCase)
         {
-           var appCase =  goodsSvc.SaveAppCase(dtoAppCase);
+            goodsSvc.SaveAppCase(dtoAppCase);
 
-            return Json(appCase);
+            return Json("");
         }
 
         /// <summary>
@@ -350,9 +359,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// </summary>
         /// <param name="AppCaseId">应用案例Id</param>
         /// <returns></returns>
-        public ActionResult DeleteAppCase(Guid Id)
+        public ActionResult DeleteAppCaseInfo(Guid AppCaseId)
         {
-            goodsSvc.RemoveAppCase(Id);
+            goodsSvc.DeleteAppCase(AppCaseId);
 
             return Json(" ");
         }
@@ -376,22 +385,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="InstructionId"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult FindInstructionById(Guid Id)
+        public ActionResult GetInstructionById(Guid InstructionId)
         {
-            var instructionInfos = goodsSvc.FindInstructionById(Id);
+            var instructionInfos = goodsSvc.GetInstructionById(InstructionId);
 
             return Json(instructionInfos);
-        }
-        
-        /// <summary>
-        /// 根据产品查询使用说明
-        /// </summary>
-        /// <param name="productId"></param>
-        /// <returns></returns>
-        public ActionResult FindInstructionByProductId(Guid productId)
-        {
-            var instructions = goodsSvc.FindInstructionByProductId(productId);
-            return Json(instructions);
         }
 
         /// <summary>
@@ -463,11 +461,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="dtoInstruction">使用说明DTO</param>
         /// <param name="InstructionId">使用说明Id</param>
         /// <returns></returns>
-        public ActionResult SaveInstruction(DtoInstruction dtoInstruction)
+        public ActionResult SaveInstructionInfo(DtoInstruction dtoInstruction)
         {
-            var Instruction = goodsSvc.SaveInstruction(dtoInstruction);
+            var InstructionId = goodsSvc.SaveInstruction(dtoInstruction);
 
-            return Json(Instruction);
+            return Json(InstructionId);
         }
 
         /// <summary>
@@ -475,9 +473,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// </summary>
         /// <param name="InstructionId">使用说明Id</param>
         /// <returns></returns>
-        public ActionResult DeleteInstruction(Guid Id)
+        public ActionResult DeleteInstructionInfo(Guid InstructionId)
         {
-            goodsSvc.RemoveInstruction(Id);
+            goodsSvc.DeleteInstruction(InstructionId);
 
             return Json(" ");
         }
@@ -520,29 +518,18 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
             return Json(dtoServiceGoods);
         }
 
-        /// <summary>
-        /// 根据产品Id查询服务商品
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <returns></returns>
-        public ActionResult FindServiceGoodsByProductId(Guid Id)
-        {
-            var dtoServiceGoods = goodsSvc.FindServiceGoodsByProductId(Id);
-            return Json(dtoServiceGoods);
-        }
+        ///// <summary>
+        ///// 根据服务编码查询指定服务商品列表
+        ///// </summary>
+        ///// <param name="ServiceName"></param>
+        ///// <returns></returns>
+        //[HttpPost]
+        //public ActionResult FindServiceGoodsInfoByGoodsCode(DtoServiceGoods dtoServiceGoods)
+        //{
+        //    int count = goodsSvc.FindServiceGoodsByGoodsCode(dtoServiceGoods);
 
-        /// <summary>
-        /// 商品管理界面删除服务商品
-        /// </summary>
-        /// <param name="Id"></param>
-        /// <param name="productId"></param>
-        /// <returns></returns>
-        public ActionResult RemoveServiceGoodsInProduct(Guid Id, Guid productId)
-        {
-            goodsSvc.RemoveServiceGoodsInProduct(Id, productId);
-            //goodsSvc.RemoveServiceGoods(Id);
-            return Json("");
-        }
+        //    return Json(count);
+        //}
 
         /// <summary>
         /// 根据服务编号查询指定服务商品列表
@@ -563,9 +550,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <param name="dtoServiceGoods">服务商品DTO</param>
         /// <param name="serviceGoodsId">服务商品Id</param>
         /// <returns></returns>
-        public ActionResult EditServiceGoodsInProduct(Guid Id,ICollection<Guid> serviceGoodsId)
+        public ActionResult SaveServiceGoods(DtoServiceGoods dtoServiceGoods)
         {
-            var bl = goodsSvc.EditServiceGoodsInProductGoods(Id, serviceGoodsId);
+            goodsSvc.SaveServiceGoods(dtoServiceGoods);
 
             return Json("");
         }
@@ -577,7 +564,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <returns></returns>
         public ActionResult DeleteServiceGoods(Guid ServiceGoodsId)
         {
-            goodsSvc.RemoveServiceGoods(ServiceGoodsId);
+            goodsSvc.Remove(ServiceGoodsId);
 
             return Json(" ");
         }

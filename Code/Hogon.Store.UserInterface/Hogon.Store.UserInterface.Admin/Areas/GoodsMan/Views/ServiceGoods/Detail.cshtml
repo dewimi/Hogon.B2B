@@ -3,6 +3,15 @@
 	ViewBag.Title = "服务商品详情";
 	Layout = "~/Views/Shared/_DetailLayout.cshtml";
 }
+
+@section formHeader{
+	<div class="header">
+		<h2 class="headerline">服务商品详情</h2>
+	</div>
+}
+
+
+
 <form name="myForm" novalidate>
 	<div class="form-group">
 		<div class="basic">
@@ -41,7 +50,7 @@
 				<tr>
 					<td><span>图片:</span></td>
 					<td>
-                        <a href="~/Content/fileupload/10ca510a-ff32-4fbf-a891-dee745c0afa5.pdf"></a>
+						@*<span id="Pic"></span>*@
 					</td>
 				</tr>
 			</table>
@@ -78,9 +87,6 @@
 			}, function errorCallback(response) {
 				// 请求失败执行代码
 			});
-		}
-		$scope.BackServiceGoods = function () {
-		    window.location.href = "/GoodsMan/ServiceGoods/Index";
 		}
 	});
 </script>
