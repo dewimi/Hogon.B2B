@@ -198,12 +198,11 @@
     <Compile Include="Areas\GoodsMan\Models\ProductTypeCategoryViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ProductTypeViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\ServiceGoodsViewModel.cs" />
-    <Compile Include="Areas\GoodsMan\Models\SpecTypeParameterViewModel.cs" />
     <Compile Include="Areas\GoodsMan\Models\SpecTypeViewModel.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieCatalogController.cs" />
     <Compile Include="Areas\MarketingMan\Controllers\FreebieController.cs" />
     <Compile Include="Areas\MarketingMan\MarketingManAreaRegistration.cs" />
-    <Compile Include="Areas\MarketingMan\Models\FreebieViewModel.cs" />
+    <Compile Include="Areas\MarketingMan\Models\FreebieLineViewModel.cs" />
     <Compile Include="Areas\MarketingMan\Models\Promotion\FreebieCatalogViewModel.cs" />
     <Compile Include="Areas\Security\Controllers\RoleController.cs" />
     <Compile Include="Areas\Security\Models\Role\RoleViewModel.cs" />
@@ -454,6 +453,8 @@
     <Content Include="Areas\MarketingMan\Views\FreebieCatalog\Index.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Edit.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Detail.cshtml" />
+    <Content Include="Areas\MarketingMan\Views\Freebie\Test.cshtml" />
+    <Content Include="Areas\MarketingMan\Views\Freebie\Index.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />

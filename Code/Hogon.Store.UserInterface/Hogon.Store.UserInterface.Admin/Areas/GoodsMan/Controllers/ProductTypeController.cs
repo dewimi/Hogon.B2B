@@ -28,7 +28,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
         }
 
-        // GET: GoodsMan/ProductTypeCategory        
+        // GET: GoodsMan/ProductTypeCategory       
         public ActionResult Index()
         {
             return View();
