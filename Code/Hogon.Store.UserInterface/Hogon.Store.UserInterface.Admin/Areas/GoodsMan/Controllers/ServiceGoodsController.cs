@@ -40,6 +40,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
 		public ActionResult Edit()
 		{
+			ViewBag.Title = "服务商品添加";
 			return View();
 		}
 		public ActionResult Detail()
@@ -82,7 +83,6 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 			var count = goodsSvc.FindServiceGoodsByGoodsCode(dtoServiceGoods);
 			return Json(count);
 		}
-
 		/// <summary>
 		/// 保存
 		/// </summary>
@@ -107,7 +107,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 		[HttpPost]
 		public ActionResult Remove(Guid Id)
 		{
-			goodsSvc.RemoveServiceGoods(Id);
+			goodsSvc.Remove(Id);
 			return Json(" ");
 		}
 

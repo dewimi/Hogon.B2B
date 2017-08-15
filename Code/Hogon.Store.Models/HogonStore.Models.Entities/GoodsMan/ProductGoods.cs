@@ -39,6 +39,11 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         public Product Product { get; set; }
 
         /// <summary>
+        /// 服务商品集合
+        /// </summary>
+        public ICollection<ServiceGoods> ServiceGoods { get; set; }
+
+        /// <summary>
         /// 规格参数模板
         /// </summary>
         public ICollection<SpecParameterTemplate> SpecParameterTemplate { get; set; }
@@ -53,9 +58,5 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// </summary>
         public override ICollection<Goods> ChildrenGoods { get; set; }
 
-        /// <summary>
-        /// 显示规格参数，格式：（规格类型：规格参数）
-        /// </summary>
-        public string DisplaySpecParameterTemplateName { get; set; }
     }
 }

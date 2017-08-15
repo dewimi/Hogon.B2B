@@ -1,14 +1,9 @@
 ﻿
 @{
-    ViewBag.Title = "index";
+    ViewBag.Title = "产品类型分类管理";
     Layout = "~/Views/Shared/_ListLayout.cshtml";
     var render = ViewBag.ListRender;
 }
-@*<style type="text/css">
-    .detail {
-        display:none;
-    }
-</style>*@
 
 @section searchImport{
 
@@ -33,11 +28,11 @@
 
     $(function () {
         $("#AddInstrument").click(function () {
-
-            window.location.href = "Edit";
+            window.location.href = "Add";
         });
     });
 
     @Html.Raw(Server.HtmlDecode(render.RenderAllList()))
-
 </script>
+
+

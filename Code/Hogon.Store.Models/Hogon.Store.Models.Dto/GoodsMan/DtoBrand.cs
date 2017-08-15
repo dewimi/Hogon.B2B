@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.Common;
-using Hogon.Store.Models.Entities.GoodsMan;
+﻿using Hogon.Store.Models.Entities.GoodsMan;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -66,29 +65,5 @@ namespace Hogon.Store.Models.Dto.GoodsMan
 		/// </summary>
 		public IEnumerable<string> GoodsTypeNames { get; set; }
 
-        /// <summary>
-        /// 产品集合
-        /// </summary>
-        public virtual ICollection<Product> Product { get; set; }
-
-        /// <summary>
-        /// 品牌商品分类关联集合
-        /// </summary>
-        public virtual ICollection<Rela_Brand_GoodsType> Rela_Brand_GoodsType { get; set; }
-
-        /// <summary>
-        /// 文件id
-        /// </summary>
-        public Guid FileUploadId { get; set; }
-
-        /// <summary>
-        /// 文件名
-        /// </summary>
-        public string FileUploadName { get; set; }
-
-        /// <summary>
-        /// 图片文件
-        /// </summary>
-        public FileUpload FileUpload { get; set; }
-    }
+	}
 }

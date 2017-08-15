@@ -28,11 +28,11 @@ namespace Hogon.Store.Web.Extension
             int count = 0;
             foreach (var attr in attributes)
             {
-                if (count % 2 == 0)
-                {
+                //if (count % 2 == 0)
+                //{
                     //sb.Append("<tr>");
                     sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
-                }
+                //}
                 //sb.Append("<td>");
                 //sb.Append("<div  class=\"searchcategory\" >" + attr.DisplayName + ":" + "</div>");
                 //sb.Append("</td>");
@@ -50,11 +50,11 @@ namespace Hogon.Store.Web.Extension
                 sb.Append("<div class=\"col-sm-4\">"+SmartList.RenderSearch(attr)+"</div>");
 
 
-                if (count % 2 == 1)
-                {
+                //if (count % 2 == 1)
+                //{
                     //sb.Append("</tr>");
                     sb.Append("</div>");
-                }
+                //}
 
                 count++;
 

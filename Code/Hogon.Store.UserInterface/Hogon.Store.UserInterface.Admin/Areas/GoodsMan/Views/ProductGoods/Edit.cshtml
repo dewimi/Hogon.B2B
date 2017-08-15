@@ -6,7 +6,7 @@
 <!-- Data Tables -->
 <script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
-@*自定义js*@
+    //自定义js
 <script src="~/Scripts/hogon/js/content.js"></script>
 <!-- jQuery 表单验证-->
 <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
@@ -41,7 +41,7 @@
         <form name="myForm" novalidate>
             @*产品信息*@
             <div style="width:900px;">
-                <span style="font-size:30px;font-weight:bold;">产品信息<input type="hidden" id="id" ng-model="Guid" /></span>
+                <span style="font-size:30px;font-weight:bold;">产品信息<input type="hidden" name="id" ng-model="Guid" /></span>
                 <table style="margin-top:20px;margin:0px auto; width:900px;">
                     <tr>
                         <td style="width:150px;"><span>产&nbsp;品&nbsp;名&nbsp;称:</span></td>
@@ -121,11 +121,6 @@
         <form name="createGoodsForm">
             <div style="width:900px;">
                 <span style="font-size:30px;font-weight:bold;">商品设置</span>
-                <div >
-                    <span>
-                        <select id="GoodType"></select>
-                    </span>
-                </div>
                 <table style="margin-top:20px;margin:0px auto; width:900px;">
                     <tr>
                         <td><span>规格类型：</span></td>
@@ -142,19 +137,21 @@
         @*商品生成*@
         <div>
             <div style="width:900px;">
-                <span style="font-size:30px;font-weight:bold;">生成<span id="GoodsCount" style="color:red;"></span>件商品<input type="hidden" id="SpecProductTypeId"></span>
+                <span style="font-size:30px;font-weight:bold;">生成<span id="GoodsCount" style="color:red;"></span>件商品</span>
+
+                @*<div class="ibox-content">
+                    <div class="">
+                    <button id="addNewTr" href="javascript:void(0);" class="btn btn-primary btn-xs ">添加行</button>
+                    </div>*@
                 <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
                     <thead>
                         <tr>
                             <th>商品名称</th>
                             <th>商品类型</th>
                             <th>规格参数</th>
-                            <th>上架</th>
-                            <th>默认商品</th>
                             <th>商品编码</th>
                             <th>商品别名</th>
                             <th>销售价</th>
-                            <th>商品重量(kg)</th>
                             <th>操作</th>
                         </tr>
                     </thead>
@@ -166,7 +163,7 @@
         <div style="width:900px;">
             <fieldset style="width:900px;">
                 <legend style="text-align:left;">应用案例</legend>
-                <form name="SearchAppCaseForm">
+                <form name="SelectAppCaseForm">
                     <table style="width:900px;margin:0px auto;">
                         <tr>
                             <td width="80px"><span>主题：</span></td>
@@ -175,12 +172,21 @@
                             <td><input type="text" class="form-control" ng-model="SearchAPAppIndustry" /></td>
                             <td width="80px"><span>用途：</span> </td>
                             <td><input type="text" class="form-control" ng-model="SearchAPUsage" /></td>
-                            <td><span><button type="button" class="btn btn-info" ng-click="SearchAppCase()" ng-disabled="SearchAppCaseForm.$invalid">查询</button></span></td>
-                            <td><span><button type="button" class="btn btn-info" data-toggle='modal' data-target='#AppCaseModal'>新增</button></span></td>
+                            <td><span><button type="button" class="btn btn-info" ng-click="SerachAPP()" ng-disabled="SelectAppCaseForm.$invalid">查询</button></span></td>
+                            <td><span><button type="button" class="btn btn-info" ng-click="AddAppCase()">新增</button></span></td>
                         </tr>
                     </table>
                 </form>
-                <table style="width:900px;margin:0px auto;" id="AppCaseTable"></table>
+                <table style="width:900px;margin:0px auto;" id="AppCaseTable">
+                    <tr>
+                        <th><span>序号</span></th>
+                        <th><span>主题</span></th>
+                        <th><span>作者</span></th>
+                        <th><span>应用行业</span></th>
+                        <th><span>用途</span></th>
+                        <th><span>操作</span></th>
+                    </tr>
+                </table>
             </fieldset>
         </div>
         @*使用说明*@
@@ -197,11 +203,20 @@
                             <td width="80px"><span>用途：</span></td>
                             <td><input type="text" class="form-control" ng-model="SearchInUsage" /></td>
                             <td><span><button type="button" class="btn btn-info" ng-click="SerachInstruction()" ng-disabled="SelectInstructionForm.$invalid">查询</button></span></td>
-                            <td><span><button type="button" class="btn btn-info" data-toggle='modal' data-target='#InstructionModal'>新增</button></span></td>
+                            <td><span><button type="button" class="btn btn-info" ng-click="AddInstruction()">新增</button></span></td>
                         </tr>
                     </table>
                 </form>
-                <table style="width:900px;margin:0px auto;" id="InstructionTable"></table>
+                <table style="width:900px;margin:0px auto;" id="InstructionTable">
+                    <tr>
+                        <th><span>序号</span></th>
+                        <th><span>主题</span></th>
+                        <th><span>作者</span></th>
+                        <th><span>应用行业</span></th>
+                        <th><span>用途</span></th>
+                        <th><span>操作</span></th>
+                    </tr>
+                </table>
             </fieldset>
         </div>
         @*商品服务*@
@@ -223,9 +238,10 @@
                             <th><span>操作</span></th>
                         </tr>
                     </table>
+                    @*服务商品列表(详情+删除)*@
                 </div>
                 <div style="width:200px;margin:0px auto;text-align:center;">
-                    <span><button id="btnSave" type="button" class="btn btn-info" ng-click="Save()">保存</button></span>
+                    <span><button id="btnSave" type="button" class="btn btn-info" ng-click="Save()">保存所有</button></span>
                     <span><button id="btnBack" type="button" class="btn btn-info" ng-click="btnBack()">返回</button></span>
                 </div>
             </div>
@@ -235,7 +251,7 @@
 @*服务商品模态框（选择商品服务）*@
 <div class="modal fade" id="ServiceGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:850px;margin-left:-290px !important;">
+        <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">服务商品选择</h4>
@@ -253,6 +269,7 @@
                                         <th>价格</th>
                                         <th>商品类型</th>
                                         <th>服务商名称</th>
+                                        <th>操作</th>
                                     </tr>
                                 </table>
                             </form>
@@ -268,30 +285,30 @@
     </div>
 </div>
 @*应用案例模态框（新增应用案例）*@
-<div class="modal fade" id="AppCaseModal" tabindex="-1" role="dialog" aria-labelledby="AddAppCaseModalS">
+<div class="modal fade" id="AppCaseModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="AddAppCaseModalS">应用案例添加</h4>
+                <h4 class="modal-title" id="myModalLabel">添加应用案例</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
-                            <form method="get" class="form-horizontal" name="addAppCaseForm" novalidate>
+                            <form method="get" class="form-horizontal" id="commentForm" name="AppCaseForm" novalidate>
                                 <table>
                                     <tr>
                                         <td style="width:100px"><span>主题：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APSubject" required></span></td>
+                                        <td style="width:300px"><input type="text" class="form-control" ng-model="APSubject" required></td>
                                     </tr>
                                     <tr>
                                         <td style="width:100px"><span>应用行业：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APAppIndustry" required></span></td>
+                                        <td style="width:300px"><input type="text" class="form-control" ng-model="APAppIndustry" required></td>
                                     </tr>
                                     <tr>
                                         <td style="width:100px"><span>用途：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APUsage" required></span></td>
+                                        <td style="width:300px"><input type="text" class="form-control" ng-model="APUsage" required></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -311,56 +328,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-disabled="addAppCaseForm.$invalid" ng-click="SaveAppCase()">保存</button>
-            </div>
-        </div>
-    </div>
-</div>
-@*应用案例模态框（编辑应用案例）*@
-<div class="modal fade" id="EditAppCaseModal" tabindex="-1" role="dialog" aria-labelledby="EditAppCaseModalS">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="EditAppCaseModalS">应用案例编辑<input type='hidden' id='AppCaseId' /></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <form method="get" class="form-horizontal" name="EditAppCaseForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td style="width:100px"><span>主题：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apSubject" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>应用行业：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apAppIndustry" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>用途：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apUsage" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-disabled="EditAppCaseForm.$invalid" ng-click="EditSaveAppCase()">保存</button>
+                <button type="button" class="btn btn-primary" ng-disabled="AppCaseForm.$invalid" ng-click="SaveAppCase()">保存</button>
             </div>
         </div>
     </div>
@@ -371,25 +339,25 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">使用说明添加</h4>
+                <h4 class="modal-title" id="myModalLabel">添加应用案例</h4>
             </div>
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
-                            <form method="get" class="form-horizontal" name="InstructionForm" novalidate>
+                            <form method="get" class="form-horizontal" id="commentForm" name="InstructionForm" novalidate>
                                 <table>
                                     <tr>
                                         <td><span>主题：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INSubject" required></td>
+                                        <td><input type="text" class="form-control" ng-model="InSubject" required></td>
                                     </tr>
                                     <tr>
                                         <td><span>应用行业：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INAppIndustry" required></td>
+                                        <td><input type="text" class="form-control" ng-model="InAppIndustry" required></td>
                                     </tr>
                                     <tr>
                                         <td><span>用途：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INUsage" required></td>
+                                        <td><input type="text" class="form-control" ng-model="InUsage" required></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2">
@@ -414,193 +382,24 @@
         </div>
     </div>
 </div>
-@*使用说明模态框（编辑使用说明）*@
-<div class="modal fade" id="EditInstructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel">使用说明编辑<input type='hidden' id='InstructionId' /></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <form method="get" class="form-horizontal" name="InstructionForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td><span>主题：</span></td>
-                                        <td><input type="text" class="form-control" id="inSubject" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>应用行业：</span></td>
-                                        <td><input type="text" class="form-control" id="inAppIndustry" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>用途：</span></td>
-                                        <td><input type="text" class="form-control" id="inUsage" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-disabled="InstructionForm.$invalid" ng-click="EditSaveInstruction()">保存</button>
-            </div>
-        </div>
-    </div>
-</div>
-@*使用说明/应用案例详情（模态框）*@
-<div class="modal fade" id="DetailModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <table>
-                                <tr>
-                                    <td><span>主题：</span></td>
-                                    <td><span id="Subject"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>应用行业：</span></td>
-                                    <td><span id="AppIndustry"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>用途：</span></td>
-                                    <td><span id="Usage"></span></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="form-group" id="fileupload">
-                                            <label class="col-sm-4 control-label">文件上传</label>
-                                            <div class="col-sm-7">
-                                                <input type="file" id="input-dim-2" class="file-loading">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
-@*服务商品详情（模态框）*@
-<div class="modal fade" id="ServiceGoodsDetailModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="ibox float-e-margins">
-                            <table>
-                                <tr>
-                                    <td><span>服务名称：</span></td>
-                                    <td><span id="GoodsName"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>商品类型：</span></td>
-                                    <td><span id="GoodsType"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>商品编码：</span></td>
-                                    <td><span id="GoodsCode"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>商品价格：</span></td>
-                                    <td><span id="SalePrice"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>服务商名称：</span></td>
-                                    <td><span id="ServicerName"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>商品描述：</span></td>
-                                    <td><span id="GoodsDesription"></span></td>
-                                </tr>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            </div>
-        </div>
-    </div>
-</div>
+
 
 <script type="text/javascript">
-    var fileUrl, fileName, fileSize, fileType;
-    var Id;
+
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
         var id = window.location.search;
         id = id.substring(id.indexOf('=') + 1);
-        $scope.Guid = id;
-        Id = id;
-        //模态框服务商品绑定
-        $http({
-            method: 'POST',
-            url: '@Url.Action("GetAllServiceGoods")',
-            data: null
-        }).then(function successCallback(response) {
-            // 请求成功执行代码
-            $.each(response.data, function (index, v) {
-                //请求成功执行代码
-                //展示商品服务信息
-                var td = $("<tr><td><input id='" + v.Id + "'  data-name='ServiceGoods' type='checkbox' /></td><td>" + v.GoodsName +
-                    "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice + "</td><td>" + v.GoodsTypeNames +
-                    "</td><td>" + v.Name + "</td></tr>")
-                $("#CheckServiceGoods").append(td);
-            })
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-        });
-        //商品分类绑定
-        $http({
-            method: 'POST',
-            url: '@Url.Action("FindAllGoodsType")',
-            data:null
-        }).then(function successCallback(response) {
-            //请求成功执行代码
-            $.each(respnse.data, function (index, v) {
 
-                $("#GoodType").append($("<option value = '" + v.Id + "'></option>").text(v.Name));
-            });
-        },function errorCallback(response){
-            //请求失败执行代码
-        });
+        //模态框初始化
+        $('#ServiceGoodsModal').modal();
+        $('#ServiceGoodsModal').modal('hide');
+        $('#AppCaseModal').modal();
+        $('#AppCaseModal').modal('hide');
+        $('#InstructionModal').modal();
+        $('#InstructionModal').modal('hide');
 
-        //品牌下拉框绑值>产品类型下拉框绑值>产品编辑区域赋值>使用说明-应用案例绑定
+        //品牌下拉框绑值>产品类型下拉框绑值>产品编辑区域赋值
         $http({
             method: 'POST',
             url: '/GoodsMan/ProductGoods/FindAllBrandForDrop',
@@ -635,7 +434,6 @@
                         $scope.ProductName = response.data.ProductName;
                         $("#Brand").val(response.data.BrandId);
                         $("#ProductType").val(response.data.ProductTypeId);
-                        $("#SpecProductTypeId").val(response.data.ProductTypeId);
                         $scope.SearchPrimaryKey = response.data.SearchPrimaryKey;
                         $scope.ProductDescription = response.data.ProductDescription;
                         $scope.ProductCode = response.data.ProductCode;
@@ -644,12 +442,6 @@
                         $("#SalerMinPriceType option[value='" + response.data.SalerMinPriceType + "']").attr("selected", "true");
                         $('input:radio[value="' + response.data.IsEffectMinPrice + '"]:checked').attr("checked", "true");
                         $('input:radio[name="' + response.data.IsEnableMinPriceWarning + '"]:checked').attr("checked", "true");
-                        //绑定应用案例，使用说明
-                        //规格类型
-                        BingSpecType();
-                        BindAppCase()
-                        BindInstruction();
-                        BindServiceGoods();
                     }, function errorCallback(response) {
                         // 请求失败执行代码
                     });
@@ -661,69 +453,69 @@
             // 请求失败执行代码
         });
 
-        //根据产品类型绑定规格类型
-        $("#ProductType").change(function () {
-            $("#SpecProductTypeId").val($(this).val());
-            BingSpecType();
-        });
+        //商品类型下拉绑值
+        $http({
+            method: 'POST',
+            url: '@Url.Action("FindAllGoodsType")'
+        }).then(function successCallback(response) {
+            $.each(response.data, function (index, v) {
+                var checkbox = $("<option value='" + v.Id + "'>" + v.Name + "</option>");
+                $("#GoodsType").append(checkbox);
+            })
 
-        function BingSpecType() {
-            //规格类型绑值
-            $http({
-                method: 'POST',
-                url: '@Url.Action("FindSpecTypeByProductType")',
-                data: { "productTypeId": $("#SpecProductTypeId").val() }
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                $("#SpecTypeTd").children().remove()
-                $.each(response.data, function (index, v) {
-                    var checkbox = $("<span value='" + v.SpecName + "'><input id='" + v.Id + "'  data-name='SpecType' type='checkbox' />" + v.SpecName + "</span>");
-                    $("#SpecTypeTd").append(checkbox);
-                })
-                //规格类型点击时触发规格参数绑值
-                $("input[data-name='SpecType']").click(function () {
-                    $scope.SpecType = {
-                        "Ids": $(this).prop("id"),
-                    }
-                    var Id = $(this).prop("id");
-                    var Name = $(this).parent("span").text();
-                    var checked = $(this).prop("checked");
-                    //规格参数绑值
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("FindAllSpecTypeParameterForDrop")',
-                        data: $scope.SpecType,
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码
-                        $("#SpecParameter").html("");
-                        if (checked) {
-                            //联动绑定规格参数
+        })
+
+        //规格类型绑值
+        $http({
+            method: 'POST',
+            url: '@Url.Action("FindAllSpecTypeForDrop")'
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            $.each(response.data, function (index, v) {
+                var checkbox = $("<span value='" + v.SpecName + "'><input id='" + v.Id + "'  data-name='SpecType' type='checkbox' />" + v.SpecName + "</span>");
+                $("#SpecTypeTd").append(checkbox);
+            })
+
+            //规格类型点击时触发规格参数绑值
+            $("input[data-name='SpecType']").click(function () {
+                $scope.SpecType = {
+                    "Ids": $(this).prop("id"),
+                }
+                var Id = $(this).prop("id");
+                var Name = $(this).parent("span").text();
+                var checked = $(this).prop("checked");
+                //规格参数绑值
+                $http({
+                    method: 'POST',
+                    url: '@Url.Action("FindAllSpecTypeParameterForDrop")',
+                    data: $scope.SpecType,
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    if (checked) {
+                        //联动绑定规格参数
+                        $.each(response.data, function (index, v) {
                             var legend = $("<fieldset  id='" + Id + "';><legend style='text-align:left;font-size:12px;'>" + Name + "</legend></fieldset>");
-                            $.each(response.data, function (index, v) {
-                                var ul = $("<span id='" + Id + "'; value='" + v.ParameterName + "'></span>");
-                                var checkbox = $("<input id='" + v.Id + "' data-name='SpecParameter' type='checkbox'  />");
-                                ul.append(checkbox, v.ParameterName);
-                                legend.append(ul);
-                                $("#SpecParameter").append(legend);
-                            })
-                            $("#ParaContent").attr("style", "display:block");
-                        } else {
-                            //联动删除规格参数
-                            $.each(response.data, function (index, v) {
-                                $("fieldset[id='" + Id + "']").remove();
-                                //$("span[id='" + Id + "']").remove();
-                            });
-                        }
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
+                            var ul = $("<span id='" + Id + "'; value='" + v.ParameterName + "'></span>");
+                            var checkbox = $("<input id='" + v.Id + "' data-name='SpecParameter' type='checkbox'  />");
+                            ul.append(checkbox, v.ParameterName);
+                            legend.append(ul);
+                            $("#SpecParameter").append(legend);
+                        })
+                        $("#ParaContent").attr("style", "display:block");
+                    } else {
+                        //联动删除规格参数
+                        $.each(response.data, function (index, v) {
+                            $("fieldset[id='" + Id + "']").remove();
+                            //$("span[id='" + Id + "']").remove();
+                        });
+                    }
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
                 });
-            }, function errorCallback(response) {
-                // 请求失败执行代码
             });
-
-        }
-
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
 
         //保存产品
         $scope.SaveProduct = function () {
@@ -788,6 +580,7 @@
                     }
                 }
             });
+
             var productTypeId = $("#ProductType").val();
             var brandId = $("#Brand").val();
             if (productTypeId != "" || brandId != "" || num != 0) {
@@ -812,37 +605,57 @@
                     data: { "dtoProduct": $scope.Product, "typeJsonArray": typeJsonArray }
                 }).then(function successCallback(response) {
                     //请求成功执行代码
+                    console.info(response.data);
                     $.each(response.data, function (index, v) {
                         var tr = $("<tr></tr>");
-                        var td = $('<td>' + v.GoodsName + '</td><td id=' + $("#ProductType").val() + '>'
-                            + $("option[value='" + $("#ProductType").val() + "']").text() + '</td><td>'
-                            + v.SpecParameterS + '</td><td><input   data-name="IsAvailable" type="checkbox"/></td><td><input type="radio" value="false" name="IsDefaultGoods"></td><td>'
-                            + v.GoodsCode + '</td><td>' + v.GoodsAlias + '</td><td>' + v.SalePrice + '</td><td>'
-                            + v.Weight + '</td><td><button class="btn btn-primary btn-xs edit-btn">编辑</button></td>');
+                        var td = $('<td>' + v.GoodsName + '</td><td id=' + $("#ProductType").val() + '>' + $("option[value='" + $("#ProductType").val() + "']").text() + '</td><td>' + v.SpecParameterS + '</td><td>' + v.GoodsCode + '</td><td>' + v.GoodsAlias + '</td><td>' + v.SalePrice + '</td><td><button class="btn btn-primary btn-xs edit-btn">编辑</button></td>');
                         tr.append(td);
+
                         $("#ProductGoods").append(tr);
                     });
 
                 }, function errorCallback(response) {
                     // 请求失败执行代码
+                    console.info(response.data);
                 });
                 $(".odd").remove();
                 $('#editable').DataTable();
             }
+
         }
+
+        //服务商品绑定
+        $http({
+            method: 'POST',
+            url: '@Url.Action("GetAllServiceGoods")',
+            data: null
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            $.each(response.data, function (index, v) {
+                //请求成功执行代码
+                //展示商品服务信息
+                var td = $("<tr><td><input id='" + v.Id + "'  data-name='ServiceGoods' type='checkbox' /></td><td>" + v.GoodsName +
+                    "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice + "</td><td>" + v.GoodsTypeNames +
+                    "</td><td>" + v.Name + "</td><td> <span><button type='button' class='btn btn-info' ng-click='Detail(" + v.Id +
+                    ")' >详情</button></span></td></tr>")
+
+                $("#CheckServiceGoods").append(td);
+            })
+
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
 
         //添加商品服务
         $scope.AddGoodsService = function () {
             $('#ServiceGoodsModal').modal("show");
-
         }
         $scope.CheckServiceGoods = function () {
             var ServiceGoodsId = new Array();
-            var serviceNum = 0;
+            var num = 1;
             $.each($("input[data-name='ServiceGoods']"), function (index, v) {
                 if (v.checked) {
-                    ServiceGoodsId[serviceNum] = v.id;
-                    serviceNum++;
+                    ServiceGoodsId[index] = v.id;
                 }
             });
             $http({
@@ -852,15 +665,15 @@
             }).then(function successCallback(response) {
                 // 请求成功执行代码
                 //添加后显示
-                var num = 1;
                 $.each(response.data, function (index, v) {
-                    var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
+                    var tr = $("<tr class='data'></tr>");
                     var td = $("<td>" + num + "</td><td>" + v.GoodsName +
-                        "</td><td>" + v.GoodsTypeNames +
+                        "</td><td>" + " " +
+                        //+ v.DisplayGoodsTypeNames +
                         "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
                         "</td><td>" + v.GoodsDesription +
-                            "</td><td><span><button type='button' class='btn btn-info'  data-toggle='modal' data-target='#ServiceGoodsDetailModel' data-fieldid='" + v.Id +
-                            "' >详情</button></span>&nbsp;&nbsp;<span><button type='button' class='btn btn-info' ng-click='Remove(" + v.Id +
+                            "</td><td><span><button type='button' class='btn btn-info' ng-click='Detail(" + v.Id +
+                            ")' >详情</button></span>&nbsp;&nbsp;<span><button type='button' class='btn btn-info' ng-click='Remove(" + v.Id +
                             ")' >删除</button></span></td>");
                     tr.append(td);
                     $("#ServiceGoods").append(tr);
@@ -872,321 +685,107 @@
             $('#ServiceGoodsModal').modal("hide");
         }
 
-        //添加保存应用案例
+        //添加应用案例
+        $scope.AddAppCase = function () {
+            $('#AppCaseModal').modal("show");
+        }
         $scope.SaveAppCase = function () {
-            //上传图片后保存应用案例
-            if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
-                swal("请上传图片");
-            } else {
-                $http({
-                    method: 'POST',
-                    url: '/FileUpload/SeveFile',
-                    data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
-                }).then(function successCallback(response) {
-                    $scope.AppCase = {
-                        "Subject": $scope.APSubject,
-                        "AppIndustry": $scope.APAppIndustry,
-                        "Usage": $scope.APUsage,
-                        "FileUpLoadId": response.data,
-                        "ProductId": $scope.Guid,
-                    };
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("SaveAppCase")',
-                        data: $scope.AppCase
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码,添加后显示
-                        BindAppCase();
-                        $('#AppCaseModal').modal("hide");
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
-                }, function errorCallback(response) {
-                    //请求失败执行代码
-                });
-            }
-        }
-        //编辑保存应用案例
-        $scope.EditSaveAppCase = function () {
-            //上传图片后保存应用案例
-            if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
-                swal("请上传图片");
-            } else {
-                $http({
-                    method: 'POST',
-                    url: '/FileUpload/SeveFile',
-                    data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
-                }).then(function successCallback(response) {
-                    $scope.AppCase = {
-                        "Id": $("#AppCaseId").val(),
-                        "Subject": $("#apSubject").val(),
-                        "AppIndustry": $("#apAppIndustry").val(),
-                        "Usage": $("#apUsage").val(),
-                        "FileUpLoadId": response.data,
-                        "ProductId": $scope.Guid,
-                    };
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("SaveAppCase")',
-                        data: $scope.AppCase
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码,添加后显示
-                        BindAppCase();
-                        $('#EditAppCaseModal').modal("hide");
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
-                }, function errorCallback(response) {
-                    //请求失败执行代码
-                });
-            }
-        }
-
-
-        //添加使用说明
-        $scope.SaveInstruction = function () {
-            //上传图片后保存使用说明
-            if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
-                swal("请上传图片");
-            } else {
-                $http({
-                    method: 'POST',
-                    url: '/FileUpload/SeveFile',
-                    data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
-                }).then(function successCallback(response) {
-                    $scope.Instruction = {
-                        "Subject": $scope.INSubject,
-                        "AppIndustry": $scope.INAppIndustry,
-                        "Usage": $scope.INUsage,
-                        "FileUpLoadId": response.data,
-                        "ProductId": $scope.Guid,
-                    };
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("SaveInstruction")',
-                        data: $scope.Instruction
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码，添加后显示
-                        BindInstruction();
-                        $('#InstructionModal').modal("hide");
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
-                }, function errorCallback(response) {
-                    //请求失败执行代码
-                });
-            }
-        }
-        //编辑保存使用说明
-        $scope.EditSaveInstruction = function () {
-            //上传图片后保存使用说明
-            if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
-                swal("请上传图片");
-            } else {
-                $http({
-                    method: 'POST',
-                    url: '/FileUpload/SeveFile',
-                    data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
-                }).then(function successCallback(response) {
-                    $scope.Instruction = {
-                        "Id": $("#InstructionId").val(),
-                        "Subject": $("#inSubject").val(),
-                        "AppIndustry": $("#inAppIndustry").val(),
-                        "Usage": $("#inUsage").val(),
-                        "FileUpLoadId": response.data,
-                        "ProductId": $scope.Guid,
-                    };
-                    $http({
-                        method: 'POST',
-                        url: '@Url.Action("SaveInstruction")',
-                        data: $scope.Instruction
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码，添加后显示
-                        BindInstruction();
-                        $('#InstructionModal').modal("hide");
-                    }, function errorCallback(response) {
-                        // 请求失败执行代码
-                    });
-                }, function errorCallback(response) {
-                    //请求失败执行代码
-                });
-            }
-        }
-
-        //应用案例模糊查询
-        $scope.SearchAppCase = function () {
-            if ($scope.SearchAPSubject.trim() == "" && $scope.SearchAPAppIndustry.trim() == "" && $scope.SearchAPUsage.trim() == "") {
-                BindAppCase();
-            }
-            else {
-                $scope.AppCase = {
-                    "Subject": $scope.SearchAPSubject,
-                    "AppIndustry": $scope.SearchAPAppIndustry,
-                    "Usage": $scope.SearchAPUsage,
-                };
-                $http({
-                    method: 'POST',
-                    url: '@Url.Action("FindAppCaseByLike")',
-                    data: $scope.AppCase
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    //添加后显示
-                    $("#AppCaseTable").html("");
-                    $("#AppCaseTable").append("<tr><th>序号</th><th>主题</th><th><span>作者</span></th><th>应用行业</th> <th>用途</th><th>操作</th></tr>");
-                    var num = 1;
-                    $.each(response.data, function (index, v) {
-                        var td = $("<tr id='" + v.Id + "'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                            "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                            "</td><td> <span><button type='button' class='btn btn-info' onclick='AppCaseDetail('" + v.Id +
-                            "')' >详情</button></span><span><button type='button' class='btn btn-info'  data-toggle='modal' data-target='#EditAppCaseModal' data-fieldid='" + v.Id +
-                            "' >修改</button></span><span><button type='button' class='btn btn-info' onclick='AppCaseRemove('" + v.Id +
-                            "')' >删除</button></span></td></tr>");
-                        $("#AppCaseTable").append(td);
-                        num++;
-                    })
-
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
-            }
-        };
-
-        //使用说明模糊查询
-        $scope.SerachInstruction = function () {
-            if ($scope.SearchInSubject.trim() == "" && $scope.SearchInAppIndustry.trim() == "" && $scope.SearchInUsage.trim() == "") {
-                BindInstruction();
-            }
-            else {
-                $scope.Instruction = {
-                    "Subject": $scope.SearchInSubject,
-                    "AppIndustry": $scope.SearchInAppIndustry,
-                    "Usage": $scope.SearchInUsage,
-                };
-                $http({
-                    method: 'POST',
-                    url: '@Url.Action("FindInstructionByLike")',
-                    data: $scope.Instruction
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    //添加后显示
-                    $("#InstructionTable").html("");
-                    $("#InstructionTable").append("<tr><th>序号</th><th>主题</th><th><span>作者</span></th><th>应用行业</th> <th>用途</th><th>操作</th></tr>");
-                    var num = 1;
-                    $.each(response.data, function (index, v) {
-                        var td = $("<tr id='" + v.Id + "'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                            "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                            "</td><td> <span><button type='button' class='btn btn-info' onclick='InstructionDetail(" + v.Id +
-                            ")' >详情</button></span><span><button type='button' class='btn btn-info'  data-toggle='modal' data-target='#EditInstructionModal' data-fieldid='" + v.Id +
-                            "' >修改</button></span><span><button type='button' class='btn btn-info' onclick='InstructionRemove(" + v.Id +
-                            ")' >删除</button></span></td></tr>");
-                        $("#InstructionTable").append(td);
-                        num++;
-                    })
-
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
-            }
-        };
-
-        //应用案例加载
-        function BindAppCase() {
+            $scope.AppCase = {
+                "Subject": $scope.APSubject,
+                "AppIndustry": $scope.APAppIndustry,
+                "Usage": $scope.APUsage
+            };
             $http({
                 method: 'POST',
-                url: '@Url.Action("FindAppCaseByProductId")',
-                data: { "productId": $scope.Guid }
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                $("#AppCaseTable").html("");
-                $("#AppCaseTable").append("<tr><th>序号</th><th>主题</th><th><span>作者</span></th><th>应用行业</th> <th>用途</th><th>操作</th></tr>");
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var td = $("<tr id='" + v.Id + "' data-name='Edit'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                        "</td><td> <span><button type='button' class='btn btn-info' onclick='AppCaseDetail(\"" + v.Id +
-                        "\")' >详情</button></span><span><button type='button' class='btn btn-info' data-toggle='modal' data-target='#EditAppCaseModal' data-fieldid='" + v.Id +
-                        "'  >修改</button></span><span><button type='button' class='btn btn-info' onclick='AppCaseRemove(\"" + v.Id +
-                        "\")' >删除</button></span></td></tr>");
-                    $("#AppCaseTable").append(td);
-                    num++;
-                })
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }
-        //使用说明加载
-        function BindInstruction() {
-            $http({
-                method: 'POST',
-                url: '@Url.Action("FindInstructionByProductId")',
-                data: { "productId": $scope.Guid }
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                $("#InstructionTable").html("");
-                $("#InstructionTable").append("<tr><th>主题</th><th><span>作者</span></th><th>应用行业</th> <th>用途</th><th>操作</th></tr>");
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var td = $("<tr id='" + v.Id + "'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                        "</td><td><span><button type='button' class='btn btn-info' onclick='InstructionDetail(\"" + v.Id +
-                        "\")' >详情</button></span><span><button type='button' class='btn btn-info' data-toggle='modal' data-target='#EditInstructionModal' data-fieldid='" + v.Id +
-                        "')' >修改</button></span><span><button type='button' class='btn btn-info' onclick='InstructionRemove(\"" + v.Id +
-                        "\")' >删除</button></span></td></tr>");
-                    $("#InstructionTable").append(td);
-                    num++;
-                })
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-        }
-        //服务商品加载
-        function BindServiceGoods()
-        {
-            $http({
-                method: 'POST',
-                url: '@Url.Action("FindServiceGoodsByProductId")',
-                data: { "Id": $scope.Guid }
+                url: '@Url.Action("GetAllServiceGoods")',
+                data: $scope.AppCase
             }).then(function successCallback(response) {
                 // 请求成功执行代码
                 //添加后显示
                 var num = 1;
                 $.each(response.data, function (index, v) {
-                    var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
-                    var td = $("<td>" + num + "</td><td>" + v.GoodsName +
-                        "</td><td>" + v.GoodsTypeNames +
-                        "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
-                        "</td><td>" + v.GoodsDesription +
-                            "</td><td><span><button type='button' class='btn btn-info'  data-toggle='modal' data-target='#ServiceGoodsDetailModel' data-fieldid='" + v.Id +
-                            "' >详情</button></span>&nbsp;&nbsp;<span><button type='button' class='btn btn-info' onclick='Remove(\"" + v.Id +
-                            "\")' >删除</button></span></td>");
-                    tr.append(td);
-                    $("#ServiceGoods").append(tr);
+                    var td = $("<tr><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
+                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
+                        "</td><td> <span><button type='button' class='btn btn-info' ng-click='Detail(" + v.Id +
+                        ")' >详情</button></span><span><button type='button' class='btn btn-info' ng-click='Edit(" + v.Id +
+                        ")' >修改</button></span><span><button type='button' class='btn btn-info' ng-click='Remove(" + v.Id +
+                        ")' >删除</button></span></td></td></tr>");
+                    $("#AppCaseTable").append(td);
                     num++;
                 })
+                $('#AppCaseModal').modal("hide");
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
         }
 
-
-        //保存服务商品,关联至产品
-        $scope.Save = function () {
-            var serviceGoodsIds = new Array();
-            $.each($("tr[data-name='ServiceGoods']"), function (index, v) {
-                serviceGoodsIds[index] = v.id;
-            });
+        //添加使用说明
+        $scope.AddInstruction = function () {
+            $('#InstructionModal').modal("show");
+        }
+        $scope.SaveInstruction = function () {
+            $scope.Instruction = {
+                "Subject": $scope.InSubject,
+                "AppIndustry": $scope.InAppIndustry,
+                "Usage": $scope.InUsage
+            };
             $http({
                 method: 'POST',
-                url: "/GoodsMan/ProductGoods/EditServiceGoodsInProduct",
-                data: { "Id": $scope.Guid, "ServiceGoodsId": serviceGoodsIds }
+                url: '@Url.Action("GetAllServiceGoods")',
+                data: $scope.Instruction
             }).then(function successCallback(response) {
-                //请求成功执行代码
-                swal("保存成功", "", "success");
-                location.href = "/GoodsMan/ProductGoods/Index";
+                // 请求成功执行代码
+                //添加后显示
+                var num = 1;
+                $.each(response.data, function (index, v) {
+                    var td = $("<tr><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
+                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
+                        "</td><td> <span><button type='button' class='btn btn-info' ng-click='Detail(" + v.Id +
+                        ")' >详情</button></span><span><button type='button' class='btn btn-info' ng-click='Edit(" + v.Id +
+                        ")' >修改</button></span><span><button type='button' class='btn btn-info' ng-click='Remove(" + v.Id +
+                        ")' >删除</button></span></td></tr>");
+
+                    $("#InstructionTable").append(td);
+                    num++;
+                })
+                $('#InstructionModal').modal("hide");
             }, function errorCallback(response) {
-                //请求失败执行代码
-            })
+                // 请求失败执行代码
+            });
         }
+
+        //使用说明模糊查询
+        $scope.SerachInstruction = function () {
+            $scope.Instruction = {
+                "Subject": $scope.SearchInSubject,
+                "AppIndustry": $scope.SearchInAppIndustry,
+                "Usage": $scope.SearchInUsage,
+            };
+            $http({
+                method: 'POST',
+                url: '@Url.Action("GetAllServiceGoods")',
+                data: $scope.Instruction
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                //添加后显示
+                $("#InstructionTable").remove();
+                var num = 1;
+                $.each(response.data, function (index, v) {
+                    var td = $("<tr><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
+                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
+                        "</td><td> <span><button type='button' class='btn btn-info' ng-click='Detail(" + v.Id +
+                        ")' >详情</button></span><span><button type='button' class='btn btn-info' ng-click='Edit(" + v.Id +
+                        ")' >修改</button></span><span><button type='button' class='btn btn-info' ng-click='Remove(" + v.Id +
+                        ")' >删除</button></span></td></tr>");
+
+                    $("#InstructionTable").append(td);
+                    num++;
+                })
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        };
 
         //判断产品名称是否重复
         function Repetition() {
@@ -1207,101 +806,21 @@
                 // 请求失败执行代码
             });
         }
-
     });
 
-    //行内编辑，图片上传js
     $(document).ready(function () {
-
-        //应用案例编辑绑值
-        $('#EditAppCaseModal').on('shown.bs.modal', function (event) {
-            var a = $(event.relatedTarget)
-            var appCaseId = a.data('fieldid');
-            var modal = $(this);
-            $.ajax({
-                url: "/GoodsMan/ProductGoods/FindAppCaseById",
-                data: { "Id": appCaseId },
-                type: 'POST',
-                success: function (v) {
-                    // 请求成功执行代码
-                    $("#AppCaseId").val(appCaseId);
-                    modal.find("#apSubject").val(v.Subject);
-                    modal.find("#apAppIndustry").val(v.AppIndustry);
-                    modal.find("#apUsage").val(v.Usage);
-                    filename = "~/Content/fileupload/" + v.FileUpLoadName;
-                },
-                error: function (asd) {
-                    // 请求失败执行代码
-                }
-            });
-        });
-
-        //使用说明编辑绑值
-        $('#EditInstructionModal').on('shown.bs.modal', function (event) {
-            var a = $(event.relatedTarget)
-            var instructionId = a.data('fieldid');
-            var modal = $(this);
-            $.ajax({
-                url: "/GoodsMan/ProductGoods/FindInstructionById",
-                data: { "Id": instructionId },
-                type: 'POST',
-                success: function (v) {
-                    // 请求成功执行代码
-                    $("#InstructionId").val(instructionId);
-                    modal.find("#inSubject").val(v.Subject);
-                    modal.find("#inAppIndustry").val(v.AppIndustry);
-                    modal.find("#inUsage").val(v.Usage);
-                    filename = "~/Content/fileupload/" + v.FileUpLoadName;
-                },
-                error: function (asd) {
-                    // 请求失败执行代码
-                }
-            });
-        });
-
-        //服务商品详情
-        $('#ServiceGoodsDetailModel').on('shown.bs.modal', function (event) {
-            var a = $(event.relatedTarget)
-            var serviceGoodsid = a.data('fieldid');
-            var modal = $(this);
-            $.ajax({
-                url: "/GoodsMan/ProductGoods/FindServiceGoodsById",
-                data: { "ServiceGoodsId": serviceGoodsid },
-                type: 'POST',
-                success: function (v) {
-                    // 请求成功执行代码
-                    modal.find("#GoodsName").text(v.GoodsName);
-                    modal.find("#GoodsType").text(v.GoodsTypeNames);
-                    modal.find("#GoodsCode").text(v.GoodsCode);
-                    modal.find("#SalePrice").text(v.SalePrice);
-                    modal.find("#ServicerName").text(v.ServicerName);
-                    modal.find("#GoodsDesription").text(v.GoodsDesription);
-                    filename = "~/Content/fileupload/" + v.FileUpLoadName;
-                },
-                error: function (asd) {
-                    // 请求失败执行代码
-                }
-            });
-        });
-
         var t = $('#editable').DataTable();
         //编辑
         $("#editable tbody").on("click", ".edit-btn", function () {
             var tds = $(this).parents("tr").children();
-            var put = "";
             $.each(tds, function (i, val) {
                 var jqob = $(val);
                 //跳过第1项 序号,按钮 i < 1 ||
-                if (i < 5 || jqob.has('button').length) {
+                if (i < 3 || jqob.has('button').length) {
                     return true;
                 }
                 var txt = jqob.text();
-                if (i == 8) {
-                    put = $("<input class=\"col-sm-12\" type='number' >");
-                }
-                else {
-                    put = $("<input class=\"col-sm-12\" type='text'>");
-                }
+                var put = $("<input class=\"col-sm-12\" type='text'>");
                 put.val(txt);
                 jqob.html(put);
             });
@@ -1314,65 +833,40 @@
             var row = t.row($(this).parents("tr"));
             var tds = $(this).parents("tr").children();
             var listProductGoods = new Array();
-            var listchildren = new Array();
             var num = 0;
             var txt = "";
             var GoodsName = "";
             var GoodsTypeId = "";
             var SpecParameterS = "";
-            var IsAvailable = false;
-            var IsDefaultGoods = false;
-            var Weight = "";
             $.each(tds, function (i, val) {
                 var jqob = $(val);
                 //把input变为字符串
                 if (!jqob.has('button').length) {
-                    if (jqob.has("input[type='text']").length) {
-                        txt = jqob.children("input[type='text']").val();
-                        jqob.html(txt);
-                    } else if (jqob.has("input[data-name='IsAvailable']").length) {
-                        if (jqob.children("input[data-name='IsAvailable']").prop("checked") == true) {
-                            IsAvailable = true;
-                        }
-                    } else if (jqob.has("input[name='IsDefaultGoods']").length) {
-                        if (jqob.children("input[name='IsDefaultGoods']").prop("checked") == true) {
-                            IsDefaultGoods = true;
-                        }
-                    } else if (jqob.has("input[type='number']").length) {
-                        txt = jqob.children("input[type='number']").val();
-                        jqob.html(txt);
-                    } else {
-                        txt = jqob.html();
-                        jqob.html(txt);
+                    if (jqob.has('input').length) {
+                        txt = jqob.children("input").val();
                     }
-                    // jqob.html(txt);
+                    else {
+                        txt = jqob.html();
+                    }
+                    jqob.html(txt);
                     switch (num) {
                         case 0:
-                            listchildren[num] = txt;
+                            listProductGoods[num] = txt;
                             break;
                         case 1:
-                            listchildren[num] = txt;
+                            listProductGoods[num] = jqob.html();
                             break;
                         case 2:
-                            listchildren[num] = txt;
+                            listProductGoods[num] = txt;
                             break;
                         case 3:
-                            listchildren[num] = IsAvailable;
+                            listProductGoods[num] = txt;
                             break;
                         case 4:
-                            listchildren[num] = IsDefaultGoods;
+                            listProductGoods[num] = txt;
                             break;
                         case 5:
-                            listchildren[num] = txt;
-                            break;
-                        case 6:
-                            listchildren[num] = txt;
-                            break;
-                        case 7:
-                            listchildren[num] = txt;
-                            break;
-                        case 8:
-                            listchildren[num] = txt;
+                            listProductGoods[num] = txt;
                             break;
                     }
                     num++;
@@ -1381,9 +875,6 @@
                     //t.cell(jqob).data(txt);//修改DataTables对象的数据
                 }
             });
-
-            listProductGoods = listchildren;
-
             $(this).html("编辑");
             $(this).toggleClass("edit-btn");
             $(this).toggleClass("save-btn");
@@ -1403,22 +894,25 @@
             });
         });
 
+
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',
         });
 
-        //图片上传成功回调函数
+        ////图片上传成功回调函数
         $(".file-loading").on("fileuploaded", function (event, data, previewId, index) {
+
             fileUrl = data.response.fileUrl;
             fileName = data.response.fileName;
             fileSize = data.response.fileSize;
             fileType = data.response.fileType;
         });
+
         //创建图片上传控件
         $(".file-loading").fileinput({
             uploadUrl: '/FileUpload/FileUpload',
-            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
+            allowedFileExtensions: ["jpg", "png", "gif"],
             maxImageWidth: 50,
             maxImageHeight: 50,
             uploadLabel: "",
@@ -1431,115 +925,6 @@
             browseLabel: "",
             browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
         });
+
     });
-
-    //应用案例详情
-    function AppCaseDetail(id) {
-        $.ajax({
-            url: "/GoodsMan/ProductGoods/FindAppCaseById",
-            data: { "Id": id },
-            type: 'POST',
-            success: function (v) {
-                // 请求成功执行代码
-                $('#DetailModel').modal('show');
-                $("#Subject").text(v.Subject);
-                $("#AppIndustry").text(v.AppIndustry);
-                $("#Usage").text(v.Usage);
-                filename = "~/Content/fileupload/" + "文件名";
-            },
-            error: function (asd) {
-                // 请求失败执行代码
-            }
-        });
-    }
-    //应用案例删除
-    function AppCaseRemove(id) {
-        swal({
-            title: "操作提示",
-            text: "确认删除吗?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            cancelButtonText: "取消",
-            confirmButtonText: "确定",
-            closeOnConfirm: false
-        }, function () {
-            $.ajax({
-                url: "/GoodsMan/ProductGoods/DeleteAppCase",
-                data: { "Id": id },
-                type: 'POST',
-                success: function (response) {
-                    // 请求成功执行代码
-                    swal("删除成功", "", "success");
-                    $("#" + id + "").remove();
-                },
-                error: function (asd) {
-                    // 请求失败执行代码
-                }
-            });
-        });
-
-    }
-    //使用说明详情
-    function InstructionDetail(id) {
-        $('#DetailModel').modal('show');
-        $.ajax({
-            url: "/GoodsMan/ProductGoods/FindInstructionById",
-            data: { "Id": id },
-            type: 'POST',
-            success: function (response) {
-                // 请求成功执行代码
-                $('#DetailModel').modal('show');
-                $("#Subject").text(response.Subject);
-                $("#AppIndustry").text(response.AppIndustry);
-                $("#Usage").text(response.Usage);
-                filename = "~/Content/fileupload/" + response.FileUpLoadName;
-            },
-            error: function (asd) {
-                // 请求失败执行代码
-            }
-        });
-    }
-    //使用说明删除
-    function InstructionRemove(id) {
-        swal({
-            title: "操作提示",
-            text: "确认删除吗?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            cancelButtonText: "取消",
-            confirmButtonText: "确定",
-            closeOnConfirm: false
-        }, function () {
-            $.ajax({
-                url: "/GoodsMan/ProductGoods/DeleteInstruction",
-                data: { "Id": id },
-                type: 'POST',
-                success: function (response) {
-                    // 请求成功执行代码
-                    swal("删除成功", "", "success");
-                    $("#" + id + "").remove();
-                },
-                error: function (asd) {
-                    // 请求失败执行代码
-                }
-            });
-        });
-    }
-    //服务商品删除
-    function Remove(id) {
-        var productId = $("input[type='hidden'][id='#id']").val();
-        $.ajax({
-            url: "/GoodsMan/ProductGoods/RemoveServiceGoodsInProduct",
-            type: "POST",
-            data: { "Id": id, "productId": Id },
-            success: function (v) {
-                $("#ServiceGoods").children("tr[id='" + id + "']").html("");
-                BindServiceGoods();
-            },
-            error: function (v) {
-            }
-        })
-    }
 </script>

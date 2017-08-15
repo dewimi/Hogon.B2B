@@ -50,7 +50,11 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     dtoSpecParameterTemplate.UpdatePerson = s.UpdatePerson;
                     dtoSpecParameterTemplate.UpdateTime = s.UpdateTime;
                     dtoSpecParameterTemplate.Id = spec.Id;
+                   // dtoSpecParameterTemplate.SpecType = specTypeReps.FindBy(m => m.Id == spec.SpecTypeId).First();
                     dtoSpecParameterTemplate.ParameterName = spec.ParameterName;
+                    //dtoSpecParameterTemplate.SpecTypeId = spec.SpecTypeId;
+                    //dtoSpecParameterTemplate.SpecType.ProductType = productTypeReps.FindBy(m => m.Id == dtoProduct.ProductTypeId).First();
+
 
                     dtoSpecParameterTemplateS.Add(dtoSpecParameterTemplate);
                 }
@@ -64,16 +68,13 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
             foreach (var item in goodsParams)
             {
                 var specParameter = "";
-                var specTypeName = "";
                 foreach (var specParams in item)
                 {
-                    var specType = specTypeReps.FindBy(m => m.Id == specParams.SpecTypeId).First();
-
-                    specParameter = specParams.ParameterName + ";";
-                    specTypeName += specType.SpecName+":"+ specParameter;
+                    //var specType = specTypeReps.FindBy(m => m.Id == specParams.SpecTypeId).First();
+             
+                    specParameter += specParams.ParameterName+";";
                 }
-                //result = specParameter;
-                result = specTypeName ;
+                result +=specParameter;
 
                 DtoProductGoods dtoProductGoods = new DtoProductGoods()
                 {
@@ -85,12 +86,15 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     GoodsName = dtoProduct.ProductName,
                     IsAvailable = true,
                     IsDefaultGoods = true,
+                    //Product = productReps.FindBy(m => m.Id == dtoProduct.Id).First(),
                     SalePrice = dtoProduct.SalerBasicPrice,
                     SearchKeywords = dtoProduct.SearchPrimaryKey,
                     DtoSpecParameterTemplateS = null,//规格参数模板集合
-                    //ChildrenGoods = null,//子商品集合
+                    ServiceGoods = null,//服务商品集合
+                    ChildrenGoods = null,
                     ProductId = productReps.FindBy(m => m.Id == dtoProduct.Id).First().Id,
                     ProductName = productReps.FindBy(m => m.Id == dtoProduct.Id).First().ProductName,
+                    ServiccGoodsNames = "",
                     SpecParameterS = result,
                     UpdatePerson = UserState.Current.UserName,
                     UpdateTime = DateTime.Now,
@@ -161,7 +165,7 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                 // 当规格类型层数不是最末层级时，继续调用递归函数
                 if (typeParams.Count > 0)
                 {
-                    ManipulateSpecParameters(ref goodsParamtersList, typeParams.ToArray().ToList(), currentPath, currentNode);
+                    ManipulateSpecParameters(ref goodsParamtersList, typeParams, currentPath, currentNode);
                 }
                 // 当规格类型层数已是最末层级时，创建新商品数据节点路径并加入goodsParamtersList
                 else
@@ -171,7 +175,6 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     newPath.Add(currentNode);
 
                     goodsParamtersList.Add(newPath);
-
                 }
             }
         }

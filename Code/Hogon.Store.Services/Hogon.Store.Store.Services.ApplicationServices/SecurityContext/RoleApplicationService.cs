@@ -131,45 +131,44 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             {
                 foreach (var menu in listTreeNode)
                 {
-
                     Authority authority = new Authority();
-                    if (menu.state.ContainsKey("isFunction") == false)
+                    if (menu != null)
                     {
-
-                        authority.Role = roleReps.FindBy(r => r.Id == roleId).First();
-
-                        authority.Menu = menuReps.FindBy(m => m.Id == menu.Id).First();
-
-                        var auth = authorityReps.FindBy(a => a.Menu.Id == menu.Id)
-                            .Where(a => a.Role.Id == roleId).FirstOrDefault();
-
-                        if (auth == null)
+                        if (menu.state.ContainsKey("isFunction") == false)
                         {
-                            authority.Id = Guid.NewGuid();
+                            authority.Role = roleReps.FindBy(r => r.Id == roleId).First();
 
-                            authorityReps.Add(authority);
+                            authority.Menu = menuReps.FindBy(m => m.Id == menu.Id).First();
 
+                            var auth = authorityReps.FindBy(a => a.Menu.Id == menu.Id)
+                                .Where(a => a.Role.Id == roleId).FirstOrDefault();
+
+                            if (auth == null)
+                            {
+                                authority.Id = Guid.NewGuid();
+
+                                authorityReps.Add(authority);
+
+                            }
+                        }
+                        if (menu.state.ContainsKey("isFunction") == true)
+                        {
+                            Rela_Authority_Function relaAuthorityFunctions = new Rela_Authority_Function();
+
+                            relaAuthorityFunctions.Authority = roleReps.FindBy(r => r.Id == roleId)
+                                .SelectMany(a => a.Authorities).First();
+
+                            var func = authorityReps.FindAll().SelectMany(g => g.Rela_Authority_Function).
+                                Where(r => r.Function.Id == menu.Id).FirstOrDefault();
+                            if (func == null)
+                            {
+
+                                relaAuthorityFunctions.Id = Guid.NewGuid();
+
+                                authority.Rela_Authority_Function.Add(relaAuthorityFunctions);
+                            }
                         }
                     }
-
-                    if (menu.state.ContainsKey("isFunction") == true)
-                    {
-                        Rela_Authority_Function relaAuthorityFunctions = new Rela_Authority_Function();
-
-                        relaAuthorityFunctions.Authority = roleReps.FindBy(r => r.Id == roleId)
-                            .SelectMany(a => a.Authorities).First();
-
-                        var func = authorityReps.FindAll().SelectMany(g => g.Rela_Authority_Function).
-                            Where(r => r.Function.Id == menu.Id).FirstOrDefault();
-                        if (func == null)
-                        {
-
-                            relaAuthorityFunctions.Id = Guid.NewGuid();
-
-                            authority.Rela_Authority_Function.Add(relaAuthorityFunctions);
-                        }
-                    }
-
                 }
             }
 
@@ -185,7 +184,6 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                         authorityReps.Remove(author);
                     }
                 }
-
             }
 
             //添加角色下的用户
@@ -221,13 +219,14 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             //删除角色下的用户
             foreach (var userId in unCheckUsers)
             {
-
-                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_User).
-                    Where(r => r.User.Id == userId && r.Role.Id == roleId).FirstOrDefault();
-                if (user != null)
-                {
-                    roleReps.DeleteRela_Role_User(user);
-                    //role.Rela_Role_User.Remove(user);
+                if (userId != null) {
+                    var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_User).
+                  Where(r => r.User.Id == userId && r.Role.Id == roleId).FirstOrDefault();
+                    if (user != null)
+                    {
+                        roleReps.DeleteRela_Role_User(user);
+                        //role.Rela_Role_User.Remove(user);
+                    }
                 }
             }
             Commit();

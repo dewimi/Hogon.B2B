@@ -160,30 +160,6 @@
     <Compile Include="Migrations\201708090839517_AddIsAvailable.Designer.cs">
       <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201708140055480_addFileUploadLine.cs" />
-    <Compile Include="Migrations\201708140055480_addFileUploadLine.Designer.cs">
-      <DependentUpon>201708140055480_addFileUploadLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708140535413_addServicerName.cs" />
-    <Compile Include="Migrations\201708140535413_addServicerName.Designer.cs">
-      <DependentUpon>201708140535413_addServicerName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708140859478_new.cs" />
-    <Compile Include="Migrations\201708140859478_new.Designer.cs">
-      <DependentUpon>201708140859478_new.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708140901297_news.cs" />
-    <Compile Include="Migrations\201708140901297_news.Designer.cs">
-      <DependentUpon>201708140901297_news.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708141319078_ServiceGoods-ProductId.cs" />
-    <Compile Include="Migrations\201708141319078_ServiceGoods-ProductId.Designer.cs">
-      <DependentUpon>201708141319078_ServiceGoods-ProductId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708150140127_addProductSpecType.cs" />
-    <Compile Include="Migrations\201708150140127_addProductSpecType.Designer.cs">
-      <DependentUpon>201708150140127_addProductSpecType.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -278,24 +254,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708090839517_AddIsAvailable.resx">
       <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140055480_addFileUploadLine.resx">
-      <DependentUpon>201708140055480_addFileUploadLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140535413_addServicerName.resx">
-      <DependentUpon>201708140535413_addServicerName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140859478_new.resx">
-      <DependentUpon>201708140859478_new.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708140901297_news.resx">
-      <DependentUpon>201708140901297_news.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708141319078_ServiceGoods-ProductId.resx">
-      <DependentUpon>201708141319078_ServiceGoods-ProductId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708150140127_addProductSpecType.resx">
-      <DependentUpon>201708150140127_addProductSpecType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
