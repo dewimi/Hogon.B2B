@@ -50,21 +50,26 @@
 
         var app = angular.module('myApp', []);
         app.controller('validateCtrl', function ($scope, $http) {
+
+
+
+        });
+
+        $(function () {
             var t = $('#editable').DataTable({
                 //"bInfo":false,
-                " bScrollInfinite": false
+                " bScrollInfinite":false
             });
-
-            $("#editable tbody").on("click", ".edit-btn", function () {
-                var tds = $(this).parents("tr").children();
-                $.each(tds, function (i, val) {
-                    var jqob = $(val);
-                    //跳过第1项 序号,按钮 i < 1 ||
-                    if (jqob.has('button').length) {
+            $("#editable tbody").on("click",".edit-btn",function(){
+                var tds=$(this).parents("tr").children();
+                $.each(tds, function(i,val){
+                    var jqob=$(val);
+                   //跳过第1项 序号,按钮 i < 1 ||
+                    if(jqob.has('button').length ){
                         return true;
                     }
-                    var txt = jqob.text();
-                    var put = $("<input type='text'>");
+                    var txt=jqob.text();
+                    var put=$("<input type='text'>");
                     put.val(txt);
                     jqob.html(put);
                 });
@@ -72,156 +77,45 @@
                 $(this).toggleClass("edit-btn");
                 $(this).toggleClass("save-btn");
             });
-            function SaveParameterName(parameterName) {
 
-                $("#editable tbody").on("click", ".save-btn", function () {
-                    var row = t.row($(this).parents("tr"));
-                    var tds = $(this).parents("tr").children();
-                    $.each(tds, function (i, val) {
-                        var jqob = $(val);
-                        //把input变为字符串
-                        if (!jqob.has('button').length) {
-                            var txt = jqob.children("input").val();
-                            jqob.html(txt);
-                            //t.cell(jqob).data(txt);//修改DataTables对象的数据
-                        }
-                    });
-                    $(this).html("编辑");
-                    $(this).toggleClass("edit-btn");
-                    $(this).toggleClass("save-btn");
-                    $(this).attr("id", "");
-                    alert(parameterName);
-                    //var data=row.data();
-                    //$.ajax({
-                    //    "url":"",
-                    //    "data":data,
-                    //    "type":"post",
-                    //    "error":function(){
-                    //        //alert("服务器未正常响应，请重试");
-                    //    },
-                    //    "success":function(response){
-                    //        //alert(response);
-                    //    }
-                    //});
+            $("#editable tbody").on("click",".save-btn",function(){
+                var row=t.row($(this).parents("tr"));
+                var tds=$(this).parents("tr").children();
+                $.each(tds, function(i,val){
+                    var jqob=$(val);
+                    //把input变为字符串
+                    if(!jqob.has('button').length){
+                        var txt=jqob.children("input").val();
+                        jqob.html(txt);
+                        //t.cell(jqob).data(txt);//修改DataTables对象的数据
+                    }
                 });
-
-            }
-
-            $("#addNewTr").on("click", function () {
-                t.row.add([
-                    "<input type='text' id = 'parameterName'/>",
-                    "<input type='text'/>",
-                    "<input type='text'/>",
-                    "<input type='text'/>",
-                    "<input type='text'/>",
-                    "<button class='save-btn btn btn-primary btn-xs'id = 'saveparameter'>保存</button>"
-                ]).draw();
-                $("#saveparameter").on("click", function () {
-
-                    var parameterName = $("#parameterName").val();
-                    SaveParameterName(parameterName)
-                    //$.ajax({
-                    //    "url": "",
-                    //    "data": data,
-                    //    "type": "post",
-                    //    "error": function () {
-                    //        //alert("服务器未正常响应，请重试");
-                    //    },
-                    //    "success": function (response) {
-                    //        //alert(response);
-                    //    }
-                    //});
-                });
+                $(this).html("编辑");
+                $(this).toggleClass("edit-btn");
+                $(this).toggleClass("save-btn");
+                //var data=row.data();
+                //$.ajax({
+                //    "url":"",
+                //    "data":data,
+                //    "type":"post",
+                //    "error":function(){
+                //        //alert("服务器未正常响应，请重试");
+                //    },
+                //    "success":function(response){
+                //        //alert(response);
+                //    }
+                //});
             });
-
-        });
-
-        $(function () {
-            //var t = $('#editable').DataTable({
-            //    //"bInfo":false,
-            //    " bScrollInfinite":false
-            //});
-
-            //$("#editable tbody").on("click",".edit-btn",function(){
-            //    var tds=$(this).parents("tr").children();
-            //    $.each(tds, function(i,val){
-            //        var jqob=$(val);
-            //       //跳过第1项 序号,按钮 i < 1 ||
-            //        if(jqob.has('button').length ){
-            //            return true;
-            //        }
-            //        var txt=jqob.text();
-            //        var put=$("<input type='text'>");
-            //        put.val(txt);
-            //        jqob.html(put);
-            //    });
-            //    $(this).html("保存");
-            //    $(this).toggleClass("edit-btn");
-            //    $(this).toggleClass("save-btn");
-            //});
-            //function SaveParameterName(parameterName) {
-
-            //    $("#editable tbody").on("click", ".save-btn", function () {
-            //        var row = t.row($(this).parents("tr"));
-            //        var tds = $(this).parents("tr").children();
-            //        $.each(tds, function (i, val) {
-            //            var jqob = $(val);
-            //            //把input变为字符串
-            //            if (!jqob.has('button').length) {
-            //                var txt = jqob.children("input").val();
-            //                jqob.html(txt);
-            //                //t.cell(jqob).data(txt);//修改DataTables对象的数据
-            //            }
-            //        });
-            //        $(this).html("编辑");
-            //        $(this).toggleClass("edit-btn");
-            //        $(this).toggleClass("save-btn");
-            //        $(this).attr("id","");
-            //        alert(parameterName);
-            //        //var data=row.data();
-            //        //$.ajax({
-            //        //    "url":"",
-            //        //    "data":data,
-            //        //    "type":"post",
-            //        //    "error":function(){
-            //        //        //alert("服务器未正常响应，请重试");
-            //        //    },
-            //        //    "success":function(response){
-            //        //        //alert(response);
-            //        //    }
-            //        //});
-            //    });
-
-            //}
-           
-
-            //$("#addNewTr").on("click",function(){
-            //    t.row.add([
-            //        "<input type='text' id = 'parameterName'/>",
-            //        "<input type='text'/>",
-            //        "<input type='text'/>",
-            //        "<input type='text'/>",
-            //        "<input type='text'/>",
-            //        "<button class='save-btn btn btn-primary btn-xs'id = 'saveparameter'>保存</button>"
-            //    ]).draw();
-            //    $("#saveparameter").on("click", function () {
-                   
-            //        var parameterName = $("#parameterName").val();
-            //        SaveParameterName(parameterName)
-            //        //$.ajax({
-            //        //    "url": "",
-            //        //    "data": data,
-            //        //    "type": "post",
-            //        //    "error": function () {
-            //        //        //alert("服务器未正常响应，请重试");
-            //        //    },
-            //        //    "success": function (response) {
-            //        //        //alert(response);
-            //        //    }
-            //        //});
-            //    });
-            //});
-           
+            $("#addNewTr").on("click",function(){
+                t.row.add([
+                    "<input type='text'/>",
+                    "<input type='text'/>",
+                    "<input type='text'/>",
+                    "<input type='text'/>",
+                    "<input type='text'/>",
+                    "<button class='save-btn btn btn-primary btn-xs'>保存</button>"
+                ]).draw();
+            });
         });
 
     </script>
