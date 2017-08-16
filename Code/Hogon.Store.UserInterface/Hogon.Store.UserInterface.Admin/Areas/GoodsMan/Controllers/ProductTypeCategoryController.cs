@@ -28,29 +28,12 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         {
             return View();
         }
-        /// <summary>
-        /// 修改页
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Add()
-        {
-            return View();
-        }
 
         /// <summary>
         /// 修改页
         /// </summary>
         /// <returns></returns>
         public ActionResult Edit()
-        {
-            return View();
-        }
-
-        /// <summary>
-        /// 详情页
-        /// </summary>
-        /// <returns></returns>
-        public ActionResult Detail()
         {
             return View();
         }

@@ -30,7 +30,7 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         public string Usage { get; set; }
 
         /// <summary>
-        /// 产品Id
+        /// 产品
         /// </summary>
         public Product Product { get; set; }
 

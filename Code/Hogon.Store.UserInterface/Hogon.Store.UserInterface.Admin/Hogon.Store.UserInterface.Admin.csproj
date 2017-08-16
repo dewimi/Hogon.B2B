@@ -454,6 +454,7 @@
     <Content Include="Areas\MarketingMan\Views\Freebie\Detail.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Test.cshtml" />
     <Content Include="Areas\MarketingMan\Views\Freebie\Index.cshtml" />
+    <Content Include="Areas\GoodsMan\Views\ProductGoods\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />

@@ -43,5 +43,15 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// 图片文件
         /// </summary>
         public FileUpload FileUpload { get; set; }
+
+        /// <summary>
+        /// 文件Id
+        /// </summary>
+        public Guid FileUpLoadId { get; set; }
+
+        /// <summary>
+        /// 文件名称
+        /// </summary>
+        public string FileUploadName { get; set; }
     }
 }

@@ -164,6 +164,10 @@
     <Compile Include="Migrations\201708150938408_moveToGit.Designer.cs">
       <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708160034145_editProductGoods.cs" />
+    <Compile Include="Migrations\201708160034145_editProductGoods.Designer.cs">
+      <DependentUpon>201708160034145_editProductGoods.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -261,6 +265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708150938408_moveToGit.resx">
       <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708160034145_editProductGoods.resx">
+      <DependentUpon>201708160034145_editProductGoods.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

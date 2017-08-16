@@ -7,6 +7,9 @@ using Hogon.Store.Repositories.GoodsMan;
 using System;
 using System.Linq;
 using System.Collections.Generic;
+using Hogon.Store.Repositories.Common;
+using Hogon.Framework.Core.Owin;
+using AutoMapper.QueryableExtensions;
 
 namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 {
@@ -24,14 +27,17 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 
         SpecParameterTemplateRepository specParameterTemplateReps = new SpecParameterTemplateRepository();
 
-
         ServiceGoodsRepository serviceGoodsReps = new ServiceGoodsRepository();
 
         GoodsTypeRepository goodsTypeReps = new GoodsTypeRepository();
 
         BrandRepository brandReps = new BrandRepository();
+
         AppCaseRepository appCaseReps = new AppCaseRepository();
+
         InstructionRepository instructionReps = new InstructionRepository();
+
+        FileUploadRepository fileUploadReps = new FileUploadRepository();
 
         /// <summary>
         /// 根据Code查询是否重复
@@ -51,9 +57,24 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public IQueryable<DtoBrand> FindAllBrand()
         {
-            var brandS = brandReps.FindAll();
-            var dtoBrandS = brandS.ConvertTo<Brand, DtoBrand>();
-            return dtoBrandS;
+            var brands = brandReps.FindAll();
+            //var dtoBrands = brands.ConvertTo<Brand, DtoBrand>();
+            var dtoBrands = brands.Select(m => new DtoBrand()
+            {
+                BrandAlias = m.BrandAlias,
+                BrandLogo = m.BrandLogo,
+                BrandName = m.BrandName,
+                City = m.City,
+                Country = m.Country,
+                CreatePerson = m.CreatePerson,
+                CreateTime = m.CreateTime,
+                Id = m.Id,
+                Nation = m.Nation,
+                UpdatePerson = m.UpdatePerson,
+                UpdateTime = m.UpdateTime,
+                Url = m.Url,
+            });
+            return dtoBrands;
         }
 
         /// <summary>
@@ -76,6 +97,36 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             var goodsType = goodsTypeReps.FindAll();
             var dtoGoodsType = goodsType.ConvertTo<GoodsType, DtoGoodsType>();
             return dtoGoodsType;
+        }
+
+        /// <summary>
+        /// 根据产品类型查找规格类型
+        /// </summary>
+        /// <param name="productTypeId"></param>
+        /// <returns></returns>
+        public IQueryable<DtoSpecType> FindSpecTypeByProductTypeId(Guid productTypeId)
+        {
+            if (productTypeId != Guid.Empty)
+            {
+                var specType = specTypeReps.FindAll().Where(m => m.ProductType.Id == productTypeId);
+
+                var dtoSpecType = specType.Select(m => new DtoSpecType()
+                {
+                    Id = m.Id,
+                    CreatePerson = m.CreatePerson,
+                    CreateTime = m.CreateTime,
+                    DisplayMode = m.DisplayMode,
+                    DisplayName = m.DisplayName,
+                    ProductTypeId = productTypeId,
+                    SpecName = m.SpecName,
+                    SpecRemark = m.SpecRemark,
+                    SpecSecondName = m.SpecSecondName,
+                    UpdatePerson = m.UpdatePerson,
+                    UpdateTime = m.UpdateTime,
+                });
+                return dtoSpecType;
+            }
+            return null;
         }
 
         /// <summary>
@@ -179,9 +230,62 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 BrandId = m.Brand.Id,
                 ProductTypeId = m.ProductType.Id,
                 ProductCode = m.ProductCode,
+                BrandName = m.Brand.BrandName,
+                ProductTypeName = m.ProductType.TypeName,
+                SpecParameterTemplate = m.SpecParameterTemplate,
+                DiplaySpecType = m.DiplaySpecType,
             }).First();
 
             return dtoProduct;
+        }
+
+        /// <summary>
+        /// 产品信息添加规格类型，规格参数Json
+        /// </summary>
+        /// <param name="dtoProductGoodsS"></param>
+        /// <param name="dtoProduct"></param>
+        public void ProductAddSepcTypePara(ICollection<DtoProductGoods> dtoProductGoodsS, DtoProduct dtoProduct)
+        {
+            if (dtoProduct.Id != Guid.Empty)
+            {
+                var product = productReps.FindBy(m => m.Id == dtoProduct.Id).First();
+                foreach (var item in dtoProductGoodsS)
+                {
+                    var para = item.SpecParameterS;
+                    var num = para.IndexOf(':');
+                    var parameter = para.Substring((num + 1), num);
+                    var specType = para.Substring(0, num);
+                    if (product.DiplaySpecType != null)
+                    {
+                        foreach (var productSpecType in product.DiplaySpecType.Split(';'))
+                        {
+                            if (productSpecType == specType)
+                            { continue; }
+                            product.DiplaySpecType += specType;
+                        }
+                    }
+                    else
+                    {
+                        product.DiplaySpecType += specType;
+                    }
+                    if (product.SpecParameterTemplate != null)
+                    {
+                        foreach (var productPara in product.SpecParameterTemplate.Split(';'))
+                        {
+                            if (productPara == parameter)
+                            {
+                                continue;
+                            }
+                            product.SpecParameterTemplate += parameter;
+                        }
+                    }
+                    else
+                    {
+                        product.SpecParameterTemplate += parameter;
+                    }
+                }
+                Commit();
+            }
         }
 
         /// <summary>
@@ -192,7 +296,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public int FindProductByRepetition(DtoProduct dtoProduct)
         {
             int count = 0;
-            if (dtoProduct.Id != null)
+            if (dtoProduct.Id != Guid.Empty)
             {
                 //修改时当前产品名字可以不更改
                 count = productReps.FindAll().Where(m => m.Id != dtoProduct.Id && m.ProductName == dtoProduct.ProductName).Count();
@@ -212,6 +316,34 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             }
         }
 
+        /// <summary>
+        /// 产品商品关联服务商品
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="serviceGoodsIds"></param>
+        /// <returns></returns>
+        public bool EditServiceGoodsInProductGoods(Guid id, ICollection<Guid> serviceGoodsIds)
+        {
+            if (id != Guid.Empty)
+            {
+                var product = productReps.FindBy(m => m.Id == id).First();
+                foreach (var serviceGoodsId in serviceGoodsIds)
+                {
+                    var serviceGoods = serviceGoodsReps.FindBy(m => m.Id == serviceGoodsId).First();
+
+                    serviceGoods.Product = product;
+
+                    Mapper.Initialize(cfg => cfg.CreateMap<ServiceGoods, ServiceGoods>());
+                    Mapper.Map<ServiceGoods>(serviceGoods);
+                }
+                Commit();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         ///<summary>
         /// 保存产品信息
@@ -249,6 +381,22 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             }
         }
 
+        /// <summary>
+        /// 删除产品中的服务商品
+        /// </summary>
+        /// <param name="ServiceGoodsId"></param>
+        /// <param name="productId"></param>
+        public void RemoveServiceGoodsInProduct(Guid ServiceGoodsId, Guid productId)
+        {
+            var serviceGoods = serviceGoodsReps.FindBy(m => m.Id == ServiceGoodsId).First();
+
+            serviceGoods.Product = null;
+
+            Mapper.Initialize(cfg => cfg.CreateMap<ServiceGoods, ServiceGoods>());
+            Mapper.Map<ServiceGoods>(serviceGoods);
+
+            Commit();
+        }
 
         /// <summary>
         /// 删除指定产品
@@ -303,18 +451,21 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             ICollection<DtoServiceGoods> dtoServiceGoods = new List<DtoServiceGoods>();
             foreach (var id in ListId)
             {
-                var serviceGoods = serviceGoodsReps.FindBy(m => m.Id == id).Select(s => new DtoServiceGoods()
+                if (id != Guid.Empty)
                 {
-                    GoodsCode = s.GoodsCode,
-                    GoodsDesription = s.GoodsDesription,
-                    GoodsName = s.GoodsName,
-                    GoodsTypeId = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Id),
-                    SalePrice = s.SalePrice,
-                    Id = s.Id,
-                    GoodsTypeNames = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
-                    //IsAvailable=s.IsAvailable,                    
-                }).First();
-                dtoServiceGoods.Add(serviceGoods);
+                    var serviceGoods = serviceGoodsReps.FindBy(m => m.Id == id).Select(s => new DtoServiceGoods()
+                    {
+                        GoodsCode = s.GoodsCode,
+                        GoodsDesription = s.GoodsDesription,
+                        GoodsName = s.GoodsName,
+                        GoodsTypeId = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Id),
+                        SalePrice = s.SalePrice,
+                        Id = s.Id,
+                        GoodsTypeNames = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
+                        //IsAvailable=s.IsAvailable,                    
+                    }).First();
+                    dtoServiceGoods.Add(serviceGoods);
+                }
             }
             return dtoServiceGoods.AsQueryable();
         }
@@ -345,6 +496,34 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 GoodsTypeNames = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
             }).First();
 
+            return dtoServiceGoods;
+        }
+
+        /// <summary>
+        /// 根据产品Id查询服务商品
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public IQueryable<DtoServiceGoods> FindServiceGoodsByProductId(Guid Id)
+        {
+            var product = productReps.FindBy(m => m.Id == Id).First();
+            var serviceGoods = serviceGoodsReps.FindAll().Where(m => m.Product.Id == product.Id);
+            var dtoServiceGoods = serviceGoods.Select(s => new DtoServiceGoods()
+            {
+                Id = s.Id,
+                CreatePerson = s.CreatePerson,
+                CreateTime = s.CreateTime,
+                FIleUploadId = s.FileUpload.Id,
+                FileUploadName = s.FileUpload.FileName,
+                GoodsAlias = s.GoodsAlias,
+                GoodsCode = s.GoodsCode,
+                GoodsDesription = s.GoodsDesription,
+                GoodsName = s.GoodsName,
+                IsAvailable = s.IsAvailable,
+                SalePrice = s.SalePrice,
+                UpdatePerson = s.UpdatePerson,
+                UpdateTime = s.UpdateTime,
+            });
             return dtoServiceGoods;
         }
 
@@ -397,6 +576,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                         serviceGoods.Rela_Goods_GoodsType.Add(rela_Goods_GoodsType);
                     }
                 }
+                serviceGoods.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoServiceGoods.FIleUploadId).First();
                 goodsReps.Add(serviceGoods);
 
                 Commit();
@@ -464,7 +644,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// 删除
         /// </summary>
         /// <param name="Id"></param>
-        public void Remove(Guid Id)
+        public void RemoveServiceGoods(Guid Id)
         {
             var goods = goodsReps.FindBy(p => p.Id == Id).First();
 
@@ -503,6 +683,43 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         }
 
         /// <summary>
+        /// 根据产品查找商品数据
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public IQueryable<DtoProductGoods> FindProductGoodsByProduct(Guid productId)
+        {
+            if (productId != Guid.Empty)
+            {
+                var productGoods = productGoodsReps.FindBy(m => m.Product.Id == productId);
+
+                var dtoProductGooods = productGoods.Select(m => new DtoProductGoods()
+                {
+                    CreatePerson = m.CreatePerson,
+                    CreateTime = m.CreateTime,
+                    DisplaySpecParameterTemplateName = m.DisplaySpecParameterTemplateName,
+                    GoodsAlias = m.GoodsAlias,
+                    GoodsCode = m.GoodsCode,
+                    GoodsDesription = m.GoodsDesription,
+                    GoodsName = m.GoodsName,
+                    Id = m.Id,
+                    IsAvailable = m.IsAvailable,
+                    IsDefaultGoods = m.IsDefaultGoods,
+                    SalePrice = m.SalePrice,
+                    SearchKeywords = m.SearchKeywords,
+                    UpdatePerson = m.UpdatePerson,
+                    UpdateTime = m.UpdateTime,
+                    Weight = m.Weight,
+                    ProductName = m.Product.ProductType.TypeName,
+                    SpecParameterS = m.DisplaySpecParameterTemplateName,
+                });
+
+                return dtoProductGooods;
+            }
+            return null;
+        }
+
+        /// <summary>
         /// 根据商品数据集合生成商品Model
         /// </summary>
         /// <param name="listProductGoods"></param>
@@ -511,14 +728,28 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         {
             DtoProductGoods dtoProductGoods = new DtoProductGoods();
             dtoProductGoods.DtoSpecParameterTemplateS = new List<DtoSpecParameterTemplate>();
-            dtoProductGoods.GoodsName = listProductGoods[0];
-            var typename = listProductGoods[1];
-            dtoProductGoods.Product = productReps.FindBy(m => m.ProductType.TypeName == typename).First();
+
+            dtoProductGoods.GoodsName = listProductGoods[0];//商品名
+            var typename = listProductGoods[1];//产品类型名
+            dtoProductGoods.Product = productReps.FindBy(m => m.ProductType.TypeName == typename).First();//产品
+
+            List<string> listSpecTypeParameter = new List<string>();
             foreach (var item in listProductGoods[2].Split(';'))
             {
                 if (item != "")
                 {
-                    var dtoSpecParameterTemplate = specParameterTemplateReps.FindAll().Where(m => m.ParameterName == item).First();
+                    listSpecTypeParameter.Add(item);//规格类型：规格参数模板
+                }
+            }
+            List<string> listParameter = new List<string>();
+            foreach (var item in listSpecTypeParameter)
+            {
+                var startIndex = item.IndexOf(":") + 1;
+                var parameter = item.Substring(startIndex, (item.Length - startIndex));//规格参数模板
+                if (parameter != "")
+                {
+                    var dtoSpecParameterTemplate = specParameterTemplateReps.FindAll()
+                        .Where(m => m.ParameterName == parameter).First();//规格参数模板
 
                     Mapper.Initialize(cfg => cfg.CreateMap<SpecParameterTemplate, DtoSpecParameterTemplate>());
                     var specParams = Mapper.Map<DtoSpecParameterTemplate>(dtoSpecParameterTemplate);
@@ -526,9 +757,13 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                     dtoProductGoods.DtoSpecParameterTemplateS.Add(specParams);
                 }
             }
-            dtoProductGoods.GoodsCode = listProductGoods[3];
-            dtoProductGoods.GoodsAlias = listProductGoods[4];
-            dtoProductGoods.SalePrice = decimal.Parse(listProductGoods[5]);
+            dtoProductGoods.IsAvailable = bool.Parse(listProductGoods[3]);//是否上架
+            dtoProductGoods.IsDefaultGoods = bool.Parse(listProductGoods[4]);//是否为默认商品
+            dtoProductGoods.GoodsCode = listProductGoods[5];//商品编码
+            dtoProductGoods.GoodsAlias = listProductGoods[6];//商品别名
+            dtoProductGoods.SalePrice = decimal.Parse(listProductGoods[7]);//销售价
+            dtoProductGoods.Weight = decimal.Parse(listProductGoods[8]);//计量单位
+            dtoProductGoods.DisplaySpecParameterTemplateName = listProductGoods[2];//该商品的规格类型：规格参数
             return dtoProductGoods;
         }
 
@@ -537,18 +772,19 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         ///</summary>
         ///<param name ="dtoProductGooods">商品DTO</param>
         ///<returns></returns>
-        public ProductGoods SaveProductGoods(DtoProductGoods dtoProductGooods)
+        public Guid SaveProductGoods(DtoProductGoods dtoProductGooods)
         {
             if (dtoProductGooods.Id == Guid.Empty)
             {
                 //id为空, 对商品信息进行添加操作
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoProductGoods, ProductGoods>());
                 var productGoods = Mapper.Map<ProductGoods>(dtoProductGooods);
+                productGoods.DisplaySpecParameterTemplateName = dtoProductGooods.DisplaySpecParameterTemplateName;
 
                 productGoodsReps.Add(productGoods);
                 Commit();
 
-                return productGoods;
+                return productGoods.Id;
             }
             else
             {
@@ -558,9 +794,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoProductGoods, ProductGoods>());
                 Mapper.Map(dtoProductGooods, productGoods);
+                productGoods.DisplaySpecParameterTemplateName = dtoProductGooods.DisplaySpecParameterTemplateName;
 
                 Commit();
-                return productGoods;
+                return productGoods.Id;
             }
         }
 
@@ -596,64 +833,51 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="AppCaseId">应用案例Id</param>
         /// <returns></returns>
-        public DtoAppCase GetAppCaseById(Guid AppCaseId)
+        public DtoAppCase FindAppCaseById(Guid AppCaseId)
         {
-            var appCase = appCaseReps.FindBy(m => m.Id == AppCaseId).OrderBy(m => m.UpdateTime);
+            var dtoAppCase = appCaseReps.FindBy(m => m.Id == AppCaseId).Select(m => new DtoAppCase()
+            {
+                Usage = m.Usage,
+                UpdateTime = m.UpdateTime,
+                UpdatePerson = m.UpdatePerson,
+                Subject = m.Subject,
+                AppIndustry = m.AppIndustry,
+                Author = m.Author,
+                CreatePerson = m.CreatePerson,
+                CreateTime = m.CreateTime,
+                FileUpLoadId = m.FileUpload.Id,
+                FileUpLoadName = m.FileUpload.FileName,
+                ProductId = m.Product.Id,
+                Id = m.Id,
+            }).First();
 
-            var dtoAppCase = appCase.ConvertTo<AppCase, DtoAppCase>().First();
             return dtoAppCase;
         }
 
         /// <summary>
-        /// 根据主题查询指定应用案例列表
+        /// 根据产品Id查询应用案例
         /// </summary>
-        /// <param name="Subject">主题</param>
+        /// <param name="productId"></param>
         /// <returns></returns>
-        public List<DtoAppCase> GetAppCaseInfoBySubject(string Subject)
+        public IQueryable<AppCase> FindAppCaseByProductId(Guid productId)
         {
-            var appCase = appCaseReps.FindAll().Where(m => m.Subject == Subject).OrderBy(m => m.UpdateTime);
-
-            var appCaseList = appCase.ConvertTo<AppCase, DtoAppCase>().ToList();
-            return appCaseList;
+            var product = productReps.FindBy(m => m.Id == productId).First();
+            var appcases = appCaseReps.FindBy(m => m.Product.Id == product.Id);
+            return appcases;
         }
 
         /// <summary>
-        /// 根据作者查询指定应用案例列表
+        /// 应用案例模糊查询
         /// </summary>
-        /// <param name="Author">作者</param>
+        /// <param name="dtoAppCase"></param>
         /// <returns></returns>
-        public List<DtoAppCase> GetAppCaseInfoByAuthor(string Author)
+        public IQueryable<AppCase> FindAppCaseByLike(DtoAppCase dtoAppCase)
         {
-            var appCase = appCaseReps.FindAll().Where(m => m.Author == Author).OrderBy(m => m.UpdateTime);
 
-            var appCaseList = appCase.ConvertTo<AppCase, DtoAppCase>().ToList();
-            return appCaseList;
-        }
+            var appCases = appCaseReps.FindAll().Where(m => m.Author.Contains(dtoAppCase.Author)
+            || m.AppIndustry.Contains(dtoAppCase.AppIndustry) || m.Subject.Contains(dtoAppCase.Subject));
 
-        /// <summary>
-        /// 根据应用行业查询指定应用案例列表
-        /// </summary>
-        /// <param name="AppIndustry">应用行业</param>
-        /// <returns></returns>
-        public List<DtoAppCase> GetAppCaseInfoByAppIndustry(string AppIndustry)
-        {
-            var appCase = appCaseReps.FindAll().Where(m => m.AppIndustry == AppIndustry).OrderBy(m => m.UpdateTime);
-
-            var appCaseList = appCase.ConvertTo<AppCase, DtoAppCase>().ToList();
-            return appCaseList;
-        }
-
-        /// <summary>
-        /// 根据用途查询指定应用案例列表
-        /// </summary>
-        /// <param name="Usage">用途</param>
-        /// <returns></returns>
-        public List<DtoAppCase> GetAppCaseInfoByAppUsage(string Usage)
-        {
-            var appCase = appCaseReps.FindAll().Where(m => m.Usage == Usage).OrderBy(m => m.UpdateTime);
-
-            var appCaseList = appCase.ConvertTo<AppCase, DtoAppCase>().ToList();
-            return appCaseList;
+            return appCases;
         }
 
         ///<summary>
@@ -662,18 +886,21 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         ///<param name ="dtoAppCase">应用案例DTO</param>
         ///<param name ="AppCaseId">应用案例Id</param>
         ///<returns></returns>
-        public Guid SaveAppCase(DtoAppCase dtoAppCase)
+        public AppCase SaveAppCase(DtoAppCase dtoAppCase)
         {
-            if (dtoAppCase.Id == new Guid())
+            if (dtoAppCase.Id == Guid.Empty)
             {
                 //id为空, 对应用案例信息进行添加操作
-                AppCase appCase = new AppCase();
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoAppCase, AppCase>());
-                var appCaseData = Mapper.Map<AppCase>(appCase);
+                var appCase = Mapper.Map<AppCase>(dtoAppCase);
 
-                appCaseReps.Add(appCaseData);
+                appCase.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoAppCase.FileUpLoadId).First();
+                appCase.Author = UserState.Current.UserName;
+                appCase.Product = productReps.FindBy(m => m.Id == dtoAppCase.ProductId).First();
+
+                appCaseReps.Add(appCase);
                 Commit();
-                return appCaseData.Id;
+                return appCase;
             }
             else
             {
@@ -683,8 +910,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoAppCase, AppCase>());
                 Mapper.Map(dtoAppCase, appCase);
 
+                appCase.Author = UserState.Current.UserName;
+                appCase.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoAppCase.FileUpLoadId).First();
+
                 Commit();
-                return appCase.Id;
+                return appCase;
             }
 
         }
@@ -694,9 +924,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="appCaseId">应用案例Id</param>
         /// <returns></returns>
-        public void DeleteAppCase(Guid appCaseId)
+        public void RemoveAppCase(Guid appCaseId)
         {
-            var AppCase = appCaseReps.FindBy(t => t.Id == appCaseId).OrderBy(m => m.UpdateTime).First();
+            var AppCase = appCaseReps.FindBy(t => t.Id == appCaseId).First();
 
             appCaseReps.Remove(AppCase);
             Commit();
@@ -721,13 +951,40 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="InstructionId">使用说明Id</param>
         /// <returns></returns>
-        public DtoInstruction GetInstructionById(Guid InstructionId)
+        public DtoInstruction FindInstructionById(Guid InstructionId)
         {
-            var instruction = instructionReps.FindBy(m => m.Id == InstructionId).OrderBy(m => m.UpdateTime);
+            var dtoInstruction = instructionReps.FindBy(m => m.Id == InstructionId).Select(m => new DtoInstruction()
+            {
+                AppIndustry = m.AppIndustry,
+                Author = m.Author,
+                CreatePerson = m.CreatePerson,
+                CreateTime = m.CreateTime,
+                FileUpload = m.FileUpload,
+                FileUpLoadId = m.FileUpload.Id,
+                Id = m.Id,
+                ProductId = m.Product.Id,
+                Subject = m.Subject,
+                UpdatePerson = m.UpdatePerson,
+                UpdateTime = m.UpdateTime,
+                Usage = m.Usage,
+                FileUploadName = m.FileUpload.FileName,
+            }).First();
 
-            var dtoInstruction = instruction.ConvertTo<Instruction, DtoInstruction>().First();
             return dtoInstruction;
         }
+
+        /// <summary>
+        /// 根据产品Id查询使用说明
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public IQueryable<Instruction> FindInstructionByProductId(Guid productId)
+        {
+            var product = productReps.FindBy(m => m.Id == productId).First();
+            var instructions = instructionReps.FindBy(m => m.Product.Id == product.Id);
+            return instructions;
+        }
+
         /// <summary>
         /// 使用说明模糊查询
         /// </summary>
@@ -798,23 +1055,23 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         ///<param name ="dtoInstruction">使用说明DTO</param>
         ///<param name ="InstructionId">使用说明Id</param>
         ///<returns></returns>
-        public Guid SaveInstruction(DtoInstruction dtoInstruction)
+        public Instruction SaveInstruction(DtoInstruction dtoInstruction)
         {
 
-            if (dtoInstruction.Id == new Guid())
+            if (dtoInstruction.Id == Guid.Empty)
             {
                 //id为空, 对使用说明信息进行添加操作
-                Instruction instruction = new Instruction();
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoInstruction, Instruction>());
-                var instructionData = Mapper.Map<Instruction>(instruction);
+                var instruction = Mapper.Map<Instruction>(dtoInstruction);
 
-                //给实体类赋值
-                instructionData.Product = productReps.FindBy(m => m.Id == dtoInstruction.Id).OrderBy(m => m.UpdateTime).First();
+                instruction.Author = UserState.Current.UserName;
+                instruction.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoInstruction.FileUpLoadId).First();
+                instruction.Product = productReps.FindBy(m => m.Id == dtoInstruction.ProductId).First();
 
-                instructionReps.Add(instructionData);
+                instructionReps.Add(instruction);
 
                 Commit();
-                return instructionData.Id;
+                return instruction;
             }
             else
             {
@@ -824,8 +1081,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoInstruction, Instruction>());
                 Mapper.Map(dtoInstruction, instruction);
 
+                instruction.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoInstruction.FileUpLoadId).First();
+
                 Commit();
-                return instruction.Id;
+                return instruction;
             }
 
         }
@@ -835,9 +1094,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="InstructionId">使用说明Id</param>
         /// <returns></returns>
-        public void DeleteInstruction(Guid InstructionId)
+        public void RemoveInstruction(Guid InstructionId)
         {
-            var Instruction = instructionReps.FindBy(m => m.Id == InstructionId).OrderBy(m => m.UpdateTime).First();
+            var Instruction = instructionReps.FindBy(m => m.Id == InstructionId).First();
 
             instructionReps.Remove(Instruction);
             Commit();
@@ -845,4 +1104,5 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         #endregion
     }
 }
+
 
