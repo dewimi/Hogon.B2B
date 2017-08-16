@@ -22,45 +22,31 @@ namespace Hogon.Store.Web.Extension
         {
             IQueryable<SearchAttribute> attributes = AttributeCollecion.SearchAttributes;
             StringBuilder sb = new StringBuilder();
-            //sb.Append("<table class = \"searchtable\">");
+
             sb.Append("");
 
             int count = 0;
             foreach (var attr in attributes)
             {
-                if (count % 2 == 0)
-                {
-                    //sb.Append("<tr>");
-                    sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
-                }
-                //sb.Append("<td>");
-                //sb.Append("<div  class=\"searchcategory\" >" + attr.DisplayName + ":" + "</div>");
-                //sb.Append("</td>");
-                //sb.Append("<td>");
-                //sb.Append(SmartList.RenderSearch(attr));
-                //sb.Append("</td>");
+
+                sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
+
                 if (attr.DisplayName == "至")
                 {
-                    sb.Append("<label  class=\"pull-left searchcategory text-right\">" + attr.DisplayName + ":" + "</label>");
+                    sb.Append("<label  class=\"pull-left searchcategory text-right\" style=\"width:30px;\">" + attr.DisplayName + ":" + "</label>");
                 }
                 else
                 {
                     sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
                 }
-                sb.Append("<div class=\"col-sm-4\">"+SmartList.RenderSearch(attr)+"</div>");
+                sb.Append("<div class=\"col-sm-4\">" + SmartList.RenderSearch(attr) + "</div>");
 
-
-                if (count % 2 == 1)
-                {
-                    //sb.Append("</tr>");
-                    sb.Append("</div>");
-                }
+                sb.Append("</div>");
 
                 count++;
 
             }
 
-            //sb.Append("</table>");
             sb.Append("");
 
             return sb.ToString();
@@ -118,7 +104,6 @@ namespace Hogon.Store.Web.Extension
             sb.Append("var $td" + count + " = $(\"<td></td>\").text((index + 1));");
             foreach (var attr in fieldAttributes)
             {
-
                 sb.Append("var $td" + (count + 1) + "=" + SmartList.RenderFieldColumn(attr));
                 count++;
 
@@ -201,7 +186,7 @@ namespace Hogon.Store.Web.Extension
             {
 
                 string td = "var $td" + (count + 1) + " = $(\"<td></td>\")"
-                        + ".html(\""+ detail + ""+edit+""+delete+"\");";
+                        + ".html(\"" + detail + "" + edit + "" + delete + "\");";
                 sb.Append(td);
                 string tr = "$tr";
                 for (int i = 0; i <= count + 1; i++)
