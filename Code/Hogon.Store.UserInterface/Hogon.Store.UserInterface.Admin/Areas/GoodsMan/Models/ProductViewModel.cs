@@ -14,17 +14,21 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Models
         /// 产品名称
         /// </summary>
         [Field("产品名称")]
+        [TextSearch("产品名称")]
         public string ProductName { get; set; }
 
         /// <summary>
         /// 产品编码
         /// </summary>
+        [Field("产品编码")]
+        [TextSearch("产品编码")]
         public string ProductCode { get; set; }
 
         /// <summary>
         /// 产品类型
         /// </summary>
         [Field("产品类型")]
+        [TextSearch("产品类型")]
         public string ProductTypeName { get; set; }
 
         /// <summary>
