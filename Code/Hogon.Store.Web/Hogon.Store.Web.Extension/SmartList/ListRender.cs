@@ -22,34 +22,74 @@ namespace Hogon.Store.Web.Extension
         {
             IQueryable<SearchAttribute> attributes = AttributeCollecion.SearchAttributes;
             StringBuilder sb = new StringBuilder();
-
             sb.Append("");
 
             int count = 0;
             foreach (var attr in attributes)
             {
-
-                sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
+                if (count % 2 == 0)
+                {
+                    sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
+                }
 
                 if (attr.DisplayName == "至")
                 {
-                    sb.Append("<label  class=\"pull-left searchcategory text-right\" style=\"width:30px;\">" + attr.DisplayName + ":" + "</label>");
+                    sb.Append("<label  class=\"pull-left searchcategory text-right\""
+                       + "style = \"width:30px\">" + attr.DisplayName + ":" + "</label>");
                 }
                 else
                 {
-                    sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
+                    sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >"
+                        + attr.DisplayName + ":" + "</label>");
                 }
                 sb.Append("<div class=\"col-sm-4\">" + SmartList.RenderSearch(attr) + "</div>");
 
-                sb.Append("</div>");
-
+                if (count % 2 == 1)
+                {
+                    sb.Append("</div>");
+                }
+                else if((attributes.Count()-1) == count)
+                {
+                    if (attributes.Count() == 1 || count == 2)
+                        sb.Append("</div>");
+                }
                 count++;
 
             }
 
+
             sb.Append("");
 
             return sb.ToString();
+            //IQueryable<SearchAttribute> attributes = AttributeCollecion.SearchAttributes;
+            //StringBuilder sb = new StringBuilder();
+
+            //sb.Append("");
+
+            //int count = 0;
+            //foreach (var attr in attributes)
+            //{
+
+            //    sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
+
+            //    if (attr.DisplayName == "至")
+            //    {
+            //        sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
+            //    }
+            //    else
+            //    {
+            //        sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
+            //    }
+            //    sb.Append("<div class=\"col-sm-4\">" + SmartList.RenderSearch(attr) + "</div>");
+
+            //    sb.Append("</div>");
+
+            //    count++;
+
+            //}
+            //sb.Append("");
+
+            //return sb.ToString();
         }
 
         /// <summary>
@@ -104,6 +144,7 @@ namespace Hogon.Store.Web.Extension
             sb.Append("var $td" + count + " = $(\"<td></td>\").text((index + 1));");
             foreach (var attr in fieldAttributes)
             {
+
                 sb.Append("var $td" + (count + 1) + "=" + SmartList.RenderFieldColumn(attr));
                 count++;
 
