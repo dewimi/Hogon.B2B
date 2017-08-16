@@ -45,6 +45,11 @@ namespace Hogon.Store.Models.Dto.Security
         public string Icon { get; set; }
 
         /// <summary>
+        /// 排序
+        /// </summary>
+        public int Sort { get; set; }
+
+        /// <summary>
         /// 菜单是否可用
         /// </summary>
         public bool IsEnable { get; set; }

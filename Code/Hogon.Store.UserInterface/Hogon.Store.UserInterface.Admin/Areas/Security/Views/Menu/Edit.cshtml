@@ -256,6 +256,7 @@
                     $scope.parentname = response.data.Name;
                     $scope.parentUrl = response.data.URL;
                     $scope.icon = response.data.Icon;
+                    $scope.sort = response.data.Sort;
                     if (response.data.DisplayIsEnable == "可用")
                         $scope.enabled = true;
                     else
@@ -311,7 +312,10 @@
                     } else if (enabled == "icheckbox_square-green") {
                         enabled = false;
                     }
-                    var jsondata = { "Id": $scope.menuid, "ParentId": previousMenu, "Code": $scope.code, "Name": $scope.parentname, "Url": $scope.parentUrl,"Icon":$scope.icon, "IsEnable": enabled, generalFunction: arr }
+                    var jsondata = {
+                        "Id": $scope.menuid, "ParentId": previousMenu, "Code": $scope.code, "Name": $scope.parentname, "Url": $scope.parentUrl, "Icon": $scope.icon, "IsEnable": enabled,
+                        "Sort": $scope.sort, generalFunction: arr
+                    }
                     $http({
                         method: 'POST',
                         url: '/Security/Menu/Save',

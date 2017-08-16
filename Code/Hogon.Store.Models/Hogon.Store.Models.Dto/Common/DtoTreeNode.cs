@@ -41,6 +41,11 @@ namespace Hogon.Store.Models.Dto.Common
         public string Icon { get; set; }
 
         /// <summary>
+        /// 排序
+        /// </summary>
+        public int Sort { get; set; }
+
+        /// <summary>
         /// 子级
         /// </summary>
         public List< DtoTreeNode> nodes { get; set; }
