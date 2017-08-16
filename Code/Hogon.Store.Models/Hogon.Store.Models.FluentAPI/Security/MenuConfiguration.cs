@@ -1,4 +1,5 @@
-﻿using Hogon.Store.Models.Entities.Security;
+﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
+using Hogon.Store.Models.Entities.Security;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Hogon.Store.Models.FluentAPI.Security
@@ -7,7 +8,7 @@ namespace Hogon.Store.Models.FluentAPI.Security
     {
         public MenuConfiguration()
         { 
-            Property(e => e.Code).HasMaxLength(50);
+            Property(e => e.Code).HasMaxLength(50).IsRequired().HasUniqueIndexAnnotation("MenuCodeIndexer", 1);
             Property(e => e.Name).HasMaxLength(20);
             Property(e => e.URL).HasMaxLength(60);
 
