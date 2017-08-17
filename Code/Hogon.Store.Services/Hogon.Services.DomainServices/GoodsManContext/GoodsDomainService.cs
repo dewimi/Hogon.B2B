@@ -50,11 +50,7 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     dtoSpecParameterTemplate.UpdatePerson = s.UpdatePerson;
                     dtoSpecParameterTemplate.UpdateTime = s.UpdateTime;
                     dtoSpecParameterTemplate.Id = spec.Id;
-                   // dtoSpecParameterTemplate.SpecType = specTypeReps.FindBy(m => m.Id == spec.SpecTypeId).First();
                     dtoSpecParameterTemplate.ParameterName = spec.ParameterName;
-                    //dtoSpecParameterTemplate.SpecTypeId = spec.SpecTypeId;
-                    //dtoSpecParameterTemplate.SpecType.ProductType = productTypeReps.FindBy(m => m.Id == dtoProduct.ProductTypeId).First();
-
 
                     dtoSpecParameterTemplateS.Add(dtoSpecParameterTemplate);
                 }
@@ -68,13 +64,16 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
             foreach (var item in goodsParams)
             {
                 var specParameter = "";
+                var specTypeName = "";
                 foreach (var specParams in item)
                 {
-                    //var specType = specTypeReps.FindBy(m => m.Id == specParams.SpecTypeId).First();
-             
-                    specParameter += specParams.ParameterName+";";
+                    var specType = specTypeReps.FindBy(m => m.Id == specParams.SpecTypeId).First();
+
+                    specParameter = specParams.ParameterName + ";";
+                    specTypeName += specType.SpecName + ":" + specParameter;
                 }
-                result +=specParameter;
+                //result = specParameter;
+                result = specTypeName;
 
                 DtoProductGoods dtoProductGoods = new DtoProductGoods()
                 {
@@ -86,15 +85,12 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     GoodsName = dtoProduct.ProductName,
                     IsAvailable = true,
                     IsDefaultGoods = true,
-                    //Product = productReps.FindBy(m => m.Id == dtoProduct.Id).First(),
                     SalePrice = dtoProduct.SalerBasicPrice,
                     SearchKeywords = dtoProduct.SearchPrimaryKey,
                     DtoSpecParameterTemplateS = null,//规格参数模板集合
-                    ServiceGoods = null,//服务商品集合
-                    ChildrenGoods = null,
+                    //ChildrenGoods = null,//子商品集合
                     ProductId = productReps.FindBy(m => m.Id == dtoProduct.Id).First().Id,
                     ProductName = productReps.FindBy(m => m.Id == dtoProduct.Id).First().ProductName,
-                    ServiccGoodsNames = "",
                     SpecParameterS = result,
                     UpdatePerson = UserState.Current.UserName,
                     UpdateTime = DateTime.Now,
@@ -165,7 +161,7 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                 // 当规格类型层数不是最末层级时，继续调用递归函数
                 if (typeParams.Count > 0)
                 {
-                    ManipulateSpecParameters(ref goodsParamtersList, typeParams, currentPath, currentNode);
+                    ManipulateSpecParameters(ref goodsParamtersList, typeParams.ToArray().ToList(), currentPath, currentNode);
                 }
                 // 当规格类型层数已是最末层级时，创建新商品数据节点路径并加入goodsParamtersList
                 else
@@ -175,68 +171,9 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     newPath.Add(currentNode);
 
                     goodsParamtersList.Add(newPath);
+
                 }
             }
         }
-
-        /// <summary>
-        /// 返回参数结果集
-        /// </summary>
-        /// <param name="listDtoSpecType"></param>
-        /// <param name="listDtoSpecTypeParameter"></param>
-        /// <param name="num"></param>
-        /// <returns></returns>
-        public ICollection<Goods> CreateSpec(DtoProduct dtoProduct, ICollection<SpecParameterTemplate> parameters)
-        {
-            List<ICollection<SpecParameterTemplate>> goodsParamtersList = new List<ICollection<SpecParameterTemplate>>();
-
-            CreateGoodsList(ref goodsParamtersList, dtoProduct.ProductType.SpecTypes, parameters);
-
-            //ICollection<ProductGoods> iProductGoods=new  
-            ProductGoods productGoods = new ProductGoods();
-            foreach (var item in goodsParamtersList)
-            {
-                productGoods.SpecParameterTemplate = item;
-            }
-
-            return null;
-        }
-
-        private void CreateGoodsList(ref List<ICollection<SpecParameterTemplate>> goodsParamtersList, ICollection<SpecType> specTypes, ICollection<SpecParameterTemplate> parameters)
-        {
-            var currentSpecType = specTypes.FirstOrDefault();
-            if (currentSpecType != null)
-            {
-                var parameter = parameters.Where(m => m.SpecType == currentSpecType);
-
-                ////parameters.Join<>;
-                //parameters.Join<SpecParameterTemplate, SpecParameterTemplate, SpecParameterTemplate>(parameter,s=>s.);
-            }
-        }
-
-        public string Create(List<DtoSpecType> listDtoSpecType, List<DtoSpecTypeParameter> listDtoSpecTypeParameter, int num)
-        {
-            string children = "";
-            string result = "";
-            for (int i = num; i < listDtoSpecType.Count(); i++)
-            {
-                for (int j = 0; j < listDtoSpecTypeParameter.Count(); j++)
-                {
-                    if (listDtoSpecTypeParameter[j].SpecTypeId == listDtoSpecType[i].Id)
-                    {
-                        string childrenNode = "";
-                        children += listDtoSpecTypeParameter[j].ParameterName;
-                        children = listDtoSpecTypeParameter[j].ParameterName + " " + childrenNode;
-                        if (num < listDtoSpecType.Count())
-                        {
-                            childrenNode = Create(listDtoSpecType, listDtoSpecTypeParameter, num + 1);
-                        }
-                    }
-                }
-                result = listDtoSpecType[i].SpecName + ":" + children;
-            }
-
-            return children;
-        }
-    }
+   }
 }

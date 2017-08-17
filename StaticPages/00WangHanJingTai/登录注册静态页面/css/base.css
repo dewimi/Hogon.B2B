@@ -1,0 +1,36 @@
+﻿@charset "utf-8";
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section {
+    margin:0;
+    padding:0;
+}
+body,button,input,select,textarea {
+    font:14px 'Microsoft YaHei' #000000;
+}
+input,select,textarea {
+    font-size:100%;
+}
+fieldset,img {
+    border:none;
+}
+iframe {
+    display:block;
+}
+ol,ul,li {
+    list-style:none;
+}
+a:hover {
+    text-decoration: none;
+}
+ins,a {
+    text-decoration:none;
+}
+a:focus,*:focus {
+    outline:none;
+}
+
+.wrapper{
+    width:1190px;
+    max-width:1190px;
+    padding:0;
+    margin:0 auto;
+}

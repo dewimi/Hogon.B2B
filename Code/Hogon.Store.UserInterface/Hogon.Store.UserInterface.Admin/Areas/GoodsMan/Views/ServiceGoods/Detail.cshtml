@@ -1,61 +1,52 @@
 ﻿
 @{
-	ViewBag.Title = "服务商品详情";
-	Layout = "~/Views/Shared/_DetailLayout.cshtml";
+    ViewBag.Title = "服务商品详情";
+    Layout = "~/Views/Shared/_DetailLayout.cshtml";
 }
-
-@section formHeader{
-	<div class="header">
-		<h2 class="headerline">服务商品详情</h2>
-	</div>
-}
-
-
-
 <form name="myForm" novalidate>
-	<div class="form-group">
-		<div class="basic">
-			<input type="hidden" name="id" ng-model="Guid" />
-			<table>
-				<tr>
-					<td><span>服务名称</span></td>
-					<td>
-						<span id="GoodsName"></span>
-					</td>
-				</tr>
-				<tr>
-					<td><span>商品分类:</span></td>
-					<td>
-						<span id="Name"></span>
-					</td>
-				</tr>
-				<tr>
-					<td><span>商品编码:</span></td>
-					<td>
-						<span id="GoodsCode"></span>
-					</td>
-				</tr>
-				<tr>
-					<td><span>销售价:</span></td>
-					<td>
-						<span id="SalePrice"></span>
-					</td>
-				</tr>
+    <div class="form-group">
+        <div class="basic">
+            <input type="hidden" name="id" ng-model="Guid" />
+            <table>
+                <tr>
+                    <td><span>服务名称</span></td>
+                    <td>
+                        <span id="GoodsName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>商品分类:</span></td>
+                    <td>
+                        <span id="Name"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>商品编码:</span></td>
+                    <td>
+                        <span id="GoodsCode"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td><span>销售价:</span></td>
+                    <td>
+                        <span id="SalePrice"></span>
+                    </td>
+                </tr>
                 <tr>
                     <td><span>商品描述:</span></td>
                     <td>
                         <span id="GoodsDesription"></span>
                     </td>
                 </tr>
-				<tr>
-					<td><span>图片:</span></td>
-					<td>
-						@*<span id="Pic"></span>*@
-					</td>
-				</tr>
-			</table>
-		</div>
-	</div>
+                <tr>
+                    <td><span>图片:</span></td>
+                    <td>
+                        <a href="~/Content/fileupload/10ca510a-ff32-4fbf-a891-dee745c0afa5.pdf"></a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </form>
 <script type="text/javascript">
 	var app = angular.module('myApp', []);
@@ -87,6 +78,9 @@
 			}, function errorCallback(response) {
 				// 请求失败执行代码
 			});
+		}
+		$scope.BackServiceGoods = function () {
+		    window.location.href = "/GoodsMan/ServiceGoods/Index";
 		}
 	});
 </script>

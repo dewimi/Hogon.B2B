@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-treeview.min.css" rel="stylesheet" />
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap-treeview.min.js"></script>
+</head>
+<body>
+<input type="text" id="txt_departmentname" name="txt_departmentname" class="form-control" value="" onclick="$('#treeview').show()" placeholder="分类名称">
+<div id="treeview" style="display: none;"></div>
+
+    <script type="text/javascript">
+        var data1 = [{"id":0,"name":"测试0","price":"&yen;0","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":1,"name":"测试1","price":"&yen;1","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":2,"name":"测试2","price":"&yen;2","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":3,"name":"测试3","price":"&yen;3","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":4,"name":"测试4","price":"&yen;4","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":5,"name":"测试5","price":"&yen;5","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":6,"name":"测试6","price":"&yen;6","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":7,"name":"测试7","price":"&yen;7","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":8,"name":"测试8","price":"&yen;8","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":9,"name":"测试9","price":"&yen;9","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":10,"name":"测试10","price":"&yen;10","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":11,"name":"测试11","price":"&yen;11","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":12,"name":"测试12","price":"&yen;12","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":13,"name":"测试13","price":"&yen;13","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":14,"name":"测试14","price":"&yen;14","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":15,"name":"测试15","price":"&yen;15","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":16,"name":"测试16","price":"&yen;16","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":17,"name":"测试17","price":"&yen;17","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":18,"name":"测试18","price":"&yen;18","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":19,"name":"测试19","price":"&yen;19","column1":"c10","column2":"c20","column3":"c30","column4":"c40"},{"id":20,"name":"测试20","price":"&yen;20","column1":"c10","column2":"c20","column3":"c30","column4":"c40"}];
+
+//        $(function() {
+//            $.ajax({
+//                type : "post",
+//                url : "",
+//                success : function(data, status) {
+//                    if (status == "success") {
+//                        data1 = eval("[" + data + "]");
+//                    }
+//                },
+//                error : function() {
+//                    toastr.error('Error');
+//                },
+//            });
+//        });
+
+        function buildDomTree() {
+            var data = [];
+            var root = "所有分类";
+            function walk(nodes, data) {
+                if (!nodes) {
+                    return;
+                }
+                $.each(nodes, function(id, node) {
+                    var obj = {
+                        id : id,
+                        text : node.name != null ? node.name : root
+                        //                                      tags : [ node.isLeaf == true ? node.
+                        //                                              + ' child elements'
+                        //                                              : '' ]
+                    };
+                    if (node.isLeaf = true) {
+                        obj.nodes = [];
+                        walk(node.children, obj.nodes);
+                    }
+                    data.push(obj);
+                });
+            }
+
+            walk(data1, data);
+            return data;
+        }
+
+        $("#txt_departmentname").click(function() {
+            var options = {
+                bootstrap2 : false,
+                showTags : true,
+                levels : 5,
+                showCheckbox : true,
+                checkedIcon : "glyphicon glyphicon-check",
+                data : buildDomTree(),
+                onNodeSelected : function(event, data) {
+                    $("#txt_departmentname").val(data.text);
+                    $("#treeview").hide();
+                }
+            };
+
+            $('#treeview').treeview(options);
+        });
+    </script>
+</body>
+</html>

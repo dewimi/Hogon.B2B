@@ -176,7 +176,7 @@ a:hover {
     margin-left: 45px;
 }
 
-.panel-heading {
+/*.panel-heading {
     font-family: "宋体";
     padding: 7px;
     margin-bottom: -4px;
@@ -195,6 +195,17 @@ a:hover {
     background-color: #337ab7 !important;
     border-color: #2e6da4 !important;
 }
+    .btn-primary,.pagination > .active > a {
+    background-color: #33a5e0;
+    border-color: #33a5e0;
+    color: #FFFFFF;
+}
+.btn-primary:hover{
+    background-color: #1c8eca;
+    border-color: #1c8eca;
+    color: #FFFFFF;
+}
+*/
 .animated .header,.animated .basicparameter{
     background-color: #fff;
 }
@@ -205,16 +216,7 @@ a:hover {
     border-width: 4px 0 1px 0;
     padding: 14px 15px 7px;
 }
-.btn-primary,.pagination > .active > a {
-    background-color: #33a5e0;
-    border-color: #33a5e0;
-    color: #FFFFFF;
-}
-.btn-primary:hover{
-    background-color: #1c8eca;
-    border-color: #1c8eca;
-    color: #FFFFFF;
-}
+
 .tablelist {
     padding: 15px 20px 0 20px;
 }

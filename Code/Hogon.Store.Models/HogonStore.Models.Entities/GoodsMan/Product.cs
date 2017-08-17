@@ -70,5 +70,20 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 商品
         /// </summary>
         public ICollection<ProductGoods> ProductGoods { get; set; }
+
+        /// <summary>
+        /// 服务商品集合
+        /// </summary>
+        public ICollection<ServiceGoods> ServiceGoods { get; set; }
+
+        /// <summary>
+        /// 规格类型String
+        /// </summary>
+        public string DiplaySpecType { get; set; }
+
+        /// <summary>
+        /// 规格参数模板String
+        /// </summary>
+        public string SpecParameterTemplate { get; set; }
     }
 }

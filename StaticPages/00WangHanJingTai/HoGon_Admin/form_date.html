@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title></title>
+    <link href="css/bootstrap.min.css?v=3.4.0" rel="stylesheet">
+    <link href="css/font-awesome.css?v=4.3.0" rel="stylesheet">
+    <link href="css/plugins/datapicker/datepicker3.css" rel="stylesheet">
+    <link href="css/plugins/clockpicker/clockpicker.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css?v=3.0.0" rel="stylesheet">
+
+</head>
+
+<body class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>日期选择器 <small>https://github.com/eternicode/bootstrap-datepicker</small></h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h3>
+                                日期选择器
+                            </h3>
+                        <p>
+                            简单好用的日期选择器
+                        </p>
+
+                        <div class="form-group" id="data_1">
+                            <label class="font-noraml">简单示例</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" value="2014-11-11">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="data_2">
+                            <label class="font-noraml">年视图</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" value="2014-11-11">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="data_3">
+                            <label class="font-noraml">10年视图</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" value="2014-11-11">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="data_4">
+                            <label class="font-noraml">选择月份</label>
+                            <div class="input-group date">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                <input type="text" class="form-control" value="2014-11-11">
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="data_5">
+                            <label class="font-noraml">范围选择</label>
+                            <div class="input-daterange input-group" id="datepicker">
+                                <input type="text" class="input-sm form-control" name="start" value="2014-11-11" />
+                                <span class="input-group-addon">到</span>
+                                <input type="text" class="input-sm form-control" name="end" value="2014-11-17" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ibox">
+                    <div class="ibox-title">
+                        <h5>时间选择 <small>http://weareoutman.github.io/clockpicker/</small></h5>
+                    </div>
+                    <div class="ibox-content">
+                        <h3>
+                                时间选择
+                            </h3>
+                        <div class="input-group clockpicker" data-autoclose="true">
+                            <input type="text" class="form-control" value="09:30">
+                            <span class="input-group-addon">
+                                    <span class="fa fa-clock-o"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 全局js -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js?v=3.4.0"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js?v=1.0.0"></script>
+
+    <!-- Data picker -->
+    <script src="js/plugins/datapicker/bootstrap-datepicker.js"></script>
+    <!---->
+    <script src="js/plugins/clockpicker/clockpicker.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+
+            $('#data_1 .input-group.date').datepicker({
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                calendarWeeks: true,
+                autoclose: true
+            });
+
+            $('#data_2 .input-group.date').datepicker({
+                startView: 1,
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                format: "yyyy-mm-dd"
+            });
+
+            $('#data_3 .input-group.date').datepicker({
+                startView: 2,
+                todayBtn: "linked",
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true
+            });
+
+            $('#data_4 .input-group.date').datepicker({
+                minViewMode: 1,
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true,
+                todayHighlight: true
+            });
+
+            $('#data_5 .input-daterange').datepicker({
+                keyboardNavigation: false,
+                forceParse: false,
+                autoclose: true
+            });
+
+            $('.clockpicker').clockpicker();
+
+
+
+
+        });
+
+
+
+
+
+
+
+    </script>
+
+
+
+
+</body>
+
+</html>

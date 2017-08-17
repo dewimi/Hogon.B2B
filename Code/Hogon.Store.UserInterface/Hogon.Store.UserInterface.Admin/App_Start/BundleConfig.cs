@@ -47,8 +47,10 @@ namespace Hogon.Store.UserInterface.Admin
                       , "~/Content/smalot-datetimepicker/bootstrap-datetimepicker.css"));
 
              bundles.Add(new ScriptBundle("~/Content/css/form").Include(
-                  //"~/Content/css/form.css"
-                   "~/Content/css/index.css"));
+                   //"~/Content/css/form.css"
+                   //"~/Content/css/index.css",
+                   "~/Content/css/style.css"
+                   ));
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 产品型号
         /// </summary>
-        public ProductType ProductType { get; set; }
+        public DtoProductType ProductType { get; set; }
 
         /// <summary>
         /// 产品类型名称
@@ -42,12 +42,12 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 品牌名称
         /// </summary>
-        public string BrandName{ get; set; }
+        public string BrandName { get; set; }
 
         /// <summary>
         /// 品牌
         /// </summary>
-        public Brand Brand { get; set; }
+        public DtoBrand Brand { get; set; }
 
         /// <summary>
         /// 搜索关键词
@@ -82,6 +82,21 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 商品
         /// </summary>
-        public ICollection<ProductGoods> ProductGoods { get; set; }
+        public ICollection<DtoProductGoods> ProductGoods { get; set; }
+
+        /// <summary>
+        /// 规格类型String
+        /// </summary>
+        public string DiplaySpecType { get; set; }
+
+        /// <summary>
+        /// 规格参数模板String
+        /// </summary>
+        public string SpecParameterTemplate { get; set; }
+
+        /// <summary>
+        /// 服务商品集合
+        /// </summary>
+        public ICollection<DtoServiceGoods> ServiceGoods { get; set; }
     }
 }

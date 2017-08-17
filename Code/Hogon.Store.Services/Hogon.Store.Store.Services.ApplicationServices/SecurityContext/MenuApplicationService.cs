@@ -41,6 +41,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                 ParentName = m.Parent.Name,
                 URL = m.URL,
                 Icon = m.Icon,
+                Sort = m.Sort,
                 IsEnable = m.IsEnable,
                 CreateTime = m.CreateTime,
                 CreatePerson = m.CreatePerson,
@@ -59,11 +60,11 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         public List<DtoTreeNode> GetTreeMenus(string userName)
         {
 
-            var allMenus = menuReps.FindAll().ToList();
+            var allMenus = menuReps.FindAll().OrderBy(m=>m.Sort).ToList();
             //根据用户id查询相应的权限菜单
             var menu = _userReps.FindBy(r => r.Name == userName).SelectMany
                    (r => r.Rela_Role_User).Select(r => r.Role);
-            var menus = menu.SelectMany(a => a.Authorities).Select(m => m.Menu);
+            var menus = menu.SelectMany(a => a.Authorities).Select(m => m.Menu).OrderBy(m=>m.Sort);
             //查询菜单下有权限的按钮
             var generalFunc = _userReps.FindBy(r => r.Name == userName).SelectMany
                    (r => r.Rela_Role_User).Select(r => r.Role).SelectMany(a => a.Authorities)
@@ -110,7 +111,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         {
 
             List<DtoTreeNode> nodeList = new List<DtoTreeNode>();
-            var parentMenus = allMenus.Where(m => m.ParentId == null);
+            var parentMenus = allMenus.Where(m => m.ParentId == null).OrderBy(m=>m.Sort);
 
             // 遍历一级菜单
             foreach (var parentMenu in parentMenus)
@@ -121,7 +122,8 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                     ParentId = null,
                     text = parentMenu.Name,
                     URL = parentMenu.URL,
-                    Icon = parentMenu.Icon
+                    Icon = parentMenu.Icon,
+                    Sort = parentMenu.Sort
                 };
 
                 // 根据一级菜单Id查找二级菜单
@@ -132,8 +134,8 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                     ParentId = m.ParentId,
                     text = m.Name,
                     URL = m.URL,
-                    Icon = m.Icon
-
+                    Icon = m.Icon,
+                    Sort = m.Sort
                 });
 
                 parentNode.nodes = childrenNodes.ToList();

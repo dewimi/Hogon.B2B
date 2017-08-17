@@ -55,6 +55,12 @@ namespace Hogon.Store.UserInterface.Admin.Models.Home
         public string Icon { get; set; }
 
         /// <summary>
+        /// 排序
+        /// </summary>
+        [Field("排序")]
+        public int Sort { get; set; }
+
+        /// <summary>
         /// 菜单是否可用
         /// </summary>
         [Field("是否可用")]

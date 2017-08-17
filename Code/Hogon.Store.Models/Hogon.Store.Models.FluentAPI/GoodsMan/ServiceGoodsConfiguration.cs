@@ -13,6 +13,7 @@ namespace Hogon.Store.Models.FluentAPI.GoodsMan
 
         public ServiceGoodsConfiguration()
         {
+            HasOptional(m => m.Product).WithMany(m => m.ServiceGoods).Map(m => m.MapKey("ServiceGoods_ProductId"));
         }
     }
 }

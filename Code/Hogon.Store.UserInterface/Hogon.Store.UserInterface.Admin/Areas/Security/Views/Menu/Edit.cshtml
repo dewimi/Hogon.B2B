@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">上级菜单</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" ng-model="previousMenu" name="PreviousMenu" id="parent">
+                                    <select class="form-control" name="PreviousMenu" id="parent">
                                         <option ng-model="previousMenu" class="typename"></option>
                                     </select>
                                 </div>
@@ -47,6 +47,13 @@
                                 <label class="col-sm-3 control-label">小图标</label>
                                 <div class="col-sm-6">
                                     <input type="text" name="icon" class="form-control" ng-model="icon" >
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">排序</label>
+                                <div class="col-sm-6">
+                                    <input type="text" name="icon" class="form-control" ng-model="sort">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -245,10 +252,12 @@
                     menuId = response.data.Id;
                     $("#parent option[value='meren']").remove();
                     $(".typename").text(response.data.ParentName);
+                    $(".typename").val(response.data.ParentId);
                     $scope.code = response.data.Code;
                     $scope.parentname = response.data.Name;
                     $scope.parentUrl = response.data.URL;
                     $scope.icon = response.data.Icon;
+                    $scope.sort = response.data.Sort;
                     if (response.data.DisplayIsEnable == "可用")
                         $scope.enabled = true;
                     else
@@ -304,7 +313,10 @@
                     } else if (enabled == "icheckbox_square-green") {
                         enabled = false;
                     }
-                    var jsondata = { "Id": $scope.menuid, "ParentId": previousMenu, "Code": $scope.code, "Name": $scope.parentname, "Url": $scope.parentUrl,"Icon":$scope.icon, "IsEnable": enabled, generalFunction: arr }
+                    var jsondata = {
+                        "Id": $scope.menuid, "ParentId": previousMenu, "Code": $scope.code, "Name": $scope.parentname, "Url": $scope.parentUrl, "Icon": $scope.icon, "IsEnable": enabled,
+                        "Sort": $scope.sort, generalFunction: arr
+                    }
                     $http({
                         method: 'POST',
                         url: '/Security/Menu/Save',

@@ -59,6 +59,6 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 规格参数模板集合
         /// </summary>
-        public IEnumerable<SpecTypeParameter> SpecTypeParameter { get; set; }
+        public IEnumerable<DtoSpecTypeParameter> SpecTypeParameter { get; set; }
     }
 }

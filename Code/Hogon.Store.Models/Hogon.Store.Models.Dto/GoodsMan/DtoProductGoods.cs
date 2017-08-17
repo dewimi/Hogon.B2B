@@ -57,7 +57,7 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 规格参数名称
         /// </summary>
-        public string SpecParameterS { get; set;}
+        public string SpecParameterS { get; set; }
 
         /// <summary>
         /// 规格参数模板
@@ -72,27 +72,21 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 产品Id
         /// </summary>
-        public Guid ProductId{ get; set; }
+        public Guid ProductId { get; set; }
 
         /// <summary>
         /// 产品信息
         /// </summary>
-        public Product Product { get; set; }
-
-
-        /// <summary>
-        /// 服务商品名称
-        /// </summary>
-        public string ServiccGoodsNames{ get; set; }
-
-        /// <summary>
-        /// 服务商品集合
-        /// </summary>
-        public IEnumerable<ServiceGoods> ServiceGoods { get; set; }
+        public DtoProduct Product { get; set; }
 
         /// <summary>
         /// 配件
         /// </summary>
-        public IEnumerable<Goods> ChildrenGoods { get; set; }
+       // public ICollection<Goods> ChildrenGoods { get; set; }
+
+        /// <summary>
+        /// 显示规格参数，格式：（规格类型：规格参数）
+        /// </summary>
+        public string DisplaySpecParameterTemplateName { get; set; }
     }
 }

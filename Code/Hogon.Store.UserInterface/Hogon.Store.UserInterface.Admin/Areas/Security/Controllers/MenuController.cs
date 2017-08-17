@@ -75,7 +75,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         /// <returns></returns>
         protected override IQueryable<MenuViewModel> GetAllModels()
         {
-            var dtoMenu = menuSvc.GetMenus().OrderByDescending(m => m.CreateTime);
+            var dtoMenu = menuSvc.GetMenus().OrderBy(m => m.Sort);
             Mapper.Initialize(cfg => cfg.CreateMap<DtoMenu, MenuViewModel>());
             var viewModels = dtoMenu.ProjectTo<MenuViewModel>();
 

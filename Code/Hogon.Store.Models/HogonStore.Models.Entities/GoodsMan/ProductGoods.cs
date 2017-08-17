@@ -22,7 +22,7 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 搜索关键词
         /// </summary>
         public string SearchKeywords { get; set; }
-        
+
         /// <summary>
         /// 是否为默认商品
         /// </summary>
@@ -31,17 +31,12 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// <summary>
         /// 计量单位
         /// </summary>
-        public  decimal Weight{get;set;}
+        public decimal Weight { get; set; }
 
         /// <summary>
         /// 产品信息
         /// </summary>
         public Product Product { get; set; }
-
-        /// <summary>
-        /// 服务商品集合
-        /// </summary>
-        public ICollection<ServiceGoods> ServiceGoods { get; set; }
 
         /// <summary>
         /// 规格参数模板
@@ -57,6 +52,11 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 配件
         /// </summary>
         public override ICollection<Goods> ChildrenGoods { get; set; }
+
+        /// <summary>
+        /// 显示规格参数，格式：（规格类型：规格参数）
+        /// </summary>
+        public string DisplaySpecParameterTemplateName { get; set; }
 
     }
 }
