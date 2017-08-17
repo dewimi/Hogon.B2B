@@ -223,7 +223,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// </summary>
         /// <param name="listProductGoods"></param>
         /// <returns></returns>
-        public ActionResult SaveProductGoods(List<string> listProductGoods)
+        public ActionResult SaveProductGoods(Guid productId, List<string> listProductGoods)
         {
             var dtoProductGoods = goodsSvc.TransformForProductGoods(listProductGoods);
             var count = goodsSvc.FindGoodsByCode(dtoProductGoods.GoodsCode);
@@ -232,7 +232,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
                 throw new UserFriendlyException("商品编码不可重复");
             }
 
-            var productGoods = goodsSvc.SaveProductGoods(dtoProductGoods);
+            var productGoods = goodsSvc.SaveProductGoods(productId,dtoProductGoods);
             return Json(productGoods);
         }
 

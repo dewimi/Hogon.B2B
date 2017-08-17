@@ -31,7 +31,7 @@
     }
     .checkbox{
             margin-top: 5px;
-            margin-bottom: 5px;;
+            margin-bottom: 5px;
         }
         .checkbox + .checkbox, .radio + .radio {
             margin-top: 10px;
@@ -205,10 +205,10 @@
                                                             <h5>规格参数</h5>
                                                         </div>
                                                         <div class="ibox-content" style="height: 240px;" id="SpecParameter">
-                                                            @*<div class="row">
-                                                                <div class="col-sm-6 checkbox i-checks">
-                                                                    <label><input type="checkbox" value=""> <i></i> 选项1</label>
-                                                                </div>
+                                                            @* <div class="row" >
+    <div class="col-sm-6 checkbox i-checks">
+         <label><input type="checkbox" value=""> <i></i> 选项1</label>
+     </div>
                                                             </div>*@
                                                         </div>
                                                     </div>
@@ -842,14 +842,13 @@
                             //联动绑定规格参数
                             var row = $("<div class='row' id='" + Id + "'></div>");
                             $.each(response.data, function (index, v) {
-                                var checkbox = $("<div class='col-sm-6 checkbox i-checks'  ><label id='" + v.Id +
-                                     "'; value='" + v.ParameterName + "'><input id='" + v.Id +
-                                     "' data-name='SpecParameter'  type='checkbox' value=''> <i></i> " + v.ParameterName +
+                                var checkbox = $("<div class='col-sm-6 checkbox i-checks'><label><input id='" + v.Id +
+                                     "' data-name='" + Id + "'  type='checkbox' value='"+ v.ParameterName +"' > <i></i> " + v.ParameterName +
                                      "</label></div>");
-                                row.append(checkbox);
+                                row.append(checkbox); 
                             });
-                            row.append($("<div class='hr-line-dashed'></div>"))
                             $("#SpecParameter").append(row);
+                            $("#SpecParameter").append($("<div class='hr-line-dashed'></div>"))
                             $("#ParaContent").attr("style", "display:block");
                         } else {
                             //联动删除规格参数
@@ -866,9 +865,7 @@
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
-
         }
-
 
         //保存产品
         $scope.SaveProduct = function () {
@@ -918,20 +915,30 @@
                 if (v.checked) {
                     typeJsonArray[num1] = new Array();
                     var num = 0;
-                    $.each($('label[id="' + v.id + '"]').children("input"), function (index, item) {
-                        if (item.checked) {
+                    $.each($("input[data-name='"+v.id+"']"), function (index, item) {
+                        if (item.checked)
+                        {
                             childrenJsonArray[num] = new Object();
                             childrenJsonArray[num].Id = item.id;
-                            childrenJsonArray[num].SpecTypeId = $(this).parent("div").attr("id");
+                            childrenJsonArray[num].ParameterName = $(this).val();
+                            childrenJsonArray[num].SpecTypeId = $(this).attr("data-name");
                             typeJsonArray[num1][num] = childrenJsonArray[num];
                             num++;
                         }
+                        //if (item.checked) {
+                        //    childrenJsonArray[num] = new Object();
+                        //    childrenJsonArray[num].Id = item.id;
+                        //    childrenJsonArray[num].SpecTypeId = $(this).parent("div").parent("div").attr("id");
+                        //    typeJsonArray[num1][num] = childrenJsonArray[num];
+                        //    num++;
+                        //}
                     });
                     if (typeJsonArray[num1][num - 1] != null) {
                         num1++;
                     }
                 }
             });
+            console.info(typeJsonArray);
             var productTypeId = $("#ProductType").val();
             var brandId = $("#Brand").val();
             if (productTypeId != "" || brandId != "" || num != 0) {
@@ -1477,16 +1484,13 @@
             });
 
             listProductGoods = listchildren;
-
             $(this).html("编辑");
             $(this).toggleClass("edit-btn");
             $(this).toggleClass("save-btn");
-            var data = row.data();
-            console.info("--------------------------")
-            console.info(listProductGoods);
+            var s = Id;
             $.ajax({
                 url: "/GoodsMan/ProductGoods/SaveProductGoods",
-                data: { "listProductGoods": listProductGoods },
+                data: { "productId": Id, "listProductGoods": listProductGoods },
                 type: "post",
                 error: function (asd) {
                     //alert("服务器未正常响应，请重试");

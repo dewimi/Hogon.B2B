@@ -10,6 +10,10 @@ namespace Hogon.Store.Repositories.MarketingMan
 {
     public class FreebieRepository: EFRepository<Freebie>
     {
+       public Freebie DeleteFreebie(Freebie freebie)
+		{
+			return DeleteObject(freebie);
+		}
 
     }
 }

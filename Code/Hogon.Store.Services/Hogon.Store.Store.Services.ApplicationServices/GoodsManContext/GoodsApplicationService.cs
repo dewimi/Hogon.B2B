@@ -737,10 +737,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             var typename = listProductGoods[1];//产品类型名
             var product = productReps.FindBy(m => m.ProductType.TypeName == typename).First();//产品
 
-            Mapper.Initialize(cfg => cfg.CreateMap<Product, DtoProduct>());
-            var productData= Mapper.Map<DtoProduct>(product);
+            //Mapper.Initialize(cfg => cfg.CreateMap<Product, DtoProduct>());
+            //var productData= Mapper.Map<DtoProduct>(product);
 
-            dtoProductGoods.Product = productData;
+            //dtoProductGoods.Product = productData;
 
             List <string> listSpecTypeParameter = new List<string>();
             foreach (var item in listProductGoods[2].Split(';'))
@@ -781,13 +781,18 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         ///</summary>
         ///<param name ="dtoProductGooods">商品DTO</param>
         ///<returns></returns>
-        public Guid SaveProductGoods(DtoProductGoods dtoProductGooods)
+        public Guid SaveProductGoods(Guid productId, DtoProductGoods dtoProductGooods)
         {
             if (dtoProductGooods.Id == Guid.Empty)
             {
                 //id为空, 对商品信息进行添加操作
+
+                var product = productReps.FindBy(m => m.Id == productId).First();
+
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoProductGoods, ProductGoods>());
                 var productGoods = Mapper.Map<ProductGoods>(dtoProductGooods);
+
+                productGoods.Product = product;
                 productGoods.DisplaySpecParameterTemplateName = dtoProductGooods.DisplaySpecParameterTemplateName;
 
                 productGoodsReps.Add(productGoods);
