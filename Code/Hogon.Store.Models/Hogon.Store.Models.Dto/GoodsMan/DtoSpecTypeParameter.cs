@@ -17,6 +17,6 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 规格类型
         /// </summary>
-        public SpecType SpecType { get; set; }
+        public DtoSpecType SpecType { get; set; }
     }
 }

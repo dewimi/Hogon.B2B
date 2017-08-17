@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using Hogon.Store.Repositories.Common;
 using Hogon.Framework.Core.Owin;
 using AutoMapper.QueryableExtensions;
+using Hogon.Store.Models.Dto.Common;
+using Hogon.Store.Models.Entities.Common;
 
 namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 {
@@ -376,6 +378,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoProduct, Product>());
                 Mapper.Map(dtoProduct, product);
 
+                product.Brand = brandReps.FindBy(m => m.Id == dtoProduct.BrandId).First();
+
+                product.ProductType = productTypeReps.FindBy(m => m.Id == dtoProduct.ProductTypeId).First();
+
                 Commit();
                 return product.Id;
             }
@@ -388,12 +394,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <param name="productId"></param>
         public void RemoveServiceGoodsInProduct(Guid ServiceGoodsId, Guid productId)
         {
-            var serviceGoods = serviceGoodsReps.FindBy(m => m.Id == ServiceGoodsId).First();
+            var product = productReps.Include("ServiceGoods").Where(m => m.Id == productId).First();
+            var serviceGoods = product.ServiceGoods.Where(m => m.Id == ServiceGoodsId).First();
 
-            serviceGoods.Product = null;
-
-            Mapper.Initialize(cfg => cfg.CreateMap<ServiceGoods, ServiceGoods>());
-            Mapper.Map<ServiceGoods>(serviceGoods);
+            product.ServiceGoods.Remove(serviceGoods);
 
             Commit();
         }
@@ -731,9 +735,14 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 
             dtoProductGoods.GoodsName = listProductGoods[0];//商品名
             var typename = listProductGoods[1];//产品类型名
-            dtoProductGoods.Product = productReps.FindBy(m => m.ProductType.TypeName == typename).First();//产品
+            var product = productReps.FindBy(m => m.ProductType.TypeName == typename).First();//产品
 
-            List<string> listSpecTypeParameter = new List<string>();
+            Mapper.Initialize(cfg => cfg.CreateMap<Product, DtoProduct>());
+            var productData= Mapper.Map<DtoProduct>(product);
+
+            dtoProductGoods.Product = productData;
+
+            List <string> listSpecTypeParameter = new List<string>();
             foreach (var item in listProductGoods[2].Split(';'))
             {
                 if (item != "")
@@ -953,13 +962,16 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public DtoInstruction FindInstructionById(Guid InstructionId)
         {
-            var dtoInstruction = instructionReps.FindBy(m => m.Id == InstructionId).Select(m => new DtoInstruction()
+
+            Mapper.Initialize(cfg => cfg.CreateMap<FileUpload, DtoFileUpload>());
+
+            var dtoInstruction = instructionReps.FindAll().Select(m => new DtoInstruction()
             {
                 AppIndustry = m.AppIndustry,
                 Author = m.Author,
                 CreatePerson = m.CreatePerson,
                 CreateTime = m.CreateTime,
-                FileUpload = m.FileUpload,
+                FileUpload = Mapper.Map<DtoFileUpload>(m.FileUpload),
                 FileUpLoadId = m.FileUpload.Id,
                 Id = m.Id,
                 ProductId = m.Product.Id,
@@ -968,7 +980,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 UpdateTime = m.UpdateTime,
                 Usage = m.Usage,
                 FileUploadName = m.FileUpload.FileName,
-            }).First();
+            }).First() ;
 
             return dtoInstruction;
         }
@@ -1081,7 +1093,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoInstruction, Instruction>());
                 Mapper.Map(dtoInstruction, instruction);
 
+                instruction.Author = UserState.Current.UserName;
                 instruction.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoInstruction.FileUpLoadId).First();
+                instruction.Product = productReps.FindBy(m => m.Id == dtoInstruction.ProductId).First();
 
                 Commit();
                 return instruction;

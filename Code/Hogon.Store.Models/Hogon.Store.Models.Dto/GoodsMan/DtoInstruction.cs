@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.Common;
-using Hogon.Store.Models.Entities.GoodsMan;
+﻿using Hogon.Store.Models.Dto.Common;
 using System;
 
 namespace Hogon.Store.Models.Dto.GoodsMan
@@ -37,12 +36,12 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 产品
         /// </summary>
-        public Product Product { get; set; }
+        public DtoProduct Product { get; set; }
 
         /// <summary>
         /// 图片文件
         /// </summary>
-        public FileUpload FileUpload { get; set; }
+        public DtoFileUpload FileUpload { get; set; }
 
         /// <summary>
         /// 文件Id

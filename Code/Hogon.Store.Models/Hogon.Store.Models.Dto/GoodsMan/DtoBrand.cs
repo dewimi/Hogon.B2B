@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.Common;
-using Hogon.Store.Models.Entities.GoodsMan;
+﻿using Hogon.Store.Models.Dto.Common;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -69,12 +68,12 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 产品集合
         /// </summary>
-        public virtual ICollection<Product> Product { get; set; }
+        public virtual ICollection<DtoProduct> Product { get; set; }
 
         /// <summary>
         /// 品牌商品分类关联集合
         /// </summary>
-        public virtual ICollection<Rela_Brand_GoodsType> Rela_Brand_GoodsType { get; set; }
+        public virtual ICollection<DtoRela_Brand_GoodsType> Rela_Brand_GoodsType { get; set; }
 
         /// <summary>
         /// 文件id
@@ -89,6 +88,6 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 图片文件
         /// </summary>
-        public FileUpload FileUpload { get; set; }
+        public DtoFileUpload FileUpload { get; set; }
     }
 }

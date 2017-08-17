@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.GoodsMan;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,11 +19,11 @@ namespace Hogon.Store.Models.Dto.GoodsMan
 		/// <summary>
 		/// 商品
 		/// </summary>
-		public Goods Goods { get; set; }
+		public DtoGoods Goods { get; set; }
 
 		/// <summary>
 		/// 商品类型
 		/// </summary>
-		public GoodsType GoodsType { get; set; }
+		public DtoGoodsType GoodsType { get; set; }
 	}
 }

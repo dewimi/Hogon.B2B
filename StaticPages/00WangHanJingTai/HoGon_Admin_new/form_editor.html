@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+    <link href="css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="css/animate.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .checkbox{
+            margin-top: 5px;
+            margin-bottom: 5px;;
+        }
+        .checkbox + .checkbox, .radio + .radio {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body class="gray-bg">
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>富文本编辑器</h5>
+                </div>
+                <div class="ibox-content">
+                    <div id="editor"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>商品分类</h5>
+                </div>
+                <div class="ibox-content" style="height: 240px;overflow-y:auto; ">
+                    <div class="row" id="fu">
+                        <div class="col-sm-6 checkbox i-checks">
+                            <label><input type="checkbox" value=""> <i></i> 选项1</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>分类参数</h5>
+                </div>
+                <div class="ibox-content" style="height: 240px;">
+                    <div class="row" id="zi">
+                        <div class="col-sm-6 checkbox i-checks">
+                            <label><input type="checkbox" value=""> <i></i> 选项1</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 全局js -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
+<script src="js/plugins/wangEditor/wangEditor.min.js"></script>
+<!-- iCheck-->
+<script src="js/plugins/iCheck/icheck.min.js"></script>
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E(('#editor'));
+    editor.customConfig.uploadImgServer = '/upload';
+    editor.customConfig.uploadImgShowBase64 = true;
+    editor.create();
+
+    $(function () {
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
+    });
+</script>
+
+
+</body>
+
+</html>

@@ -7785,7 +7785,7 @@ body.skin-3 {
     padding: 14px 15px 7px;
 }
 .control-label {
-    line-height:34px;
+    /*line-height:34px;*/
 }
 .searching  .col-sm-2,.searching .col-sm-4,.searching .col-sm-5 {
     padding-right: 0;
