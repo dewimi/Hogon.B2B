@@ -17,10 +17,9 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
 {
-    public class FreebieApplicationService: BaseApplicationService
+    public class FreebieApplicationService : BaseApplicationService
     {
         FreebieRepository freebieRepository = new FreebieRepository();
-        FreebieLineRepository freebieLineRes = new FreebieLineRepository();
         ProductRepository productRepository = new ProductRepository();
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
         ProductGoodsRepository productGoodsRes = new ProductGoodsRepository();
@@ -58,7 +57,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         /// <returns></returns>
         public Product GetFreebieMsg(Guid id)
         {
-            var freebie = productRepository.FindBy(t => t.Id ==id).First();
+            var freebie = productRepository.FindBy(t => t.Id == id).FirstOrDefault();
             return freebie;
         }
 
@@ -90,9 +89,9 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             var dtoFreebieLine = freebieLine.Select(m => new DtoProductGoods()
             {
                 Id = m.Id,
-                GoodsCode=m.GoodsCode,
-                SpecParameterS=" ", //规格类型：规格参数格式JSON
-                Weight=m.Weight
+                GoodsCode = m.GoodsCode,
+                SpecParameterS = "mid", //规格类型：规格参数格式JSON
+                Weight = m.Weight
             });
 
             return dtoFreebieLine;
@@ -104,38 +103,117 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         /// <param name="FreebieCatalogId">赠品分类id</param>
         /// <param name="dtoFreebie"></param>
         /// <param name="ProductId">赠品id</param>
-        public void SaveFreebieMsg(Guid FreebieCatalogId, DtoFreebie dtoFreebie, Guid ProductId)
+        public void SaveFreebieMsg(Guid FreebieCatalogId, DtoFreebie dtoFreebie, Guid ProductId, Guid[] ProductGoodsId, int[] Qupta)
         {
             //保存Freebie表
-            //dtoFreebie.FreebieCatalog = new FreebieCatalog();
-            dtoFreebie.FreebieCatalog = freebieCatalogRepository.FindBy(m=>m.Id==FreebieCatalogId).First();
+            //dtoFreebie.FreebieCatalog = freebieCatalogRepository.FindBy(m => m.Id == FreebieCatalogId).First();
+
             Mapper.Initialize(cfg => cfg.CreateMap<DtoFreebie, Freebie>());
             var freebie = Mapper.Map<Freebie>(dtoFreebie);
             freebie.IsPublish = dtoFreebie.IsPublish;
             freebie.LimitBuyAmount = dtoFreebie.LimitBuyAmount;
             freebie.Description = dtoFreebie.Description;
             freebie.FreebiSortNum = dtoFreebie.FreebiSortNum;
-            freebie.FreebieCatalog.Id = dtoFreebie.FreebieCatalog.Id;
-            freebie.Product = productRepository.FindBy(m=>m.Id==ProductId).First();
+            //freebie.FreebieCatalog.Id = dtoFreebie.FreebieCatalogId;
+            freebie.FreebieCatalog = freebieCatalogRepository.FindBy(m => m.Id == FreebieCatalogId).First();
+            freebie.Product = productRepository.FindBy(m => m.Id == ProductId).First();
             freebieRepository.Add(freebie);
-            Commit();
 
             //保存FreebieLine表
-            var freebieLine = new FreebieLine();
-            freebieLine.ProductGoods= productGoodsRes.FindBy(m => m.Product.Id == ProductId).FirstOrDefault();
-            freebieLine.Freebie = freebieRepository.FindBy(m=>m.Id==freebie.Id).First();
-            freebieLineRes.Add(freebieLine);
+            for (int i = 0; i < ProductGoodsId.Length; i++)
+            {
+                var freebieLine = new FreebieLine();
+                Guid proGoodId = ProductGoodsId[i];
+                freebieLine.ProductGoods = productGoodsRes.FindBy(m => m.Id == proGoodId).FirstOrDefault();
+                freebieLine.Quota = Qupta[i];
+                //freebieLine.Freebie = freebieRepository.FindBy(m => m.Id == freebie.Id).First();
+                freebie.FreebieLines.Add(freebieLine);
+                //freebieRepository.deleteObject  删除
+            }
 
             Commit();
         }
 
+        /// <summary>
+        /// 获取赠品信息列表
+        /// </summary>
+        /// <returns></returns>
         public IQueryable<DtoFreebieLine> FindFreebieLine()
         {
-            var freebieLine = freebieLineRes.FindAll();
-            var dtoFreebieLine = freebieLine.ConvertTo<FreebieLine, DtoFreebieLine>();
+            var freebieLine = freebieRepository.FindAll();
+            var dtoFreebieLine = freebieLine.Select(m => new DtoFreebieLine()
+            {
+                Id = m.Id,
+                FreebieCaltalogName = m.FreebieCatalog.FreebieCatalogName,
+                FreebieName = m.Product.ProductName,
+                CreatePerson = m.CreatePerson,
+                CreateTime = m.CreateTime,
+                UpdatePerson = m.UpdatePerson,
+                UpdateTime = m.UpdateTime
+            });
 
             return dtoFreebieLine;
         }
+
+        /// <summary>
+        /// 获取赠品信息
+        /// </summary>
+        /// <param name="id">赠品id</param>
+        /// <returns></returns>
+        public DtoFreebie GetFreebieList(Guid id)
+        {
+            var freebie = freebieRepository.FindBy(t => t.Id == id).Select(m => new DtoFreebie()
+            {
+                Description = m.Description,
+                //dtoFreebieCatalog = m.FreebieCatalog,
+                FreebieCatalogName = m.FreebieCatalog.FreebieCatalogName,
+                Sort = m.FreebieCatalog.Sort,
+                FreebieLines = m.FreebieLines,
+                //Product = m.Product,
+                FreebiSortNum = m.FreebiSortNum,
+                IsPublish = m.IsPublish,
+                LimitBuyAmount = m.LimitBuyAmount,
+                Id = m.Id,
+                FreebieCatalogId = m.FreebieCatalog.Id,
+                ProductId = m.Product.Id,
+                ProductCode = m.Product.ProductCode,
+                ProductName = m.Product.ProductName
+
+            }).FirstOrDefault();
+
+            return freebie;
+        }
+
+        /// <summary>
+        /// 获取赠品列表
+        /// </summary>
+        /// <param name="id">赠品id</param>
+        /// <returns></returns>
+        public IQueryable<DtoFreebieLines> AddFrebieList(Guid id)
+        {
+            var freebie = freebieRepository.FindBy(m => m.Id == id).SelectMany(f => f.FreebieLines);
+            var dtoFreebie = freebie.Select(m => new DtoFreebieLines()
+            {
+                GoodsCode=m.ProductGoods.GoodsCode,
+                Weight = m.ProductGoods.Weight,
+                Quota = m.Quota, Id=m.ProductGoods.Id,
+                SpecParameterS ="M"
+            });
+
+            return dtoFreebie;
+        }
+
+        /// <summary>
+        /// 删除赠品
+        /// </summary>
+        /// <param name="id">赠品id</param>
+        public void DeleteFreebie(Guid id)
+        {
+            var freebie = freebieRepository.FindBy(m => m.Id == id).First();
+            freebieRepository.DeleteFreebie(freebie);
+            Commit();
+        }
+
 
     }
 }
