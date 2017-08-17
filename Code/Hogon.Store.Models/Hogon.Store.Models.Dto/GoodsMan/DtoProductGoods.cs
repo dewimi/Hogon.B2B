@@ -77,7 +77,7 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 产品信息
         /// </summary>
-        public Product Product { get; set; }
+        public DtoProduct Product { get; set; }
 
         /// <summary>
         /// 配件

@@ -1,6 +1,5 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 using Hogon.Store.Models.Entities.MarketingMan;
-using System;
 using System.Collections.Generic;
 
 namespace Hogon.Store.Models.Entities.GoodsMan
@@ -10,7 +9,6 @@ namespace Hogon.Store.Models.Entities.GoodsMan
     /// </summary>
     public abstract class Goods :BaseEntity
     {
-
         public Goods()
         {
             Rela_Goods_GoodsType = new HashSet<Rela_Goods_GoodsType>();
