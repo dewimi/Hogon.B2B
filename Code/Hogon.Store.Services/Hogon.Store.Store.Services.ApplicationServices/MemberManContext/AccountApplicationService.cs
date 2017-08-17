@@ -2,8 +2,10 @@
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.Owin;
 using Hogon.Framework.Core.UnitOfWork;
+using Hogon.Store.Models.Dto.HRMan;
 using Hogon.Store.Models.Dto.MemberMan;
 using Hogon.Store.Models.Dto.Security;
+using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
 using Hogon.Store.Repositories.MemberMan;
@@ -21,6 +23,8 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
     public class AccountApplicationService : BaseApplicationService
     {
         AccountRepository accountRepository = new AccountRepository();
+        EnterpriseRepository enterpriseReoisitory = new EnterpriseRepository();
+        PersonRepository personRepository = new PersonRepository();
         AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
@@ -339,6 +343,30 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                 return dtoAccount;
             }
 
+        }
+
+        /// <summary>
+        /// 保存用户信息到企业下
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public void SaveUserInfo(Guid id)
+        {
+            if (id != new Guid())
+            {
+                DtoStaff staff = new DtoStaff
+                {
+                    Person = personRepository.FindBy(m => m.Id == id).First(),
+                   // Enterprise = 
+
+                };
+                Mapper.Initialize(cfg => cfg.CreateMap<DtoStaff, Staff>());
+                var menu = Mapper.Map<Staff>(staff);
+
+
+                Commit();
+
+            }
         }
     }
 }

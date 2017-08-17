@@ -167,5 +167,14 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             return Json(dtoAccount);
         }
 
+        /// <summary>
+        /// 保存用户信息到企业下
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult SaveUserInfo(Guid id)
+        {
+            return Json("");
+        }
     }
 }

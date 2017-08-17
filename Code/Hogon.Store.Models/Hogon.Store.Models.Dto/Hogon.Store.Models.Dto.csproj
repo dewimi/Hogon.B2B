@@ -63,6 +63,7 @@
     <Compile Include="GoodsMan\DtoServiceGoods.cs" />
     <Compile Include="GoodsMan\DtoInstruction.cs" />
     <Compile Include="GoodsMan\DtoProduct.cs" />
+    <Compile Include="HRMan\DtoStaff.cs" />
     <Compile Include="MarketingMan\DtoFreebie.cs" />
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
     <Compile Include="MemberMan\DtoAccount.cs" />

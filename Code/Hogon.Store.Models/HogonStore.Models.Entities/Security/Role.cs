@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Hogon.Store.Models.Entities.MemberMan;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -19,38 +20,52 @@ namespace Hogon.Store.Models.Entities.Security
         /// 角色Id
         /// </summary>
         public Guid Id { get; set; }
+
         /// <summary>
         /// 角色名称
         /// </summary>
         public string RoleName { get; set; }
+
         /// <summary>
         /// 是否可用
         /// </summary>
         public bool IsEnable { get; set; }
+
         /// <summary>
         /// 是否管理员
         /// </summary>
         public bool IsAdministrator { get; set; }
+
         /// <summary>
         /// 角色创建时间
         /// </summary>
         public DateTime CreatedTime { get; set; }
+
         /// <summary>
         /// 角色修改时间
         /// </summary>
         public DateTime UpdatedTime { get; set; }
+
         /// <summary>
         /// 角色创建人Id
         /// </summary>
         public Guid CreatorId { get; set; }
+
         /// <summary>
         /// 角色修改人Id
         /// </summary>
         public Guid UpdaterId { get; set; }
+
+        /// <summary>
+        /// 企业
+        /// </summary>
+        public Enterprise Enterprise { get; set; }
+
         /// <summary>
         /// 用户角色关联集合
         /// </summary>
         public virtual ICollection<Rela_Role_User> Rela_Role_User { get; set; }
+
         /// <summary>
         /// 权限集合
         /// </summary>

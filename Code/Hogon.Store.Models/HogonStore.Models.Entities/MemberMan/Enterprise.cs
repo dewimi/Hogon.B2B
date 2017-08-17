@@ -1,4 +1,5 @@
 ﻿using Hogon.Store.Models.Entities.HRMan;
+using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,7 @@ namespace Hogon.Store.Models.Entities.MemberMan
         public Enterprise()
         {
             Staffs = new HashSet<Staff>();
+            Roles = new HashSet<Role>();
         }
 
         /// <summary>
@@ -46,5 +48,11 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// 员工信息
         /// </summary>
         public ICollection<Staff> Staffs { get; set; }
+
+        /// <summary>
+        /// 角色集合
+        /// </summary>
+        public ICollection<Role> Roles { get; set; }
+
     }
 }
