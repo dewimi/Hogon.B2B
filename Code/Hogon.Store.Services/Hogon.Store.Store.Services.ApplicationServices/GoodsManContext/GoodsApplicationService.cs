@@ -378,6 +378,10 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoProduct, Product>());
                 Mapper.Map(dtoProduct, product);
 
+                product.Brand = brandReps.FindBy(m => m.Id == dtoProduct.BrandId).First();
+
+                product.ProductType = productTypeReps.FindBy(m => m.Id == dtoProduct.ProductTypeId).First();
+
                 Commit();
                 return product.Id;
             }

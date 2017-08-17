@@ -69,12 +69,12 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// 查询所有品牌赋值给下拉框
         /// </summary>
         /// <returns></returns>
-      //  [HttpPost]
         public ActionResult FindAllBrandForDrop()
         {
             var dtoBrandS = goodsSvc.FindAllBrand();
             return Json(dtoBrandS);
         }
+
         /// <summary>
         /// 查询所有产品类型赋值给下拉框
         /// </summary>

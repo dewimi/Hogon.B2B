@@ -41,6 +41,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                 ParentName = m.Parent.Name,
                 URL = m.URL,
                 Icon = m.Icon,
+                Sort = m.Sort,
                 IsEnable = m.IsEnable,
                 CreateTime = m.CreateTime,
                 CreatePerson = m.CreatePerson,

@@ -309,5 +309,36 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
 
             return currentUser;
         }
+
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public DtoAccount GetUserInfo(string userInfo)
+        {
+
+            Account acount = null;
+            if (userInfo.Length == 11)
+            {
+                acount = accountRepository.FindBy(m => m.PhoneNumber == userInfo).OfType<Person>().FirstOrDefault();
+            }
+            else
+            {
+                acount = accountRepository.FindBy(m => m.Name == userInfo).OfType<Person>().FirstOrDefault();
+            }
+            if (acount == null)
+            {
+                return null;
+            }
+            else
+            {
+                Mapper.Initialize(cfg => cfg.CreateMap<Account, DtoAccount>());
+                var dtoAccount = Mapper.Map<DtoAccount>(acount);
+
+                return dtoAccount;
+            }
+
+        }
     }
 }

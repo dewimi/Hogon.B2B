@@ -1,0 +1,121 @@
+﻿@{
+    ViewBag.Title = "人员管理";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeIn">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="tabs-container ibox">
+                <ul class="nav nav-tabs bg-f">
+                    <li class="active"><a href="#tab-01" data-toggle="tab">邀请用户</a></li>
+                    <li class=""><a href="#tab-02" data-toggle="tab">添加用户</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="tab-01" class="tab-pane active">
+                        <div class="panel-body">
+                            <form method="get" class="form-horizontal" id="commentForm">
+                                <div class="ibox-title">
+                                    <h5>输入用户名或用户手机号</h5>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <input type="text" class="form-control" ng-model="userName">
+
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-white glyphicon glyphicon-search" ng-click="GetUserInfo()">
+                                            查 询
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+                    <div id="tab-02" class="tab-pane">
+                        <div class="panel-body">
+                            <p>Bootstrap 使用到的某些 HTML 元素和 CSS 属性需要将页面设置为 HTML5 文档类型。在你项目中的每个页面都要参照下面的格式进行设置。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style=" width: 900px;height:270px;margin-left: -450px !important;margin-top:160px;">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">新增功能菜单</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>用户名</th>
+                                    <th>邮 箱</th>
+                                    <th>手机号</th>
+                                </tr>
+                            </thead>
+                            <tbody class="tbodylist">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="">邀 请</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
+
+        $scope.GetUserInfo = function () {
+
+            $http({
+                method: 'POST',
+                url: '/Security/User/GetUserInfo',
+                data: JSON.stringify({ userInfo: $scope.userName })
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                console.log(response.data);
+                if (response.data == "") {
+                    alert("未找到该用户");
+                } else {
+                    $("#myModalLabel").text("邀请以下用户到企业");
+                    $('#myModal').modal();
+                    var $tr = $("<tr name='DataTr'></tr>");
+                    var $td1 = $("<td></td>").text(response.data.Name);
+                    var $td2 = $("<td></td>").text(response.data.EmailAddress);
+                    var $td3 = $("<td></td>").text(response.data.PhoneNumber);
+                    $tr.append($td1).append($td2).append($td3);
+                    $(".tbodylist").append($tr);
+                }
+
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+
+        }
+
+    });
+    //创建表格
+    function CreateTable(data) {
+        $.each(data, function (index, v) {
+           
+           
+        });
+    }
+</script>
+
+

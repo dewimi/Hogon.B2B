@@ -72,6 +72,8 @@
     <Compile Include="MarketingMan\PromotinRuleConfiguration.cs" />
     <Compile Include="MarketingMan\Rel_Promotion_GoodsConfiguration.cs" />
     <Compile Include="MemberMan\AccountConfiguration.cs" />
+    <Compile Include="MemberMan\EnterpriseConfiguration.cs" />
+    <Compile Include="MemberMan\PersonConfiguration.cs" />
     <Compile Include="Migrations\201707261006261_init.cs" />
     <Compile Include="Migrations\201707261006261_init.Designer.cs">
       <DependentUpon>201707261006261_init.cs</DependentUpon>
@@ -172,6 +174,10 @@
     <Compile Include="Migrations\201708160538493_menuupdate.Designer.cs">
       <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708170257113_CreateStaff.cs" />
+    <Compile Include="Migrations\201708170257113_CreateStaff.Designer.cs">
+      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -179,6 +185,7 @@
     <Compile Include="Security\Rela_Authority_FunctionConfiguration.cs" />
     <Compile Include="Security\Rela_Role_UserConfiguration.cs" />
     <Compile Include="Security\RoleConfiguration.cs" />
+    <Compile Include="HRMan\StaffInfoConfiguration.cs" />
     <Compile Include="Security\UserConfiguration.cs" />
     <Compile Include="HogonContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -275,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708160538493_menuupdate.resx">
       <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708170257113_CreateStaff.resx">
+      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

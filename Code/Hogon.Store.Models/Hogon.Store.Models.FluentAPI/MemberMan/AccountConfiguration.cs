@@ -15,7 +15,6 @@ namespace Hogon.Store.Models.FluentAPI.MemberMan
             Property(p => p.Name).HasMaxLength(50);
             Property(p => p.Password).HasMaxLength(50);
 
-
         }
     }
 }
