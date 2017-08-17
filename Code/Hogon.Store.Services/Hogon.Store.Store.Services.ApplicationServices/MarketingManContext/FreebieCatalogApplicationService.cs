@@ -56,7 +56,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             {
                 Commit();
             }
-            catch (DbEntityValidationException e)
+            catch (DbEntityValidationException)
             {
                 throw;
             }

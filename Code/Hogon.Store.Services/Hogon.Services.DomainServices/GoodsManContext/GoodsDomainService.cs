@@ -55,9 +55,7 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
                     dtoSpecParameterTemplateS.Add(dtoSpecParameterTemplate);
                 }
             }
-
-
-
+            
             ICollection<DtoProductGoods> dtoProductGoodsS = new List<DtoProductGoods>();
             var result = "";
             int num = 1;
@@ -99,9 +97,7 @@ namespace Hogon.Store.Services.DomainServices.GoodsManContext
 
                 dtoProductGoodsS.Add(dtoProductGoods);
             }
-
-
-
+            
             return dtoProductGoodsS;
         }
 
