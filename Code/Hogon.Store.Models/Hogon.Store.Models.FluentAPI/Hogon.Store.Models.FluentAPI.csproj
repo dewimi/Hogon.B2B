@@ -174,6 +174,10 @@
     <Compile Include="Migrations\201708160538493_menuupdate.Designer.cs">
       <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708170257113_CreateStaff.cs" />
+    <Compile Include="Migrations\201708170257113_CreateStaff.Designer.cs">
+      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -278,6 +282,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708160538493_menuupdate.resx">
       <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708170257113_CreateStaff.resx">
+      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
