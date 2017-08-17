@@ -47,9 +47,12 @@
     <Compile Include="BaseDto.cs" />
     <Compile Include="GoodsMan\DtoBrand.cs" />
     <Compile Include="GoodsMan\DtoAppCase.cs" />
+    <Compile Include="GoodsMan\DtoGoods.cs" />
     <Compile Include="GoodsMan\DtoGoodsType.cs" />
     <Compile Include="GoodsMan\DtoProductTypeCategory.cs" />
+    <Compile Include="GoodsMan\DtoRela_Brand_GoodsType.cs" />
     <Compile Include="GoodsMan\DtoRela_Goods_GoodsType.cs" />
+    <Compile Include="GoodsMan\DtoRel_Promotion_Goods.cs" />
     <Compile Include="GoodsMan\DtoSpecParameterTemplate.cs" />
     <Compile Include="GoodsMan\DtoSpecType.cs" />
     <Compile Include="Common\DtoFileUpload.cs" />
