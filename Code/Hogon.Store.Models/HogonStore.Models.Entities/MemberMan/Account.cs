@@ -1,4 +1,5 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
+using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,9 @@ namespace Hogon.Store.Models.Entities.MemberMan
     /// <summary>
     /// 账号
     /// </summary>
-    public class Account:BaseEntity
+    public abstract class Account:BaseEntity
     {
+
         /// <summary>
         /// 名称
         /// </summary>
@@ -36,5 +38,7 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// 联系人邮箱
         /// </summary>
         public string EmailAddress { get; set; }
+
+
     }
 }

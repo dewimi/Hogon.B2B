@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.FluentAPI.MemberMan
 {
-    public class AccountConfiguration: EntityTypeConfiguration<Account>
+    public class PersonConfiguration: EntityTypeConfiguration<Person>
     {
-        public AccountConfiguration()
+        public PersonConfiguration()
         {
-            Property(p => p.Name).HasMaxLength(50);
-            Property(p => p.Password).HasMaxLength(50);
-
+            Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("Person");
+            });
         }
     }
 }

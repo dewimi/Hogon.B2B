@@ -10,12 +10,16 @@ using Hogon.Store.UserInterface.Admin.Areas.Security.Models.User;
 using Hogon.Store.Services.ApplicationServices.SecurityContext;
 using Hogon.Store.Models.Dto.Security;
 using Hogon.Framework.Core.Owin.Authrization;
+using Hogon.Store.Services.ApplicationServices.MemberManContext;
+using Hogon.Store.Models.Dto.MemberMan;
+using Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Models;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 {
     public class UserController : SmartListController<UserViewModel>
     {
         UserApplicationService userSvc = new UserApplicationService();
+        AccountApplicationService accountSvc = new AccountApplicationService();
 
         protected override void OnException(ExceptionContext filterContext)
         {
@@ -41,7 +45,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 
         public ActionResult Detail()
         {
+            return View();
+        }
 
+        public ActionResult Add()
+        {
             return View();
         }
 
@@ -146,6 +154,17 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 
             }
             
+        }
+        
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public ActionResult GetUserInfo(string userInfo)
+        {
+           var dtoAccount = accountSvc.GetUserInfo(userInfo);
+            return Json(dtoAccount);
         }
 
     }

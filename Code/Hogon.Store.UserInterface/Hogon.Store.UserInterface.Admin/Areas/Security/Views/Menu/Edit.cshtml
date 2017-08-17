@@ -16,7 +16,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">上级菜单</label>
                                 <div class="col-sm-6">
-                                    <select class="form-control" ng-model="previousMenu" name="PreviousMenu" id="parent">
+                                    <select class="form-control" name="PreviousMenu" id="parent">
                                         <option ng-model="previousMenu" class="typename"></option>
                                     </select>
                                 </div>
@@ -252,6 +252,7 @@
                     menuId = response.data.Id;
                     $("#parent option[value='meren']").remove();
                     $(".typename").text(response.data.ParentName);
+                    $(".typename").val(response.data.ParentId);
                     $scope.code = response.data.Code;
                     $scope.parentname = response.data.Name;
                     $scope.parentUrl = response.data.URL;
