@@ -13,6 +13,7 @@ namespace Hogon.Store.Models.FluentAPI.Security
         public RoleConfiguration()
         {
             Property(e => e.RoleName).HasMaxLength(50);
+            HasRequired(m => m.Enterprise).WithMany(m => m.Roles).Map(m => m.MapKey("EnterpriseId"));
         }
     }
 }

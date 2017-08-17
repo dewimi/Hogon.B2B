@@ -182,6 +182,10 @@
     <Compile Include="Migrations\201708170532578_updateRole.Designer.cs">
       <DependentUpon>201708170532578_updateRole.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708170536247_roleupdate.cs" />
+    <Compile Include="Migrations\201708170536247_roleupdate.Designer.cs">
+      <DependentUpon>201708170536247_roleupdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -292,6 +296,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708170532578_updateRole.resx">
       <DependentUpon>201708170532578_updateRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708170536247_roleupdate.resx">
+      <DependentUpon>201708170536247_roleupdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
