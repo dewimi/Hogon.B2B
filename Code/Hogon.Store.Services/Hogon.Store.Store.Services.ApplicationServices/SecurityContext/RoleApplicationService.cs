@@ -2,8 +2,11 @@
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Store.Models.Dto.Common;
+using Hogon.Store.Models.Dto.MemberMan;
 using Hogon.Store.Models.Dto.Security;
+using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
+using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Repositories.Security;
 using System;
 using System.Collections.Generic;
@@ -16,12 +19,14 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         RoleRepository roleReps;
         MenuRepository menuReps;
         AuthorityRepository authorityReps = new AuthorityRepository();
-        UserRepository userReps = new UserRepository();
+        AccountRepository accountReps = new AccountRepository();
+
         public RoleApplicationService()
         {
             roleReps = new RoleRepository();
             menuReps = new MenuRepository();
         }
+
         /// <summary>
         /// 添加角色
         /// </summary>
@@ -195,24 +200,24 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                 {
                     if (user != new Guid())
                     {
-                        Rela_Role_User rUser = new Rela_Role_User();
+                        Rela_Role_Account rUser = new Rela_Role_Account();
                         rUser.Role = roleReps.FindBy(r => r.Id == roleId).FirstOrDefault();
-                        rUser.User = userReps.FindBy(u => u.Id == user).FirstOrDefault();
+                        rUser.Account = accountReps.FindBy(u => u.Id == user).FirstOrDefault();
 
                         var IsExist = roleReps.FindBy(r => r.Id == roleId).SelectMany(r =>
-                          r.Rela_Role_User).Where(r => r.User.Id == user).FirstOrDefault();
+                          r.Rela_Role_Account).Where(r => r.Account.Id == user).FirstOrDefault();
                         //不存在就添加
                         if (IsExist == null)
                         {
                             rUser.Id = Guid.NewGuid();
-                            rUser.Name = rUser.User.Name;
+                            rUser.Name = rUser.Account.Name;
                             rUser.CreatedTime = DateTime.Now;
                             rUser.UpdatedTime = DateTime.Now;
-                            rUser.Email = rUser.User.Email;
+                            rUser.Email = rUser.Account.EmailAddress;
                             rUser.CreatorId = 1;
                             rUser.UpdaterId = 1;
 
-                            rUser.Role.Rela_Role_User.Add(rUser);
+                            rUser.Role.Rela_Role_Account.Add(rUser);
                         }
                     }
                 }
@@ -222,8 +227,8 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             foreach (var userId in unCheckUsers)
             {
 
-                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_User).
-                    Where(r => r.User.Id == userId && r.Role.Id == roleId).FirstOrDefault();
+                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Account).
+                    Where(r => r.Account.Id == userId && r.Role.Id == roleId).FirstOrDefault();
                 if (user != null)
                 {
                     roleReps.DeleteRela_Role_User(user);
@@ -238,13 +243,13 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public IQueryable<DtoUser> GetUsersByRoleId(Guid roleId)
+        public IQueryable<DtoAccount> GetUsersByRoleId(Guid roleId)
         {
-            var users = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_User).Select(m => m.User);
+            var accounts = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Account).Select(m => m.Account);
 
-            var dtoUsers = users.ConvertTo<User, DtoUser>();
+            var dtoAccounts = accounts.ConvertTo<Account, DtoAccount>();
 
-            return dtoUsers;
+            return dtoAccounts;
         }
     }
 }

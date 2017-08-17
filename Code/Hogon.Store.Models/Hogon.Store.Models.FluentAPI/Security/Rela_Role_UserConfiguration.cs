@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.FluentAPI.Security
 {
-    public class Rela_Role_UserConfiguration : EntityTypeConfiguration<Rela_Role_User>
+    public class Rela_Role_UserConfiguration : EntityTypeConfiguration<Rela_Role_Account>
     {
         public Rela_Role_UserConfiguration()
         {
-            HasRequired(m => m.Role).WithMany(m => m.Rela_Role_User).Map(m => m.MapKey("RoleId"));
-            HasRequired(m => m.User).WithMany(m => m.Rela_Role_User).Map(m => m.MapKey("UserId"));
+            HasRequired(m => m.Role).WithMany(m => m.Rela_Role_Account).Map(m => m.MapKey("RoleId"));
+            HasRequired(m => m.Account).WithMany(m => m.Rela_Role_Account).Map(m => m.MapKey("UserId"));
         }
     }
 }

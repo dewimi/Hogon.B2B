@@ -4,7 +4,7 @@ using System;
 
 namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Models.Personal
 {
-    public class UserViewModel
+    public class AccountViewModel
     {
         /// <summary>
         /// 编号

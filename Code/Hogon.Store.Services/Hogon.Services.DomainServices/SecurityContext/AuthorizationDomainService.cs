@@ -14,14 +14,14 @@ namespace Hogon.Store.Services.DomainServices.SecurityContext
         /// </summary>
         public IEnumerable<Menu> GetAvailableMenusByUser(User user)
         {
-            if (user.Rela_Role_User.Select(m => m.Role)
+            if (user.Rela_Role_Account.Select(m => m.Role)
                 .Where(m => m.IsAdministrator).Count() > 0)
             {
                 return _menuRepository.FindBy(m => m.IsEnable);
             }
             else
             {
-                return user.Rela_Role_User.SelectMany
+                return user.Rela_Role_Account.SelectMany
                     (m => m.Role.GetAuthroizedMenus());
             }
         }
@@ -31,7 +31,7 @@ namespace Hogon.Store.Services.DomainServices.SecurityContext
         /// </summary>
         public IEnumerable<Function> GetAvailableFunctionsByUser(User user)
         {
-            if (user.Rela_Role_User.Select(m => m.Role)
+            if (user.Rela_Role_Account.Select(m => m.Role)
                 .Where(m => m.IsAdministrator).Count() > 0)
             {
                 var menus = _menuRepository.FindBy(m => m.IsEnable).ToList();
@@ -41,7 +41,7 @@ namespace Hogon.Store.Services.DomainServices.SecurityContext
             }
             else
             {
-                return user.Rela_Role_User.SelectMany
+                return user.Rela_Role_Account.SelectMany
                     (m => m.Role.GetAuthroizedFunctions());
             }
         }

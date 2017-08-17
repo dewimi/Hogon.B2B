@@ -12,7 +12,7 @@ namespace Hogon.Store.Models.Entities.Security
     {
         public Role()
         {
-            Rela_Role_User = new HashSet<Rela_Role_User>();
+            Rela_Role_Account = new HashSet<Rela_Role_Account>();
             Authorities = new HashSet<Authority>();
         }
 
@@ -64,7 +64,7 @@ namespace Hogon.Store.Models.Entities.Security
         /// <summary>
         /// 用户角色关联集合
         /// </summary>
-        public virtual ICollection<Rela_Role_User> Rela_Role_User { get; set; }
+        public virtual ICollection<Rela_Role_Account> Rela_Role_Account { get; set; }
 
         /// <summary>
         /// 权限集合

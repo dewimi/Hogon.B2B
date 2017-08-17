@@ -57,8 +57,8 @@ namespace Hogon.Store.UserInterface.WebSite.Controllers
         public ActionResult AccountIsExit(string username, string password)
         {
             string message = "";
-            var userAccount = _accountService.ValidateUser(username, password);
-            var enterPriseAccount = _accountService.ValidateEnterprise(username, password);
+            var userAccount = _accountService.Validate(username, password);
+            var enterPriseAccount = _accountService.Validate(username, password);
 
             if (userAccount == null && enterPriseAccount == null)
             {
