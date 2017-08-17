@@ -48,6 +48,7 @@
     <Compile Include="GoodsMan\DtoBrand.cs" />
     <Compile Include="GoodsMan\DtoAppCase.cs" />
     <Compile Include="GoodsMan\DtoGoodsType.cs" />
+    <Compile Include="GoodsMan\DtoPro.cs" />
     <Compile Include="GoodsMan\DtoProductTypeCategory.cs" />
     <Compile Include="GoodsMan\DtoRela_Goods_GoodsType.cs" />
     <Compile Include="GoodsMan\DtoSpecParameterTemplate.cs" />
@@ -62,6 +63,7 @@
     <Compile Include="GoodsMan\DtoProduct.cs" />
     <Compile Include="MarketingMan\DtoFreebie.cs" />
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
+    <Compile Include="MarketingMan\DtoFreebieLines.cs" />
     <Compile Include="MemberMan\DtoAccount.cs" />
     <Compile Include="MemberMan\DtoUserInfo.cs" />
     <Compile Include="MarketingMan\DtoFreebieCatalog.cs" />
