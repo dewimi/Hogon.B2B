@@ -49,6 +49,7 @@
     <Compile Include="GoodsMan\DtoAppCase.cs" />
     <Compile Include="GoodsMan\DtoGoods.cs" />
     <Compile Include="GoodsMan\DtoGoodsType.cs" />
+    <Compile Include="GoodsMan\DtoPackageGoods.cs" />
     <Compile Include="GoodsMan\DtoPro.cs" />
     <Compile Include="GoodsMan\DtoProductTypeCategory.cs" />
     <Compile Include="GoodsMan\DtoRela_Brand_GoodsType.cs" />
