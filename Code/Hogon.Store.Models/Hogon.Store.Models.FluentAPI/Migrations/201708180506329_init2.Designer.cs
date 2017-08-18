@@ -7,13 +7,13 @@ namespace Hogon.Store.Models.FluentAPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class GoodsTypeAddIcon : IMigrationMetadata
+    public sealed partial class init2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(GoodsTypeAddIcon));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(init2));
         
         string IMigrationMetadata.Id
         {
-            get { return "201708180119233_GoodsTypeAddIcon"; }
+            get { return "201708180506329_init2"; }
         }
         
         string IMigrationMetadata.Source

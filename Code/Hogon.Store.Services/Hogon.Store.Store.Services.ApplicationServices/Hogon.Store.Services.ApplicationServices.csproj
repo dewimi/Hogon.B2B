@@ -84,8 +84,6 @@
     <Compile Include="SecurityContext\MenuFunctionApplicationService.cs" />
     <Compile Include="SecurityContext\RoleApplicationService.cs" />
     <Compile Include="SecurityContext\UserApplicationService.cs" />
-    <Compile Include="TestContext\InformationApplicationService.cs" />
-    <Compile Include="TestContext\TestUserApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Hogon.Store.Models\Hogon.Store.Models.Dto\Hogon.Store.Models.Dto.csproj">
