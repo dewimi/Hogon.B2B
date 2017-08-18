@@ -17,5 +17,10 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// 销售价
         /// </summary>
         public decimal SalePrice { get; set; }
+
+        /// <summary>
+        /// 商品编码
+        /// </summary>
+        public string GoodsCode { get; set; }
     }
 }

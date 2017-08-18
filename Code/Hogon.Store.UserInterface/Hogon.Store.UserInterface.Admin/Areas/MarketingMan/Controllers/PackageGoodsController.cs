@@ -27,17 +27,10 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
             return View();
         }
 
-        /// <summary>
-        /// 进入商品选择界面
-        /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public ActionResult GotoDetail()
+        public ActionResult Test()
         {
-            return Redirect("/PackageGoods/Detail");
+            return View();
         }
-
-      
 
         /// <summary>
         /// 选择组合商品
@@ -52,7 +45,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
         public ActionResult GetPackGoodsMsg(Guid[] id)
         {
 
-            return Redirect("");
+            return Json(id);
         }
 
     }

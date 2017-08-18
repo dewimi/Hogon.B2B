@@ -460,6 +460,7 @@
     <Content Include="Areas\MarketingMan\Views\Freebie\Detail.cshtml" />
     <Content Include="Areas\MarketingMan\Views\PackageGoods\Edit.cshtml" />
     <Content Include="Areas\MarketingMan\Views\PackageGoods\Detail.cshtml" />
+    <Content Include="Areas\MarketingMan\Views\PackageGoods\Test.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
     <Content Include="Areas\GoodsMan\Views\SpecType\Detail.cshtml" />
     <None Include="Properties\PublishProfiles\Hg17_Test.pubxml" />
