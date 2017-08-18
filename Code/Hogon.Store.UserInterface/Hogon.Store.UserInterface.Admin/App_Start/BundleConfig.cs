@@ -48,7 +48,7 @@ namespace Hogon.Store.UserInterface.Admin
 
              bundles.Add(new ScriptBundle("~/Content/css/form").Include(
                    //"~/Content/css/form.css"
-                   "~/Content/css/index.css",
+                   //"~/Content/css/index.css",
                    "~/Content/css/style.css"
                    ));
         }

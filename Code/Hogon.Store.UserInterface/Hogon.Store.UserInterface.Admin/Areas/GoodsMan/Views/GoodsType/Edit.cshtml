@@ -55,7 +55,7 @@
                             </div>*@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">小图标</label>
-                                <div class="col-sm-6">
+                                <div class="col-sm-7">
                                     <input type="text" name="icon" class="form-control" ng-model="icon">
                                 </div>
                             </div>
@@ -152,8 +152,8 @@
                 $.each(response.data, function (index, v) {
                     $("#productType").append($("<option value = '" + v.Id + "'></option>").text(v.TypeName));
                 });
+                //编辑绑值
                 if (id != "") {
-                    //编辑绑值
                     $http({
                         method: 'POST',
                         url: '/GoodsMan/GoodsType/FindGoodsTypeById',
@@ -165,6 +165,7 @@
                         $scope.Name = Data.Name;
                         $scope.Order = Data.Order;
                         $scope.Describe = Data.Describe;
+                        $scope.icon = Data.Icon;
                         $("#parent ").val(Data.ParentId);
                         $("#productType").val(Data.ProductTypeId);
                         $("input[name=IsEnabled][value=" + Data.IsEnabled + "]").attr("checked", true);
