@@ -1,6 +1,4 @@
 ﻿using Hogon.Store.Models.Dto.GoodsMan;
-using Hogon.Store.Models.Entities.GoodsMan;
-using Hogon.Store.Models.Entities.MarketingMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +32,7 @@ namespace Hogon.Store.Models.Dto.MarketingMan
         /// <summary>
         /// 赠品明细集合
         /// </summary>
-        public ICollection<FreebieLine> FreebieLines { get; set; }
+        public ICollection<object> FreebieLines { get; set; }
 
         ///// <summary>
         ///// 产品

@@ -12,9 +12,6 @@ namespace Hogon.Store.Models.Entities.MemberMan
     /// </summary>
     public class Person : Account
     {
-        /// <summary>
-        /// 角色
-        /// </summary>
-        public Role Role { get; set; }
+
     }
 }

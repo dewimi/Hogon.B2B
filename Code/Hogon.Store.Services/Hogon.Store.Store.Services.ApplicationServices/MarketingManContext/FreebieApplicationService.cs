@@ -90,7 +90,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             {
                 Id = m.Id,
                 GoodsCode = m.GoodsCode,
-                SpecParameterS = "mid", //规格类型：规格参数格式JSON
+                SpecParameterS = m.DisplaySpecParameterTemplateName, //规格类型：规格参数格式JSON
                 Weight = m.Weight
             });
 
@@ -168,7 +168,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
                 //dtoFreebieCatalog = m.FreebieCatalog,
                 FreebieCatalogName = m.FreebieCatalog.FreebieCatalogName,
                 Sort = m.FreebieCatalog.Sort,
-                FreebieLines = m.FreebieLines,
+                //FreebieLines = m.FreebieLines,
                 //Product = m.Product,
                 FreebiSortNum = m.FreebiSortNum,
                 IsPublish = m.IsPublish,
@@ -197,7 +197,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
                 GoodsCode=m.ProductGoods.GoodsCode,
                 Weight = m.ProductGoods.Weight,
                 Quota = m.Quota, Id=m.ProductGoods.Id,
-                SpecParameterS ="M"
+                SpecParameterS =m.ProductGoods.DisplaySpecParameterTemplateName
             });
 
             return dtoFreebie;

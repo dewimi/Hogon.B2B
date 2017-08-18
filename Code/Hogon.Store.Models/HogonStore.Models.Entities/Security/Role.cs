@@ -1,4 +1,5 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
+using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ namespace Hogon.Store.Models.Entities.Security
     {
         public Role()
         {
-            Persons = new HashSet<Person>();
+            Staffs = new HashSet<Staff>();
             Rela_Role_Person = new HashSet<Rela_Role_Person>();
             Authorities = new HashSet<Authority>();
         }
@@ -66,7 +67,7 @@ namespace Hogon.Store.Models.Entities.Security
         /// <summary>
         /// 个人用户集合
         /// </summary>
-        public virtual ICollection<Person> Persons { get; set; }
+        public virtual ICollection<Staff> Staffs { get; set; }
 
         /// <summary>
         /// 个人用户集合

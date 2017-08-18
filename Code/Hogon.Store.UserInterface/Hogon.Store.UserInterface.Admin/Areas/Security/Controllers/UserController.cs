@@ -193,8 +193,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         /// <param name="person"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public ActionResult AddAccount(DtoPerson person,Guid role)
+        public ActionResult AddAccount(DtoPerson person,Guid roleId)
         {
+            accountSvc.AddAccount(person,roleId);
             return Json("");
         }
     }

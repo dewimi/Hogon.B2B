@@ -79,6 +79,10 @@
     <Compile Include="Migrations\201708180530323_init.Designer.cs">
       <DependentUpon>201708180530323_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708180623030_addroleStaff.cs" />
+    <Compile Include="Migrations\201708180623030_addroleStaff.Designer.cs">
+      <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -105,6 +109,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201708180530323_init.resx">
       <DependentUpon>201708180530323_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708180623030_addroleStaff.resx">
+      <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

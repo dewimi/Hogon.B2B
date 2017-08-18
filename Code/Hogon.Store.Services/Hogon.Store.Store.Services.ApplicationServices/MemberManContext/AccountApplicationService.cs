@@ -472,16 +472,17 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <param name="person"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public bool AddAccount(DtoPerson dtoPerson, Guid role)
+        public void AddAccount(DtoPerson dtoPerson, Guid roleId)
         {
             Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
             var person = Mapper.Map<Person>(dtoPerson);
             person.Password = _encryptor.Encrypt("123456");
             person.IsEnable = true;
+           // person.Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(m => m.Id == roleId).First();
             _personRepository.Add(person);
 
-
-            return true;
+            Commit();
+      
         }
     }
 }
