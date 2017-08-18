@@ -292,6 +292,17 @@
                             { quota.push(txt); }
                         });
                     })
+                 
+                    if ($("#freebieCatalog").find("option:selected").val() == "")  //获取选中的option的文本值
+                    {
+                        swal("请选择赠品分类");
+                        return;
+                    }
+
+                    if ($("#limitBuyAmount").val() =="") {
+                        swal("请填写每单限购量");
+                        return;
+                    }
 
                     if (checked.length == 0)
                     {

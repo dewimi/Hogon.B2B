@@ -71,6 +71,7 @@
     <Compile Include="GoodsMan\SpecTypeRepository.cs" />
     <Compile Include="MarketingMan\FreebieLineRepository.cs" />
     <Compile Include="MarketingMan\FreebieRepository.cs" />
+    <Compile Include="MarketingMan\PackageGoodsRepository.cs" />
     <Compile Include="MemberMan\AccountRepository.cs" />
     <Compile Include="MarketingMan\FreebieCatalogRepository.cs" />
     <Compile Include="MemberMan\EnterpriseRepository.cs" />

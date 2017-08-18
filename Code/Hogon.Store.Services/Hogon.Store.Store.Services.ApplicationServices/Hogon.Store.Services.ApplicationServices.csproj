@@ -77,6 +77,7 @@
     <Compile Include="GoodsManContext\ProductTypeCategoryApplicationService.cs" />
     <Compile Include="GoodsManContext\SpecTypeApplicationService.cs" />
     <Compile Include="MarketingManContext\FreebieApplicationService.cs" />
+    <Compile Include="MarketingManContext\PackageGoodsApplicationService.cs" />
     <Compile Include="MemberManContext\AccountApplicationService.cs" />
     <Compile Include="MarketingManContext\FreebieCatalogApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
