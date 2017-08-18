@@ -22,6 +22,8 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 
         FileUploadRepository fileUploadReps = new FileUploadRepository();
 
+        ProductRepository productReps = new ProductRepository();
+
         /// <summary>
         /// 查询所有品牌
         /// </summary>
@@ -138,12 +140,14 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
 
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoBrand, Brand>());
                 Mapper.Map<DtoBrand, Brand>(dtoBrand, brand);
-
+                brand.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoBrand.FileUploadId).First();
                 //删除商品-商品分类关系表对应数据
-                if (brand.Rela_Brand_GoodsType.Count > 0)
+                var goodsType_Rela_Brand_GoodsType = goodsTypeReps.FindAll().SelectMany(m => m.Rela_Brand_GoodsType);
+                var rela_Brand_GoodsTypeS = goodsType_Rela_Brand_GoodsType.Where(m => m.Brand.Id == dtoBrand.Id);
+                if (rela_Brand_GoodsTypeS.Count() > 0)
                 {
-                    var rela_Brand_GoodsType = brandReps.FindBy(s => s.Id == brand.Id).SelectMany(m => m.Rela_Brand_GoodsType);
-                    foreach (var item in rela_Brand_GoodsType)
+                    var rela_Brand_GoodsTypeData = brandReps.FindBy(s => s.Id == brand.Id).SelectMany(m => m.Rela_Brand_GoodsType);
+                    foreach (var item in rela_Brand_GoodsTypeData)
                     {
                         brandReps.DeleteRela_Brand_GoodsType(item);
                     }
@@ -177,7 +181,13 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <param name="Id"></param>
         public void Remove(Guid Id)
         {
-            var brand = brandReps.FindBy(s => s.Id == Id).First();
+
+            var brand = brandReps.FindBy(m => m.Id == Id).First();
+            var product = productReps.FindBy(m => m.Brand.Id == brand.Id);
+            if (product.Count() > 0)
+            {
+                throw new UserFriendlyException("请确认该品牌下是否还存在产品！");
+            }
             brandReps.Remove(brand);
             Commit();
         }

@@ -39,9 +39,9 @@
                         <ol class="dd-list" id="pareent"></ol>
                     </div>
                     <div class="m-t-md">
-        <h5>数据：</h5>
-    </div>
-    <textarea id="nestable2-output" class="form-control"></textarea>
+                        <h5>数据：</h5>
+                    </div>
+                    <textarea id="nestable2-output" class="form-control"></textarea>
 
                 </div>
             </div>
@@ -208,7 +208,7 @@
 
             });
         };
-       
+
 
         //保存角色信息
         $scope.saveChange = function () {
@@ -397,9 +397,9 @@
             var parentmenu = "";
             if (items.nodes.length > 0) {
                 //创建父菜单
-                parentmenu = $("<li class='dd-item' data-id='"+ items.Id +"'>"
+                parentmenu = $("<li class='dd-item' data-id='" + items.Id + "'>"
                                + "<div class='dd-handle'>"
-                                +"<span class='label label-info'><i class='fa fa-"+items.Icon+"'></i></span> "+items.text+"</div></li>");
+                                + "<span class='label label-info'><i class='fa fa-" + items.Icon + "'></i></span> " + items.text + "</div></li>");
                 //添加子菜单
                 var childmenu = ($("<ol class='dd-list'></ol>"));
                 $.each(items.nodes, function (index, sitems) {
@@ -407,7 +407,7 @@
                     childmenu.append("<li class='dd-item' data-id='" + sitems.Id + "'>"
                                     + "<div class='dd-handle'>"
                                       + "<span class='label label-info'><i class='fa fa-" + items.Icon + "'></i></span>                         " + sitems.text + ""
-                                      +"</div></li>");
+                                      + "</div></li>");
                 })
                 parentmenu.append(childmenu);
             }
@@ -459,32 +459,32 @@
 
     $(function () {
 
-            var updateOutput = function (e) {
-                var list = e.length ? e : $(e.target),
-                    output = list.data('output');
-                if (window.JSON) {
-                    output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
-                } else {
-                    output.val('浏览器不支持');
-                }
-            };
-            $('#nestable2').nestable({
-                group: 1
-            }).on('change', updateOutput);
+        var updateOutput = function (e) {
+            var list = e.length ? e : $(e.target),
+                output = list.data('output');
+            if (window.JSON) {
+                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+            } else {
+                output.val('浏览器不支持');
+            }
+        };
+        $('#nestable2').nestable({
+            group: 1
+        }).on('change', updateOutput);
 
-            // output initial serialised data
-            updateOutput($('#nestable2').data('output', $('#nestable2-output')));
-          
-            $('#nestable-menu').on('click', function (e) {
-                var target = $(e.target),
-                    action = target.data('action');
-                if (action === 'expand-all') {
-                    $('.dd').nestable('expandAll');
-                }
-                if (action === 'collapse-all') {
-                    $('.dd').nestable('collapseAll');
-                }
-            });
+        // output initial serialised data
+        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+
+        $('#nestable-menu').on('click', function (e) {
+            var target = $(e.target),
+                action = target.data('action');
+            if (action === 'expand-all') {
+                $('.dd').nestable('expandAll');
+            }
+            if (action === 'collapse-all') {
+                $('.dd').nestable('collapseAll');
+            }
         });
+    });
 </script>
 

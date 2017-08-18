@@ -6,8 +6,14 @@
 <script src="~/Scripts/plugins/chosen.jquery.js"></script>
 <script src="~/Scripts/plugins/content.js"></script>
 <script src="~/Scripts/plugins/china_area.js" type="text/javascript"></script>
+<!-- jQuery 表单验证-->
+<script src="js/plugins/validate/jquery.validate.min.js"></script>
+<script src="js/plugins/validate/messages_zh.min.js"></script>
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
+<script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
 
 <div class="gray-bg">
@@ -134,13 +140,6 @@
             </div>
         </div>
     </div>
-
-
-    <!-- jQuery 表单验证-->
-    <script src="js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="js/plugins/validate/messages_zh.min.js"></script>
-    <!-- 自定义js -->
-    <script src="js/content.js?v=1.0.0"></script>
 </div>
 
 <script type="text/javascript">
@@ -148,7 +147,6 @@
 
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
-
         var id = window.location.search;//获取Id
         id = id.substring(id.indexOf('=') + 1);
 
@@ -315,6 +313,7 @@
             $("#Foreign").hide();
         }
     }
+
     //图片上传
     $(document).ready(function () {
         ////图片上传成功回调函数
@@ -325,31 +324,27 @@
             fileType = data.response.fileType;
         });
 
-        //$('#file-Portrait1').fileinput({
-        //    language: 'zh',
-        //   // showUpload: false,
-        //    mainClass: "input-group-lg",
-        //    allowedFileExtensions: ["jpg", "png", "gif", "pdf"]
-        //});
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-green',
+                radioClass: 'iradio_square-green',
+            });
 
-        //创建图片上传控件
-        $(".file-loading").fileinput({
-            mainClass: "input-group-lg",
-            language: 'zh',
-            uploadUrl: '/FileUpload/FileUpload',
-            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
-            maxImageWidth: 50,
-            maxImageHeight: 50,
-            uploadLabel: "",
-            uploadTitle: "上传文件",
-            removeLabel: "",
-            removeTitle: "删除文件",
-            browseLabel: "",
-            maxFileCount: 1,
-            previewFileType: "image",
-            browseLabel: "",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-        });
-
+            //创建图片上传控件
+            $('.file-loading').fileinput({
+                language: 'zh',
+                showUpload: true,
+                uploadUrl: '/FileUpload/FileUpload',
+                uploadLabel: "",
+                uploadTitle: "上传文件",
+                removeLabel: "",
+                removeTitle: "删除文件",
+                browseLabel: "",
+                maxFileCount: 1,
+                previewFileType: "image",
+                browseLabel: "",
+                //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+                mainClass: "input-group-lg",
+                allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
+            });
     });
 </script>

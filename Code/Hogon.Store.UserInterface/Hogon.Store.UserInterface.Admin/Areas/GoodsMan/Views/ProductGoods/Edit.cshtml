@@ -2,6 +2,7 @@
     Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
 <script src="~/Scripts/sweetalert.min.js"></script>
+@*<script src="~/Scripts/hogon/js/jquery-1.11.3.min.js"></script>*@
 <!-- Data Tables -->
 <script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
@@ -10,7 +11,6 @@
 <!-- jQuery 表单验证-->
 <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
-
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
@@ -18,6 +18,9 @@
 @*多选下拉*@
 <link href="~/Content/css/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/plugins/chosen.jquery.js"></script>
+<!-- 全局js -->
+@*<script src="js/jquery-1.11.3.min.js"></script>*@
+
 <style type="text/css">
     th {
         text-align: center;
@@ -29,15 +32,16 @@
     td {
         text-align: center;
     }
-    .checkbox{
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
+
+    .checkbox {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
         .checkbox + .checkbox, .radio + .radio {
             margin-top: 10px;
         }
 </style>
-
 
 <div class="gray-bg">
     <div class="wrapper wrapper-content animated fadeIn">
@@ -172,16 +176,6 @@
                         <div id="tab-02" class="tab-pane">
                             <div class="panel-body">
                                 <form name="createGoodsForm" method="get">
-                                    @*<div class="col-sm-12">
-                                        <table style="margin:0px auto; ">
-                                            <tr>
-                                                <td><span>规格类型：</span></td>
-                                                <td id="SpecTypeTd"></td>
-                                                <td><span>规格参数;</span></td>
-                                                <td id="SpecParameter"></td>
-                                            </tr>
-                                        </table>*@
-
                                     <div class="gray-bg">
                                         <div class="wrapper wrapper-content animated fadeInRight">
                                             <div class="row">
@@ -192,9 +186,6 @@
                                                         </div>
                                                         <div class="ibox-content" style="height: 240px;overflow-y:auto; ">
                                                             <div class="row" id="SpecTypeTd">
-                                                                @*<div class="col-sm-6 checkbox i-checks">
-                                                                    <label><input type="checkbox" value=""> <i></i> 选项1</label>
-                                                                </div>*@
                                                             </div>
                                                         </div>
                                                     </div>
@@ -205,150 +196,136 @@
                                                             <h5>规格参数</h5>
                                                         </div>
                                                         <div class="ibox-content" style="height: 240px;" id="SpecParameter">
-                                                            @* <div class="row" >
-    <div class="col-sm-6 checkbox i-checks">
-         <label><input type="checkbox" value=""> <i></i> 选项1</label>
-     </div>
-                                                            </div>*@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="col-sm-12" style="text-align:center;">
+                                                    <button type="button" class="btn btn-primary" ng-click="CreateGoods()">生成商品</button>
+                                                </div>
                                             </div>
                                         </div>
-                                        </div>
-
-
-<div class="col-sm-12 clearfix">
-    <button type="button" class="btn btn-primary pull-right" ng-click="CreateGoods()">生成商品</button>
-</div>
-@*</div>  *@
-</form>
-<div class="ibox float-e-margins">
-    <div class="wrapper wrapper-content animated fadeInRight">
-        <div class="col-sm-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-content">
-                    <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
-                        <thead>
-                            <tr>
-                                <th>商品名称</th>
-                                <th>商品类型</th>
-                                <th>规格参数</th>
-                                <th>上架</th>
-                                <th>默认商品</th>
-                                <th>商品编码</th>
-                                <th>商品别名</th>
-                                <th>销售价</th>
-                                <th>商品重量(kg)</th>
-                                <th>操作</th>
-                            </tr>
-                        </thead>
-                        <tbody id="ProductGoods"></tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                                    </div>
+                                </form>
+                                <div class="ibox float-e-margins" style="padding-top:20px;">
+                                    <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
+                                        <thead>
+                                            <tr>
+                                                <th>商品名称</th>
+                                                <th>商品类型</th>
+                                                <th>规格参数</th>
+                                                <th>上架</th>
+                                                <th>默认商品</th>
+                                                <th>商品编码</th>
+                                                <th>商品别名</th>
+                                                <th>销售价</th>
+                                                <th>商品重量(kg)</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="ProductGoods"></tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-@*应用案例*@
-<div id="tab-03" class="tab-pane">
-    <div class="panel-body">
-        <form name="SearchAppCaseForm">
-            <table style="margin:0px auto;">
-                <tr>
-                    <td><span>主题：</span></td>
-                    <td> <input type="text" class="form-control" ng-model="SearchAPSubject" /></td>
-                    <td><span>应用行业：</span></td>
-                    <td><input type="text" class="form-control" ng-model="SearchAPAppIndustry" /></td>
-                    <td><span>用途：</span> </td>
-                    <td><input type="text" class="form-control" ng-model="SearchAPUsage" /></td>
-                    <td><button type="button" class="btn btn-primary" ng-click="SearchAppCase()" ng-disabled="SearchAppCaseForm.$invalid">查询</button></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle='modal' data-target='#AppCaseModal'>新增</button></td>
-                </tr>
-            </table>
-        </form>
-        <div class="ibox float-e-margins">
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="col-sm-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-content">
-                            <table class="table table-responsive table-striped table-bordered table-hover ">
-                                <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>主题</th>
-                                        <th>作者</th>
-                                        <th>应用行业</th>
-                                        <th>用途</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="AppCaseTable"></tbody>
-                            </table>
+                        @*应用案例*@
+                        <div id="tab-03" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12" style="border-bottom: 1px dashed #e7eaec;padding-bottom:10px;">
+                                        <button type="button" class="btn btn-primary pull-right" data-toggle='modal' data-target='#AppCaseModal'><i class="glyphicon glyphicon-plus" style="margin-right:5px;"></i>新增</button>
+                                    </div>
+                                    <div class="col-sm-12 searching clearfix">
+                                        <form name="SearchAppCaseForm">
+                                            <div class="control-label pull-left" style="width: 46%;">
+                                                <label class="col-sm-2 searchcategory text-right control-label">主题:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchAPSubject" />
+                                                </div>
+                                                <label class="col-sm-2 searchcategory text-right control-label">应用行业:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchAPAppIndustry" />
+                                                </div>
+                                            </div>
+                                            <div class="control-label pull-left" style="width: 46%;">
+                                                <label class="col-sm-2 searchcategory text-right control-label">用途:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchAPUsage" />
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary pull-right" ng-click="SearchAppCase()" ng-disabled="SearchAppCaseForm.$invalid"><i class="glyphicon glyphicon-search" style="margin-right:5px;"></i>查询</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="ibox float-e-margins" style="padding-top:20px;">
+                                    <table class="table table-responsive table-striped table-bordered table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>主题</th>
+                                                <th>作者</th>
+                                                <th>应用行业</th>
+                                                <th>用途</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="AppCaseTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@*使用说明*@
-<div id="tab-04" class="tab-pane">
-    <div class="panel-body">
-        <form name="SelectInstructionForm">
-            <table style="margin:0px auto;">
-                <tr>
-                    <td><span>主题：</span></td>
-                    <td><input type="text" class="form-control" ng-model="SearchInSubject" /></td>
-                    <td><span>应用行业：</span></td>
-                    <td><input type="text" class="form-control" ng-model="SearchInAppIndustry" /></td>
-                    <td><span>用途：</span></td>
-                    <td><input type="text" class="form-control" ng-model="SearchInUsage" /></td>
-                    <td><button type="button" class="btn btn-primary" ng-click="SerachInstruction()" ng-disabled="SelectInstructionForm.$invalid">查询</button></td>
-                    <td><button type="button" class="btn btn-primary" data-toggle='modal' data-target='#InstructionModal'>新增</button></td>
-                </tr>
-            </table>
-        </form>
-        <div class="ibox float-e-margins">
-            <div class="wrapper wrapper-content animated fadeInRight">
-                <div class="col-sm-12">
-                    <div class="ibox float-e-margins">
-                        <div class="ibox-content">
-                            <table class="table table-responsive table-striped table-bordered table-hover ">
-                                <thead>
-                                    <tr>
-                                        <th>序号</th>
-                                        <th>主题</th>
-                                        <th>作者</th>
-                                        <th>应用行业</th>
-                                        <th>用途</th>
-                                        <th>操作</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="InstructionTable"></tbody>
-                            </table>
+                        @*使用说明*@
+                        <div id="tab-04" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-sm-12" style="border-bottom: 1px dashed #e7eaec;padding-bottom:10px;">
+                                        <button type="button" class="btn btn-primary pull-right" data-toggle='modal' data-target='#InstructionModal'><i class="glyphicon glyphicon-plus" style="margin-right:5px;"></i>新增</button>
+                                    </div>
+                                    <div class="col-sm-12 searching clearfix">
+                                        <form name="SelectInstructionForm">
+                                            <div class="control-label pull-left" style="width: 46%;">
+                                                <label class="col-sm-2 searchcategory text-right control-label">主题:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchInSubject" />
+                                                </div>
+                                                <label class="col-sm-2 searchcategory text-right control-label">应用行业:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchInAppIndustry" />
+                                                </div>
+                                            </div>
+                                            <div class="control-label pull-left" style="width: 46%;">
+                                                <label class="col-sm-2 searchcategory text-right control-label">用途:</label>
+                                                <div class="col-sm-4">
+                                                    <input type="text" class="form-control" ng-model="SearchInUsage" />
+                                                </div>
+                                            </div>
+                                            <button type="button" class="btn btn-primary pull-right" ng-click="SerachInstruction()" ng-disabled="SelectInstructionForm.$invalid"><i class="glyphicon glyphicon-search" style="margin-right:5px;"></i>查询</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="ibox float-e-margins" style="padding-top:20px;">
+                                    <table class="table table-responsive table-striped table-bordered table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>序号</th>
+                                                <th>主题</th>
+                                                <th>作者</th>
+                                                <th>应用行业</th>
+                                                <th>用途</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="InstructionTable"></tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@*商品服务*@
-<div id="tab-05" class="tab-pane">
-    <div class="panel-body">
-        <div style="width:60px;margin-left:820px;">
-            <button id="btnServiceGoods" type="button" data-toggle="modal" class="btn btn-primary" ng-click="AddGoodsService()">添加商品服务</button>
-        </div>
-        <div>
-            <div>
-                <div class="ibox float-e-margins">
-                    <div class="wrapper wrapper-content animated fadeInRight">
-                        <div class="col-sm-12">
-                            <div class="ibox float-e-margins">
-                                <div class="ibox-content">
+                        @*商品服务*@
+                        <div id="tab-05" class="tab-pane">
+                            <div class="panel-body">
+                                <div class="col-sm-12">
+                                    <button id="btnServiceGoods" type="button" data-toggle="modal" class="btn btn-primary pull-right" ng-click="AddGoodsService()">添加商品服务</button>
+                                </div>
+                                <div class="ibox float-e-margins" style="padding-top:20px;">
                                     <table class="table table-responsive table-striped table-bordered table-hover ">
                                         <thead>
                                             <tr>
@@ -365,19 +342,12 @@
                                         <tbody id="ServiceGoods"></tbody>
                                     </table>
                                 </div>
+                                <div style="width:200px;margin:0px auto;text-align:center;">
+                                    <span><button id="btnSave" type="button" class="btn btn-primary" ng-click="Save()">保存</button></span>
+                                    <span><button id="btnBack" type="button" class="btn btn-white" ng-click="btnBack()">返回</button></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-
-            </div>
-            <div style="width:200px;margin:0px auto;text-align:center;">
-                <span><button id="btnSave" type="button" class="btn btn-primary" ng-click="Save()">保存</button></span>
-                <span><button id="btnBack" type="button" class="btn btn-white" ng-click="btnBack()">返回</button></span>
-            </div>
-        </div>
-    </div>
-</div>
                     </div>
                 </div>
             </div>
@@ -388,7 +358,7 @@
 @*服务商品模态框（选择商品服务）*@
 <div class="modal fade" id="ServiceGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content" style="width:1000px;margin-left:-430px !important;">
+        <div class="modal-content" style="width:650px;margin-left:-300px !important;">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">服务商品选择</h4>
@@ -398,16 +368,21 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <form method="get" class="form-horizontal" id="commentForm">
-                                <table id="CheckServiceGoods">
-                                    <tr>
-                                        <th>请选择</th>
-                                        <th>服务商品名称</th>
-                                        <th>服务商品编码</th>
-                                        <th>价格</th>
-                                        <th>商品类型</th>
-                                        <th>服务商名称</th>
-                                    </tr>
-                                </table>
+                                <div class="ibox float-e-margins" style="padding-top:20px;">
+                                    <table class="table table-responsive table-striped table-bordered table-hover ">
+                                        <thead>
+                                            <tr>
+                                                <th>请选择</th>
+                                                <th>服务商品名称</th>
+                                                <th>服务商品编码</th>
+                                                <th>价格</th>
+                                                <th>商品类型</th>
+                                                <th>服务商名称</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="CheckServiceGoods"></tbody>
+                                    </table>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -415,14 +390,14 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-click="CheckServiceGoods()">保存</button>
+                <button type="button" class="btn btn-primary" ng-click="CheckServiceGoods()" >保存</button>
             </div>
         </div>
     </div>
 </div>
 @*应用案例模态框（新增应用案例）*@
 <div class="modal fade" id="AppCaseModal" tabindex="-1" role="dialog" aria-labelledby="AddAppCaseModalS">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -433,30 +408,30 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <form method="get" class="form-horizontal" name="addAppCaseForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td style="width:100px"><span>主题：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APSubject" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>应用行业：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APAppIndustry" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>用途：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" ng-model="APUsage" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">主题:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="APSubject" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">应用行业:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="APAppIndustry" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">用途:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="APUsage" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="fileupload">
+                                    <label class="col-sm-4 control-label">文件上传</label>
+                                    <div class="col-sm-7">
+                                        <input type="file" id="file-Portrait1" class="file-loading">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -471,7 +446,7 @@
 </div>
 @*应用案例模态框（编辑应用案例）*@
 <div class="modal fade" id="EditAppCaseModal" tabindex="-1" role="dialog" aria-labelledby="EditAppCaseModalS">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -482,30 +457,30 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <form method="get" class="form-horizontal" name="EditAppCaseForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td style="width:100px"><span>主题：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apSubject" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>应用行业：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apAppIndustry" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width:100px"><span>用途：</span></td>
-                                        <td style="width:300px"><span><input type="text" class="form-control" id="apUsage" required></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">主题:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="apSubject" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">应用行业:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="apAppIndustry" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">用途:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="apUsage" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="fileupload">
+                                    <label class="col-sm-4 control-label">文件上传</label>
+                                    <div class="col-sm-7">
+                                        <input type="file" id="file-Portrait1" class="file-loading">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -520,7 +495,7 @@
 </div>
 @*使用说明模态框（新增使用说明）*@
 <div class="modal fade" id="InstructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -531,30 +506,30 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <form method="get" class="form-horizontal" name="InstructionForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td><span>主题：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INSubject" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>应用行业：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INAppIndustry" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>用途：</span></td>
-                                        <td><input type="text" class="form-control" ng-model="INUsage" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">主题:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="INSubject" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">应用行业:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="INAppIndustry" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">用途:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" ng-model="INUsage" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="fileupload">
+                                    <label class="col-sm-4 control-label">文件上传</label>
+                                    <div class="col-sm-7">
+                                        <input type="file" id="file-Portrait1" class="file-loading">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -569,7 +544,7 @@
 </div>
 @*使用说明模态框（编辑使用说明）*@
 <div class="modal fade" id="EditInstructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -580,30 +555,30 @@
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
                             <form method="get" class="form-horizontal" name="InstructionForm" novalidate>
-                                <table>
-                                    <tr>
-                                        <td><span>主题：</span></td>
-                                        <td><input type="text" class="form-control" id="inSubject" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>应用行业：</span></td>
-                                        <td><input type="text" class="form-control" id="inAppIndustry" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td><span>用途：</span></td>
-                                        <td><input type="text" class="form-control" id="inUsage" required></td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2">
-                                            <div class="form-group" id="fileupload">
-                                                <label class="col-sm-4 control-label">文件上传</label>
-                                                <div class="col-sm-7">
-                                                    <input type="file" id="input-dim-2" class="file-loading">
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </table>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">主题:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="inSubject" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">应用行业:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="inAppIndustry" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">用途:</label>
+                                    <div class="col-sm-7">
+                                        <input type="text" class="form-control" id="inUsage" required="" aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group" id="fileupload">
+                                    <label class="col-sm-4 control-label">文件上传</label>
+                                    <div class="col-sm-7">
+                                        <input type="file" id="file-Portrait1" class="file-loading">
+                                    </div>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -618,7 +593,7 @@
 </div>
 @*使用说明/应用案例详情（模态框）*@
 <div class="modal fade" id="DetailModel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog" role="document" style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -628,30 +603,27 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
-                            <table>
-                                <tr>
-                                    <td><span>主题：</span></td>
-                                    <td><span id="Subject"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>应用行业：</span></td>
-                                    <td><span id="AppIndustry"></span></td>
-                                </tr>
-                                <tr>
-                                    <td><span>用途：</span></td>
-                                    <td><span id="Usage"></span></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2">
-                                        <div class="form-group" id="fileupload">
-                                            <label class="col-sm-4 control-label">文件上传</label>
-                                            <div class="col-sm-7">
-                                                <input type="file" id="input-dim-2" class="file-loading">
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </table>
+                            <div class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">主题:</label>
+                                    <div class="col-sm-7"><span id="Subject"></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">应用行业:</label>
+                                    <div class="col-sm-7"><span id="AppIndustry"></span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-4 control-label">用途:</label>
+                                    <div class="col-sm-7"><span id="Usage"></span></div>
+                                </div>
+                                <div class="form-group" id="fileupload">
+                                    <label class="col-sm-4 control-label">文件上传</label>
+                                    <div class="col-sm-7">
+                                        <a id="DetailImg"></a>
+                                       @* <input type="file" id="file-Portrait1" class="file-loading">*@
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -723,8 +695,8 @@
         //模态框服务商品绑定
         $http({
             method: 'POST',
-            url: '@Url.Action("GetAllServiceGoods")',
-            data: null
+            url: '@Url.Action("FindServiceGoodsOutProduct")',
+            data: { "productId": Id }
         }).then(function successCallback(response) {
             // 请求成功执行代码
             $.each(response.data, function (index, v) {
@@ -817,7 +789,7 @@
                 // 请求成功执行代码
                 $("#SpecTypeTd").children().remove()
                 $.each(response.data, function (index, v) {
-                    var checkbox = $("<div class='col-sm-6 checkbox i-checks'><label'><input id='" + v.Id +
+                    var checkbox = $("<div class='col-sm-6 checkbox i-checks'><label><input id='" + v.Id +
                         "' data-name='SpecType' type='checkbox' value='" + v.SpecName + "'><i></i> " + v.SpecName +
                         "</label></div>");
                     $("#SpecTypeTd").append(checkbox);
@@ -829,7 +801,7 @@
                     }
                     var Id = $(this).prop("id");
                     var Name = $(this).val();
-                    var checked = $(this).prop("checked")==true?false:true;
+                    var checked = $(this).prop("checked") == true ? false : true;
                     //规格参数绑值
                     $http({
                         method: 'POST',
@@ -843,9 +815,9 @@
                             var row = $("<div class='row' id='" + Id + "'></div>");
                             $.each(response.data, function (index, v) {
                                 var checkbox = $("<div class='col-sm-6 checkbox i-checks'><label><input id='" + v.Id +
-                                     "' data-name='" + Id + "'  type='checkbox' value='"+ v.ParameterName +"' > <i></i> " + v.ParameterName +
+                                     "' data-name='" + Id + "'  type='checkbox' value='" + v.ParameterName + "' > <i></i> " + v.ParameterName +
                                      "</label></div>");
-                                row.append(checkbox); 
+                                row.append(checkbox);
                             });
                             $("#SpecParameter").append(row);
                             $("#SpecParameter").append($("<div class='hr-line-dashed'></div>"))
@@ -915,9 +887,8 @@
                 if (v.checked) {
                     typeJsonArray[num1] = new Array();
                     var num = 0;
-                    $.each($("input[data-name='"+v.id+"']"), function (index, item) {
-                        if (item.checked)
-                        {
+                    $.each($("input[data-name='" + v.id + "']"), function (index, item) {
+                        if (item.checked) {
                             childrenJsonArray[num] = new Object();
                             childrenJsonArray[num].Id = item.id;
                             childrenJsonArray[num].ParameterName = $(this).val();
@@ -994,29 +965,31 @@
                     serviceNum++;
                 }
             });
-            $http({
-                method: 'POST',
-                url: '@Url.Action("FindServiceGoodsByListId")',
-                data: { "ServiceGoodsId": ServiceGoodsId }
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                //添加后显示
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
-                    var td = $("<td>" + num + "</td><td>" + v.GoodsName +
-                     "</td><td>" + v.GoodsTypeNames +
-                     "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
-                     "</td><td>" + v.GoodsDesription + "</td><td>" + v.ServicerName +
-                     "</td><td><span><a title='删除' class='delet' href='javascript:RemoveServiceGoods(\"" + v.Id +
-                     "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
-                    tr.append(td);
-                    $("#ServiceGoods").append(tr);
-                    num++;
-                })
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
+            if (ServiceGoodsId.length > 0) {
+                $http({
+                    method: 'POST',
+                    url: '@Url.Action("FindServiceGoodsByListId")',
+                    data: { "ServiceGoodsId": ServiceGoodsId }
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    //添加后显示
+                    var num = 1;
+                    $.each(response.data, function (index, v) {
+                        var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
+                        var td = $("<td>" + num + "</td><td>" + v.GoodsName +
+                         "</td><td>" + v.GoodsTypeNames +
+                         "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
+                         "</td><td>" + v.GoodsDesription + "</td><td>" + v.ServicerName +
+                         "</td><td><span><a title='删除' class='delet' href='javascript:RemoveServiceGoods(\"" + v.Id +
+                         "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
+                        tr.append(td);
+                        $("#ServiceGoods").append(tr);
+                        num++;
+                    })
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            }
             $('#ServiceGoodsModal').modal("hide");
         }
 
@@ -1323,8 +1296,19 @@
                 data: { "Id": $scope.Guid, "ServiceGoodsId": serviceGoodsIds }
             }).then(function successCallback(response) {
                 //请求成功执行代码
-                swal("保存成功", "", "success");
-                location.href = "/GoodsMan/ProductGoods/Index";
+                swal({
+                    title: "保存成功",
+                    //text: "保存成功",
+                    type: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#DD6B55",
+                    //cancelButtonText: "取消",
+                    confirmButtonText: "确定",
+                    closeOnConfirm: false
+                }, function () {
+                    location.href = "/GoodsMan/ProductGoods/Index";
+                });
+               // swal("保存成功", "", "success");
             }, function errorCallback(response) {
                 //请求失败执行代码
             })
@@ -1510,7 +1494,7 @@
             fileType = data.response.fileType;
         });
         //创建图片上传控件
-        $(".file-loading").fileinput({
+        $('.file-loading').fileinput({
             uploadUrl: '/FileUpload/FileUpload',
             allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
             maxImageWidth: 50,
@@ -1523,7 +1507,10 @@
             maxFileCount: 1,
             previewFileType: "image",
             browseLabel: "",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            mainClass: "input-group-lg",
+            language: 'zh',
+            showUpload: true,
         });
     });
 
@@ -1672,22 +1659,32 @@
     }
     //服务商品删除
     function RemoveServiceGoods(id) {
-        alert(id);
-        var productId = $("input[type='hidden'][id='#id']").val();
-        $.ajax({
-            url: "/GoodsMan/ProductGoods/RemoveServiceGoodsInProduct",
-            type: "POST",
-            data: { "Id": id, "productId": Id },
-            success: function (v) {
-                $("#ServiceGoods").children("tr[id='" + id + "']").html("");
-                BindServiceGoods();
-            },
-            error: function (v) {
-            }
-        })
+        swal({
+            title: "操作提示",
+            text: "确认删除吗?",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "取消",
+            confirmButtonText: "确定",
+            closeOnConfirm: false
+        }, function () {
+            $.ajax({
+                url: "/GoodsMan/ProductGoods/RemoveServiceGoodsInProduct",
+                type: "POST",
+                data: { "Id": id, "productId": Id },
+                success: function (v) {
+                    location.href = "/GoodsMan/ProductGoods/Index";
+                   // $("#ServiceGoods").children("tr[id='" + id + "']").html("");
+                    //BindServiceGoods();
+                },
+                error: function (v) {
+                }
+            })
+        });
     }
-
-    function iChecksBox(){
+    //复选框渲染
+    function iChecksBox() {
         $('.i-checks').iCheck({
             checkboxClass: 'icheckbox_square-green',
             radioClass: 'iradio_square-green',

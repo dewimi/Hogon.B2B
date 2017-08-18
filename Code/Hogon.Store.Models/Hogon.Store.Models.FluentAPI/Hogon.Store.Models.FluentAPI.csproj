@@ -190,6 +190,10 @@
     <Compile Include="Migrations\201708170654558_changeUserToAccount.Designer.cs">
       <DependentUpon>201708170654558_changeUserToAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708180119233_GoodsTypeAddIcon.cs" />
+    <Compile Include="Migrations\201708180119233_GoodsTypeAddIcon.Designer.cs">
+      <DependentUpon>201708180119233_GoodsTypeAddIcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -306,6 +310,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708170654558_changeUserToAccount.resx">
       <DependentUpon>201708170654558_changeUserToAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708180119233_GoodsTypeAddIcon.resx">
+      <DependentUpon>201708180119233_GoodsTypeAddIcon.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
