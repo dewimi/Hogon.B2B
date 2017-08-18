@@ -1,6 +1,4 @@
 ﻿
-using Hogon.Store.Models.Entities.Common;
-using Hogon.Store.Models.Entities.GoodsMan;
 using System;
 
 namespace Hogon.Store.Models.Dto.GoodsMan

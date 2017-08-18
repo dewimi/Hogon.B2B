@@ -168,7 +168,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
                 //dtoFreebieCatalog = m.FreebieCatalog,
                 FreebieCatalogName = m.FreebieCatalog.FreebieCatalogName,
                 Sort = m.FreebieCatalog.Sort,
-                FreebieLines = m.FreebieLines,
+                //FreebieLines = m.FreebieLines,
                 //Product = m.Product,
                 FreebiSortNum = m.FreebiSortNum,
                 IsPublish = m.IsPublish,

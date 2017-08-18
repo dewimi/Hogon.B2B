@@ -17,7 +17,6 @@ namespace Hogon.Store.Models.FluentAPI.MemberMan
                 m.MapInheritedProperties();
                 m.ToTable("Person");
             });
-            HasRequired(m => m.Role).WithMany(m => m.Persons).Map(m => m.MapKey("RoleId"));
         }
     }
 }

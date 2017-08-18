@@ -226,23 +226,25 @@
 
         //添加员工账号
         $scope.AddAccount = function () {
+            if ($scope.name != null && $scope.email != null && $scope.phoneNumber != null && $("#parent").val() != null) {
+                $scope.info = {
+                    Name: $scope.name,
+                    EmailAddress: $scope.email,
+                    PhoneNumber: $scope.phoneNumber,
+                    roleId: $("#parent").val()
+                }
+                $http({
+                    method: 'POST',
+                    url: '/Security/User/AddAccount',
+                    data: JSON.stringify($scope.info)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
 
-            $scope.info = {
-                Name: $scope.name,
-                EmailAddress: $scope.email,
-                PhoneNumber: $scope.phoneNumber,
-                role : $("#parent").val()
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
             }
-            $http({
-                method: 'POST',
-                url: '/Security/User/AddAccount',
-                data: JSON.stringify($scope.info)
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
+         
         }
     });
 

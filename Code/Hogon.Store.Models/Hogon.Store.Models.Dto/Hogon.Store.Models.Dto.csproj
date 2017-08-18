@@ -85,12 +85,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HogonStore.Models.Entities\Hogon.Store.Models.Entities.csproj">
-      <Project>{4cf3a89c-099a-46ad-ab39-060b45b2c17b}</Project>
-      <Name>Hogon.Store.Models.Entities</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
