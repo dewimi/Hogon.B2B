@@ -43,6 +43,11 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// </summary>
         public string EmailAddress { get; set; }
 
+        /// <summary>
+        /// 当前身份
+        /// </summary>
+        public virtual Account CurrentIdentity { get; set; }
+
 
         /// <summary>
         /// 用户角色关联集合

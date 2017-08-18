@@ -430,6 +430,24 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         }
 
         /// <summary>
+        /// 判断个人账号是否存在企业中
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool IsExist(Guid id)
+        {
+            bool result = false;
+            var staff = _enterpriseReoisitory.FindAll().SelectMany(m => m.Staffs)
+                .Where(s => s.Id == id).FirstOrDefault();
+            if (staff == null)
+                result = true;
+            else
+                result = false;
+
+            return result;         
+        }
+
+        /// <summary>
         /// 保存用户信息到企业下
         /// </summary>
         /// <param name="id"></param>
@@ -460,7 +478,6 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         {
           var roles = _roleRepository.FindBy(m => m.Enterprise.Id 
                 == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663"));
-
            var data = roles.ConvertTo<Role, DtoRole>();
 
             return data;
@@ -472,16 +489,33 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <param name="person"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public void AddAccount(DtoPerson dtoPerson, Guid roleId)
+        public bool AddAccount(DtoPerson dtoPerson, Guid roleId)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
-            var person = Mapper.Map<Person>(dtoPerson);
-            person.Password = _encryptor.Encrypt("123456");
-            person.IsEnable = true;
-           // person.Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(m => m.Id == roleId).First();
-            _personRepository.Add(person);
+           var result = _personRepository.FindBy(m => m.Name == dtoPerson.Name).FirstOrDefault();
+            if (result != null)
+            {
+                return true;
+            }
+            else
+            {
+                Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
+                var person = Mapper.Map<Person>(dtoPerson);
+                person.Password = _encryptor.Encrypt("123456");
+                person.IsEnable = true;
+                _personRepository.Add(person);
+
+                Enterprise enterprise = _enterpriseReoisitory.FindBy
+                       (m => m.Id == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663")).First();
+                Staff staff = new Staff
+                {
+                    Person = person,
+                    Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(r => r.Id == roleId).First()
+                };
+                enterprise.Staffs.Add(staff);
+            }
 
             Commit();
+            return false;
       
         }
     }

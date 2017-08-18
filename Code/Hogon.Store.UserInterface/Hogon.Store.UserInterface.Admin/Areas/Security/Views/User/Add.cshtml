@@ -180,10 +180,25 @@
 
             $http({
                 method: 'POST',
-                url: '/Security/User/SaveUserInfo',
+                url: '/Security/User/PersonIsExist',
                 data: JSON.stringify({ id: $scope.personId })
             }).then(function successCallback(response) {
                 // 请求成功执行代码
+                if (response.data == false) {
+                    $http({
+                        method: 'POST',
+                        url: '/Security/User/SaveUserInfo',
+                        data: JSON.stringify({ id: $scope.personId })
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        alert("添加成功");
+                        $("#myModal").hide();
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
+                } else {
+                    alert("该用户已存在企业中");
+                }
 
             }, function errorCallback(response) {
                 // 请求失败执行代码
@@ -239,7 +254,10 @@
                     data: JSON.stringify($scope.info)
                 }).then(function successCallback(response) {
                     // 请求成功执行代码
-
+                    if (response.data == true)
+                        alert("已存在");
+                    else
+                        alert("添加成功");
                 }, function errorCallback(response) {
                     // 请求失败执行代码
                 });

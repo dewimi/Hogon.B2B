@@ -54,5 +54,17 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// </summary>
         public ICollection<Role> Roles { get; set; }
 
+        public override Account CurrentIdentity
+        {
+            get
+            {
+                return this;
+            }
+            set
+            {
+                throw new InvalidOperationException("企业账户不可以设置当前身份");
+            }
+        }
+
     }
 }

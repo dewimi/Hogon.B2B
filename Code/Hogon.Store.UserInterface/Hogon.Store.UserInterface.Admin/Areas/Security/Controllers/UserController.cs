@@ -153,6 +153,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             }
             
         }
+
         
         /// <summary>
         /// 获取用户信息
@@ -163,6 +164,17 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         {
            var dtoAccount = accountSvc.GetUserInfo(userInfo);
             return Json(dtoAccount);
+        }
+
+        /// <summary>
+        /// 判断个人账号是否存在企业中
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult PersonIsExist(Guid id)
+        {
+           var result = accountSvc.IsExist(id);
+            return Json(result);
         }
 
         /// <summary>
@@ -195,8 +207,16 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         /// <returns></returns>
         public ActionResult AddAccount(DtoPerson person,Guid roleId)
         {
-            accountSvc.AddAccount(person,roleId);
-            return Json("");
+           var result = accountSvc.AddAccount(person,roleId);
+            if (!result)
+            {
+                throw new UserFriendlyException("");
+            }
+
+            return Json(new { message = "" });
+            return Json(result);
         }
+
+
     }
 }
