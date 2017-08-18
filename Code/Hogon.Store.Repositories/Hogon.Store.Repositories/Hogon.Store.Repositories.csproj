@@ -79,8 +79,6 @@
     <Compile Include="Security\AuthorityRepository.cs" />
     <Compile Include="Security\MenuRepository.cs" />
     <Compile Include="Security\RoleRepository.cs" />
-    <Compile Include="TestContext\InformationRepository.cs" />
-    <Compile Include="TestContext\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
