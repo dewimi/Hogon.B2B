@@ -75,13 +75,9 @@
     <Compile Include="MemberMan\AccountConfiguration.cs" />
     <Compile Include="MemberMan\EnterpriseConfiguration.cs" />
     <Compile Include="MemberMan\PersonConfiguration.cs" />
-    <Compile Include="Migrations\201708180437382_init.cs" />
-    <Compile Include="Migrations\201708180437382_init.Designer.cs">
-      <DependentUpon>201708180437382_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708180506329_init2.cs" />
-    <Compile Include="Migrations\201708180506329_init2.Designer.cs">
-      <DependentUpon>201708180506329_init2.cs</DependentUpon>
+    <Compile Include="Migrations\201708180530323_init.cs" />
+    <Compile Include="Migrations\201708180530323_init.Designer.cs">
+      <DependentUpon>201708180530323_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
@@ -106,13 +102,9 @@
       <Name>Hogon.Store.Models.Entities</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708180437382_init.resx">
-      <DependentUpon>201708180437382_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708180506329_init2.resx">
-      <DependentUpon>201708180506329_init2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708180530323_init.resx">
+      <DependentUpon>201708180530323_init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
