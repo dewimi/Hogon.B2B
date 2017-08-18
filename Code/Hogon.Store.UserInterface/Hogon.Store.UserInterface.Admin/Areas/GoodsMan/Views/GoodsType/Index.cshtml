@@ -5,8 +5,11 @@
 }
 <link href="~/Content/sweetalert.css" rel="stylesheet" />
 <script src="~/Scripts/sweetalert.min.js"></script>
+<!-- 自定义js -->
 <script src="~/Scripts/plugins/content.js"></script>
+<!-- Nestable List -->
 <script src="~/Scripts/hogon/js/plugins/nestable/jquery.nestable.js"></script>
+<script src="~/Scripts/hogon/js/content.js"></script>
 <style>
 	.authority {
 		float: left;
@@ -22,17 +25,37 @@
 </style>
 
 <form name="myForm">
-	<div class="authority">
+	@*<div class="authority">
 		<span>商品分类列表：</span>
 		<input id="Hidden1" type="hidden" ng-model="Guid" />
-		<div id="treeview-checkable"></div>
+		<div id="treeview-checkable"></div>*@
+
+        <div class="col-sm-5">
+            <div class="ibox ">
+                <div class="ibox-title">
+                    <h5>商品分类列表<input id="Hidden1" type="hidden" ng-model="Guid" /></h5>
+                </div>
+                <div class="ibox-content">
+                    <div class="dd" id="nestable2">
+                        <ol class="dd-list" id="pareent"></ol>
+                    </div>
+                    <div class="m-t-md">
+                        <h5>数据：</h5>
+                    </div>
+                    <textarea id="nestable2-output" class="form-control"></textarea>
+
+                </div>
+            </div>
+        </div>
+
+
 		<div id="right">
 			<button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
 			<button name="confirmButton" id="edit" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">修改</button>
 			<button name="confirmButton" id="detail" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">详情</button>
 			<button name="confirmButton" id="delt" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">删除</button>
 		</div>
-	</div>
+	@*</div>*@
 </form>
 
 <script>
@@ -103,17 +126,60 @@
 				window.location.href = "/GoodsMan/GoodsType/Detail?id=" + $('#treeview-checkable').treeview('getSelected')[0].Id;
 			});
 		}
-
 	});
 
 	//创建树形菜单
-	function CreateTreeMenu(data) {
-		$('#treeview-checkable').treeview({
-			data: data,
-			onNodeChecked: nodeChecked,
-			onNodeUnchecked: nodeUnchecked,
-		});
+    function CreateTreeMenu(data) {
+
+        $.each(data, function (index, items) {
+            var parentmenu = "";
+            if (items.nodes.length > 0) {
+                //创建父菜单
+                parentmenu = $("<li class='dd-item' data-id='" + items.Id +
+                    "'><div class='dd-handle'><span class='label label-info'><i class='fa fa-" + items.Icon +
+                    "'></i></span> " + items.text + "</div></li>");
+                //添加子菜单
+                var childmenu = ($("<ol class='dd-list'></ol>"));
+                $.each(items.nodes, function (index, sitems) {
+
+                    childmenu.append("<li class='dd-item' data-id='" + sitems.Id +
+                        "'><div class='dd-handle'><span class='label label-info'><i class='fa fa-" + items.Icon +
+                        "'></i></span> " + sitems.text + "</div></li>");
+                })
+                parentmenu.append(childmenu);
+            }
+            else {
+                parentmenu = $("<li class='dd-item' data-id='" + items.Id +
+                    "'><div class='dd-handle'><span class='label label-info'><i class='fa fa-" + items.Icon +
+                    "'></i></span> " + items.text + "</div></li>");
+            }
+            $("#pareent").append(parentmenu);
+            //collapseItemLi(parentmenu);
+        })
+		//$('#treeview-checkable').treeview({
+		//	data: data,
+		//	onNodeChecked: nodeChecked,
+		//	onNodeUnchecked: nodeUnchecked,
+		//});
 	}
+    $(function () {
+        var updateOutput = function (e) {
+            var list = e.length ? e : $(e.target),
+                output = list.data('output');
+            if (window.JSON) {
+                output.val(window.JSON.stringify(list.nestable('serialize'))); //, null, 2));
+            } else {
+                output.val('浏览器不支持');
+            }
+        };
+        $('#nestable2').nestable({
+            group: 1
+        }).on('change', updateOutput);
+
+        // output initial serialised data
+        updateOutput($('#nestable2').data('output', $('#nestable2-output')));
+
+    });
 
 	//节点选中
 	var nodeCheckedSilent = false;
@@ -132,5 +198,16 @@
 			return;
 		//nodeUncheckedSilent = true;
 		nodeUncheckedSilent = false;
+	}
+
+	function collapseItemLi(li)
+	{
+	    var lists = li.children(this.options.listNodeName);
+	    if (lists.length) {
+	        li.addClass(this.options.collapsedClass);
+	        li.children('[data-action="collapse"]').hide();
+	        li.children('[data-action="expand"]').show();
+	        li.children(this.options.listNodeName).hide();
+	    }
 	}
 </script>

@@ -446,6 +446,36 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         }
 
         /// <summary>
+        /// 查询所有非该产品下的服务商品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public IQueryable<DtoServiceGoods> FindAllServiceGoodsOutProduct(Guid productId)
+        {
+            var serviceGoods = serviceGoodsReps.FindAll().Where(m => m.Product.Id != productId);
+            var dtoServiceGoods = serviceGoods.Select(s => new DtoServiceGoods()
+            {
+                Id = s.Id,
+                CreatePerson = s.CreatePerson,
+                CreateTime = s.CreateTime,
+                FIleUploadId = s.FileUpload.Id,
+                FileUploadName = s.FileUpload.FileName,
+                GoodsAlias = s.GoodsAlias,
+                GoodsCode = s.GoodsCode,
+                GoodsDesription = s.GoodsDesription,
+                GoodsName = s.GoodsName,
+                IsAvailable = s.IsAvailable,
+                SalePrice = s.SalePrice,
+                UpdatePerson = s.UpdatePerson,
+                UpdateTime = s.UpdateTime,
+                GoodsTypeNames = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
+                GoodsTypeId = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Id),
+                ServicerName = s.ServicerName,
+            });
+            return dtoServiceGoods;
+        }
+
+        /// <summary>
         /// 根据Id集合查询服务商品
         /// </summary>
         /// <param name="ListId"></param>
@@ -527,6 +557,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 SalePrice = s.SalePrice,
                 UpdatePerson = s.UpdatePerson,
                 UpdateTime = s.UpdateTime,
+                GoodsTypeNames= s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
+                GoodsTypeId = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Id),
+               ServicerName=s.ServicerName,
             });
             return dtoServiceGoods;
         }
@@ -887,7 +920,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public IQueryable<AppCase> FindAppCaseByLike(DtoAppCase dtoAppCase)
         {
-
+            //if (dtoAppCase.Author.Length > 0 && dtoAppCase.AppIndustry.Length > 0 && dtoAppCase.Subject.Length > 0)
+            //{
+            //}
             var appCases = appCaseReps.FindAll().Where(m => m.Author.Contains(dtoAppCase.Author)
             || m.AppIndustry.Contains(dtoAppCase.AppIndustry) || m.Subject.Contains(dtoAppCase.Subject));
 
@@ -967,16 +1002,12 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public DtoInstruction FindInstructionById(Guid InstructionId)
         {
-
-            Mapper.Initialize(cfg => cfg.CreateMap<FileUpload, DtoFileUpload>());
-
             var dtoInstruction = instructionReps.FindAll().Select(m => new DtoInstruction()
             {
                 AppIndustry = m.AppIndustry,
                 Author = m.Author,
                 CreatePerson = m.CreatePerson,
                 CreateTime = m.CreateTime,
-                FileUpload = Mapper.Map<DtoFileUpload>(m.FileUpload),
                 FileUpLoadId = m.FileUpload.Id,
                 Id = m.Id,
                 ProductId = m.Product.Id,
@@ -1009,6 +1040,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public IQueryable<Instruction> FindInstructionByLike(DtoInstruction dtoInstruction)
         {
+            //if (dtoInstruction.Author.Length > 0 && dtoInstruction.AppIndustry.Length > 0 && dtoInstruction.Subject.Length > 0)
+            //{
+            //}
             var dtoInstructions = instructionReps.FindAll().Where(m => m.Author.Contains(dtoInstruction.Author) || m.AppIndustry.Contains(dtoInstruction.AppIndustry) || m.Subject.Contains(dtoInstruction.Subject));
 
             return dtoInstructions;

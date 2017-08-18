@@ -39,6 +39,11 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// </summary>
         public bool IsAvailable { get; set; }
 
+        /// <summary>
+        /// 服务商名称
+        /// </summary>
+        public string ServicerName { get; set; }
+
 
         /// <summary>
         /// 商品分类

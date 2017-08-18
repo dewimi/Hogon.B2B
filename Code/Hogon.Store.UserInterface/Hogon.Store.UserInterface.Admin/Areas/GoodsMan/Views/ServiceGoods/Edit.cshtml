@@ -4,84 +4,12 @@
 }
 <link href="~/Content/css/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/plugins/chosen.jquery.js"></script>
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
+<script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
-
-<form name="myForm" novalidate>
-    <div class="form-group">
-        <div class="basic">
-            <input type="hidden" name="id" ng-model="Guid" />
-            <table>
-                <tr>
-                    <td><span>服务商品名称:</span></td>
-                    <td>
-                        <input type="text" id="GoodsName" name="GoodsName " class="form-control" ng-model="GoodsName " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsName .$dirty && myForm.GoodsName .$invalid">
-                                <span ng-show="myForm.GoodsName .$error.required">服务商品名称不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>服务商品编码:</span></td>
-                    <td>
-                        <input type="text" name="GoodsCode" id="GoodsCode" class="form-control" ng-model="GoodsCode " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsCode .$dirty && myForm.GoodsCode .$invalid">
-                                <span ng-show="myForm.GoodsCode .$error.required">服务商品编码不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>销售价:</span></td>
-                    <td>
-                        <input type="number" ngMin="0" id="SalePrice" ng-pattern="/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/" name="SalePrice " class="form-control" ng-model="SalePrice " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.SalePrice .$dirty && myForm.SalePrice .$invalid">
-                                <span ng-show="myForm.SalePrice .$error.required">销售价不能为0或负数</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品描述:</span></td>
-                    <td>
-                        <textarea id="GoodsDesription" rows="2" cols="27" class="form-control" ng-model="GoodsDesription"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品类型:</span></td>
-                    <td>
-                        <select data-placeholder="多项选择" class="chosen-select" multiple style="width:350px;" tabindex="4" id="goodsType"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        @*图片上传控件*@
-                        <div class="form-group" id="fileupload">
-                            <label class="col-sm-4 control-label">文件上传</label>
-                            <div class="col-sm-7">
-                                <input type="file" id="input-dim-2" class="file-loading">
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div style="width:200px;margin:0px auto;">
-            </div>
-        </div>
-    </div>
-</form>
-
 
 <div class="gray-bg">
     <div class="wrapper wrapper-content animated fadeInRight">
@@ -92,9 +20,9 @@
                         <h5>表单元素</h5>
                     </div>
                     <div class="ibox-content">
-                        <form method="get" class="form-horizontal" id="commentForm">
+                        <form method="get" name="myForm" novalidate class="form-horizontal" id="commentForm">
                             <div class="form-group">
-                                <label class="col-sm-3 control-label">服务商品名称<i class="fa fa-asterisk fa-red"></i></label>
+                                <label class="col-sm-3 control-label">服务商品名称<input type="hidden" name="id" ng-model="Guid" /><i class="fa fa-asterisk fa-red"></i></label>
                                 <div class="col-sm-7">
                                     <input type="text" id="GoodsName" name="GoodsName" ng-model="GoodsName " class="form-control" required="" aria-required="true">
                                 </div>
@@ -148,46 +76,6 @@
             </div>
         </div>
     </div>
-
-    <!-- jQuery 表单验证-->
-    <script src="js/plugins/validate/jquery.validate.min.js"></script>
-    <script src="js/plugins/validate/messages_zh.min.js"></script>
-    <!-- 自定义js -->
-    <script src="js/content.js?v=1.0.0"></script>
-    <script type="text/javascript">
-        $.validator.setDefaults({
-            highlight: function (element) {
-                $(element).closest('.form-group').removeClass('has-success').addClass('has-error');
-            },
-            success: function (element) {
-                element.closest('.form-group').removeClass('has-error').addClass('has-success');
-            },
-            errorElement: "span",
-            errorPlacement: function (error, element) {
-                if (element.is(":radio") || element.is(":checkbox")) {
-                    error.appendTo(element.parent().parent().parent());
-                } else {
-                    error.appendTo(element.parent());
-                }
-            },
-            errorClass: "help-block m-b-none",
-            validClass: "help-block m-b-none"
-        });
-        $(document).ready(function () {
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-            $("#commentForm").validate();
-
-            $('#file-Portrait1').fileinput({
-                language:'zh',
-                showUpload: false,
-                mainClass: "input-group-lg",
-                allowedFileExtensions: ["jpg", "png", "gif"]
-            });
-        });
-    </script>
 </div>
 
 
@@ -195,6 +83,8 @@
 
 
 <script type="text/javascript">
+    var fileUrl, fileName, fileSize, fileType;
+
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
         var id = window.location.search;
@@ -318,13 +208,11 @@
             fileSize = data.response.fileSize;
             fileType = data.response.fileType;
         });
-
         //创建图片上传控件
-        $(".file-loading").fileinput({
+        $('.file-loading').fileinput({
+            language: 'zh',
+            showUpload: true,
             uploadUrl: '/FileUpload/FileUpload',
-            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
-            maxImageWidth: 50,
-            maxImageHeight: 50,
             uploadLabel: "",
             uploadTitle: "上传文件",
             removeLabel: "",
@@ -333,7 +221,9 @@
             maxFileCount: 1,
             previewFileType: "image",
             browseLabel: "",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            mainClass: "input-group-lg",
+            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
         });
     });
 </script>

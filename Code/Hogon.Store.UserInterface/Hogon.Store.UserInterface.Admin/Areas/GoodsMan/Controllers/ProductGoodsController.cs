@@ -495,6 +495,18 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
             return Json(ServiceGoods);
         }
+
+        /// <summary>
+        /// 查询所有非该产品下的服务商品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public ActionResult FindServiceGoodsOutProduct(Guid productId)
+        {
+            var dtoServiceGoodss = goodsSvc.FindAllServiceGoodsOutProduct(productId);
+            return Json(dtoServiceGoodss);
+        }
+
         /// <summary>
         /// 根据集合Id查询服务商品
         /// </summary>
