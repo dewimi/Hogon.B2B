@@ -52,6 +52,7 @@
     <Compile Include="GoodsMan\ProductGoods.cs" />
     <Compile Include="GoodsMan\Rela_Brand_GoodsType.cs" />
     <Compile Include="GoodsMan\Rela_Goods_GoodsType.cs" />
+    <Compile Include="GoodsMan\PackageGoods.cs" />
     <Compile Include="GoodsMan\ServiceGoods.cs" />
     <Compile Include="GoodsMan\Instruction.cs" />
     <Compile Include="GoodsMan\GoodsType.cs" />
