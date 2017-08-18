@@ -70,6 +70,7 @@
     <Compile Include="MarketingMan\FreebieLineConfiguration.cs" />
     <Compile Include="MarketingMan\PackageGoodsConfiguration.cs" />
     <Compile Include="MarketingMan\PromotinRuleConfiguration.cs" />
+    <Compile Include="MarketingMan\Rel_PackageGoods_ProductGoodsConfiguration.cs" />
     <Compile Include="MarketingMan\Rel_Promotion_GoodsConfiguration.cs" />
     <Compile Include="MemberMan\AccountConfiguration.cs" />
     <Compile Include="MemberMan\EnterpriseConfiguration.cs" />
@@ -199,7 +200,6 @@
     <Compile Include="Security\FunctionConfiguration.cs" />
     <Compile Include="Security\MenuConfiguration.cs" />
     <Compile Include="Security\Rela_Authority_FunctionConfiguration.cs" />
-    <Compile Include="Security\Rela_Role_UserConfiguration.cs" />
     <Compile Include="Security\RoleConfiguration.cs" />
     <Compile Include="HRMan\StaffInfoConfiguration.cs" />
     <Compile Include="Security\UserConfiguration.cs" />

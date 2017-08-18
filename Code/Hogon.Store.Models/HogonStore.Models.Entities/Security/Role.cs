@@ -1,4 +1,5 @@
-﻿using Hogon.Store.Models.Entities.MemberMan;
+﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
+using Hogon.Store.Models.Entities.MemberMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,18 +9,19 @@ namespace Hogon.Store.Models.Entities.Security
     /// <summary>
     /// 角色
     /// </summary>
-    public class Role
+    public class Role: BaseEntity
     {
         public Role()
         {
-            Rela_Role_Account = new HashSet<Rela_Role_Account>();
+            Persons = new HashSet<Person>();
+            Rela_Role_Person = new HashSet<Rela_Role_Person>();
             Authorities = new HashSet<Authority>();
         }
 
-        /// <summary>
-        /// 角色Id
-        /// </summary>
-        public Guid Id { get; set; }
+        ///// <summary>
+        ///// 角色Id
+        ///// </summary>
+        //public Guid Id { get; set; }
 
         /// <summary>
         /// 角色名称
@@ -36,25 +38,25 @@ namespace Hogon.Store.Models.Entities.Security
         /// </summary>
         public bool IsAdministrator { get; set; }
 
-        /// <summary>
-        /// 角色创建时间
-        /// </summary>
-        public DateTime CreatedTime { get; set; }
+        ///// <summary>
+        ///// 角色创建时间
+        ///// </summary>
+        //public DateTime CreatedTime { get; set; }
 
-        /// <summary>
-        /// 角色修改时间
-        /// </summary>
-        public DateTime UpdatedTime { get; set; }
+        ///// <summary>
+        ///// 角色修改时间
+        ///// </summary>
+        //public DateTime UpdatedTime { get; set; }
 
-        /// <summary>
-        /// 角色创建人Id
-        /// </summary>
-        public Guid CreatorId { get; set; }
+        ///// <summary>
+        ///// 角色创建人Id
+        ///// </summary>
+        //public Guid CreatorId { get; set; }
 
-        /// <summary>
-        /// 角色修改人Id
-        /// </summary>
-        public Guid UpdaterId { get; set; }
+        ///// <summary>
+        ///// 角色修改人Id
+        ///// </summary>
+        //public Guid UpdaterId { get; set; }
 
         /// <summary>
         /// 企业
@@ -62,10 +64,14 @@ namespace Hogon.Store.Models.Entities.Security
         public Enterprise Enterprise { get; set; }
 
         /// <summary>
-        /// 用户角色关联集合
+        /// 个人用户集合
         /// </summary>
-        public virtual ICollection<Rela_Role_Account> Rela_Role_Account { get; set; }
+        public virtual ICollection<Person> Persons { get; set; }
 
+        /// <summary>
+        /// 个人用户集合
+        /// </summary>
+        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
         /// <summary>
         /// 权限集合
         /// </summary>

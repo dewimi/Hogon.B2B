@@ -32,11 +32,6 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         public string GoodsDesription { get; set; }
 
         /// <summary>
-        /// 图片文件
-        /// </summary>
-        public FileUpload FileUpload { get; set; }
-
-        /// <summary>
         /// 商品别名
         /// </summary>
         public string GoodsAlias { get; set; }

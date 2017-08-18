@@ -1,5 +1,6 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 using Hogon.Store.Models.Entities.MemberMan;
+using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;

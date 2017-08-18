@@ -10,6 +10,7 @@ using Hogon.Store.UserInterface.Admin.Areas.Security.Models.User;
 using Hogon.Store.Models.Dto.Security;
 using Hogon.Store.Services.ApplicationServices.MemberManContext;
 using Hogon.Store.Models.Dto.MemberMan;
+using Hogon.Store.Models.Entities.MemberMan;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 {
@@ -170,6 +171,29 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         public ActionResult SaveUserInfo(Guid id)
+        {
+            accountSvc.SaveUserInfo(id);
+            return Json("");
+        }
+
+        /// <summary>
+        /// 获取企业下的所有角色
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetRole()
+        {
+            var roles = accountSvc.GetRole();
+
+            return Json(roles);
+        }
+
+        /// <summary>
+        /// 添加员工账号
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public ActionResult AddAccount(DtoPerson person,Guid role)
         {
             return Json("");
         }

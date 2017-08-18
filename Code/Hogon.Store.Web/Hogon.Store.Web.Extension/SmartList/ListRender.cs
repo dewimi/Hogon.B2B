@@ -61,35 +61,7 @@ namespace Hogon.Store.Web.Extension
             sb.Append("");
 
             return sb.ToString();
-            //IQueryable<SearchAttribute> attributes = AttributeCollecion.SearchAttributes;
-            //StringBuilder sb = new StringBuilder();
 
-            //sb.Append("");
-
-            //int count = 0;
-            //foreach (var attr in attributes)
-            //{
-
-            //    sb.Append("<div class=\"control-label pull-left\"style=\"width: 46%;\">");
-
-            //    if (attr.DisplayName == "至")
-            //    {
-            //        sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
-            //    }
-            //    else
-            //    {
-            //        sb.Append("<label  class=\"col-sm-2 searchcategory text-right\" >" + attr.DisplayName + ":" + "</label>");
-            //    }
-            //    sb.Append("<div class=\"col-sm-4\">" + SmartList.RenderSearch(attr) + "</div>");
-
-            //    sb.Append("</div>");
-
-            //    count++;
-
-            //}
-            //sb.Append("");
-
-            //return sb.ToString();
         }
 
         /// <summary>
@@ -109,20 +81,38 @@ namespace Hogon.Store.Web.Extension
                 sb.Append(SmartList.RenderHeader(attr));
 
             }
-            foreach (var item in UserState.Current.AvailableFunctions)
-            {
-                if (item.MenuCode == "" && item.FunctionCode == "")
-                {
-                    sb.Append("<th></th>");
-                    break;
-                }
-                else
-                {
-                    sb.Append("<th>操作</th>");
-                    break;
-                }
-            }
 
+
+            if (string.IsNullOrEmpty(MenuCode))
+            {
+                sb.Append("<th>操作</th>");
+            }
+            else
+            {
+                foreach (var item in UserState.Current.AvailableFunctions)
+                {
+                    if (item.MenuCode == "")
+                    {
+                        throw new ArgumentException("参数不正确");
+                    }
+                    else
+                    {
+                        if (item.FunctionCode == "")
+                        {
+                            sb.Append("<th></th>");
+                            break;
+                        }
+                        else
+                        {
+                            sb.Append("<th>操作</th>");
+                            break;
+                        }
+                    }
+                   
+                }
+
+            }
+ 
             sb.Append("</tr>");
             return sb.ToString();
         }

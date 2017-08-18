@@ -12,6 +12,12 @@ namespace Hogon.Store.Models.FluentAPI.GoodsMan
     {
         public ProductGoodsConfiguration()
         {
+            Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("ProductGoods");
+            });
+
             HasRequired(m => m.Product).WithMany(m => m.ProductGoods).Map(m => m.MapKey("ProductId"));
         }
     }

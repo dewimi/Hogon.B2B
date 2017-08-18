@@ -6,9 +6,9 @@ namespace Hogon.Store.Models.Entities.Security
     /// <summary>
     /// 用户角色关联
     /// </summary>
-    public class Rela_Role_Account
+    public class Rela_Role_Person
     {
-        public Rela_Role_Account()
+        public Rela_Role_Person()
         {
         }
 

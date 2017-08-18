@@ -1,23 +1,13 @@
-﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
-using Hogon.Store.Models.Entities.Security;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hogon.Store.Models.Entities.MemberMan
+namespace Hogon.Store.Models.Dto.MemberMan
 {
-    /// <summary>
-    /// 账号
-    /// </summary>
-    public abstract class Account:BaseEntity
+    public class DtoPerson : BaseDto
     {
-        public Account()
-        {
-            Rela_Role_Person = new HashSet<Rela_Role_Person>();
-        }
-
         /// <summary>
         /// 名称
         /// </summary>
@@ -42,11 +32,5 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// 联系人邮箱
         /// </summary>
         public string EmailAddress { get; set; }
-
-
-        /// <summary>
-        /// 用户角色关联集合
-        /// </summary>
-        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
     }
 }

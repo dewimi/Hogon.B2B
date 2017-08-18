@@ -69,6 +69,7 @@
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
     <Compile Include="MarketingMan\DtoFreebieLines.cs" />
     <Compile Include="MemberMan\DtoAccount.cs" />
+    <Compile Include="MemberMan\DtoPerson.cs" />
     <Compile Include="MemberMan\DtoUserInfo.cs" />
     <Compile Include="MarketingMan\DtoFreebieCatalog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

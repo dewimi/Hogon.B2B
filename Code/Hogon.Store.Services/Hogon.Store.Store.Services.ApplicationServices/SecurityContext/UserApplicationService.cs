@@ -30,186 +30,186 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
     //    /// <param name="userName"></param>
     //    /// <param name="password"></param>
     //    /// <returns></returns>
-    //    public bool Login(string userName, string password)
-    //    {
-    //        // Check user login credential.
-    //        var user = ValidateUser(userName, password);
+    //public bool Login(string userName, string password)
+    //{
+    //    // Check user login credential.
+    //    var user = ValidateUser(userName, password);
 
-    //        if (user == null)
+    //    if (user == null)
+    //    {
+    //        return false;
+    //    }
+
+    //    // If input credential is available, set cookie.
+    //    FormsAuthentication.SetAuthCookie(userName, false);
+
+    //    UserState userState = new UserState()
+    //    {
+    //        UserId = user.Id,
+    //        UserName = user.Name,
+    //        NickName = user.NickName,
+    //        Email = user.Email,
+    //    };
+
+    //    var availableRoles = user.Rela_Role_User.Select(m => m.Role)
+    //        .Where(m => m.IsEnable == true).AsQueryable();
+    //    userState.Roles = availableRoles.ConvertTo<Role, RoleState>().ToArray();
+
+    //    userState.AvailableMenus = _authorizationService.GetAvailableMenusByUser(user)
+    //        .AsQueryable().ConvertTo<Menu, MenuState>().ToArray();
+
+    //    userState.AvailableFunctions = _authorizationService
+    //        .GetAvailableFunctionsByUser(user).Select(m => new FunctionState()
     //        {
-    //            return false;
-    //        }
+    //            Id = m.Id,
+    //            Name = m.Name,
+    //            MenuCode = m.Menu.Code,
+    //            FunctionCode = m.Code,
+    //            IsEnable = m.IsEnable,
+    //        }).Where(m => m.IsEnable == true).ToArray();
 
-    //        // If input credential is available, set cookie.
-    //        FormsAuthentication.SetAuthCookie(userName, false);
+    //    UserState.Current = userState;
 
-    //        UserState userState = new UserState()
-    //        {
-    //            UserId = user.Id,
-    //            UserName = user.Name,
-    //            NickName = user.NickName,
-    //            Email = user.Email,
-    //        };
+    //    return true;
+        //    }
 
-    //        var availableRoles = user.Rela_Role_User.Select(m => m.Role)
-    //            .Where(m => m.IsEnable == true).AsQueryable();
-    //        userState.Roles = availableRoles.ConvertTo<Role, RoleState>().ToArray();
+        //    /// <summary>
+        //    /// 登出
+        //    /// </summary>
+        //    /// <returns></returns>
+        //    public void Logout()
+        //    {
+        //        FormsAuthentication.SignOut();
+        //    }
 
-    //        userState.AvailableMenus = _authorizationService.GetAvailableMenusByUser(user)
-    //            .AsQueryable().ConvertTo<Menu, MenuState>().ToArray();
+        //    /// <summary>
+        //    /// 保存用户信息
+        //    /// </summary>
+        //    public void SaveUser(DtoUser dtoUser)
+        //    {
+        //        if (dtoUser.Id == new Guid())
+        //        {
+        //            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, User>());
 
-    //        userState.AvailableFunctions = _authorizationService
-    //            .GetAvailableFunctionsByUser(user).Select(m => new FunctionState()
-    //            {
-    //                Id = m.Id,
-    //                Name = m.Name,
-    //                MenuCode = m.Menu.Code,
-    //                FunctionCode = m.Code,
-    //                IsEnable = m.IsEnable,
-    //            }).Where(m => m.IsEnable == true).ToArray();
+        //           var isExist = _accountReps.FindBy(m => m.Name == dtoUser.Name).FirstOrDefault();
+        //            if (isExist == null)
+        //            {
+        //                // 如果密码是新密码，对密码进行加密
+        //                dtoUser.Password = _encryptor.Encrypt(dtoUser.Password);
 
-    //        UserState.Current = userState;
+        //                var user = Mapper.Map<User>(dtoUser);
+        //                user.Id = Guid.NewGuid();
 
-    //        return true;
-    //    }
+        //                _accountReps.Add(user);
+        //            }
 
-    //    /// <summary>
-    //    /// 登出
-    //    /// </summary>
-    //    /// <returns></returns>
-    //    public void Logout()
-    //    {
-    //        FormsAuthentication.SignOut();
-    //    }
+        //        }
+        //        else
+        //        {
+        //            var user = _accountReps.FindBy(i => i.Id == dtoUser.Id).First();
 
-    //    /// <summary>
-    //    /// 保存用户信息
-    //    /// </summary>
-    //    public void SaveUser(DtoUser dtoUser)
-    //    {
-    //        if (dtoUser.Id == new Guid())
-    //        {
-    //            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, User>());
+        //            // 如果密码是新密码，对密码进行加密
+        //            if (user.Password != dtoUser.Password)
+        //                dtoUser.Password = _encryptor.Encrypt(dtoUser.Password);
 
-    //           var isExist = _accountReps.FindBy(m => m.Name == dtoUser.Name).FirstOrDefault();
-    //            if (isExist == null)
-    //            {
-    //                // 如果密码是新密码，对密码进行加密
-    //                dtoUser.Password = _encryptor.Encrypt(dtoUser.Password);
+        //            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, User>());
+        //            Mapper.Map(dtoUser, user);
+        //        }
 
-    //                var user = Mapper.Map<User>(dtoUser);
-    //                user.Id = Guid.NewGuid();
+        //        Commit();
+        //    }
 
-    //                _accountReps.Add(user);
-    //            }
+        //    /// <summary>
+        //    /// 查询所有用户
+        //    /// </summary>
+        //    /// <returns></returns>
+        //    public IQueryable<DtoUser> GetAllUser()
+        //    {
+        //        var users = _accountReps.FindAll();
 
-    //        }
-    //        else
-    //        {
-    //            var user = _accountReps.FindBy(i => i.Id == dtoUser.Id).First();
+        //        var dtoUser = users.ConvertTo<User, DtoUser>();
 
-    //            // 如果密码是新密码，对密码进行加密
-    //            if (user.Password != dtoUser.Password)
-    //                dtoUser.Password = _encryptor.Encrypt(dtoUser.Password);
+        //        return dtoUser;
+        //    }
 
-    //            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, User>());
-    //            Mapper.Map(dtoUser, user);
-    //        }
+        //    /// <summary>
+        //    /// 判断用户名是否存在
+        //    /// </summary>
+        //    /// <returns></returns>
+        //    public int IsExist(string userName)
+        //    {
+        //        int result = 0;
+        //        var user = _accountReps.FindBy(i => i.Name == userName).FirstOrDefault();
 
-    //        Commit();
-    //    }
+        //        if (user == null)
+        //        {
+        //            result = 0;
+        //        }
+        //        else
+        //        {
+        //            result = 1;
+        //        }
+        //        return result;
+        //    }
 
-    //    /// <summary>
-    //    /// 查询所有用户
-    //    /// </summary>
-    //    /// <returns></returns>
-    //    public IQueryable<DtoUser> GetAllUser()
-    //    {
-    //        var users = _accountReps.FindAll();
+        //    /// <summary>
+        //    /// 根据用户Id查询信息
+        //    /// </summary>
+        //    /// <returns></returns>
+        //    public DtoUser GetAccountById(Guid Id)
+        //    {
+        //        var user = _accountReps.FindBy(i => i.Id == Id).First();
+        //        Mapper.Initialize(cfg => cfg.CreateMap<User, DtoUser>());
+        //        var users = Mapper.Map<DtoUser>(user);
 
-    //        var dtoUser = users.ConvertTo<User, DtoUser>();
+        //        return users;
+        //    }
 
-    //        return dtoUser;
-    //    }
+        //    /// <summary>
+        //    /// 用户名密码验证
+        //    /// </summary>s
+        //    /// <param name="userName"></param>
+        //    /// <param name="password"></param>
+        //    /// <returns></returns>
+        //    private Account ValidateUser(string userName, string password)
+        //    {
+        //        password = _encryptor.Encrypt(password);
 
-    //    /// <summary>
-    //    /// 判断用户名是否存在
-    //    /// </summary>
-    //    /// <returns></returns>
-    //    public int IsExist(string userName)
-    //    {
-    //        int result = 0;
-    //        var user = _accountReps.FindBy(i => i.Name == userName).FirstOrDefault();
+        //        // 使用加密后的密码进行比较
+        //        var account = _accountReps.FindAll()
+        //            .Where(u => u.Name == userName && u.Password == password)
+        //            .FirstOrDefault();
 
-    //        if (user == null)
-    //        {
-    //            result = 0;
-    //        }
-    //        else
-    //        {
-    //            result = 1;
-    //        }
-    //        return result;
-    //    }
+        //        return account;
+        //    }
 
-    //    /// <summary>
-    //    /// 根据用户Id查询信息
-    //    /// </summary>
-    //    /// <returns></returns>
-    //    public DtoUser GetAccountById(Guid Id)
-    //    {
-    //        var user = _accountReps.FindBy(i => i.Id == Id).First();
-    //        Mapper.Initialize(cfg => cfg.CreateMap<User, DtoUser>());
-    //        var users = Mapper.Map<DtoUser>(user);
+        //    /// <summary>
+        //    /// 根据用户查询相应权限
+        //    /// </summary>
+        //    /// <param name="userId"></param>
+        //    /// <returns></returns>
+        //    public IQueryable<DtoMenu> GetAuthorityByUserId(Guid userId)
+        //    {
+        //        var menus = UserState.Current.AvailableMenus.AsQueryable();
 
-    //        return users;
-    //    }
+        //        var dtoMenus = menus.ConvertTo<MenuState, DtoMenu>();
 
-    //    /// <summary>
-    //    /// 用户名密码验证
-    //    /// </summary>s
-    //    /// <param name="userName"></param>
-    //    /// <param name="password"></param>
-    //    /// <returns></returns>
-    //    private Account ValidateUser(string userName, string password)
-    //    {
-    //        password = _encryptor.Encrypt(password);
+        //        return dtoMenus;
+        //    }
 
-    //        // 使用加密后的密码进行比较
-    //        var account = _accountReps.FindAll()
-    //            .Where(u => u.Name == userName && u.Password == password)
-    //            .FirstOrDefault();
+        //    /// <summary>
+        //    /// 根据用户名称查询角色
+        //    /// </summary>
+        //    /// <param name="userName"></param>
+        //    /// <returns></returns>
+        //    public DtoRole GetRoleByUserId(Guid userId)
+        //    {
+        //        var role = _accountReps.FindBy(r => r.Id == userId).SelectMany
+        //           (r => r.Rela_Role_User).Select(r => r.Role).First();
+        //        Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
+        //        var roleData = Mapper.Map<DtoRole>(role);
 
-    //        return account;
-    //    }
-
-    //    /// <summary>
-    //    /// 根据用户查询相应权限
-    //    /// </summary>
-    //    /// <param name="userId"></param>
-    //    /// <returns></returns>
-    //    public IQueryable<DtoMenu> GetAuthorityByUserId(Guid userId)
-    //    {
-    //        var menus = UserState.Current.AvailableMenus.AsQueryable();
-
-    //        var dtoMenus = menus.ConvertTo<MenuState, DtoMenu>();
-
-    //        return dtoMenus;
-    //    }
-
-    //    /// <summary>
-    //    /// 根据用户名称查询角色
-    //    /// </summary>
-    //    /// <param name="userName"></param>
-    //    /// <returns></returns>
-    //    public DtoRole GetRoleByUserId(Guid userId)
-    //    {
-    //        var role = _accountReps.FindBy(r => r.Id == userId).SelectMany
-    //           (r => r.Rela_Role_User).Select(r => r.Role).First();
-    //        Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
-    //        var roleData = Mapper.Map<DtoRole>(role);
-
-    //        return roleData;
-    //    }
-    //}
-}
+        //        return roleData;
+        //    }
+        //}
+    }

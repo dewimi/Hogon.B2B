@@ -13,6 +13,12 @@ namespace Hogon.Store.Models.FluentAPI.GoodsMan
 
         public ServiceGoodsConfiguration()
         {
+            Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("ServiceGoods");
+            });
+
             HasOptional(m => m.Product).WithMany(m => m.ServiceGoods).Map(m => m.MapKey("ServiceGoods_ProductId"));
         }
     }

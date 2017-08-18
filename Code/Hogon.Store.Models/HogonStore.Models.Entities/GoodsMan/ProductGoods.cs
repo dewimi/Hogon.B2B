@@ -16,6 +16,7 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         {
             FreebieLines = new HashSet<FreebieLine>();
             SpecParameterTemplate = new HashSet<SpecParameterTemplate>();
+            Rel_PackageGoods_ProductGoodses = new HashSet<Rel_PackageGoods_ProductGoods>();
         }
 
         /// <summary>
@@ -57,6 +58,11 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 显示规格参数，格式：（规格类型：规格参数）
         /// </summary>
         public string DisplaySpecParameterTemplateName { get; set; }
+
+        /// <summary>
+        /// 组合商品 产品商品关联
+        /// </summary>
+        public ICollection<Rel_PackageGoods_ProductGoods> Rel_PackageGoods_ProductGoodses { get; set; }
 
     }
 }
