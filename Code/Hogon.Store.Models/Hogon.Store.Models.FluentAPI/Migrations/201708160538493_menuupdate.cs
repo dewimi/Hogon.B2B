@@ -9,7 +9,6 @@ namespace Hogon.Store.Models.FluentAPI.Migrations
         {
             AddColumn("dbo.Menus", "Sort", c => c.Int(nullable: false));
             AlterColumn("dbo.Menus", "Code", c => c.String(nullable: false, maxLength: 50));
-            CreateIndex("dbo.Menus", "Code", unique: true, name: "MenuCodeIndexer");
         }
         
         public override void Down()
