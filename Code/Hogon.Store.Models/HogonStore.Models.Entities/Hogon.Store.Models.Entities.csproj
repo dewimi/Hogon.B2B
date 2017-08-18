@@ -98,6 +98,10 @@
       <Project>{e77056be-ce57-470b-8d7b-76a5481a152a}</Project>
       <Name>Hogon.Store.Utilities.Constants</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Hogon.Store.Models.Dto\Hogon.Store.Models.Dto.csproj">
+      <Project>{08F1B603-99F3-4740-9F94-303C1664D92D}</Project>
+      <Name>Hogon.Store.Models.Dto</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
