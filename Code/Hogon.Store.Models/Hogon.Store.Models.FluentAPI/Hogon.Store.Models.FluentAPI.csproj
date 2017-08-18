@@ -70,143 +70,29 @@
     <Compile Include="MarketingMan\FreebieLineConfiguration.cs" />
     <Compile Include="MarketingMan\PackageGoodsConfiguration.cs" />
     <Compile Include="MarketingMan\PromotinRuleConfiguration.cs" />
+    <Compile Include="MarketingMan\Rel_PackageGoods_ProductGoodsConfiguration.cs" />
     <Compile Include="MarketingMan\Rel_Promotion_GoodsConfiguration.cs" />
     <Compile Include="MemberMan\AccountConfiguration.cs" />
     <Compile Include="MemberMan\EnterpriseConfiguration.cs" />
     <Compile Include="MemberMan\PersonConfiguration.cs" />
-    <Compile Include="Migrations\201707261006261_init.cs" />
-    <Compile Include="Migrations\201707261006261_init.Designer.cs">
-      <DependentUpon>201707261006261_init.cs</DependentUpon>
+    <Compile Include="Migrations\201708180530323_init.cs" />
+    <Compile Include="Migrations\201708180530323_init.Designer.cs">
+      <DependentUpon>201708180530323_init.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201707270522557_CreateGoods.cs" />
-    <Compile Include="Migrations\201707270522557_CreateGoods.Designer.cs">
-      <DependentUpon>201707270522557_CreateGoods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707270618290_ServiceGoodsNew.cs" />
-    <Compile Include="Migrations\201707270618290_ServiceGoodsNew.Designer.cs">
-      <DependentUpon>201707270618290_ServiceGoodsNew.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707280600404_CreateResponsor.cs" />
-    <Compile Include="Migrations\201707280600404_CreateResponsor.Designer.cs">
-      <DependentUpon>201707280600404_CreateResponsor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707280814357_UpdateResponser.cs" />
-    <Compile Include="Migrations\201707280814357_UpdateResponser.Designer.cs">
-      <DependentUpon>201707280814357_UpdateResponser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707310737005_updateAccount.cs" />
-    <Compile Include="Migrations\201707310737005_updateAccount.Designer.cs">
-      <DependentUpon>201707310737005_updateAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707310748208_Brand_Area.cs" />
-    <Compile Include="Migrations\201707310748208_Brand_Area.Designer.cs">
-      <DependentUpon>201707310748208_Brand_Area.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201707310958353_update.cs" />
-    <Compile Include="Migrations\201707310958353_update.Designer.cs">
-      <DependentUpon>201707310958353_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708010258451_updateResponsor.cs" />
-    <Compile Include="Migrations\201708010258451_updateResponsor.Designer.cs">
-      <DependentUpon>201708010258451_updateResponsor.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708010312268_updateResponsor1.cs" />
-    <Compile Include="Migrations\201708010312268_updateResponsor1.Designer.cs">
-      <DependentUpon>201708010312268_updateResponsor1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708010745331_updatefile.cs" />
-    <Compile Include="Migrations\201708010745331_updatefile.Designer.cs">
-      <DependentUpon>201708010745331_updatefile.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708010749183_updatefileupload.cs" />
-    <Compile Include="Migrations\201708010749183_updatefileupload.Designer.cs">
-      <DependentUpon>201708010749183_updatefileupload.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708030034068_CreateProductGoods.cs" />
-    <Compile Include="Migrations\201708030034068_CreateProductGoods.Designer.cs">
-      <DependentUpon>201708030034068_CreateProductGoods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708030229178_upAccount.cs" />
-    <Compile Include="Migrations\201708030229178_upAccount.Designer.cs">
-      <DependentUpon>201708030229178_upAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708030251253_addProductGoodsSearchDefault.cs" />
-    <Compile Include="Migrations\201708030251253_addProductGoodsSearchDefault.Designer.cs">
-      <DependentUpon>201708030251253_addProductGoodsSearchDefault.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708040044263_updateMenu.cs" />
-    <Compile Include="Migrations\201708040044263_updateMenu.Designer.cs">
-      <DependentUpon>201708040044263_updateMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708070257312_CreateMarketing.cs" />
-    <Compile Include="Migrations\201708070257312_CreateMarketing.Designer.cs">
-      <DependentUpon>201708070257312_CreateMarketing.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708070658519_updatePromotiontables.cs" />
-    <Compile Include="Migrations\201708070658519_updatePromotiontables.Designer.cs">
-      <DependentUpon>201708070658519_updatePromotiontables.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708080942459_updateFreebie.cs" />
-    <Compile Include="Migrations\201708080942459_updateFreebie.Designer.cs">
-      <DependentUpon>201708080942459_updateFreebie.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708090145152_updateFreebie1.cs" />
-    <Compile Include="Migrations\201708090145152_updateFreebie1.Designer.cs">
-      <DependentUpon>201708090145152_updateFreebie1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708090839097_addLine.cs" />
-    <Compile Include="Migrations\201708090839097_addLine.Designer.cs">
-      <DependentUpon>201708090839097_addLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708090839517_AddIsAvailable.cs" />
-    <Compile Include="Migrations\201708090839517_AddIsAvailable.Designer.cs">
-      <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708150938408_moveToGit.cs" />
-    <Compile Include="Migrations\201708150938408_moveToGit.Designer.cs">
-      <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708160034145_editProductGoods.cs" />
-    <Compile Include="Migrations\201708160034145_editProductGoods.Designer.cs">
-      <DependentUpon>201708160034145_editProductGoods.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708160538493_menuupdate.cs" />
-    <Compile Include="Migrations\201708160538493_menuupdate.Designer.cs">
-      <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708170257113_CreateStaff.cs" />
-    <Compile Include="Migrations\201708170257113_CreateStaff.Designer.cs">
-      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708170532578_updateRole.cs" />
-    <Compile Include="Migrations\201708170532578_updateRole.Designer.cs">
-      <DependentUpon>201708170532578_updateRole.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708170536247_roleupdate.cs" />
-    <Compile Include="Migrations\201708170536247_roleupdate.Designer.cs">
-      <DependentUpon>201708170536247_roleupdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708170654558_changeUserToAccount.cs" />
-    <Compile Include="Migrations\201708170654558_changeUserToAccount.Designer.cs">
-      <DependentUpon>201708170654558_changeUserToAccount.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201708180119233_GoodsTypeAddIcon.cs" />
-    <Compile Include="Migrations\201708180119233_GoodsTypeAddIcon.Designer.cs">
-      <DependentUpon>201708180119233_GoodsTypeAddIcon.cs</DependentUpon>
+    <Compile Include="Migrations\201708180623030_addroleStaff.cs" />
+    <Compile Include="Migrations\201708180623030_addroleStaff.Designer.cs">
+      <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
     <Compile Include="Security\MenuConfiguration.cs" />
     <Compile Include="Security\Rela_Authority_FunctionConfiguration.cs" />
-    <Compile Include="Security\Rela_Role_UserConfiguration.cs" />
     <Compile Include="Security\RoleConfiguration.cs" />
     <Compile Include="HRMan\StaffInfoConfiguration.cs" />
     <Compile Include="Security\UserConfiguration.cs" />
     <Compile Include="HogonContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\TestContext\InformationConfiguration.cs" />
-    <Compile Include="Security\TestContext\UserConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -221,98 +107,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201707261006261_init.resx">
-      <DependentUpon>201707261006261_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708180530323_init.resx">
+      <DependentUpon>201708180530323_init.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707270522557_CreateGoods.resx">
-      <DependentUpon>201707270522557_CreateGoods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707270618290_ServiceGoodsNew.resx">
-      <DependentUpon>201707270618290_ServiceGoodsNew.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707280600404_CreateResponsor.resx">
-      <DependentUpon>201707280600404_CreateResponsor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707280814357_UpdateResponser.resx">
-      <DependentUpon>201707280814357_UpdateResponser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707310737005_updateAccount.resx">
-      <DependentUpon>201707310737005_updateAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707310748208_Brand_Area.resx">
-      <DependentUpon>201707310748208_Brand_Area.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201707310958353_update.resx">
-      <DependentUpon>201707310958353_update.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708010258451_updateResponsor.resx">
-      <DependentUpon>201708010258451_updateResponsor.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708010312268_updateResponsor1.resx">
-      <DependentUpon>201708010312268_updateResponsor1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708010745331_updatefile.resx">
-      <DependentUpon>201708010745331_updatefile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708010749183_updatefileupload.resx">
-      <DependentUpon>201708010749183_updatefileupload.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708030034068_CreateProductGoods.resx">
-      <DependentUpon>201708030034068_CreateProductGoods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708030229178_upAccount.resx">
-      <DependentUpon>201708030229178_upAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708030251253_addProductGoodsSearchDefault.resx">
-      <DependentUpon>201708030251253_addProductGoodsSearchDefault.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708040044263_updateMenu.resx">
-      <DependentUpon>201708040044263_updateMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708070257312_CreateMarketing.resx">
-      <DependentUpon>201708070257312_CreateMarketing.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708070658519_updatePromotiontables.resx">
-      <DependentUpon>201708070658519_updatePromotiontables.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708080942459_updateFreebie.resx">
-      <DependentUpon>201708080942459_updateFreebie.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708090145152_updateFreebie1.resx">
-      <DependentUpon>201708090145152_updateFreebie1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708090839097_addLine.resx">
-      <DependentUpon>201708090839097_addLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708090839517_AddIsAvailable.resx">
-      <DependentUpon>201708090839517_AddIsAvailable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708150938408_moveToGit.resx">
-      <DependentUpon>201708150938408_moveToGit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708160034145_editProductGoods.resx">
-      <DependentUpon>201708160034145_editProductGoods.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708160538493_menuupdate.resx">
-      <DependentUpon>201708160538493_menuupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708170257113_CreateStaff.resx">
-      <DependentUpon>201708170257113_CreateStaff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708170532578_updateRole.resx">
-      <DependentUpon>201708170532578_updateRole.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708170536247_roleupdate.resx">
-      <DependentUpon>201708170536247_roleupdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708170654558_changeUserToAccount.resx">
-      <DependentUpon>201708170654558_changeUserToAccount.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201708180119233_GoodsTypeAddIcon.resx">
-      <DependentUpon>201708180119233_GoodsTypeAddIcon.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708180623030_addroleStaff.resx">
+      <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

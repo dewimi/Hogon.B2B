@@ -11,7 +11,7 @@ namespace Hogon.Store.Models.Entities.Security
         public User()
         {
             CreatedTime = DateTime.Now;
-            Rela_Role_Account = new HashSet<Rela_Role_Account>();
+            Rela_Role_Account = new HashSet<Rela_Role_Person>();
         }
 
         /// <summary>
@@ -67,6 +67,6 @@ namespace Hogon.Store.Models.Entities.Security
         /// <summary>
         /// 用户角色关联集合
         /// </summary>
-        public virtual ICollection<Rela_Role_Account> Rela_Role_Account { get; set; }
+        public virtual ICollection<Rela_Role_Person> Rela_Role_Account { get; set; }
     }
 }

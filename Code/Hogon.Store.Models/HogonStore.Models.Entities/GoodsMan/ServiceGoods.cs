@@ -23,5 +23,10 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 服务商名称
         /// </summary>
         public string ServicerName { get; set; }
+
+        /// <summary>
+        /// 图片文件
+        /// </summary>
+        public FileUpload FileUpload { get; set; }
     }
 }

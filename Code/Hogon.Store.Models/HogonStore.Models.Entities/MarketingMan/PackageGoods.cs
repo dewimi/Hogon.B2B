@@ -12,6 +12,10 @@ namespace Hogon.Store.Models.Entities.MarketingMan
     /// </summary>
     public class PackageGoods : Goods
     {
+        public PackageGoods()
+        {
+            Rel_PackageGoods_ProductGoodses = new HashSet<Rel_PackageGoods_ProductGoods>();
+        }
         /// <summary>
 		/// 子商品集合
 		/// </summary>
@@ -19,8 +23,8 @@ namespace Hogon.Store.Models.Entities.MarketingMan
        
 
         /// <summary>
-        /// 产品商品
+        /// 组合商品 产品商品关联
         /// </summary>
-        public ProductGoods ProductGoods { get; set; }
+         public  ICollection<Rel_PackageGoods_ProductGoods> Rel_PackageGoods_ProductGoodses { get; set; }
     }
 }

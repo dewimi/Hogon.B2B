@@ -9,7 +9,7 @@
             <div class="tabs-container ibox">
                 <ul class="nav nav-tabs bg-f">
                     <li class="active"><a href="#tab-01" data-toggle="tab">邀请用户</a></li>
-                    <li class=""><a href="#tab-02" data-toggle="tab">添加用户</a></li>
+                    <li class="adduser"><a href="#tab-02" data-toggle="tab">添加用户</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-01" class="tab-pane active">
@@ -71,7 +71,7 @@
                                     <div class="form-group">
                                         <label class="col-sm-3"></label>
                                         <div class="col-sm-8">
-                                            <button class="btn btn-primary" type="submit" ng-click="">提 交</button>
+                                            <button class="btn btn-primary" type="submit" ng-click="AddAccount()">提 交</button>
                                             <button class="btn btn-white" onclick="history.back()">返 回</button>
                                         </div>
                                     </div>
@@ -180,7 +180,7 @@
 
             $http({
                 method: 'POST',
-                url: '/Security/User/GetUserInfo',
+                url: '/Security/User/SaveUserInfo',
                 data: JSON.stringify({ id: $scope.personId })
             }).then(function successCallback(response) {
                 // 请求成功执行代码
@@ -188,8 +188,63 @@
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
+        }
 
+        //绑定角色
+        $scope.BindRole = function () {
 
+            $http({
+                method: 'POST',
+                url: '/Security/User/GetRole',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $("#parent").append("<option value='meren' selected='selected'>"
+                       + "－－请选择角色－－</option>");
+
+                $("#parent").click(function () {
+                    $("#parent option[value='meren']").remove()
+                })
+
+                $.each(response.data, function (index, v) {
+
+                    if (v.ParentId == null) {
+                        var option = $("<option value = '" + v.Id + "'></option>").text(v.RoleName);
+                        $("#parent").append(option);
+                    }
+                })
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
+
+        //加载时给下拉框绑值
+        $(".adduser").on("click", function () {
+
+            $scope.BindRole();
+        });
+
+        //添加员工账号
+        $scope.AddAccount = function () {
+            if ($scope.name != null && $scope.email != null && $scope.phoneNumber != null && $("#parent").val() != null) {
+                $scope.info = {
+                    Name: $scope.name,
+                    EmailAddress: $scope.email,
+                    PhoneNumber: $scope.phoneNumber,
+                    roleId: $("#parent").val()
+                }
+                $http({
+                    method: 'POST',
+                    url: '/Security/User/AddAccount',
+                    data: JSON.stringify($scope.info)
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+
+                }, function errorCallback(response) {
+                    // 请求失败执行代码
+                });
+            }
+         
         }
     });
 

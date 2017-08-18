@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.GoodsMan;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 namespace Hogon.Store.Models.Dto.GoodsMan

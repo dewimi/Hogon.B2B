@@ -200,12 +200,12 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                 {
                     if (user != new Guid())
                     {
-                        Rela_Role_Account rUser = new Rela_Role_Account();
+                        Rela_Role_Person rUser = new Rela_Role_Person();
                         rUser.Role = roleReps.FindBy(r => r.Id == roleId).FirstOrDefault();
                         rUser.Account = accountReps.FindBy(u => u.Id == user).FirstOrDefault();
 
                         var IsExist = roleReps.FindBy(r => r.Id == roleId).SelectMany(r =>
-                          r.Rela_Role_Account).Where(r => r.Account.Id == user).FirstOrDefault();
+                          r.Rela_Role_Person).Where(r => r.Account.Id == user).FirstOrDefault();
                         //不存在就添加
                         if (IsExist == null)
                         {
@@ -217,7 +217,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                             rUser.CreatorId = 1;
                             rUser.UpdaterId = 1;
 
-                            rUser.Role.Rela_Role_Account.Add(rUser);
+                            rUser.Role.Rela_Role_Person.Add(rUser);
                         }
                     }
                 }
@@ -227,7 +227,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             foreach (var userId in unCheckUsers)
             {
 
-                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Account).
+                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Person).
                     Where(r => r.Account.Id == userId && r.Role.Id == roleId).FirstOrDefault();
                 if (user != null)
                 {
@@ -245,7 +245,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// <returns></returns>
         public IQueryable<DtoAccount> GetUsersByRoleId(Guid roleId)
         {
-            var accounts = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Account).Select(m => m.Account);
+            var accounts = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Person).Select(m => m.Account);
 
             var dtoAccounts = accounts.ConvertTo<Account, DtoAccount>();
 

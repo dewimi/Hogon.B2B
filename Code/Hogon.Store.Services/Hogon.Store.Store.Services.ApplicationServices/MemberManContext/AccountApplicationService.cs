@@ -9,6 +9,7 @@ using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
 using Hogon.Store.Repositories.MemberMan;
+using Hogon.Store.Repositories.Security;
 using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
 using System.Data.Entity.Validation;
@@ -22,6 +23,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         AccountRepository _accountReoisitory = new AccountRepository();
         EnterpriseRepository _enterpriseReoisitory = new EnterpriseRepository();
         PersonRepository _personRepository = new PersonRepository();
+        RoleRepository _roleRepository = new RoleRepository();
         AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
@@ -38,7 +40,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         public DtoRole GetRoleByAccountId(Guid userId)
         {
             var role = _accountReoisitory.FindBy(r => r.Id == userId).SelectMany
-               (r => r.Rela_Role_Account).Select(r => r.Role).First();
+               (r => r.Rela_Role_Person).Select(r => r.Role).First();
             Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
             var roleData = Mapper.Map<DtoRole>(role);
 
@@ -127,11 +129,38 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
             UserState userState = new UserState()
             {
                 UserId = user.Id,
-                UserName = userName,
+                UserName = user.Name,
+                Email = user.EmailAddress
             };
+
+            var availableRoles = user.Rela_Role_Person.Select(m => m.Role)
+                .Where(m => m.IsEnable == true).AsQueryable();
+            userState.Roles = availableRoles.ConvertTo<Role, RoleState>().ToArray();
+
+            userState.AvailableMenus = _authorizationService.GetAvailableMenusByUser(user)
+                .AsQueryable().ConvertTo<Menu, MenuState>().ToArray();
+
+            userState.AvailableFunctions = _authorizationService
+                .GetAvailableFunctionsByUser(user).Select(m => new FunctionState()
+                {
+                    Id = m.Id,
+                    Name = m.Name,
+                    MenuCode = m.Menu.Code,
+                    FunctionCode = m.Code,
+                    IsEnable = m.IsEnable,
+                }).Where(m => m.IsEnable == true).ToArray();
+
             UserState.Current = userState;
+            if (user == null)
+            {
+                return false;
+            }
+
+            // If input credential is available, set cookie.
+            FormsAuthentication.SetAuthCookie(userName, false);
             return true;
         }
+
 
         /// <summary>
         /// 登出
@@ -409,19 +438,51 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         {
             if (id != new Guid())
             {
-                DtoStaff staff = new DtoStaff
+                Enterprise enterprise = _enterpriseReoisitory.FindBy
+                    (m => m.Id == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663")).First();
+
+                Staff staff = new Staff
                 {
                     Person = _personRepository.FindBy(m => m.Id == id).First(),
-                    // Enterprise = 
-
                 };
-                Mapper.Initialize(cfg => cfg.CreateMap<DtoStaff, Staff>());
-                var menu = Mapper.Map<Staff>(staff);
 
-
-                Commit();
-
+                enterprise.Staffs.Add(staff);
             }
+
+            Commit();
+        }
+
+        /// <summary>
+        /// 获取企业下的角色
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<DtoRole> GetRole()
+        {
+          var roles = _roleRepository.FindBy(m => m.Enterprise.Id 
+                == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663"));
+
+           var data = roles.ConvertTo<Role, DtoRole>();
+
+            return data;
+        }
+
+        /// <summary>
+        /// 添加员工账号
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public void AddAccount(DtoPerson dtoPerson, Guid roleId)
+        {
+            Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
+            var person = Mapper.Map<Person>(dtoPerson);
+            person.Password = _encryptor.Encrypt("123456");
+            person.IsEnable = true;
+           // person.Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(m => m.Id == roleId).First();
+            _personRepository.Add(person);
+
+            Commit();
+      
         }
     }
 }
