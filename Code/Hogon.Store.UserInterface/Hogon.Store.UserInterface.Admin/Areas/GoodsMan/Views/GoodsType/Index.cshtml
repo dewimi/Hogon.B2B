@@ -1,145 +1,174 @@
 ﻿
 @{
-	ViewBag.Title = "商品类型列表";
-	Layout = "~/Views/Shared/_RoleLayout.cshtml";
-	<link href="~/Content/sweetalert.css" rel="stylesheet" />
-	<script src="~/Scripts/sweetalert.min.js"></script>
+    ViewBag.Title = "商品类型列表";
+    Layout = "~/Views/Shared/_RoleLayout.cshtml";
 }
-@Styles.Render("~/Content/css")
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/bundles/angular")
-@Scripts.Render("~/bundles/bootstrap")
-@Scripts.Render("~/bundles/hogon/common")
-@Styles.Render("~/Content/css/form")
 <link href="~/Content/sweetalert.css" rel="stylesheet" />
 <script src="~/Scripts/sweetalert.min.js"></script>
-<link href="~/Content/bootstrap-treeview.css" rel="stylesheet" />
-<script src="~/Scripts/bootstrap-treeview.js"></script>
-
+<!-- 自定义js -->
+<script src="~/Scripts/plugins/content.js"></script>
+<!-- Nestable List -->
+<script src="~/Scripts/hogon/js/plugins/nestable/jquery.nestable.js"></script>
+<script src="~/Scripts/hogon/js/content.js"></script>
 <style>
-	.authority {
-		float: left;
-		display: inline;
-		margin-right: 20px;
-		width: 500px;
-		height: 500px;
-	}
+    .authority {
+        float: left;
+        display: inline;
+        margin-right: 20px;
+        width: 500px;
+        height: 500px;
+    }
 
-	#right {
-		margin-left: 250px;
-	}
+    #right {
+        margin-left: 250px;
+    }
 </style>
 
 <form name="myForm">
-	<div class="authority">
-		<span>商品分类列表：</span>
-		<input id="Hidden1" type="hidden" ng-model="Guid" />
-		<div id="treeview-checkable"></div>
-		<div id="right">
-			<button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
-			<button name="confirmButton" id="edit" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">修改</button>
-			<button name="confirmButton" id="detail" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">详情</button>
-			<button name="confirmButton" id="delt" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">删除</button>
-		</div>
-	</div>
+    @*<div class="authority">
+        <span>商品分类列表：</span>
+        <input id="Hidden1" type="hidden" ng-model="Guid" />
+        <div id="treeview-checkable"></div>*@
+
+    <div class="col-sm-5">
+        <div class="ibox ">
+            <div class="ibox-title">
+                <h5>商品分类列表<input id="Hidden1" type="hidden" ng-model="Guid" /></h5>
+            </div>
+            <div class="ibox-content">
+                <div class="dd" id="nestable2">
+                    <ol class="dd-list" id="pareent"></ol>
+                </div>
+                @*<div class="m-t-md">
+                        <h5>数据：</h5>
+                    </div>
+                    <textarea id="nestable2-output" class="form-control"></textarea>*@
+            </div>
+        </div>
+    </div>
+
+    <div id="right">
+        <button name="confirmButton" id="add" type="button" class="btn btn-primary but">添加</button>
+        <button name="confirmButton" id="edit" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">修改</button>
+        <button name="confirmButton" id="detail" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">详情</button>
+        <button name="confirmButton" id="delt" type="button" class="btn btn-primary but" ng-disabled="myForm.$invalid">删除</button>
+    </div>
+    @*</div>*@
 </form>
 
 <script>
-	var app = angular.module('myApp', []);
-	app.controller('validateCtrl', function ($scope, $http) {
+    var node = "";
 
-		//Tree绑值
-		$http({
-			method: 'POST',
-			url: '@Url.Action("FindAllGoodsType")',
-		}).then(function successCallback(response) {
-			// 请求成功执行代码
-			console.log(response.data[0]);
-			CreateTreeMenu(response.data);
-		}, function errorCallback(response) {
-			// 请求失败执行代码
-		});
+    var app = angular.module('myApp', []);
+    app.controller('validateCtrl', function ($scope, $http) {
 
-		//添加按钮
-		$("#add").on("click", function () {
-			window.location.href = "/GoodsMan/GoodsType/Edit";
-		});
-		//获取是否选择Tree节点
-		var findCheckedNodes = function () {
-			return $('#treeview-checkable').treeview('getChecked');
-		};
-		//选择后允许编辑/删除/查看详情
-		if (findCheckedNodes != null) {
-			$scope.Guid = $('#treeview-checkable').treeview('getSelected')[0].Id;
-			//编辑按钮
-			$("#edit").on("click", function () {
-				window.location.href = "/GoodsMan/GoodsType/Edit?Id=" + $('#treeview-checkable').treeview('getSelected')[0].Id;
-			});
+        //Tree绑值
+        $http({
+            method: 'POST',
+            url: '@Url.Action("FindAllGoodsType")',
+        }).then(function successCallback(response) {
+            // 请求成功执行代码
+            CreateTreeMenu(response.data);
+        }, function errorCallback(response) {
+            // 请求失败执行代码
+        });
 
-			//删除按钮
-			$("#delt").on("click", function () {
-				swal({
-					title: "您确认删除吗？",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#DD6B55",
-					cancelButtonText: "取消",
-					confirmButtonText: "确定",
-				}, function () {
-					$http({
-						method: 'POST',
-						url: "/GoodsMan/GoodsType/Remove/" + $('#treeview-checkable').treeview('getSelected')[0].Id,
-					}).then(function successCallback(response) {
-						// 请求成功执行代码
-						$http({
-							method: 'POST',
-							url: '@Url.Action("FindAllGoodsType")',
-						}).then(function successCallback(response) {
-							// 请求成功执行代码
-							console.log(response.data[0]);
-							CreateTreeMenu(response.data);
-						}, function errorCallback(response) {
-							// 请求失败执行代码
-						});
-					}, function errorCallback(response) {
-						// 请求失败执行代码
-					});
-				});
-			});
+        //添加按钮
+        $("#add").on("click", function () {
+            window.location.href = "/GoodsMan/GoodsType/Edit";
+        });
 
-			//详情按钮
-			$("#detail").on("click", function () {
-				window.location.href = "/GoodsMan/GoodsType/Detail?id=" + $('#treeview-checkable').treeview('getSelected')[0].Id;
-			});
-		}
+            $scope.Guid = node;
+            //编辑按钮
+            $("#edit").on("click", function () {
+                if (node.length > 0) {
+                    window.location.href = "/GoodsMan/GoodsType/Edit?Id=" + node;
+                }
+            });
 
-	});
+            //删除按钮
+            $("#delt").on("click", function () {
+                swal({
+                    title: "您确认删除吗？",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#DD6B55",
+                    cancelButtonText: "取消",
+                    confirmButtonText: "确定",
+                }, function () {
+                    $http({
+                        method: 'POST',
+                        url: "/GoodsMan/GoodsType/Remove/" + node,
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        window.location.href = "/GoodsMan/GoodsType/Index";
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
+                });
+            });
 
-	//创建树形菜单
-	function CreateTreeMenu(data) {
-		$('#treeview-checkable').treeview({
-			data: data,
-			onNodeChecked: nodeChecked,
-			onNodeUnchecked: nodeUnchecked,
-		});
-	}
+            //详情按钮
+            $("#detail").on("click", function () {
+                window.location.href = "/GoodsMan/GoodsType/Detail?id=" + node;
+            });
+    });
 
-	//节点选中
-	var nodeCheckedSilent = false;
-	function nodeChecked(event, node) {
-		if (nodeCheckedSilent) {
-			return;
-		}
-		nodeCheckedSilent = true;
-		nodeCheckedSilent = false;
-	}
+    //创建树形菜单
+    function CreateTreeMenu(data) {
 
-	//节点取消选中
-	var nodeUncheckedSilent = false;
-	function nodeUnchecked(event, node) {
-		if (nodeUncheckedSilent)
-			return;
-		//nodeUncheckedSilent = true;
-		nodeUncheckedSilent = false;
-	}
+        $.each(data, function (index, items) {
+            var parentmenu = "";
+            var parentli = "";
+            if (items.nodes.length > 0) {
+                //创建父菜单
+                parentli = $("<li class='dd-item' data-id='" + items.Id + "'></li>")
+                parentmenu = $("<div class='dd-handle-y'><span class='label label-info'><i class='fa fa-" + items.Icon +
+                    "'></i></span> " + items.text + "</div>");
+                parentli.append(parentmenu);
+                //添加子菜单
+                var childmenu = ($("<ol class='dd-list'></ol>"));
+                $.each(items.nodes, function (index, sitems) {
+                    var childli = $("<li class='dd-item' data-id='" + sitems.Id + "'></li>");
+                    childli.append("<div class='dd-handle-y'><span class='label label-info'><i class='fa fa-" + items.Icon +
+                        "'></i></span> " + sitems.text + "</div>");
+                    if (sitems.nodes.length > 0) {
+                        //添加三级菜单
+                        var threeChild = $("<ol class='dd-list'></ol>");
+                        $.each(sitems.nodes, function (index, threeitem) {
+                            threeChild.append("<li class='dd-item' data-id='" + threeitem.Id +
+                        "'><div class='dd-handle-y'><span class='label label-info'><i class='fa fa-" + threeitem.Icon +
+                        "'></i></span> " + threeitem.text + "</div></li>")
+                        });
+                        childli.append(threeChild);
+                    }
+                    childmenu.append(childli);
+                })
+                parentli.append(childmenu);
+            }
+            else {
+                parentli = $("<li class='dd-item' data-id='" + items.Id
+                    + "'><div class='dd-handle-y'><span class='label label-info'><i class='fa fa-" + items.Icon
+                    + "'></i></span> " + items.text + "</div></li>");
+            }
+            $("#pareent").append(parentli);
+
+        })
+      
+        $('#nestable2').nestable({
+            group: 1
+        });
+
+        $('#nestable2').nestable('collapseAll');
+
+        $(".dd-handle-y").on("click", function () {
+            $('#nestable2 .dd-handle-y').each(function () {
+                $(this).removeClass('dd-handle-checked');
+                $(this).siblings("button").removeClass('colorFFF');
+            });
+            $(this).addClass('dd-handle-checked');
+            $(this).siblings("button").addClass('colorFFF');
+            node = $(this).parent("li").data("id");
+        })
+    }
 </script>

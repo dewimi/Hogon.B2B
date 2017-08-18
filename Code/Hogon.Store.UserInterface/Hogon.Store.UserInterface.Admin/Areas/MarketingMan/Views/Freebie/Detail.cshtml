@@ -1,90 +1,345 @@
-﻿@{
-    ViewBag.Title = "禾工大型B2B行业平台";
-    Layout = "~/Views/Shared/_EditableLayout.cshtml";
+﻿
+@{
+    ViewBag.Title = "营销管理";
+    Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
-<div class="wrapper wrapper-content animated fadeInRight">
-    <div class="row">
-        <div class="col-sm-12">
-            <div class="ibox float-e-margins">
-                <div class="ibox-title">
-                    <h5>赠品选择列表：</h5>
-                </div>
-                <div class="ibox-content">
-                    <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
-                        <thead>
-                            <tr>
-                                <th>单选按钮</th>
-                                <th>产品名称</th>
-                                <th>产品编码</th>
-                                <th>产品分类</th>
-                            </tr>
-                        </thead>
 
-                        <tbody id="tbodylist">
-                          
-                        </tbody>
-                    </table>
+<div class="form-group">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>赠品详情</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" class="form-horizontal" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="must">*</span>赠品名称：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" readonly class="form-control" id="freebieNameText" required /> <input type="hidden" id="freebieNameFlag" value="">
+                                </div>
+                                @*<span class="col-sm-2">
+                                    <button class="form-control" id="freebieName" ng-click="" ng-model="freebieName">请选择</button>
+                                </span>*@
+
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">赠品编号：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" readonly id="freebieCode" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">选择所属分类：</label>
+                                <div class="col-sm-3">
+                                    <select class="form-control"   id="freebieCatalog" ng-model="freebieCatalog" placeholder="请选择" ng-click=""></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">发布:</label>
+                                <label><input type="radio" value="True" name="IsPublish" checked="checked" style="width:20px; margin-left:40px;" />是</label>
+                                <label style="margin-left:50px;"><input type="radio" value="False" name="IsPublish" style="width:20px;" />否</label>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">排序：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" readonly name="freebieSort" id="freebieSort" class="form-control" ng-model="freebieSort" placeholder="请输入排序号">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label"><span class="must">*</span>每单限购数量：</label>
+                                <div class="col-sm-3">
+                                    <input type="text"  readonly name="limitBuyAmount" id="limitBuyAmount" class="form-control" ng-model="limitBuyAmount" placeholder="请输入限购数量" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">描述：</label>
+                                <div class="col-sm-5">
+                                    <textarea id="freebieDescription" readonly type="text" name="" class="form-control" ng-model="freebieDescription" placeholder="请输入赠品介绍,不要超过70字"></textarea>
+                                </div>
+                            </div>
+                            <div class="ibox-content">
+                                <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
+                                    <thead>
+                                        <tr>
+                                            <th>是否作为赠品</th>
+                                            <th>商品编码</th>
+                                            <th>配额</th>
+                                            <th>规格</th>
+                                            <th>重量</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodylist"></tbody>
+                                </table>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3"></label>
+                                <div class="col-sm-8">
+                                    @*<button class="btn btn-primary" type="button" ng-click="saveFreebieMsg()">保存</button>*@
+                                    <button class="btn btn-primary" type="button" ng-click="returnIndex()">返回</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button class="btn btn-primary" type="submit" ng-click="SaveResult()">保存</button>
-                <button class="btn btn-white" type="submit" ng-click="ReturnEdit()">返回</button>
             </div>
         </div>
     </div>
-</div>
-<!-- 全局js -->
-<script src="~/Scripts/hogon/js/jquery-2.1.1.min.js"></script>
-<script src="~/Scripts/hogon/js/bootstrap.min.js"></script>
-<script src="~/Scripts/hogon/js/plugins/jeditable/jquery.jeditable.js"></script>
 
-<!-- Data Tables -->
-<script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
-<script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <style>
+        .must {
+            padding-right: 4px;
+            color: #ff0000;
+        }
+    </style>
 
-<!-- 自定义js -->
-<script src="~/Scripts/hogon/js/content.js"></script>
+    <!-- jQuery 表单验证-->
+    <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
+    <!-- 自定义js -->
+    <script src="~/Scripts/hogon/js/content.js"></script>
+    <!-- Data Tables -->
+    <script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <!-- iCheck-->
+    <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
+    <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
 
-<!-- Page-Level Scripts -->
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    var app = angular.module('myApp', []);
-    app.controller('validateCtrl', function ($scope, $http) {
+        var app = angular.module('myApp', []);
+        app.controller('validateCtrl', function ($scope, $http) {
+            //赠品分类下拉框绑值
+            $http({
+                method: 'POST',
+                url: '/MarketingMan/Freebie/GetFreebieCatalog',
+                data: null
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $("#freebieCatalog").append("<option value=''  selected='selected'>－－请选择－－</option>");
+                $.each(response.data, function (index, v) {
+                    $("#freebieCatalog").append($("<option value = '" + v.Id + "'></option>").text(v.FreebieCatalogName));
+                })
 
-        $http({
-            method: 'POST',
-            url: '/MarketingMan/Freebie/GetAllFreebie',
-            data: null
-        }).then(function successCallback(response) {
-            // 请求成功执行代码
-            $.each(response.data, function (index, v) {
-                var $tr = $("<tr name='DataTr'></tr>");
-                var $td0 = $("<td><input type='radio' id='freebieRadio'  value='" + v.Id + "' name='select'  /></td>");
-                var $td1 = $("<td></td>").text(v.ProductName);
-                var $td2 = $("<td></td>").text(v.ProductCode);
-                var $td3 = $("<td></td>").text(v.ProductTypeName);
-                $tr.append($td0).append($td1).append($td2).append($td3);
-                $("#tbodylist").append($tr);
+            }, function errorCallback(response) {
+                // 请求失败执行代码
             });
-            $('#editable').DataTable({
-                //"bInfo":false,
-                " bScrollInfinite": false
-            });
-        }, function errorCallback(response) {
-            alert("失败");
-            // 请求失败执行代码
+          
+
+
+            //为页面赠品名称和赠品编号绑定数据
+            var id = window.location.search;
+            id = id.substring(id.indexOf('=') + 1);
+            if (id != "") {
+                $http({
+                    method: 'POST',
+                    url: '/MarketingMan/Freebie/GetFreebieMsg',
+                    data: { Id: id }
+                }).then(function successCallback(response) {
+                    // 请求成功执行代码
+                    var Data = response.data;
+                    if (Data == "")
+                    { return;}
+                    $("#freebieNameText").val(Data.ProductName);
+                    $("#freebieCode").val(Data.ProductCode);
+                }, function errorCallback(response) {
+                    //alert("请求失败！")
+                })
+            }
+
+
+            //编辑赠品信息
+            if (id != "") {
+                $http({
+                    method: 'POST',
+                    url: '/MarketingMan/Freebie/EditFreebie',
+                    data: {Id:id}
+                }).then(function successCallback(response) {
+                    //请求成功
+                    var Data = response.data;
+                    if (Data=="") {
+                        return;
+                    }
+                    $("#freebieName").attr({ "disabled": "disabled" });//使选择赠品按钮失效
+                    $("#freebieNameText").val(Data.ProductName);
+                    $("#freebieCode").val(Data.ProductCode);
+                    $("#freebieCatalog").val(Data.FreebieCatalogId);
+                    //$("input:radio[name='IsPublish']:checked").val(Data.IsPublish);
+                    $("#freebieSort").val(Data.FreebiSortNum);
+                    $("#limitBuyAmount").val(Data.LimitBuyAmount);
+                    $("#freebieDescription").val(Data.Description);
+
+                    if (Data.IsPublish == true) {
+                        $("input[name='IsPublish'][value=True]").attr("checked", true);
+                    }
+                    else {
+                        $("input[name='IsPublish'][value=False]").attr("checked", true);
+                    }
+                    $("#freebieNameFlag").val(Data.ProductId);
+                    $scope.AddFreebieList(Data.Id);
+                }, function errorCallback(response) {
+                    //alert("请求失败");
+                })
+            }
+
+            //添加赠品列表
+            $scope.AddFreebieList = function (responserId) {
+                $http({
+                    method: 'POST',
+                    url: '/MarketingMan/Freebie/AddFrebieList',
+                    data: { Id: responserId }
+                }).then(function successCallback(response) {
+                    //请求成功
+
+                    $.each(response.data, function (index, v) {
+                        var $tr = $("<tr name='DataTr'></tr>");
+                        var $td0 = $("<td><input type='checkbox' name='productGoods'value='" + v.Id + "'/></td>");
+                        var $td1 = $("<td></td>").text(v.GoodsCode);
+                        var $td2 = $("<td></td>").append("<input type='text'value='" + v.Quota + "'/>");
+                        var $td3 = $("<td></td>").text(v.SpecParameterS);
+                        var $td4 = $("<td></td>").text(v.Weight);
+
+                        $tr.append($td0).append($td1).append($td2).append($td3).append($td4);
+                        $("#tbodylist").append($tr);
+                        $('input:checkbox').each(function () {
+                            $(this).attr('checked', true);
+                        });
+                    });
+
+                    $('#editable').DataTable({
+                        //"bInfo":false,
+                        " bScrollInfinite": false
+                    });
+
+                }, function errorCallback(response) {
+                    alert("请求失败！");
+                })
+
+
+            }
+
+            //根据产品Id获取商品信息
+            var id = window.location.search;
+            id = id.substring(id.indexOf('=') + 1);
+            if (id != "") {
+                $http({
+                    method: 'POST',
+                    url: '/MarketingMan/Freebie/GetFreebieLine',
+                    data: { Id: id }
+                }).then(function successCallback(response) {
+                    if (response.data =="")
+                    { return;}
+                    //请求成功执行代码
+                    $.each(response.data, function (index, v) {
+                        var $tr = $("<tr name='DataTr'></tr>");
+                        var $td0 = $("<td><input type='checkbox'   'checked'  name='productGoods' value='" + v.Id + "'/></td>");
+                        var $td1 = $("<td></td>").text(v.GoodsCode);
+                        var $td2 = $("<td><input type='text'  id='textBox'  /></td>");
+                        var $td3 = $("<td></td>").text(v.SpecParameterS);
+                        var $td4 = $("<td></td>").text(v.Weight);
+
+                        //$("#productGoods").attr("checked",true);
+                        //$("[name = productGoods]:checkbox").attr("checked", true);
+
+                        //$('input:checkbox').each(function () {
+                        //    $(this).attr('checked', true);
+                        //});
+
+                        $tr.append($td0).append($td1).append($td2).append($td3).append($td4);
+                        $("#tbodylist").append($tr);
+                    });
+
+                    $('#editable').DataTable({
+                        //"bInfo":false,
+                        " bScrollInfinite": false
+                    });
+                }, function errorCallback(response) {
+                    alert("请求失败！");
+                })
+            }
+
+
+            //进入产品名称、产品编码选择页面
+            $scope.GotoProductPage = function () {
+                window.location.href = "/MarketingMan/Freebie/SelectFreebie"
+            }
+
+            $scope.saveFreebieMsg = function () {
+                var id = window.location.search;
+                id = id.substring(id.indexOf('=') + 1);
+                if (id != "") {
+                    if ($("#freebieNameFlag").val() != "")
+                    {
+                        id = $("#freebieNameFlag").val();
+                    }
+                    //存放产品商品id
+                    var checked = []; var quota = [];
+                    var t = $('#editable').DataTable();
+                    $("input:checkbox:checked").each(function () {
+                        checked.push($(this).val());
+                        var row = t.row($(this).parents("tr"));
+                        var tds = $(this).parents("tr").children();
+                        $.each(tds, function (i, val) {
+                            var jqob = $(val);
+                            var txt = jqob.find("input[type='text']").val();
+                            if (txt != null)
+                            { quota.push(txt); }
+                        });
+                    })
+
+                    if (checked.length == 0)
+                    {
+                        swal("请至少勾选一个赠品！");
+                        return;
+                    }
+
+                    for (var i = 0; i < checked.length ; i++)
+                    {
+                        if (quota[i]=="") {
+                            swal("请填写赠品对应的配额！");
+                            return;
+                        }
+                    }
+
+                    $scope.freebie = {
+                        "FreebieCatalogId": $('#freebieCatalog option:selected').val(),
+                        "IsPublish": $("input:radio[name='IsPublish']:checked").val(),
+                        "FreebiSortNum": $("#freebieSort").val(),//$scope.freebieSort,
+                    "LimitBuyAmount":$("#limitBuyAmount").val(), //$scope.limitBuyAmount,
+                    "Description":$("#freebieDescription").val(),// $scope.freebieDescription,
+                        "ProductId": id,
+                        "ProductGoodsId": checked,
+                        "Quota":quota
+                    };
+
+                    $http({
+                        method: 'POST',
+                        url: '/MarketingMan/Freebie/SaveFreebieMsg',
+                        data: JSON.stringify($scope.freebie)
+                        //{ "FreebieCatalogId": FreebieCatalogId, "dtoFreebie": freebie, "FreebieId": FreebiId }
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        swal("保存成功！");
+                    }, function errorCallback(response) {
+                        swal("保存失败！");
+                        // 请求失败执行代码
+                    });
+                }
+                else {
+                    swal("请选择赠品名称！");
+                }
+            }
+
+
+
+            $scope.returnIndex = function () {
+                window.location.href = "/MarketingMan/Freebie/Index"
+            }
+
         })
+    </script>
 
-        $scope.SaveResult = function () {
-            var id = $('#freebieRadio:checked').val();
-            window.location.href = "/MarketingMan/Freebie/Edit?Id%20=" + id;
-        }
-
-        $scope.ReturnEdit = function () {
-            window.location.href = "/MarketingMan/Freebie/Edit";
-        }
-    });
-
-
-
-</script>
+</div>

@@ -16,6 +16,7 @@ namespace Hogon.Store.Models.FluentAPI.HRMan
                .Map(m => m.MapKey("EnterpriseId"));
             HasRequired(m => m.Person).WithMany()
                .Map(m => m.MapKey("PersonId"));
+            HasOptional(m => m.Role).WithMany(m => m.Staffs).Map(m => m.MapKey("RoleId"));
         }
     }
 }

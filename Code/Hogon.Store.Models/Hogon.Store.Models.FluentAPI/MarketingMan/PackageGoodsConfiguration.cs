@@ -8,11 +8,15 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.FluentAPI.MarketingMan
 {
-    class PackageGoodsConfiguration : EntityTypeConfiguration<PackageGoods>
+    public class PackageGoodsConfiguration : EntityTypeConfiguration<PackageGoods>
     {
         public PackageGoodsConfiguration()
         {
-            HasOptional(m => m.ProductGoods).WithMany().Map(m => m.MapKey("ProductGoodsId"));
+            Map(m =>
+            {
+                m.MapInheritedProperties();
+                m.ToTable("PackageGoods");
+            });
         }
     }
 }

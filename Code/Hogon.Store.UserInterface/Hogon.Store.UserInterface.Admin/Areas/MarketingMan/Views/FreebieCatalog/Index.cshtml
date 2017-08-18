@@ -5,6 +5,13 @@
     var render = ViewBag.ListRender;
 }
 
+<style type="text/css">
+    .detail {
+        display: none;
+    }
+</style>
+
+
 @section searchImport{
 
     @Html.Raw(Server.HtmlDecode(render.RenderSearchImport()))

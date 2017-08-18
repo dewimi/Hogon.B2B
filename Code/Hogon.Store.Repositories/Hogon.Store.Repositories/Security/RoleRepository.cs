@@ -10,7 +10,7 @@ namespace Hogon.Store.Repositories.Security
         /// </summary>
         /// <param name="relaRoleUser"></param>
         /// <returns></returns>
-        public Rela_Role_User DeleteRela_Role_User(Rela_Role_User relaRoleUser)
+        public Rela_Role_Person DeleteRela_Role_User(Rela_Role_Person relaRoleUser)
         {
             return DeleteObject(relaRoleUser);
         }

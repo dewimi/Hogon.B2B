@@ -2,91 +2,89 @@
     ViewBag.Title = "服务商品管理";
     Layout = "~/Views/Shared/_MenuLayout.cshtml";
 }
-<link href="~/Content/css/style.css" rel="stylesheet" />
 <link href="~/Content/css/chosen.css" rel="stylesheet" />
 <script src="~/Scripts/plugins/chosen.jquery.js"></script>
+<!-- 自定义js -->
+<script src="js/content.js?v=1.0.0"></script>
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput-zh.js"></script>
-<form name="myForm" novalidate>
-    <div class="form-group">
-        <div class="basic">
-            <input type="hidden" name="id" ng-model="Guid" />
-            <table>
-                <tr>
-                    <td><span>服务商品名称:</span></td>
-                    <td>
-                        <input type="text" id="GoodsName" name="GoodsName " class="form-control" ng-model="GoodsName " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsName .$dirty && myForm.GoodsName .$invalid">
-                                <span ng-show="myForm.GoodsName .$error.required">服务商品名称不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>服务商品编码:</span></td>
-                    <td>
-                        <input type="text" name="GoodsCode" id="GoodsCode" class="form-control" ng-model="GoodsCode " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.GoodsCode .$dirty && myForm.GoodsCode .$invalid">
-                                <span ng-show="myForm.GoodsCode .$error.required">服务商品编码不能重复或为空</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>销售价:</span></td>
-                    <td>
-                        <input type="number" ngMin="0" id="SalePrice" ng-pattern="/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/" name="SalePrice " class="form-control" ng-model="SalePrice " required>
-                    </td>
-                    <td>
-                        <p>
-                            <span style="color:red" ng-show="myForm.SalePrice .$dirty && myForm.SalePrice .$invalid">
-                                <span ng-show="myForm.SalePrice .$error.required">销售价不能为0或负数</span>
-                            </span>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品描述:</span></td>
-                    <td>
-                        <textarea id="GoodsDesription" rows="2" cols="27" class="form-control" ng-model="GoodsDesription"></textarea>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品类型:</span></td>
-                    <td>
-                        <select data-placeholder="多项选择" class="chosen-select" multiple style="width:350px;" tabindex="4" id="goodsType"></select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        @*图片上传控件*@
-                        <div class="form-group" id="fileupload">
-                            <label class="col-sm-4 control-label">文件上传</label>
-                            <div class="col-sm-7">
-                                <input type="file" id="input-dim-2" class="file-loading">
+
+<div class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>表单元素</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <form method="get" name="myForm" novalidate class="form-horizontal" id="commentForm">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">服务商品名称<input type="hidden" name="id" ng-model="Guid" /><i class="fa fa-asterisk fa-red"></i></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="GoodsName" name="GoodsName" ng-model="GoodsName " class="form-control" required="" aria-required="true">
+                                </div>
                             </div>
-                        </div>
-                    </td>
-                </tr>
-            </table>
-            <div style="width:200px;margin:0px auto;">
-                <button type="button" class="btn btn-info" ng-click="BackServiceGoods()" ng-disabled="myForm.$invalid">返回</button>
-                <button type="button" class="btn btn-info" ng-click="SaveServiceGoods()" ng-disabled="myForm.$invalid">保存</button>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">服务商品编码<i class="fa fa-asterisk fa-red"></i></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="GoodsCode" name="GoodsCode" ng-model="GoodsCode " class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">销售价<i class="fa fa-asterisk fa-red"></i></label>
+                                <div class="col-sm-7">
+                                    <input type="number" ngMin="0" id="SalePrice" name="SalePrice" ng-model="SalePrice " ng-pattern="/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/" class="form-control" required="" aria-required="true">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">商品分类</label>
+                                <div class="col-sm-7">
+                                    <select data-placeholder="请选择商品分类" class="chosen-select m-b" multiple style="width:100%;height:34px;" id="goodsType"></select>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">商品描述</label>
+                                <div class="col-sm-7">
+                                    <textarea id="GoodsDesription" ng-model="GoodsDesription" class="form-control" row="4"></textarea>
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group" id="fileupload">
+                                <label class="col-sm-3 control-label">图片上传</label>
+                                <div class="col-sm-7">
+                                    <input type="file" id="file-Portrait1" class="file-loading">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="form-group">
+                                <label class="col-sm-3"></label>
+                                <div class="col-sm-8">
+                                    <button type="button" class="btn btn-white" ng-click="BackServiceGoods()">返回</button>
+                                    <button type="button" class="btn btn-primary" ng-click="SaveServiceGoods()" ng-disabled="myForm.$invalid">保存</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</form>
+</div>
+
+
+
 
 
 <script type="text/javascript">
+    var fileUrl, fileName, fileSize, fileType;
+
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
         var id = window.location.search;
@@ -210,13 +208,11 @@
             fileSize = data.response.fileSize;
             fileType = data.response.fileType;
         });
-
         //创建图片上传控件
-        $(".file-loading").fileinput({
+        $('.file-loading').fileinput({
+            language: 'zh',
+            showUpload: true,
             uploadUrl: '/FileUpload/FileUpload',
-            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
-            maxImageWidth: 50,
-            maxImageHeight: 50,
             uploadLabel: "",
             uploadTitle: "上传文件",
             removeLabel: "",
@@ -225,7 +221,9 @@
             maxFileCount: 1,
             previewFileType: "image",
             browseLabel: "",
-            browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            mainClass: "input-group-lg",
+            allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
         });
     });
 </script>

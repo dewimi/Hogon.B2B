@@ -14,7 +14,7 @@ using System.Web.Mvc;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
 {
-    public class FreebieController: SmartListController<FreebieLineViewModel>
+    public class FreebieController : SmartListController<FreebieLineViewModel>
     {
         FreebieApplicationService _freebie;
 
@@ -39,7 +39,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
         }
 
         //public ActionResult 
-        public ActionResult Detail()
+        public ActionResult SelectFreebie()
         {
             return View();
         }
@@ -56,6 +56,11 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
         }
 
         public ActionResult Test()
+        {
+            return View();
+        }
+
+        public ActionResult Detail()
         {
             return View();
         }
@@ -80,7 +85,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
             var freebieCatalog = _freebie.GetFreebieCatalog();
             return Json(freebieCatalog);
         }
-        
+
         /// <summary>
         /// 获取产品商品信息（赠品明细）
         /// </summary>
@@ -99,22 +104,55 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
         /// <param name="dtoFreebie"></param>
         /// <param name="ProjectGoodsId">赠品id</param>
         /// <returns></returns>
-        public ActionResult SaveFreebieMsg(Guid FreebieCatalogId,DtoFreebie dtoFreebie, Guid ProductId)
+        public ActionResult SaveFreebieMsg(Guid FreebieCatalogId, DtoFreebie dtoFreebie, Guid ProductId, Guid[] ProductGoodsId, int[] Quota)
         {
-             _freebie.SaveFreebieMsg(FreebieCatalogId, dtoFreebie, ProductId);
+            _freebie.SaveFreebieMsg(FreebieCatalogId, dtoFreebie, ProductId, ProductGoodsId, Quota);
             return Json("");
+        }
+
+        /// <summary>
+        /// 获取赠品信息
+        /// </summary>
+        /// <param name="Id">赠品id</param>
+        /// <returns></returns>
+        public ActionResult EditFreebie(Guid Id)
+        {
+            var freebieList = _freebie.GetFreebieList(Id);
+
+            return Json(freebieList);
+        }
+
+        /// <summary>
+        /// 获取赠品列表
+        /// </summary>
+        /// <param name="id">赠品id</param>
+        /// <returns></returns>
+        public ActionResult AddFrebieList(Guid id)
+        {
+            var listMsg = _freebie.AddFrebieList(id);
+            return Json(listMsg);
         }
 
         protected override IQueryable<FreebieLineViewModel> GetAllModels()
         {
-            var freebieLine = _freebie.FindFreebieLine().OrderBy(m=>m.Freebie.FreebiSortNum);
+            var freebieLine = _freebie.FindFreebieLine().OrderByDescending(t => t.UpdateTime);
             Mapper.Initialize(cfg => cfg.CreateMap<DtoFreebieLine, FreebieLineViewModel>());
-            var viewModels = freebieLine.ProjectTo<FreebieLineViewModel>();
+            var viewModels = freebieLine.ProjectTo<FreebieLineViewModel>(freebieLine);
 
             return viewModels;
         }
 
-    
-   
+        /// <summary>
+        /// 删除赠品
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public ActionResult Remove(Guid Id)
+        {
+            _freebie.DeleteFreebie(Id);
+            return Json("");
+        }
+
+
     }
 }

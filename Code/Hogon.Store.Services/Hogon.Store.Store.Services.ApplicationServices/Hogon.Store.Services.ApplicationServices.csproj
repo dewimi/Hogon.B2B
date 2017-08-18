@@ -77,6 +77,7 @@
     <Compile Include="GoodsManContext\ProductTypeCategoryApplicationService.cs" />
     <Compile Include="GoodsManContext\SpecTypeApplicationService.cs" />
     <Compile Include="MarketingManContext\FreebieApplicationService.cs" />
+    <Compile Include="MarketingManContext\PackageGoodsApplicationService.cs" />
     <Compile Include="MemberManContext\AccountApplicationService.cs" />
     <Compile Include="MarketingManContext\FreebieCatalogApplicationService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -84,8 +85,6 @@
     <Compile Include="SecurityContext\MenuFunctionApplicationService.cs" />
     <Compile Include="SecurityContext\RoleApplicationService.cs" />
     <Compile Include="SecurityContext\UserApplicationService.cs" />
-    <Compile Include="TestContext\InformationApplicationService.cs" />
-    <Compile Include="TestContext\TestUserApplicationService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Hogon.Store.Models\Hogon.Store.Models.Dto\Hogon.Store.Models.Dto.csproj">

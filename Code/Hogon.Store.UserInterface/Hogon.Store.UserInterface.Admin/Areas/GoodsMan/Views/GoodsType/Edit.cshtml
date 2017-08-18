@@ -47,6 +47,19 @@
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
+                            @*<div class="form-group" id="fileupload">
+                                <label class="col-sm-3 control-label">小图标</label>
+                                <div class="col-sm-7">
+                                    <input type="file" id="file-Portrait1" class="file-loading">
+                                </div>
+                            </div>*@
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">小图标</label>
+                                <div class="col-sm-7">
+                                    <input type="text" name="icon" class="form-control" ng-model="icon">
+                                </div>
+                            </div>
+                            <div class="hr-line-dashed"></div>
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">排序<i class="fa fa-asterisk fa-red"></i></label>
                                 <div class="col-sm-7">
@@ -104,6 +117,7 @@
 
 
 <script type="text/javascript">
+    //var fileUrl, fileName, fileSize, fileType;
 
     var app = angular.module('myApp', []);
     app.controller('validateCtrl', function ($scope, $http) {
@@ -138,8 +152,8 @@
                 $.each(response.data, function (index, v) {
                     $("#productType").append($("<option value = '" + v.Id + "'></option>").text(v.TypeName));
                 });
+                //编辑绑值
                 if (id != "") {
-                    //编辑绑值
                     $http({
                         method: 'POST',
                         url: '/GoodsMan/GoodsType/FindGoodsTypeById',
@@ -151,6 +165,7 @@
                         $scope.Name = Data.Name;
                         $scope.Order = Data.Order;
                         $scope.Describe = Data.Describe;
+                        $scope.icon = Data.Icon;
                         $("#parent ").val(Data.ParentId);
                         $("#productType").val(Data.ProductTypeId);
                         $("input[name=IsEnabled][value=" + Data.IsEnabled + "]").attr("checked", true);
@@ -189,29 +204,39 @@
                 });
             }
             else {
-                var isEnabled = $('input:radio[name="IsEnabled"]:checked').val();
-                $scope.GoodsType = {
-                    "Id": $scope.Guid,
-                    "Name": $scope.Name,
-                    "ParentId": parentId,
-                    "ProductTypeId": productType,
-                    "Order": $scope.Order,
-                    "Describe": $scope.Describe,
-                    "IsEnabled": isEnabled,
-                }
-
-                console.log(JSON.stringify($scope.GoodsType));
-                $http({
-                    method: 'POST',
-                    url: '/GoodsMan/GoodsType/Save',
-                    data: $scope.GoodsType
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    location.href = "/GoodsMan/GoodsType/Index";
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                    swal(response.data, "", "warning");
-                });
+                //if (fileName == null && fileSize == null && fileType == null && fileUrl == null) {
+                //    swal("请上传图片");
+                //} else {
+                //    $http({
+                //        method: 'POST',
+                //        url: '/FileUpload/SeveFile',
+                //        data: JSON.stringify({ FileName: fileName, FileType: fileType, FileSize: fileSize, Url: fileUrl })
+                //    }).then(function successCallback(response) {
+                        var isEnabled = $('input:radio[name="IsEnabled"]:checked').val();
+                        $scope.GoodsType = {
+                            "Id": $scope.Guid,
+                            "Name": $scope.Name,
+                            "ParentId": parentId,
+                            "ProductTypeId": productType,
+                            "Order": $scope.Order,
+                            "Describe": $scope.Describe,
+                            "IsEnabled": isEnabled,
+                            "Icon":$scope.icon,
+                        }
+                        $http({
+                            method: 'POST',
+                            url: '/GoodsMan/GoodsType/Save',
+                            data: $scope.GoodsType
+                        }).then(function successCallback(response) {
+                            // 请求成功执行代码
+                            location.href = "/GoodsMan/GoodsType/Index";
+                        }, function errorCallback(response) {
+                            // 请求失败执行代码
+                            swal(response.data, "", "warning");
+                        });
+                    //},function erroeCallback(response){
+                    //    //请求失败执行代码
+                    //});
             }
         }
         //返回
@@ -243,4 +268,36 @@
             });
         }
     });
+
+    //图片上传
+    //$(document).ready(function () {
+    //    ////图片上传成功回调函数
+    //    $(".file-loading").on("fileuploaded", function (event, data, previewId, index) {
+    //        fileUrl = data.response.fileUrl;
+    //        fileName = data.response.fileName;
+    //        fileSize = data.response.fileSize;
+    //        fileType = data.response.fileType;
+    //    });
+    //    $('.i-checks').iCheck({
+    //        checkboxClass: 'icheckbox_square-green',
+    //        radioClass: 'iradio_square-green',
+    //    });
+    //    //创建图片上传控件
+    //    $('.file-loading').fileinput({
+    //        language: 'zh',
+    //        showUpload: true,
+    //        uploadUrl: '/FileUpload/FileUpload',
+    //        uploadLabel: "",
+    //        uploadTitle: "上传文件",
+    //        removeLabel: "",
+    //        removeTitle: "删除文件",
+    //        browseLabel: "",
+    //        maxFileCount: 1,
+    //        previewFileType: "image",
+    //        browseLabel: "",
+    //        //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+    //        mainClass: "input-group-lg",
+    //        allowedFileExtensions: ["icon"],
+    //    });
+    //});
 </script>

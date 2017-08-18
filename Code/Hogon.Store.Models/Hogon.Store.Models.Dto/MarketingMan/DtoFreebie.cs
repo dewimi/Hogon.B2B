@@ -1,5 +1,4 @@
-﻿using Hogon.Store.Models.Entities.GoodsMan;
-using Hogon.Store.Models.Entities.MarketingMan;
+﻿using Hogon.Store.Models.Dto.GoodsMan;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,17 +12,37 @@ namespace Hogon.Store.Models.Dto.MarketingMan
         /// <summary>
         /// 赠品分类
         /// </summary>
-        public FreebieCatalog FreebieCatalog { get; set; }
+        //public DtoFreebieCatalog dtoFreebieCatalog { get; set; }
+
+        /// <summary>
+        /// 赠品分类名称
+        /// </summary>
+        public string FreebieCatalogName { get; set; }
+
+        /// <summary>
+        /// 赠品分类排序
+        /// </summary>
+        public int Sort { set; get; }
+
+        /// <summary>
+        /// 赠品分类Id
+        /// </summary>
+        public Guid FreebieCatalogId { get; set; }
 
         /// <summary>
         /// 赠品明细集合
         /// </summary>
-        public ICollection<FreebieLine> FreebieLines { get; set; }
+        public ICollection<object> FreebieLines { get; set; }
 
-        /// <summary>
-        /// 产品
-        /// </summary>
-        public Product Product { get; set; }
+        ///// <summary>
+        ///// 产品
+        ///// </summary>
+        //public DtoPro Product { get; set; }
+        public string ProductName { get; set; }
+
+        public string ProductCode { get; set; }
+
+        public Guid ProductId { get; set; }
 
         /// <summary>
         /// 是否发布

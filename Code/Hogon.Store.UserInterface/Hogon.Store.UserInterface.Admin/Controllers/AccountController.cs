@@ -1,16 +1,16 @@
 ﻿using Hogon.Framework.Core.Common;
-using Hogon.Store.Services.ApplicationServices.SecurityContext;
+using Hogon.Store.Services.ApplicationServices.MemberManContext;
 using System.Web.Mvc;
 
 namespace Hogon.Store.UserInterface.Admin.Controllers
 {
     public class AccountController : Controller
     {
-        UserApplicationService _userService;
+        AccountApplicationService _accountService;
 
         public AccountController()
         {
-            _userService = new UserApplicationService();
+            _accountService = new AccountApplicationService();
         }
 
         // GET: Login
@@ -22,7 +22,7 @@ namespace Hogon.Store.UserInterface.Admin.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel model)
         {
-            if (!_userService.Login(model.UserName, model.Password))
+            if (!_accountService.Login(model.UserName, model.Password))
                 throw new UserFriendlyException("用户名或密码不正确.");
              
             return Redirect("/Home/Index");
@@ -31,7 +31,7 @@ namespace Hogon.Store.UserInterface.Admin.Controllers
         [HttpPost]
         public ActionResult Logout()
         {
-            _userService.Logout();
+            _accountService.Logout();
 
             return Redirect("/Account/Login");
         }

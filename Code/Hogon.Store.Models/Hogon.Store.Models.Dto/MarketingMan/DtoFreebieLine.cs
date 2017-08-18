@@ -1,6 +1,4 @@
-﻿using Hogon.Store.Models.Entities.GoodsMan;
-using Hogon.Store.Models.Entities.MarketingMan;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Dto.MarketingMan
 {
- public   class DtoFreebieLine
+ public   class DtoFreebieLine:BaseDto
     {
         /// <summary>
-        /// 配额
+        /// 赠品名称
         /// </summary>
-        public int Quota { get; set; }
+        public string FreebieName
+        {
+            get; set;
+        }
 
         /// <summary>
-        /// 赠品
+        /// 赠品所属分类
         /// </summary>
-        public Freebie Freebie { get; set; }
-
-        /// <summary>
-        /// 产品商品
-        /// </summary>
-        public ProductGoods ProductGoods { get; set; }
+        public string FreebieCaltalogName
+        {
+            get; set;
+        }
     }
 }

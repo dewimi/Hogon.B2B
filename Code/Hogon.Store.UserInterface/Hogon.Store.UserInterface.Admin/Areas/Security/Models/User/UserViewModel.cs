@@ -1,13 +1,10 @@
 ﻿using Hogon.Framework.Utilities.SmartList;
 using Hogon.Framework.Utilities.SmartList.Attributes;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.Security.Models.User
 {
-    public class UserViewModel
+    public class AccountViewModel
     {
         /// <summary>
         /// 编号

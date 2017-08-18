@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Dto.MemberMan
 {
-     public class DtoAccount
+     public class DtoAccount : BaseDto
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        public Guid Id { get; set; }
-
         /// <summary>
         /// 名称
         /// </summary>

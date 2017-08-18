@@ -71,15 +71,15 @@
     <Compile Include="GoodsMan\SpecTypeRepository.cs" />
     <Compile Include="MarketingMan\FreebieLineRepository.cs" />
     <Compile Include="MarketingMan\FreebieRepository.cs" />
+    <Compile Include="MarketingMan\PackageGoodsRepository.cs" />
     <Compile Include="MemberMan\AccountRepository.cs" />
     <Compile Include="MarketingMan\FreebieCatalogRepository.cs" />
+    <Compile Include="MemberMan\EnterpriseRepository.cs" />
+    <Compile Include="MemberMan\PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorityRepository.cs" />
     <Compile Include="Security\MenuRepository.cs" />
     <Compile Include="Security\RoleRepository.cs" />
-    <Compile Include="Security\UserRepository.cs" />
-    <Compile Include="TestContext\InformationRepository.cs" />
-    <Compile Include="TestContext\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

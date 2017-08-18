@@ -49,6 +49,8 @@
     <Compile Include="GoodsMan\DtoAppCase.cs" />
     <Compile Include="GoodsMan\DtoGoods.cs" />
     <Compile Include="GoodsMan\DtoGoodsType.cs" />
+    <Compile Include="GoodsMan\DtoPackageGoods.cs" />
+    <Compile Include="GoodsMan\DtoPro.cs" />
     <Compile Include="GoodsMan\DtoProductTypeCategory.cs" />
     <Compile Include="GoodsMan\DtoRela_Brand_GoodsType.cs" />
     <Compile Include="GoodsMan\DtoRela_Goods_GoodsType.cs" />
@@ -63,9 +65,12 @@
     <Compile Include="GoodsMan\DtoServiceGoods.cs" />
     <Compile Include="GoodsMan\DtoInstruction.cs" />
     <Compile Include="GoodsMan\DtoProduct.cs" />
+    <Compile Include="HRMan\DtoStaff.cs" />
     <Compile Include="MarketingMan\DtoFreebie.cs" />
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
+    <Compile Include="MarketingMan\DtoFreebieLines.cs" />
     <Compile Include="MemberMan\DtoAccount.cs" />
+    <Compile Include="MemberMan\DtoPerson.cs" />
     <Compile Include="MemberMan\DtoUserInfo.cs" />
     <Compile Include="MarketingMan\DtoFreebieCatalog.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,7 +78,6 @@
     <Compile Include="Security\DtoFunction.cs" />
     <Compile Include="Security\DtoMeun.cs" />
     <Compile Include="Security\DtoRole.cs" />
-    <Compile Include="Security\DtoUser.cs" />
     <Compile Include="Security\UserDto.cs" />
     <Compile Include="TestContext\DtoInformation.cs" />
     <Compile Include="TestContext\DtoInquiry.cs" />
@@ -81,12 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\HogonStore.Models.Entities\Hogon.Store.Models.Entities.csproj">
-      <Project>{4cf3a89c-099a-46ad-ab39-060b45b2c17b}</Project>
-      <Name>Hogon.Store.Models.Entities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

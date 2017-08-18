@@ -1,4 +1,5 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
+using Hogon.Store.Models.Entities.Common;
 using Hogon.Store.Models.Entities.MarketingMan;
 using System.Collections.Generic;
 
@@ -13,6 +14,7 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         {
             Rela_Goods_GoodsType = new HashSet<Rela_Goods_GoodsType>();
             Rel_Promotion_Goods = new HashSet<Rel_Promotion_Goods>();
+            ChildrenGoods = new HashSet<Goods>();
         }
         /// <summary>
         /// 商品名称

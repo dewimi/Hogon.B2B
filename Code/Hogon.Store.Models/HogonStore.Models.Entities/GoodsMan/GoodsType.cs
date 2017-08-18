@@ -65,5 +65,10 @@ namespace Hogon.Store.Models.Entities.GoodsMan
         /// 品牌商品分类关联集合
         /// </summary>
         public virtual ICollection<Rela_Brand_GoodsType> Rela_Brand_GoodsType { get; set; }
+
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
     }
 }

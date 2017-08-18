@@ -13,6 +13,10 @@ namespace Hogon.Store.Models.Entities.MemberMan
     /// </summary>
     public abstract class Account:BaseEntity
     {
+        public Account()
+        {
+            Rela_Role_Person = new HashSet<Rela_Role_Person>();
+        }
 
         /// <summary>
         /// 名称
@@ -40,5 +44,9 @@ namespace Hogon.Store.Models.Entities.MemberMan
         public string EmailAddress { get; set; }
 
 
+        /// <summary>
+        /// 用户角色关联集合
+        /// </summary>
+        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
     }
 }

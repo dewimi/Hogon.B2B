@@ -46,5 +46,10 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// 是否启用
         /// </summary>
         public bool IsEnabled { get; set; }
+
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
     }
 }

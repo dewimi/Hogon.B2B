@@ -7,18 +7,15 @@ using System.Linq;
 using System.Web.Mvc;
 using Hogon.Framework.Utilities.SmartList;
 using Hogon.Store.UserInterface.Admin.Areas.Security.Models.User;
-using Hogon.Store.Services.ApplicationServices.SecurityContext;
 using Hogon.Store.Models.Dto.Security;
-using Hogon.Framework.Core.Owin.Authrization;
 using Hogon.Store.Services.ApplicationServices.MemberManContext;
 using Hogon.Store.Models.Dto.MemberMan;
-using Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Models;
+using Hogon.Store.Models.Entities.MemberMan;
 
 namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 {
-    public class UserController : SmartListController<UserViewModel>
+    public class UserController : SmartListController<AccountViewModel>
     {
-        UserApplicationService userSvc = new UserApplicationService();
         AccountApplicationService accountSvc = new AccountApplicationService();
 
         protected override void OnException(ExceptionContext filterContext)
@@ -26,7 +23,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             base.OnException(filterContext);
         }
 
-        public UserController(BaseViewRender<UserViewModel> listRender) : base(listRender)
+        public UserController(BaseViewRender<AccountViewModel> listRender) : base(listRender)
         {
         }
 
@@ -58,9 +55,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Save(DtoUser dtoUser)
+        public ActionResult Save(DtoAccount dtoAccount)
         {
-            userSvc.SaveUser(dtoUser);
+            accountSvc.SaveUser(dtoAccount);
             return Json("");
         }
 
@@ -73,12 +70,13 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         {
             var users = GetAllModels();
             return Json(users);
-        }    
-        protected override IQueryable<UserViewModel> GetAllModels()
-        {
-            var dtoMenu = userSvc.GetAllUser().OrderByDescending(m => m.CreatedTime);
+        }
 
-            var viewModels = dtoMenu.ConvertTo<DtoUser, UserViewModel>();
+        protected override IQueryable<AccountViewModel> GetAllModels()
+        {
+            var dtoMenu = accountSvc.GetAllAccount().OrderByDescending(m => m.CreateTime);
+
+            var viewModels = dtoMenu.ConvertTo<DtoAccount, AccountViewModel>();
 
             return viewModels;
         }
@@ -91,7 +89,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         [HttpPost]
         public ActionResult IsExist(string userName)
         {
-           int result = userSvc.IsExist(userName);
+           int result = accountSvc.IsExist(userName);
 
             return Json(result);
         }
@@ -103,9 +101,9 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         [HttpPost]
         public ActionResult GetUserById(Guid id)
         {
-            var users = userSvc.GetUserById(id);
-            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, UserViewModel>());
-            var menuData = Mapper.Map<UserViewModel>(users);
+            var accounts = accountSvc.GetAccountById(id);
+            Mapper.Initialize(cfg => cfg.CreateMap<DtoAccount, AccountViewModel>());
+            var menuData = Mapper.Map<AccountViewModel>(accounts);
             return Json(menuData);
         }
 
@@ -124,13 +122,13 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
                 }
                 else
                 {
-                    var menus = userSvc.GetAuthorityByUserId(UserState.Current.UserId);
+                    var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
                     return Json(menus);
                 }
             }
             else
             {
-                var menus = userSvc.GetAuthorityByUserId(UserState.Current.UserId);
+                var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
                 return Json(menus);
             }
           
@@ -149,7 +147,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             }
             else
             {
-                var role = userSvc.GetRoleByUserId(UserState.Current.UserId);
+                var role = accountSvc.GetRoleByAccountId(UserState.Current.UserId);
                 return Json(role);
 
             }
@@ -167,5 +165,38 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             return Json(dtoAccount);
         }
 
+        /// <summary>
+        /// 保存用户信息到企业下
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActionResult SaveUserInfo(Guid id)
+        {
+            accountSvc.SaveUserInfo(id);
+            return Json("");
+        }
+
+        /// <summary>
+        /// 获取企业下的所有角色
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult GetRole()
+        {
+            var roles = accountSvc.GetRole();
+
+            return Json(roles);
+        }
+
+        /// <summary>
+        /// 添加员工账号
+        /// </summary>
+        /// <param name="person"></param>
+        /// <param name="role"></param>
+        /// <returns></returns>
+        public ActionResult AddAccount(DtoPerson person,Guid roleId)
+        {
+            accountSvc.AddAccount(person,roleId);
+            return Json("");
+        }
     }
 }

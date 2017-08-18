@@ -8,15 +8,16 @@ using System;
 using System.Linq;
 using System.Web.Mvc;
 using Hogon.Framework.Utilities.SmartList;
-using Hogon.Store.Services.ApplicationServices.SecurityContext;
+using Hogon.Store.Services.ApplicationServices.MemberManContext;
+using Hogon.Store.Models.Dto.MemberMan;
 
 namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
 {
-    public class PersonalController : SmartListController<UserViewModel>
+    public class PersonalController : SmartListController<AccountViewModel>
     {
-        UserApplicationService userSvc = new UserApplicationService();
+        AccountApplicationService _accountSvc = new AccountApplicationService();
 
-        public PersonalController(BaseViewRender<UserViewModel> listRender) : base(listRender)
+        public PersonalController(BaseViewRender<AccountViewModel> listRender) : base(listRender)
         {
         }
 
@@ -38,9 +39,9 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Save(DtoUser dtoUser)
+        public ActionResult Save(DtoAccount dtoAccount)
         {
-            userSvc.SaveUser(dtoUser);
+            _accountSvc.SaveUser(dtoAccount);
             return Json("");
         }
 
@@ -53,12 +54,13 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
         {
             var users = GetAllModels();
             return Json(users);
-        }    
-        protected override IQueryable<UserViewModel> GetAllModels()
-        {
-            var dtoMenu = userSvc.GetAllUser().OrderByDescending(m => m.CreatedTime);
+        }
 
-            var viewModels = dtoMenu.ConvertTo<DtoUser, UserViewModel>();
+        protected override IQueryable<AccountViewModel> GetAllModels()
+        {
+            var dtoAccounts = _accountSvc.GetAllAccount().OrderByDescending(m => m.CreateTime);
+
+            var viewModels = dtoAccounts.ConvertTo<DtoAccount, AccountViewModel>();
 
             return viewModels;
         }
@@ -71,7 +73,7 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
         [HttpPost]
         public ActionResult IsExist(string userName)
         {
-           int result = userSvc.IsExist(userName);
+           int result = _accountSvc.IsExist(userName);
 
             return Json(result);
         }
@@ -83,9 +85,9 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
         [HttpPost]
         public ActionResult GetUserById(Guid id)
         {
-            var users = userSvc.GetUserById(id);
-            Mapper.Initialize(cfg => cfg.CreateMap<DtoUser, UserViewModel>());
-            var menuData = Mapper.Map<UserViewModel>(users);
+            var users = _accountSvc.GetAccountById(id);
+            Mapper.Initialize(cfg => cfg.CreateMap<DtoAccount, AccountViewModel>());
+            var menuData = Mapper.Map<AccountViewModel>(users);
             return Json(menuData);
         }
 
@@ -105,13 +107,13 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
                 else
                 {
                     userName = UserState.Current.UserName;
-                    var menus = userSvc.GetAuthorityByUserId(UserState.Current.UserId);
+                    var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
                     return Json(menus);
                 }
             }
             else
             {
-                var menus = userSvc.GetAuthorityByUserId(UserState.Current.UserId);
+                var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
                 return Json(menus);
             }
           
@@ -130,7 +132,7 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
             }
             else
             {
-                var role = userSvc.GetRoleByUserId(UserState.Current.UserId);
+                var role = _accountSvc.GetRoleByAccountId(UserState.Current.UserId);
                 return Json(role);
 
             }
