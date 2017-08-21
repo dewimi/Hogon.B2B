@@ -5,6 +5,7 @@ using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Store.Models.Dto.Common;
 using Hogon.Store.Models.Dto.Security;
 using Hogon.Store.Models.Entities.Security;
+using Hogon.Store.Models.Module.Security;
 using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Repositories.Security;
 using System;
@@ -18,6 +19,8 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         MenuRepository menuReps;
         AccountRepository accountReps = new AccountRepository();
         RoleRepository roleReps = new RoleRepository();
+        IRoleFactory roleFactory = new RoleFactory();
+
         public MenuApplicationService()
         {
             menuReps = new MenuRepository();
@@ -61,19 +64,16 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         public List<DtoTreeNode> GetTreeMenus(string userName)
         {
             var allMenus = menuReps.FindAll().OrderBy(m=>m.Sort).ToList();
+            var currentAccount = accountReps.FindBy(m => m.Id == UserState.Current.AccountId).First();
 
             ////根据用户id查询相应的权限菜单
-            //var menu = accountReps.FindBy(r => r.Name == userName).SelectMany
-            //       (r => r.Rela_Role_Person).Select(r => r.Role);
+            var menus = currentAccount.GetAvailableMenus(roleFactory);
 
-            //var menus = menu.SelectMany(a => a.Authorities).Select(m => m.Menu).OrderBy(m=>m.Sort);
             ////查询菜单下有权限的按钮
-            //var generalFunc = accountReps.FindBy(r => r.Name == userName).SelectMany
-            //       (r => r.Rela_Role_Person).Select(r => r.Role).SelectMany(a => a.Authorities)
-            //       .SelectMany(r => r.Rela_Authority_Function);
+            var generalFunc = currentAccount.GetAvailableFunctions(roleFactory);
 
             //获取遍历出来的菜单节点
-            //var treeNodeLists = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
+            var treeNodeLists = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
 
             //return treeNodeLists;
 
@@ -87,17 +87,19 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// <returns></returns>
         public List<DtoTreeNode> MenuByRoleId(Guid roleId)
         {
-
             var allMenus = menuReps.FindAll().ToList();
 
+            var accountAccount = accountReps.FindBy
+                (m => m.Id == UserState.Current.AccountId).First();
+
             //查询角色相应的权限菜单
-            var menus = roleReps.FindBy(r => r.Id == roleId).SelectMany(a => a.Authorities).Select(m => m.Menu);
+            var menus = accountAccount.GetAvailableMenus(roleFactory);
 
             //查询角色相应的权限按钮
-            var generalFunc = roleReps.FindBy(r => r.Id == roleId).SelectMany(a => a.Authorities)
-                  .SelectMany(r => r.Rela_Authority_Function);
+            var functions = accountAccount.GetAvailableFunctions(roleFactory);
+
             //获取遍历出来的菜单节点
-            var treeNodeList = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
+            var treeNodeList = CreateNodeList(allMenus.AsQueryable(), menus, functions);
 
             return treeNodeList;
 
@@ -107,10 +109,10 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// </summary>
         /// <param name="allMenus"></param>
         /// <param name="menus"></param>
-        /// <param name="generalFunc"></param>
+        /// <param name="functions"></param>
         /// <returns></returns>
         public List<DtoTreeNode> CreateNodeList(IQueryable<Menu> allMenus,
-            IQueryable<Menu> menus, IQueryable<Rela_Authority_Function> generalFunc)
+            IEnumerable<Menu> menus, IEnumerable<Function> functions)
         {
 
             List<DtoTreeNode> nodeList = new List<DtoTreeNode>();
@@ -159,18 +161,18 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
                         item.state.Add("isFunction", true);
                     }
                     // 按钮选中
-                    //foreach (var general in generalFunc)
-                    //{
-                    //    foreach (var gFunctionNodes in generalFuncNodes)
-                    //    {
-                    //        if (gFunctionNodes.Id == general.Function.Id)
-                    //        {
-                    //            gFunctionNodes.state.Remove("checked");
-                    //            gFunctionNodes.state.Add("checked", true);
+                    foreach (var func in functions)
+                    {
+                        foreach (var gFunctionNodes in generalFuncNodes)
+                        {
+                            if (gFunctionNodes.Id == func.Id)
+                            {
+                                gFunctionNodes.state.Remove("checked");
+                                gFunctionNodes.state.Add("checked", true);
 
-                    //        }
-                    //    }
-                    //}
+                            }
+                        }
+                    }
 
                     childNode.nodes = generalFuncNodes.ToList();
                 }
