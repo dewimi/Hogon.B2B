@@ -314,6 +314,7 @@
     <Content Include="Content\css\plugins\jQueryUI\images\ui-icons_454545_256x240.png" />
     <Content Include="Content\css\plugins\jQueryUI\images\ui-icons_888888_256x240.png" />
     <Content Include="Content\css\plugins\jQueryUI\jquery-ui-1.10.4.custom.min.css" />
+    <Content Include="Content\css\plugins\jsTreeTable\jquery.treetable.theme.default.css" />
     <Content Include="Content\css\plugins\jsTree\32px.png" />
     <Content Include="Content\css\plugins\jsTree\style.min.css" />
     <Content Include="Content\css\plugins\jsTree\throbber.gif" />
@@ -473,6 +474,7 @@
     <Content Include="Scripts\hogon\js\plugins\fileinput\fileinput-zh.js" />
     <Content Include="Scripts\hogon\js\plugins\fileinput\fileinput.js" />
     <Content Include="Scripts\hogon\js\plugins\fileinput\fileinput.min.js" />
+    <Content Include="Scripts\hogon\js\plugins\jsTreeTable\jquery.treetable.js" />
     <Content Include="Scripts\hogon\js\plugins\layer\layim\data\chatlog.json" />
     <Content Include="Scripts\hogon\js\plugins\layer\layim\data\friend.json" />
     <Content Include="Scripts\hogon\js\plugins\layer\layim\data\group.json" />

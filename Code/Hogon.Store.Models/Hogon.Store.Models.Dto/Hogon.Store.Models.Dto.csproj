@@ -79,7 +79,6 @@
     <Compile Include="Security\DtoFunction.cs" />
     <Compile Include="Security\DtoMeun.cs" />
     <Compile Include="Security\DtoRole.cs" />
-    <Compile Include="Security\UserDto.cs" />
     <Compile Include="TestContext\DtoInformation.cs" />
     <Compile Include="TestContext\DtoInquiry.cs" />
     <Compile Include="TestContext\DtoTestUser.cs" />

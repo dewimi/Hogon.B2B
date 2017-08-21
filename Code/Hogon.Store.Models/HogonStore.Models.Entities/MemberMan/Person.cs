@@ -1,10 +1,10 @@
-﻿using Hogon.Store.Models.Entities.HRMan;
+﻿using Hogon.Framework.Core.Common;
+using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Hogon.Store.Models.Entities.MemberMan
 {
@@ -23,6 +23,19 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// </summary>
         public ICollection<Staff> Staffs { get; set; }
 
+        /// <summary>
+        /// 获取当前员工身份信息
+        /// </summary>
+        public Staff GetCurrentStaff()
+        {
+            Staff currentStaff = null;
+
+            if (CurrentIdentity.GetType() == typeof(Enterprise))
+                currentStaff = Staffs.Where(m => m.Enterprise == CurrentIdentity).First();
+
+            return currentStaff;
+        }
+
         public override Account CurrentIdentity
         {
             get
@@ -33,13 +46,16 @@ namespace Hogon.Store.Models.Entities.MemberMan
                 }
                 else
                 {
-                    foreach(var staff in Staffs)
+                    foreach (var staff in Staffs)
                     {
                         if (staff.Enterprise.Id == base.CurrentIdentity.Id)
                             return staff.Enterprise;
                     }
 
-                    throw new NotImplementedException();
+                    base.CurrentIdentity = null;
+                    FormsAuthentication.SignOut();
+
+                    throw new UserFriendlyException("当前用户身份不可用，请重新登录.");
                 }
 
             }

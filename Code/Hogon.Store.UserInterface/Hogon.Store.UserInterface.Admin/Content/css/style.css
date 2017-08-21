@@ -7779,6 +7779,7 @@ body.skin-3 {
     border-style: solid none solid none;
     border-width: 4px 0 1px 0;
     padding: 14px 15px 7px;
+    background-color: #ffffff;
 }
 
 .searching {
@@ -7803,4 +7804,10 @@ body.skin-3 {
 }
 .colorFFF {
     color: #ffffff !important;
+}
+.kv-file-content img{
+    width: 150px;
+}
+.file-actions .file-footer-buttons {
+    display: none;
 }
