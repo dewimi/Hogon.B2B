@@ -75,9 +75,7 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
             //获取遍历出来的菜单节点
             var treeNodeLists = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
 
-            //return treeNodeLists;
-
-            return null;
+            return treeNodeLists;
         }
 
         /// <summary>
