@@ -275,7 +275,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         {
             password = _encryptor.Encrypt(password);
 
-            // 使用加密后的密码进行比较  
+            // 使用加密后的密码进行比较
             var currentUser = _accountReoisitory.FindAll()
                 .Where(u => u.Name == userName && u.Password == password)
                 .FirstOrDefault();

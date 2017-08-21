@@ -18,5 +18,6 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Models
         /// </summary>
         public string ParameterName { get; set; }
 
+ 
     }
 }
