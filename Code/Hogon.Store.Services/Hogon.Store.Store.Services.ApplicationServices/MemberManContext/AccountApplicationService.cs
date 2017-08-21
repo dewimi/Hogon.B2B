@@ -489,12 +489,22 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <param name="person"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public bool AddAccount(DtoPerson dtoPerson, Guid roleId)
+        public int AddAccount(DtoPerson dtoPerson, Guid roleId)
         {
            var result = _personRepository.FindBy(m => m.Name == dtoPerson.Name).FirstOrDefault();
+           var email = _personRepository.FindBy(m => m.EmailAddress == dtoPerson.EmailAddress).FirstOrDefault();
+           var phoneNumber = _personRepository.FindBy(m => m.PhoneNumber == dtoPerson.PhoneNumber).FirstOrDefault();
             if (result != null)
             {
-                return true;
+                return 1;
+            }
+            else if (email != null)
+            {
+                return 2;
+            }
+            else if (phoneNumber != null)
+            {
+                return 3;
             }
             else
             {
@@ -515,8 +525,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
             }
 
             Commit();
-            return false;
-      
+            return 0;
         }
     }
 }

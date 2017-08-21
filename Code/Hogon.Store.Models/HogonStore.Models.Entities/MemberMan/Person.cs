@@ -1,10 +1,12 @@
-﻿using Hogon.Store.Models.Entities.HRMan;
+﻿using Hogon.Framework.Core.Common;
+using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Hogon.Store.Models.Entities.MemberMan
 {
@@ -39,7 +41,10 @@ namespace Hogon.Store.Models.Entities.MemberMan
                             return staff.Enterprise;
                     }
 
-                    throw new NotImplementedException();
+                    base.CurrentIdentity = null;
+                    FormsAuthentication.SignOut();
+
+                    throw new UserFriendlyException("当前用户身份不可用，请重新登录.");
                 }
 
             }

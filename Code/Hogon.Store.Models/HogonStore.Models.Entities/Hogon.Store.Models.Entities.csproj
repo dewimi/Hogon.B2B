@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hogon.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Hogon_Store\03 Code\Libraries\Hogon.Framework.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hogon.Framework.Core.UnitOfWork">
       <HintPath>..\..\Libraries\Hogon.Framework.Core.UnitOfWork.dll</HintPath>
     </Reference>
@@ -38,6 +42,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
