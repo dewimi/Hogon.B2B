@@ -12,6 +12,7 @@ using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Repositories.Security;
 using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Security;
@@ -39,8 +40,11 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <returns></returns>
         public DtoRole GetRoleByAccountId(Guid userId)
         {
-            var role = _accountReoisitory.FindBy(r => r.Id == userId).SelectMany
-               (r => r.Rela_Role_Person).Select(r => r.Role).First();
+            var account = _accountReoisitory.FindBy(r => r.Id == userId)
+                .OfType<Person>().First();
+
+            var role = new Role();
+
             Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
             var roleData = Mapper.Map<DtoRole>(role);
 
@@ -116,9 +120,9 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         public bool Login(string userName, string password)
         {
             // Check user login credential.
-            var user = Validate(userName, password);
+            var currentAccount = Validate(userName, password);
 
-            if (user == null)
+            if (currentAccount == null)
             {
                 return false;
             }
@@ -128,30 +132,26 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
 
             UserState userState = new UserState()
             {
-                UserId = user.Id,
-                UserName = user.Name,
-                Email = user.EmailAddress
+                AccountId = currentAccount.Id,
+                UserName = currentAccount.Name,
+                Email = currentAccount.EmailAddress
             };
 
-            var availableRoles = user.Rela_Role_Person.Select(m => m.Role)
-                .Where(m => m.IsEnable == true).AsQueryable();
-            userState.Roles = availableRoles.ConvertTo<Role, RoleState>().ToArray();
+            userState.AvailableMenus = currentAccount.GetAvailableMenus()
+                .ConvertTo<Menu, MenuState>().ToList();
 
-            userState.AvailableMenus = _authorizationService.GetAvailableMenusByUser(user)
-                .AsQueryable().ConvertTo<Menu, MenuState>().ToArray();
-
-            userState.AvailableFunctions = _authorizationService
-                .GetAvailableFunctionsByUser(user).Select(m => new FunctionState()
+            userState.AvailableFunctions = currentAccount
+                .GetAvailableFunctions().Select(m => new FunctionState()
                 {
                     Id = m.Id,
                     Name = m.Name,
                     MenuCode = m.Menu.Code,
                     FunctionCode = m.Code,
                     IsEnable = m.IsEnable,
-                }).Where(m => m.IsEnable == true).ToArray();
+                }).Where(m => m.IsEnable == true).ToList();
 
             UserState.Current = userState;
-            if (user == null)
+            if (currentAccount == null)
             {
                 return false;
             }

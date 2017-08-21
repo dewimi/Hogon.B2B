@@ -15,7 +15,6 @@ namespace Hogon.Store.Models.Entities.Security
         public Role()
         {
             Staffs = new HashSet<Staff>();
-            Rela_Role_Person = new HashSet<Rela_Role_Person>();
             Authorities = new HashSet<Authority>();
         }
 
@@ -39,26 +38,6 @@ namespace Hogon.Store.Models.Entities.Security
         /// </summary>
         public bool IsAdministrator { get; set; }
 
-        ///// <summary>
-        ///// 角色创建时间
-        ///// </summary>
-        //public DateTime CreatedTime { get; set; }
-
-        ///// <summary>
-        ///// 角色修改时间
-        ///// </summary>
-        //public DateTime UpdatedTime { get; set; }
-
-        ///// <summary>
-        ///// 角色创建人Id
-        ///// </summary>
-        //public Guid CreatorId { get; set; }
-
-        ///// <summary>
-        ///// 角色修改人Id
-        ///// </summary>
-        //public Guid UpdaterId { get; set; }
-
         /// <summary>
         /// 企业
         /// </summary>
@@ -69,10 +48,6 @@ namespace Hogon.Store.Models.Entities.Security
         /// </summary>
         public virtual ICollection<Staff> Staffs { get; set; }
 
-        /// <summary>
-        /// 个人用户集合
-        /// </summary>
-        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
         /// <summary>
         /// 权限集合
         /// </summary>

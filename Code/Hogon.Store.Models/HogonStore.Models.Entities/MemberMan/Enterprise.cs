@@ -11,7 +11,7 @@ namespace Hogon.Store.Models.Entities.MemberMan
     /// <summary>
     /// 企业
     /// </summary>
-    public class Enterprise :Account
+    public class Enterprise : Account
     {
         public Enterprise()
         {
@@ -54,5 +54,14 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// </summary>
         public ICollection<Role> Roles { get; set; }
 
+        public override IQueryable<Menu> GetAvailableMenus()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override IQueryable<Function> GetAvailableFunctions()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

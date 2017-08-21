@@ -15,16 +15,7 @@ namespace Hogon.Store.Services.DomainServices.SecurityContext
         /// </summary>
         public IEnumerable<Menu> GetAvailableMenusByUser(Account account)
         {
-            if (account.Rela_Role_Person.Select(m => m.Role)
-                .Where(m => m.IsAdministrator).Count() > 0)
-            {
-                return _menuRepository.FindBy(m => m.IsEnable);
-            }
-            else
-            {
-                return account.Rela_Role_Person.SelectMany
-                    (m => m.Role.GetAuthroizedMenus());
-            }
+            return account.GetAvailableMenus();
         }
 
         /// <summary>
@@ -32,19 +23,7 @@ namespace Hogon.Store.Services.DomainServices.SecurityContext
         /// </summary>
         public IEnumerable<Function> GetAvailableFunctionsByUser(Account account)
         {
-            if (account.Rela_Role_Person.Select(m => m.Role)
-                .Where(m => m.IsAdministrator).Count() > 0)
-            {
-                var menus = _menuRepository.FindBy(m => m.IsEnable).ToList();
-                var funcs = menus.SelectMany(m => m.Functions);
-
-                return funcs;
-            }
-            else
-            {
-                return account.Rela_Role_Person.SelectMany
-                    (m => m.Role.GetAuthroizedFunctions());
-            }
+            return account.GetAvailableFunctions();
         }
     }
 }

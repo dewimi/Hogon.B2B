@@ -12,6 +12,14 @@ namespace Hogon.Store.Models.Entities.MemberMan
     /// </summary>
     public class Person : Account
     {
+        public override IQueryable<Function> GetAvailableFunctions()
+        {
+            throw new NotImplementedException();
+        }
 
+        public override IQueryable<Menu> GetAvailableMenus()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

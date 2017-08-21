@@ -81,11 +81,9 @@
     <Compile Include="Security\GeneralFunction.cs" />
     <Compile Include="Security\Menu.cs" />
     <Compile Include="Security\Rela_Authority_Function.cs" />
-    <Compile Include="Security\Rela_Role_Person.cs" />
     <Compile Include="Security\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HRMan\Staff.cs" />
-    <Compile Include="Security\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

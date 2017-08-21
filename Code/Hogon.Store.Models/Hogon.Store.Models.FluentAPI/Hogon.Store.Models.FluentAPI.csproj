@@ -90,7 +90,6 @@
     <Compile Include="Security\Rela_Authority_FunctionConfiguration.cs" />
     <Compile Include="Security\RoleConfiguration.cs" />
     <Compile Include="HRMan\StaffInfoConfiguration.cs" />
-    <Compile Include="Security\UserConfiguration.cs" />
     <Compile Include="HogonContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

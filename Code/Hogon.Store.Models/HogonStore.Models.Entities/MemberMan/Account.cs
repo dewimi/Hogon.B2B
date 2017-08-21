@@ -15,7 +15,6 @@ namespace Hogon.Store.Models.Entities.MemberMan
     {
         public Account()
         {
-            Rela_Role_Person = new HashSet<Rela_Role_Person>();
         }
 
         /// <summary>
@@ -43,10 +42,16 @@ namespace Hogon.Store.Models.Entities.MemberMan
         /// </summary>
         public string EmailAddress { get; set; }
 
+        /// <summary>
+        /// 获取可用的菜单集合
+        /// </summary>
+        /// <returns></returns>
+        public abstract IQueryable<Menu> GetAvailableMenus();
 
         /// <summary>
-        /// 用户角色关联集合
+        /// 获取可用的功能集合
         /// </summary>
-        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
+        /// <returns></returns>
+        public abstract IQueryable<Function> GetAvailableFunctions();
     }
 }
