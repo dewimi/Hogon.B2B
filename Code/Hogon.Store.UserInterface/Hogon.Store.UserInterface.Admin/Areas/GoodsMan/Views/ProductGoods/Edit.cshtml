@@ -161,7 +161,7 @@
                                                         <label class="col-sm-3"></label>
                                                         <div class="col-sm-8">
                                                             <button type="button" class="btn btn-primary" ng-click="SaveProduct()" ng-disabled="myForm.$invalid">保存</button>
-                                                            <button type="button" class="btn btn-white" ng-click="btnBack()">返回</button>
+                                                            <button type="button" class="btn btn-white" ng-click="BackProduct()">返回</button>
                                                         </div>
                                                     </div>
                                                 </form>
@@ -177,7 +177,7 @@
                             <div class="panel-body">
                                 <form name="createGoodsForm" method="get">
                                     <div class="gray-bg">
-                                    <div class="wrapper wrapper-content animated fadeInRight">
+                                        <div class="wrapper wrapper-content animated fadeInRight">
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     <div class="ibox float-e-margins">
@@ -344,7 +344,7 @@
                                 </div>
                                 <div style="width:200px;margin:0px auto;text-align:center;">
                                     <span><button id="btnSave" type="button" class="btn btn-primary" ng-click="Save()">保存</button></span>
-                                    <span><button id="btnBack" type="button" class="btn btn-white" ng-click="btnBack()">返回</button></span>
+                                    <span><button id="btnBack" type="button" class="btn btn-white" ng-click="Back()">返回</button></span>
                                 </div>
                             </div>
                         </div>
@@ -363,7 +363,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">服务商品选择</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:650px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -389,21 +389,21 @@
                 </div>
             </div>
             <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="CheckServiceGoods()">保存</button>
                 <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" ng-click="CheckServiceGoods()" >保存</button>
             </div>
         </div>
     </div>
 </div>
 @*应用案例模态框（新增应用案例）*@
 <div class="modal fade" id="AppCaseModal" tabindex="-1" role="dialog" aria-labelledby="AddAppCaseModalS">
-    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
+    <div class="modal-dialog" role="document" style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="AddAppCaseModalS">应用案例添加</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -438,21 +438,21 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" ng-disabled="addAppCaseForm.$invalid" ng-click="SaveAppCase()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
 @*应用案例模态框（编辑应用案例）*@
 <div class="modal fade" id="EditAppCaseModal" tabindex="-1" role="dialog" aria-labelledby="EditAppCaseModalS">
-    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
+    <div class="modal-dialog" role="document" style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="EditAppCaseModalS">应用案例编辑<input type='hidden' id='AppCaseId' /></h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -487,21 +487,21 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" ng-disabled="EditAppCaseForm.$invalid" ng-click="EditSaveAppCase()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
 @*使用说明模态框（新增使用说明）*@
 <div class="modal fade" id="InstructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
+    <div class="modal-dialog" role="document" style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">使用说明添加</h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -536,21 +536,21 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" ng-disabled="InstructionForm.$invalid" ng-click="SaveInstruction()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
 </div>
 @*使用说明模态框（编辑使用说明）*@
 <div class="modal fade" id="EditInstructionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document"style="width:500px;height:420px;">
+    <div class="modal-dialog" role="document" style="width:500px;height:420px;">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">使用说明编辑<input type='hidden' id='InstructionId' /></h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -585,8 +585,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 <button type="button" class="btn btn-primary" ng-disabled="InstructionForm.$invalid" ng-click="EditSaveInstruction()">保存</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
             </div>
         </div>
     </div>
@@ -599,7 +599,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -620,7 +620,7 @@
                                     <label class="col-sm-4 control-label">文件上传</label>
                                     <div class="col-sm-7">
                                         <a id="DetailImg"></a>
-                                       @* <input type="file" id="file-Portrait1" class="file-loading">*@
+                                        @* <input type="file" id="file-Portrait1" class="file-loading">*@
                                     </div>
                                 </div>
                             </div>
@@ -642,7 +642,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" style="width:500px;height:300px;">
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="ibox float-e-margins">
@@ -692,24 +692,26 @@
         id = id.substring(id.indexOf('=') + 1);
         $scope.Guid = id;
         Id = id;
-        //模态框服务商品绑定
-        $http({
-            method: 'POST',
-            url: '@Url.Action("FindServiceGoodsOutProduct")',
-            data: { "productId": Id }
-        }).then(function successCallback(response) {
-            // 请求成功执行代码
-            $.each(response.data, function (index, v) {
-                //请求成功执行代码
-                //展示商品服务信息
-                var td = $("<tr><td><input id='" + v.Id + "'  data-name='ServiceGoods' type='checkbox' /></td><td>" + v.GoodsName +
-                    "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice + "</td><td>" + v.GoodsTypeNames +
-                    "</td><td>" + v.Name + "</td></tr>")
-                $("#CheckServiceGoods").append(td);
-            })
-        }, function errorCallback(response) {
-            // 请求失败执行代码
-        });
+        if (Id != "") {
+            //模态框服务商品绑定
+            $http({
+                method: 'POST',
+                url: '@Url.Action("FindServiceGoodsOutProduct")',
+                data: { "productId": Id }
+            }).then(function successCallback(response) {
+                // 请求成功执行代码
+                $.each(response.data, function (index, v) {
+                    //请求成功执行代码
+                    //展示商品服务信息
+                    var td = $("<tr><td><input id='" + v.Id + "'  data-name='ServiceGoods' type='checkbox' /></td><td>" + v.GoodsName +
+                        "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice + "</td><td>" + v.GoodsTypeNames +
+                        "</td><td>" + v.Name + "</td></tr>")
+                    $("#CheckServiceGoods").append(td);
+                })
+            }, function errorCallback(response) {
+                // 请求失败执行代码
+            });
+        }
 
         //品牌下拉框绑值>产品类型下拉框绑值>产品编辑区域赋值>使用说明-应用案例绑定
         $http({
@@ -954,7 +956,6 @@
         //添加商品服务
         $scope.AddGoodsService = function () {
             $('#ServiceGoodsModal').modal("show");
-
         }
         $scope.CheckServiceGoods = function () {
             var ServiceGoodsId = new Array();
@@ -968,24 +969,11 @@
             if (ServiceGoodsId.length > 0) {
                 $http({
                     method: 'POST',
-                    url: '@Url.Action("FindServiceGoodsByListId")',
-                    data: { "ServiceGoodsId": ServiceGoodsId }
+                    url: '@Url.Action("EditServiceGoodsInProduct")',
+                    data: { "Id": $scope.Guid, "ServiceGoodsId": ServiceGoodsId }
                 }).then(function successCallback(response) {
                     // 请求成功执行代码
-                    //添加后显示
-                    var num = 1;
-                    $.each(response.data, function (index, v) {
-                        var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
-                        var td = $("<td>" + num + "</td><td>" + v.GoodsName +
-                         "</td><td>" + v.GoodsTypeNames +
-                         "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
-                         "</td><td>" + v.GoodsDesription + "</td><td>" + v.ServicerName +
-                         "</td><td><span><a title='删除' class='delet' href='javascript:RemoveServiceGoods(\"" + v.Id +
-                         "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
-                        tr.append(td);
-                        $("#ServiceGoods").append(tr);
-                        num++;
-                    })
+                    BindServiceGoods();
                 }, function errorCallback(response) {
                     // 请求失败执行代码
                 });
@@ -1136,14 +1124,11 @@
 
         //应用案例模糊查询
         $scope.SearchAppCase = function () {
-            if ($scope.SearchAPSubject.trim() == "" && $scope.SearchAPAppIndustry.trim() == "" && $scope.SearchAPUsage.trim() == "") {
-                BindAppCase();
-            }
-            else {
                 $scope.AppCase = {
                     "Subject": $scope.SearchAPSubject,
                     "AppIndustry": $scope.SearchAPAppIndustry,
                     "Usage": $scope.SearchAPUsage,
+                    "ProductId": $scope.Guid,
                 };
                 $http({
                     method: 'POST',
@@ -1153,8 +1138,7 @@
                     // 请求成功执行代码
                     //添加后显示
                     $("#AppCaseTable").html("");
-                    $("#AppCaseTable").append("<tr><th>序号</th><th>主题</th><th><span>作者</span></th><th>应用行业</th> <th>用途</th><th>操作</th></tr>");
-                    var num = 1;
+                     var num = 1;
                     $.each(response.data, function (index, v) {
                         var td = $("<tr id='" + v.Id + "' data-name='Edit'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
                           "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
@@ -1169,19 +1153,15 @@
                 }, function errorCallback(response) {
                     // 请求失败执行代码
                 });
-            }
         };
 
         //使用说明模糊查询
         $scope.SerachInstruction = function () {
-            if ($scope.SearchInSubject.trim() == "" && $scope.SearchInAppIndustry.trim() == "" && $scope.SearchInUsage.trim() == "") {
-                BindInstruction();
-            }
-            else {
                 $scope.Instruction = {
                     "Subject": $scope.SearchInSubject,
                     "AppIndustry": $scope.SearchInAppIndustry,
                     "Usage": $scope.SearchInUsage,
+                    "ProductId":$scope.Guid,
                 };
                 $http({
                     method: 'POST',
@@ -1205,8 +1185,7 @@
 
                 }, function errorCallback(response) {
                     // 请求失败执行代码
-                });
-            }
+                });f
         };
 
         //应用案例加载
@@ -1218,17 +1197,22 @@
             }).then(function successCallback(response) {
                 // 请求成功执行代码
                 $("#AppCaseTable").html("");
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var td = $("<tr id='" + v.Id + "' data-name='Edit'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                          "</td><td>&nbsp;&nbsp;<a title='查看明细' class='detail' href='javascript:AppCaseDetail(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-zoom-in aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='编辑' class='edit' href='javascript:EditAppCase(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-pencil aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='删除' class='delet' href='javascript:AppCaseRemove(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
-                    $("#AppCaseTable").append(td);
-                    num++;
-                })
+                if (response.data != "") {
+                    var num = 1;
+                    $.each(response.data, function (index, v) {
+                        var td = $("<tr id='" + v.Id + "' data-name='Edit'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
+                            "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
+                              "</td><td>&nbsp;&nbsp;<a title='查看明细' class='detail' href='javascript:AppCaseDetail(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-zoom-in aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='编辑' class='edit' href='javascript:EditAppCase(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-pencil aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='删除' class='delet' href='javascript:AppCaseRemove(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
+                        $("#AppCaseTable").append(td);
+                        num++;
+                    })
+                } else {
+                    var tr = $("<tr><td colspan='6'>没有数据</td></tr>")
+                    $("#AppCaseTable").append(tr);
+                }
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
@@ -1242,17 +1226,22 @@
             }).then(function successCallback(response) {
                 // 请求成功执行代码
                 $("#InstructionTable").html("");
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var td = $("<tr id='" + v.Id + "'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
-                        "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
-                          "</td><td>&nbsp;&nbsp;<a title='查看明细' class='detail' href='javascript:InstructionDetail(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-zoom-in aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='编辑' class='edit'  href='javascript:EditInstruction(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-pencil aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='删除' class='delet' href='javascript:InstructionRemove(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
-                    $("#InstructionTable").append(td);
-                    num++;
-                })
+                if (response.data != "") {
+                    var num = 1;
+                    $.each(response.data, function (index, v) {
+                        var td = $("<tr id='" + v.Id + "'><td>" + num + "</td><td>" + v.Subject + "</td><td>" + v.Author +
+                            "</td><td>" + v.AppIndustry + "</td><td>" + v.Usage +
+                              "</td><td>&nbsp;&nbsp;<a title='查看明细' class='detail' href='javascript:InstructionDetail(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-zoom-in aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='编辑' class='edit'  href='javascript:EditInstruction(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-pencil aria-hidden=\"true\"'></span></a>&nbsp;&nbsp;<a title='删除' class='delet' href='javascript:InstructionRemove(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
+                        $("#InstructionTable").append(td);
+                        num++;
+                    });
+                } else {
+                    var tr = $("<tr id='0'><td colspan='6'>没有数据</td></tr>")
+                    $("#InstructionTable").append(tr);
+                }
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
@@ -1265,20 +1254,25 @@
                 data: { "Id": $scope.Guid }
             }).then(function successCallback(response) {
                 // 请求成功执行代码
-                //添加后显示
-                var num = 1;
-                $.each(response.data, function (index, v) {
-                    var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
-                    var td = $("<td>" + num + "</td><td>" + v.GoodsName +
-                        "</td><td>" + v.GoodsTypeNames +
-                        "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
-                        "</td><td>" + v.GoodsDesription + "</td><td>" + v.ServicerName +
-                            "</td><td><span><a title='删除' class='delet' href='javascript:RemoveServiceGoods(\"" + v.Id +
-                            "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
-                    tr.append(td);
+                $("#ServiceGoods").html("");
+                if (response.data != "") {
+                    var num = 1;
+                    $.each(response.data, function (index, v) {
+                        var tr = $("<tr class='data' data-name='ServiceGoods' id='" + v.Id + "'></tr>");
+                        var td = $("<td>" + num + "</td><td>" + v.GoodsName +
+                            "</td><td>" + v.GoodsTypeNames +
+                            "</td><td>" + v.GoodsCode + "</td><td>" + v.SalePrice +
+                            "</td><td>" + v.GoodsDesription + "</td><td>" +(v.ServicerName!=null?v.ServiceName:" ") +
+                                "</td><td><span><a title='删除' class='delet' href='javascript:RemoveServiceGoods(\"" + v.Id +
+                                "\")'><span class='glyphicon glyphicon-trash aria-hidden=\"true\"'></span></a></td></tr>");
+                        tr.append(td);
+                        $("#ServiceGoods").append(tr);
+                        num++;
+                    });
+                } else {
+                    var tr = $("<tr  id='0'><td colspan='8'>没有数据</td></tr>")
                     $("#ServiceGoods").append(tr);
-                    num++;
-                })
+                }
             }, function errorCallback(response) {
                 // 请求失败执行代码
             });
@@ -1286,32 +1280,47 @@
 
         //保存服务商品,关联至产品
         $scope.Save = function () {
-            var serviceGoodsIds = new Array();
-            $.each($("tr[data-name='ServiceGoods']"), function (index, v) {
-                serviceGoodsIds[index] = v.id;
-            });
-            $http({
-                method: 'POST',
-                url: "/GoodsMan/ProductGoods/EditServiceGoodsInProduct",
-                data: { "Id": $scope.Guid, "ServiceGoodsId": serviceGoodsIds }
-            }).then(function successCallback(response) {
-                //请求成功执行代码
                 swal({
                     title: "保存成功",
-                    //text: "保存成功",
                     type: "success",
                     showCancelButton: false,
-                    confirmButtonColor: "#DD6B55",
-                    //cancelButtonText: "取消",
-                    confirmButtonText: "确定",
                     closeOnConfirm: false
                 }, function () {
                     location.href = "/GoodsMan/ProductGoods/Index";
                 });
-               // swal("保存成功", "", "success");
-            }, function errorCallback(response) {
-                //请求失败执行代码
-            })
+            //var serviceGoodsIds = new Array();
+            //$.each($("tr[data-name='ServiceGoods']"), function (index, v) {
+            //    serviceGoodsIds[index] = v.id;
+            //});
+            //$http({
+            //    method: 'POST',
+            //    url: "/GoodsMan/ProductGoods/EditServiceGoodsInProduct",
+            //    data: { "Id": $scope.Guid, "ServiceGoodsId": serviceGoodsIds }
+            //}).then(function successCallback(response) {
+            //    //请求成功执行代码
+            //    swal({
+            //        title: "保存成功",
+            //        //text: "保存成功",
+            //        type: "success",
+            //        showCancelButton: false,
+            //        confirmButtonColor: "#DD6B55",
+            //        //cancelButtonText: "取消",
+            //        confirmButtonText: "确定",
+            //        closeOnConfirm: false
+            //    }, function () {
+            //        location.href = "/GoodsMan/ProductGoods/Index";
+            //    });
+            //    // swal("保存成功", "", "success");
+            //}, function errorCallback(response) {
+            //    //请求失败执行代码
+            //})
+        }
+        //返回
+        $scope.BackProduct = function () {
+            window.location.href = "/GoodsMan/ProductGoods/Index";
+        }
+        $scope.Back = function () {
+            window.location.href = "/GoodsMan/ProductGoods/Index";
         }
 
         //判断产品名称是否重复
@@ -1675,7 +1684,7 @@
                 data: { "Id": id, "productId": Id },
                 success: function (v) {
                     location.href = "/GoodsMan/ProductGoods/Index";
-                   // $("#ServiceGoods").children("tr[id='" + id + "']").html("");
+                    // $("#ServiceGoods").children("tr[id='" + id + "']").html("");
                     //BindServiceGoods();
                 },
                 error: function (v) {

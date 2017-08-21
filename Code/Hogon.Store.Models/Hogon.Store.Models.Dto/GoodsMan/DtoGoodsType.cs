@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Hogon.Store.Models.Dto.GoodsMan
 {
@@ -51,5 +52,15 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// 图标
         /// </summary>
         public string Icon { get; set; }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        public string num { get; set; }
+
+        /// <summary>
+        /// 子集
+        /// </summary>
+        public string parentNum { get; set; }
     }
 }
