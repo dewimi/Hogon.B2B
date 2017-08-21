@@ -83,6 +83,14 @@
     <Compile Include="Migrations\201708180623030_addroleStaff.Designer.cs">
       <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201708180646126_updateStaff.cs" />
+    <Compile Include="Migrations\201708180646126_updateStaff.Designer.cs">
+      <DependentUpon>201708180646126_updateStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708180844189_addcurrentIdentity.cs" />
+    <Compile Include="Migrations\201708180844189_addcurrentIdentity.Designer.cs">
+      <DependentUpon>201708180844189_addcurrentIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Security\AuthorityConfiguration.cs" />
     <Compile Include="Security\FunctionConfiguration.cs" />
@@ -111,6 +119,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201708180623030_addroleStaff.resx">
       <DependentUpon>201708180623030_addroleStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708180646126_updateStaff.resx">
+      <DependentUpon>201708180646126_updateStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708180844189_addcurrentIdentity.resx">
+      <DependentUpon>201708180844189_addcurrentIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

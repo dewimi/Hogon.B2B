@@ -1,9 +1,12 @@
-﻿using Hogon.Store.Models.Entities.Security;
+﻿using Hogon.Framework.Core.Common;
+using Hogon.Store.Models.Entities.HRMan;
+using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
 
 namespace Hogon.Store.Models.Entities.MemberMan
 {

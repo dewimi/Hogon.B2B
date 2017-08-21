@@ -14,7 +14,6 @@ namespace Hogon.Store.Models.FluentAPI.MemberMan
         {
             Map(m =>
             {
-                m.MapInheritedProperties();
                 m.ToTable("Person");
             });
         }

@@ -32,7 +32,7 @@ namespace Hogon.Store.Models.Dto.MarketingMan
         /// <summary>
         /// 赠品明细集合
         /// </summary>
-        public ICollection<object> FreebieLines { get; set; }
+        public ICollection<DtoFreebieLine> FreebieLines { get; set; }
 
         ///// <summary>
         ///// 产品

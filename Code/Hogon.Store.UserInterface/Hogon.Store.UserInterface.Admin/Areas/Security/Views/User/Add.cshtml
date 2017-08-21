@@ -160,6 +160,7 @@
                 } else {
                     $("#myModalLabel").text("邀请以下用户到企业");
                     $('#myModal').modal();
+                    $(".tbodylist tr").remove();
                     $scope.personId = response.data.Id;
                     var $tr = $("<tr name='DataTr'></tr>");
                     var $td1 = $("<td></td>").text(response.data.Name);
@@ -167,6 +168,7 @@
                     var $td3 = $("<td></td>").text(response.data.PhoneNumber);
                     $tr.append($td1).append($td2).append($td3);
                     $(".tbodylist").append($tr);
+
                 }
 
             }, function errorCallback(response) {
@@ -180,10 +182,25 @@
 
             $http({
                 method: 'POST',
-                url: '/Security/User/SaveUserInfo',
+                url: '/Security/User/PersonIsExist',
                 data: JSON.stringify({ id: $scope.personId })
             }).then(function successCallback(response) {
                 // 请求成功执行代码
+                if (response.data == false) {
+                    $http({
+                        method: 'POST',
+                        url: '/Security/User/SaveUserInfo',
+                        data: JSON.stringify({ id: $scope.personId })
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        alert("添加成功");
+                        $("#myModal").hide();
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
+                } else {
+                    alert("该用户已存在企业中");
+                }
 
             }, function errorCallback(response) {
                 // 请求失败执行代码
@@ -226,23 +243,37 @@
 
         //添加员工账号
         $scope.AddAccount = function () {
-            if ($scope.name != null && $scope.email != null && $scope.phoneNumber != null && $("#parent").val() != null) {
-                $scope.info = {
-                    Name: $scope.name,
-                    EmailAddress: $scope.email,
-                    PhoneNumber: $scope.phoneNumber,
-                    roleId: $("#parent").val()
-                }
-                $http({
-                    method: 'POST',
-                    url: '/Security/User/AddAccount',
-                    data: JSON.stringify($scope.info)
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
+            if ($scope.name != null && $scope.email != null && $scope.phoneNumber != null && $("#parent").val() != null)
+            {
+                if ($scope.phoneNumber.length != 11) {
+                    alert("手机号必须为11位");
+                } else {
 
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
+                    $scope.info = {
+                        Name: $scope.name,
+                        EmailAddress: $scope.email,
+                        PhoneNumber: $scope.phoneNumber,
+                        roleId: $("#parent").val()
+                    }
+                    $http({
+                        method: 'POST',
+                        url: '/Security/User/AddAccount',
+                        data: JSON.stringify($scope.info)
+                    }).then(function successCallback(response) {
+                        // 请求成功执行代码
+                        if (response.data == 1)
+                            alert("该用户已在企业下");
+                        else if (response.data == 2)
+                            alert("邮箱已存在");
+                        else if (response.data == 3)
+                            alert("手机号已存在");
+                        else
+                            alert("添加成功");
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
+                }
+
             }
          
         }
