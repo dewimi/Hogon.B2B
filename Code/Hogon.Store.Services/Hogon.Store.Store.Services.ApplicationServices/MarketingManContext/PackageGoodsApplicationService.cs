@@ -28,8 +28,8 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             {
                 Id = m.Id,
                 GoodsName = m.GoodsName,
-                SalePrice = m.SalePrice
-
+                SalePrice = m.SalePrice,
+                GoodsCode = m.GoodsCode
             });
 
             return dtoGoods;
