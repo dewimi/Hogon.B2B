@@ -78,6 +78,7 @@
     <Compile Include="MemberMan\PersonRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AuthorityRepository.cs" />
+    <Compile Include="Security\FunctionRepository.cs" />
     <Compile Include="Security\MenuRepository.cs" />
     <Compile Include="Security\RoleRepository.cs" />
   </ItemGroup>

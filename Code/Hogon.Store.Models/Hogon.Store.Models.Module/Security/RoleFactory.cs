@@ -21,8 +21,9 @@ namespace Hogon.Store.Models.Module.Security
             {
                 // 如果是已当前账户作为身份，则获取超级管理员角色
                 var primaryAccount = this;
-                var authorizedMenus = _menuReps.FindBy(m => m.IsEnable == true);
-                var authorizedFunctions = authorizedMenus.SelectMany(m => m.Functions);
+                var authorizedMenus = _menuReps.FindBy(m => m.IsEnable == true).ToList();
+                var authorizedFunctions = authorizedMenus
+                    .SelectMany(m => m.Functions).Where(m => m.IsEnable == true);
 
                 role = new Administrator(account, authorizedFunctions, authorizedMenus);
             }

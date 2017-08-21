@@ -24,7 +24,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         PersonRepository _personRepository = new PersonRepository();
         RoleRepository _roleRepository = new RoleRepository();
         Md5Encryptor _encryptor = new Md5Encryptor();
-        IRoleFactory _roleFactory = new RoleFactory();
+        RoleFactory _roleFactory = new RoleFactory();
 
         public AccountApplicationService()
         {
@@ -135,11 +135,11 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                 UserName = currentAccount.Name,
                 Email = currentAccount.EmailAddress
             };
-
+            
             userState.AvailableMenus = currentAccount
                 .GetAvailableMenus(_roleFactory).AsQueryable()
                 .ConvertTo<Menu, MenuState>().ToList();
-
+            
             userState.AvailableFunctions = currentAccount
                 .GetAvailableFunctions(_roleFactory).Select(m => new FunctionState()
                 {
@@ -287,12 +287,6 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                                 .FirstOrDefault();
             }
 
-            if (currentUser == null)
-            {
-                currentUser = _accountReoisitory.FindAll().OfType<Person>()
-                .Where(u => u.EmailAddress == userName && u.Password == password)
-                .FirstOrDefault();
-            }
             return currentUser;
         }
 
