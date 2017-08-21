@@ -3,13 +3,6 @@
     Layout = "~/Views/Shared/_DetailLayout.cshtml";
 }
 
-@section formHeader{
-
-    <div class="header margin-left20">
-        <span class="headerline">查看明细</span>
-    </div>
-}
-
 <script type="text/javascript">
 
     var menuId = 0;
@@ -33,9 +26,9 @@
                 $(".SpecSecondName").text(response.data.SpecSecondName);
                 $(".DisplayName").text(response.data.DisplayName);
                 $(".DisplayMode").text(response.data.DisplayMode);
-                $(".CreatePerson").text(response.data.CreatePerson);
+               // $(".CreatePerson").text(response.data.CreatePerson);
                 $(".IsEnable").text(response.data.DisplayIsDeleted);
-                $(".CreatedTime").text(response.data.DisplayCreatedTime);
+                //$(".CreatedTime").text(response.data.DisplayCreatedTime);
                 $(".UpdatedTime").text(response.data.DisplayUpdateTime);
                 $(".UpdatePerson").text(response.data.UpdatePerson);
                 $scope.GetSpecParameter(response.data.Id);
@@ -75,7 +68,8 @@
     }
 
 </script>
-<form name="myForm" novalidate>
+
+@*<form name="myForm" novalidate>
 
     <div class="form-group">
         <div class="panelWrapper">
@@ -120,6 +114,78 @@
 
 
 
-</form>
+</form>*@
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>规格详情</h5>
+                </div>
+                <div class="ibox-content form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">规格名称：</label>
+                        <div class="col-sm-1">
+                            <span class="SpecName"></span>
+                        </div>
+                        <label class="col-sm-2 control-label">商品类型：</label>
+                        <div class="col-sm-1">
+                            <span class="SpecCatalog"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">规格备注：</label>
+                        <div class="col-sm-1">
+                            <span class="SpecRemark"></span>
+                        </div>
+                        <label class="col-sm-2 control-label">规格别名：</label>
+                        <div class="col-sm-1">
+                            <span class="SpecSecondName"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">显示类型：</label>
+                        <div class="col-sm-1">
+                            <span class="DisplayName"></span>
+                        </div>
+                        <label class="col-sm-2 control-label">显示方式：</label>
+                        <div class="col-sm-1">
+                            <span class="DisplayMode"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">更新人：</label>
+                        <div class="col-sm-1">
+                            <span class="UpdatePerson"></span>
+                        </div>
+                        <label class="col-sm-2 control-label">修改时间：</label>
+                        <div class="col-sm-1">
+                            <span class="UpdatedTime"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">规格参数：</label>
+                        <div class="col-sm-5">
+                            <div class="tablelist">
+                                <table class="table" id="table_local">
+                                    <thead>
+                                        <tr>
+                                            <th>参数名称</th>
+                                            <th>显示类型</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbodylist"></tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 

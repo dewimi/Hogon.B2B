@@ -25,9 +25,25 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public IQueryable<DtoSpecType> GetAllSpecTypes()
         {
             var specTypes = spectypeReps.FindAll();
-            var dtospecTypes = specTypes.ConvertTo
-                  <SpecType, DtoSpecType>();
+            //var dtospecTypes = specTypes.ConvertTo
+            //      <SpecType, DtoSpecType>();
+            var dtospecTypes = specTypes.Select(m => new DtoSpecType()
+            {
+                Id = m.Id,
+                SpecName = m.SpecName,
+                SpecCatalog = m.SpecCatalog,
+                SpecRemark = m.SpecRemark,
+                SpecSecondName = m.SpecSecondName,
+                DisplayName = m.DisplayName,
+                DisplayMode = m.DisplayMode,
+                ProductTypeId = m.ProductType.Id,
+                CreatePerson = m.CreatePerson,
+                CreateTime = m.CreateTime,
+                UpdatePerson = m.UpdatePerson,
+                UpdateTime = m.UpdateTime,
 
+
+            });
             return dtospecTypes;
         }
 
@@ -81,28 +97,57 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// </summary>
         /// <param name="dtoSpecTypeParameter">规格参数</param>
         /// <param name="specTypeId">规格类型Id</param>
-        public void SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId, Guid fileId)
+        public Guid SaveSpecParameter(DtoSpecTypeParameter dtoSpecTypeParameter, Guid specTypeId, Guid? fileId)
         {
 
             var specType = spectypeReps.FindBy(s => s.Id == specTypeId).First();
-           var parameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
-                .Where(s=>s.ParameterName == dtoSpecTypeParameter.ParameterName).FirstOrDefault();
+            Mapper.Initialize(cfg => cfg.CreateMap<SpecType,DtoSpecType>());
+            var specTypeData = Mapper.Map<DtoSpecType>(specType);
+
+            var parameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
+                .Where(s => s.ParameterName == dtoSpecTypeParameter.ParameterName).FirstOrDefault();
             if (parameter == null)
             {
-                if (dtoSpecTypeParameter.Id == new Guid())
+                //Id为空就进行添加操作
+                if (dtoSpecTypeParameter.Id == new Guid() && !string.IsNullOrEmpty(dtoSpecTypeParameter.ParameterName))
                 {
-
-                    //Id为空就进行添加操作
                     SpecParameterTemplate specParameterTemplate = new SpecParameterTemplate();
                     specParameterTemplate.SpecType = spectypeReps.FindBy(s => s.Id == specTypeId).First();
                     specParameterTemplate.SpecType.ProductType = spectypeReps.FindBy(s =>
                     s.Id == specTypeId).Select(p => p.ProductType).First();
                     specParameterTemplate.ParameterName = dtoSpecTypeParameter.ParameterName;
-                    specParameterTemplate.FileUpload = fileReps.FindBy(m => m.Id == fileId).First();
+
+                    if (fileId != null)
+                    {
+                        specParameterTemplate.FileUpload = fileReps.FindBy(m => m.Id == fileId).First();
+                    }
+                    else
+                    {
+                        specParameterTemplate.FileUpload = null;
+
+                    }
                     specType.SpecParameterTemplate.Add(specParameterTemplate);
+                    Commit();
+                    return specParameterTemplate.Id;
+
+                }
+                //编辑
+                else if (dtoSpecTypeParameter.Id != new Guid() && !string.IsNullOrEmpty(dtoSpecTypeParameter.ParameterName))
+                {
+                    var specTypeParameter = spectypeReps.FindAll().SelectMany(m => m.SpecParameterTemplate)
+                                     .Where(s => s.Id == dtoSpecTypeParameter.Id).FirstOrDefault();
+                    if (specTypeParameter != null)
+                    {
+                        dtoSpecTypeParameter.SpecType = specTypeData;
+                        Mapper.Initialize(cfg => cfg.CreateMap<DtoSpecTypeParameter, SpecParameterTemplate>());
+                        Mapper.Map(dtoSpecTypeParameter, specTypeParameter);
+                    }
 
                     Commit();
+                    return specType.Id;
+
                 }
+                return new Guid();
             }
             else
             {
