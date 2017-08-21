@@ -13,7 +13,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 {
     public class GoodsTypeController : SmartListController<GoodsTypeViewModel>
     {
-        GoodsTypeApplicationService GoodsTypeSvc = new GoodsTypeApplicationService();
+        GoodsTypeApplicationService goodsTypeSvc = new GoodsTypeApplicationService();
         ProductTypeApplicationService productTypeSvc = new ProductTypeApplicationService();
 
         public GoodsTypeController(BaseViewRender<GoodsTypeViewModel> listRender) : base(listRender)
@@ -43,7 +43,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 		[HttpPost]
         public ActionResult FindAllGoodsTypeNameForDrop()
         {
-            var dtoGoodsType = GoodsTypeSvc.FindGoodsTypeOutThreeNode();
+            var dtoGoodsType = goodsTypeSvc.FindGoodsTypeOutThreeNode();
             return Json(dtoGoodsType);
         }
 
@@ -66,7 +66,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         [HttpPost]
         public ActionResult FindGoodsTypeById(Guid Id)
         {
-            var GoodsType= GoodsTypeSvc.FindGoodsTypeById(Id);
+            var GoodsType= goodsTypeSvc.FindGoodsTypeById(Id);
             return Json(GoodsType);
         }
 
@@ -86,7 +86,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <returns></returns>
         public ActionResult FindGoodsTypeByName(DtoGoodsType dtoGoodsType)
         {
-            var GoodsTypeCount = GoodsTypeSvc.FindGoodsTypeByName(dtoGoodsType);
+            var GoodsTypeCount = goodsTypeSvc.FindGoodsTypeByName(dtoGoodsType);
             return Json(GoodsTypeCount);
         }
 
@@ -98,7 +98,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         [HttpPost]
         public ActionResult Save(DtoGoodsType dtoGoodsType)
         {
-            var Id =  GoodsTypeSvc.SaveGoodsType(dtoGoodsType);
+            var Id =  goodsTypeSvc.SaveGoodsType(dtoGoodsType);
             return Json(Id);
         }
 
@@ -110,8 +110,20 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         [HttpPost]
         public ActionResult Remove(Guid Id)
         {
-            GoodsTypeSvc.RemoveGoodsType(Id);
+            goodsTypeSvc.RemoveGoodsType(Id);
             return View("Index");
+        }
+
+        /// <summary>
+        /// 获取Tree表格数据
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public ActionResult FindGoodTypeInTreeTable()
+         {
+            var goodsType = goodsTypeSvc.FindAllGoodsType().ToList();
+            var treeTableGoodsType = goodsTypeSvc.FindGoodsTypeAndChildren(goodsType.AsQueryable(), goodsType.AsQueryable());
+            return Json(treeTableGoodsType); 
         }
 
         /// <summary>
@@ -120,8 +132,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <returns></returns>
         public ActionResult FindAllGoodsType()
         {
-            var goodsType = GoodsTypeSvc.FindAllGoodsType().ToList();
-            var dtoGoodsType = GoodsTypeSvc.CreateNodeList(goodsType.AsQueryable(), goodsType.AsQueryable(), goodsType.AsQueryable());
+            var goodsType = goodsTypeSvc.FindAllGoodsType().ToList();
+            var dtoGoodsType = goodsTypeSvc.CreateNodeList(goodsType.AsQueryable(), goodsType.AsQueryable(), goodsType.AsQueryable());
             return Json(dtoGoodsType);
         }
         
@@ -131,7 +143,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
         /// <returns></returns>
         protected override IQueryable<GoodsTypeViewModel> GetAllModels()
         {
-            var dtoGoodsType = GoodsTypeSvc.FindAllGoodsType().OrderByDescending(m => m.CreateTime);
+            var dtoGoodsType = goodsTypeSvc.FindAllGoodsType().OrderByDescending(m => m.CreateTime);
 
             Mapper.Initialize(cfg => cfg.CreateMap<DtoGoodsType, GoodsTypeViewModel>());
 

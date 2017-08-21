@@ -4,7 +4,6 @@ using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Store.Models.Dto.MarketingMan;
 using Hogon.Store.Models.Entities.MarketingMan;
 using Hogon.Store.Repositories.MarketingMan;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Validation;
@@ -18,7 +17,6 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
     public class FreebieCatalogApplicationService : BaseApplicationService
     {
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
-        AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
         public FreebieCatalogApplicationService()

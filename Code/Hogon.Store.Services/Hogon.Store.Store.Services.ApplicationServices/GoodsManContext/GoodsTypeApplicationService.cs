@@ -34,6 +34,8 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             {
                 Id = m.Id,
                 ParentId = m.ParentId,
+                ParentName=m.Parent.Name,
+                ProductTypeName=m.ProductType.TypeName,
                 Name = m.Name,
                 CreatePerson = m.CreatePerson,
                 CreateTime = m.CreateTime,
@@ -43,7 +45,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 UpdateTime = m.UpdateTime,
                 Describe = m.Describe,
                 ProductTypeId = m.ProductType.Id,
-                Icon=m.Icon,
+                Icon = m.Icon,
             });
 
             return dtoGoodsType;
@@ -74,6 +76,73 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             var dtoGoodsTpye = goodsType.ConvertTo<GoodsType, DtoGoodsType>();
 
             return dtoGoodsTpye;
+        }
+
+        /// <summary>
+        /// Tree表格数据
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<DtoGoodsType> FindGoodsTypeAndChildren(IQueryable<DtoGoodsType> parentGoodsType, IQueryable<DtoGoodsType> childrenGoodsType)
+        {
+            var num = 1;
+            ICollection<DtoGoodsType> iDtoGoodsType = new List<DtoGoodsType>();
+            foreach (var item in parentGoodsType.Where(m=>m.ParentId==null))
+            {
+                //item.parentNum = num;
+                item.num = num.ToString();
+                iDtoGoodsType.Add(item);
+                num++;
+                var childrens = childrenGoodsType.Where(m => m.ParentId == item.Id);
+                if (childrens.Count() > 0)
+                {
+                    var childrenNum = 1;
+                    #region
+                    foreach (var children in childrens)
+                    {
+                        //一级添加二级
+                        children.num = item.num +"-"+ childrenNum.ToString();
+                        children.parentNum = item.num;
+                        childrenNum++;
+                        iDtoGoodsType.Add(children);
+                        #region
+                        var threeGoodsType = childrenGoodsType.Where(m => m.ParentId == children.Id);
+                        if (threeGoodsType.Count() > 0)
+                        {
+                            var threenNum = 1;
+                            foreach (var three in threeGoodsType)
+                            {
+                                three.num = children.num + "-" + threenNum.ToString();
+                                three.parentNum = children.num;
+                                //二级添加三级
+                                iDtoGoodsType.Add(three);
+                            }
+                        }
+                        #endregion
+                    }
+                    #endregion
+                }
+            }
+            #region
+            //var resultGoodsType = parentGoodType.Select(m => new DtoGoodsType()
+            //{
+            //    Id = m.Id,
+            //    ParentId = m.ParentId,
+            //    ParentName = m.Parent.Name,
+            //    ProductTypeName = m.ProductType.TypeName,
+            //    Name = m.Name,
+            //    CreatePerson = m.CreatePerson,
+            //    CreateTime = m.CreateTime,
+            //    IsEnabled = m.IsEnabled,
+            //    Order = m.Order,
+            //    UpdatePerson = m.UpdatePerson,
+            //    UpdateTime = m.UpdateTime,
+            //    Describe = m.Describe,
+            //    ProductTypeId = m.ProductType.Id,
+            //    Icon = m.Icon,
+            //    childrenGoodsType = childrenGoodsType.Where(s => s.ParentId == m.Id).ConvertTo<GoodsType, DtoGoodsType>().ToList(),
+            //});
+            #endregion
+            return iDtoGoodsType.AsQueryable();
         }
 
         /// <summary>
@@ -195,11 +264,6 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 //id为空进行添加
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoGoodsType, GoodsType>());
                 var goodsType = Mapper.Map<GoodsType>(dtoGoodsType);
-                goodsType.Id = Guid.NewGuid();
-                goodsType.CreateTime = DateTime.Now;
-                goodsType.UpdateTime = DateTime.Now;
-                goodsType.CreatePerson = UserState.Current.UserName;
-                goodsType.UpdatePerson = UserState.Current.UserName;
                 //找到对应的ProductType ,ProductTypeCategory
                 var productType = productTypeReps.FindBy(p => p.Id == dtoGoodsType.ProductTypeId).First();
                 productType.ProductTypeCategory = productTypeReps.FindBy(p => p.Id == dtoGoodsType.ProductTypeId).Select(m => m.ProductTypeCategory).First();
@@ -214,15 +278,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             {
                 //id 不为空进行修改
                 var goodsTypeData = goodsTypeReps.FindBy(t => t.Id == dtoGoodsType.Id).First();
-                dtoGoodsType.CreatePerson = goodsTypeData.CreatePerson;
-                dtoGoodsType.CreateTime = goodsTypeData.CreateTime;
-
-                dtoGoodsType.UpdatePerson = UserState.Current.UserName;
-                dtoGoodsType.UpdateTime = DateTime.Now;
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoGoodsType, GoodsType>());
                 Mapper.Map(dtoGoodsType, goodsTypeData);
+                goodsTypeData.Parent = goodsTypeReps.FindBy(t => t.Id == dtoGoodsType.ParentId).First();
                 Commit();
-                return dtoGoodsType.Id;
+                return goodsTypeData.Id;
             }
         }
 
@@ -234,7 +294,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public void RemoveGoodsType(Guid Id)
         {
             var goodsType = goodsTypeReps.FindBy(t => t.Id == Id).First();
-
+            var productType = productTypeReps.FindAll().SelectMany(m => m.GoodsClass).Where(m => m.Id == Id);
+            if (productType.Count() > 0)
+            {
+                throw new UserFriendlyException("请确认是否有商品类型关联该商品分类！");
+            }
             var goodsTypeData = goodsTypeReps.FindBy(t => t.ParentId == goodsType.Id);
             //当存在子节点时不删除
             if (goodsTypeData.Count() > 0)

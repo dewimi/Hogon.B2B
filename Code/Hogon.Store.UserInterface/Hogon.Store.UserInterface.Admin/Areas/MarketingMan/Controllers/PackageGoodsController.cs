@@ -42,10 +42,10 @@ namespace Hogon.Store.UserInterface.Admin.Areas.MarketingMan.Controllers
             return Json(goods);
         }
 
-        public ActionResult GetPackGoodsMsg(Guid[] id)
+        public ActionResult GetPackGoodsMsg(Guid[] goodsId)
         {
-
-            return Json(id);
+            var goods = packagegoodsAppSer.GetPackGoodsMsg(goodsId);
+            return Json(goods);
         }
 
     }

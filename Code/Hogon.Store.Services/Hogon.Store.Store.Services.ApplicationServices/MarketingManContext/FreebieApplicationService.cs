@@ -8,7 +8,6 @@ using Hogon.Store.Models.Entities.GoodsMan;
 using Hogon.Store.Models.Entities.MarketingMan;
 using Hogon.Store.Repositories.GoodsMan;
 using Hogon.Store.Repositories.MarketingMan;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +23,6 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
         ProductGoodsRepository productGoodsRes = new ProductGoodsRepository();
         GoodsRepository goodsRes = new GoodsRepository();
-
-        AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
         public FreebieApplicationService()

@@ -1,6 +1,5 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 using Hogon.Store.Models.Entities.GoodsMan;
-using System;
 using System.Collections.Generic;
 
 namespace Hogon.Store.Models.Entities.Common

@@ -1,9 +1,6 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Entities.Security
 {
@@ -12,7 +9,6 @@ namespace Hogon.Store.Models.Entities.Security
     /// </summary>
     public class Menu : BaseEntity
     {
-
         public Menu()
         {
             Children = new HashSet<Menu>();

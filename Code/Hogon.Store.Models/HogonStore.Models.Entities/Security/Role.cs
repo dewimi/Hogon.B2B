@@ -10,19 +10,13 @@ namespace Hogon.Store.Models.Entities.Security
     /// <summary>
     /// 角色
     /// </summary>
-    public class Role: BaseEntity
+    public class Role: BaseEntity, IRole
     {
         public Role()
         {
             Staffs = new HashSet<Staff>();
-            Rela_Role_Person = new HashSet<Rela_Role_Person>();
             Authorities = new HashSet<Authority>();
         }
-
-        ///// <summary>
-        ///// 角色Id
-        ///// </summary>
-        //public Guid Id { get; set; }
 
         /// <summary>
         /// 角色名称
@@ -39,26 +33,6 @@ namespace Hogon.Store.Models.Entities.Security
         /// </summary>
         public bool IsAdministrator { get; set; }
 
-        ///// <summary>
-        ///// 角色创建时间
-        ///// </summary>
-        //public DateTime CreatedTime { get; set; }
-
-        ///// <summary>
-        ///// 角色修改时间
-        ///// </summary>
-        //public DateTime UpdatedTime { get; set; }
-
-        ///// <summary>
-        ///// 角色创建人Id
-        ///// </summary>
-        //public Guid CreatorId { get; set; }
-
-        ///// <summary>
-        ///// 角色修改人Id
-        ///// </summary>
-        //public Guid UpdaterId { get; set; }
-
         /// <summary>
         /// 企业
         /// </summary>
@@ -70,13 +44,20 @@ namespace Hogon.Store.Models.Entities.Security
         public virtual ICollection<Staff> Staffs { get; set; }
 
         /// <summary>
-        /// 个人用户集合
-        /// </summary>
-        public virtual ICollection<Rela_Role_Person> Rela_Role_Person { get; set; }
-        /// <summary>
         /// 权限集合
         /// </summary>
         public virtual ICollection<Authority> Authorities { get; set; }
+
+        /// <summary>
+        /// 角色从属主体
+        /// </summary>
+        public Account PrimaryAccount
+        {
+            get
+            {
+                return Enterprise;
+            }
+        }
 
         /// <summary>
         /// 获取已授权的菜单集合
@@ -89,7 +70,7 @@ namespace Hogon.Store.Models.Entities.Security
         /// <summary>
         /// 获取角色下所有已授权的功能集合
         /// </summary>
-        public IEnumerable<Function> GetAuthroizedFunctions()
+        public IEnumerable<Function> GetAuthorizedFunctions()
         {
             var functions = Authorities.SelectMany(m => m.Rela_Authority_Function)
                 .Select(m => m.Function).Where(m => m.IsEnable == true);
@@ -100,7 +81,7 @@ namespace Hogon.Store.Models.Entities.Security
         /// <summary>
         /// 根据菜单Id获取已授权的功能集合
         /// </summary>
-        public IEnumerable<Function> GetAuthroizedFunctions(Guid menuId)
+        public IEnumerable<Function> GetAuthorizedFunctions(Guid menuId)
         {
             var functions = Authorities.SelectMany(m => m.Rela_Authority_Function)
                 .Select(m => m.Function).Where(m=>m.Menu.Id == menuId);

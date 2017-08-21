@@ -34,7 +34,7 @@
                                     <tbody id="tbodylist"></tbody>
                                 </table>
                                 <span class="col-sm-2">
-                                    <button class="form-control" id="addPackageName" ng-click="addPackageName()" ng-model="">添加搭配商品</button>
+                                    <button class="form-control" id="addPackageName" data-toggle="modal" data-target="#myModal">添加搭配商品</button>
                                 </span>
                             </div>
                             <div class="form-group">
@@ -92,13 +92,13 @@
         </div>
     </div>
 
-    @*服务商品模态框（选择商品服务）*@
-    <div class="modal fade" id="ServiceGoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-       <div class="modal-dialog" role="document">
+    @*组合商品模态框（选择组合商品服务）*@
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
             <div class="modal-content" style="width:650px;margin-left:-300px !important;">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">服务商品选择</h4>
+                    <h4 class="modal-title" id="myModalLabel">组合商品选择</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
@@ -124,8 +124,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-white" data-dismiss="modal">关闭</button>
-                    <button type="button" class="btn btn-primary" ng-click="CheckServiceGoods()">保存</button>
+                    <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="ClearModeData()">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveModeData()">保存</button>
                 </div>
             </div>
         </div>
@@ -156,10 +156,11 @@
         var app = angular.module('myApp', []);
         app.controller('validateCtrl', function ($scope, $http) {
 
-            $scope.addPackageName = function () {
+            $('#myModal').on('shown.bs.modal', function () {
+                //$("#tbodymode").empty();
+                //$("#tbodymode tr").remove();
 
                 $('#ServiceGoodsModal').modal("show");
-
                 $http({
                     method: 'POST',
                     url: '/MarketingMan/PackageGoods/SelectGoods',
@@ -179,16 +180,53 @@
                         //});
                     });
 
-                    $('#editable').DataTable({
+                    $('#tbodymode').DataTable({
+                        " bScrollInfinite": false
+                    });
+
+                })
+            })
+
+            //组合商品模态框加载数据
+            $scope.addPackageName = function () {
+                $("#tbodymode").empty();
+                //$("#tbodymode tr").remove();
+
+                $('#ServiceGoodsModal').modal("show");
+                $http({
+                    method: 'POST',
+                    url: '/MarketingMan/PackageGoods/SelectGoods',
+                    data: null
+                }).then(function successCallback(response) {
+                    //请求成功
+                    $.each(response.data, function (index, v) {
+                        var $tr = $("<tr name='DataTr'></tr>");
+                        var $td0 = $("<td><input type='checkbox' name='packageGood'value='" + v.Id + "'/></td>");
+                        var $td1 = $("<td></td>").text(v.GoodsName);
+                        var $td2 = $("<td></td>").text(v.SalePrice);
+                        var $td3 = $("<td></td>").text(v.GoodsCode);
+                        $tr.append($td0).append($td1).append($td2).append($td3);
+                        $("#tbodymode").append($tr);
+                        //$('input:checkbox').each(function () {
+                        //    $(this).attr('checked', true);
+                        //});
+                    });
+
+                    $('#tbodymode').DataTable({
                         " bScrollInfinite": false
                     });
 
                 }, function errorCallback(response) {
                     alert("请求失败！");
                 })
-
-                //window.location.href = "/MarketingMan/PackageGoods/Detail"
             }
+
+
+
+            //$scope.ClearModeData = function () {
+            //    $("#tbodymode").empty();
+            //}
+
 
             //$http({
             //    method: 'POST',
@@ -200,27 +238,27 @@
             //    })
             //}, function errorCallback() { });
 
-
-
-           
-          
-
-
-          
-           
-
-
-       
-
-
-         
-
-
             $scope.returnIndex = function () {
                 window.location.href = "/MarketingMan/Freebie/Index"
             }
 
-        })
+
+
+
+
+        } )
     </script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>

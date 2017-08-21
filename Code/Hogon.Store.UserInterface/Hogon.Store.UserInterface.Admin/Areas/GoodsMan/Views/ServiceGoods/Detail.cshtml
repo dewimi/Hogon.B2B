@@ -3,51 +3,68 @@
     ViewBag.Title = "服务商品详情";
     Layout = "~/Views/Shared/_DetailLayout.cshtml";
 }
-<form name="myForm" novalidate>
-    <div class="form-group">
-        <div class="basic">
-            <input type="hidden" name="id" ng-model="Guid" />
-            <table>
-                <tr>
-                    <td><span>服务名称</span></td>
-                    <td>
-                        <span id="GoodsName"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品分类:</span></td>
-                    <td>
-                        <span id="Name"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品编码:</span></td>
-                    <td>
-                        <span id="GoodsCode"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>销售价:</span></td>
-                    <td>
-                        <span id="SalePrice"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>商品描述:</span></td>
-                    <td>
-                        <span id="GoodsDesription"></span>
-                    </td>
-                </tr>
-                <tr>
-                    <td><span>图片:</span></td>
-                    <td>
-                        <a href="~/Content/fileupload/10ca510a-ff32-4fbf-a891-dee745c0afa5.pdf"></a>
-                    </td>
-                </tr>
-            </table>
+
+<div class="gray-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-title">
+                        <h5>商品类型详情</h5>
+                    </div>
+                    <div class="ibox-content form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">服务名称：</label>
+                            <div class="col-sm-7">
+                                <span id="GoodsName"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品分类：</label>
+                            <div class="col-sm-7">
+                                <span id="Name"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品编码：</label>
+                            <div class="col-sm-7">
+                                <span id="GoodsCode"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">销售价：</label>
+                            <div class="col-sm-7">
+                                <span id="SalePrice"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">商品描述：</label>
+                            <div class="col-sm-7">
+                                <span id="GoodsDesription"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">图片：</label>
+                            <div class="col-sm-7">
+                                <img id="Img" />
+                             @*   <a href="~/Content/fileupload/10ca510a-ff32-4fbf-a891-dee745c0afa5.pdf" id="Img">图片</a>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</form>
+
+    <!-- 全局js -->
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- 自定义js -->
+    <script src="js/content.js"></script>
+</div>
+
+
 <script type="text/javascript">
 	var app = angular.module('myApp', []);
 	app.controller('validateCtrl', function ($scope, $http) {
@@ -62,7 +79,8 @@
 				url: '/GoodsMan/ServiceGoods/FindServiceGoodsById',
 				data: { Id: id }
 			}).then(function successCallback(response) {
-				// 请求成功执行代码
+			    // 请求成功执行代码
+			    console.info(response.data.FileUploadName);
 				$scope.Guid = response.data.Id;
 				$("#GoodsName").text(response.data.GoodsName);
 				var goodsTypeNames = "";
@@ -73,7 +91,7 @@
 				$("#GoodsCode").text(response.data.GoodsCode);
 				$("#SalePrice").text(response.data.SalePrice);
 				$("#GoodsDesription").text(response.data.GoodsDesription);
-				//$("#Pic").text(response.data.Pic);
+				$("#Img").attr("src", "~/Content/fileupload/" + response.data.FileUploadName);
 
 			}, function errorCallback(response) {
 				// 请求失败执行代码

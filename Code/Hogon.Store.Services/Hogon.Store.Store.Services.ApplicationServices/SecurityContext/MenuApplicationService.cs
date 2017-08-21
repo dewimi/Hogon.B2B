@@ -60,22 +60,24 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// <returns></returns>
         public List<DtoTreeNode> GetTreeMenus(string userName)
         {
-
             var allMenus = menuReps.FindAll().OrderBy(m=>m.Sort).ToList();
-            //根据用户id查询相应的权限菜单
-            var menu = accountReps.FindBy(r => r.Name == userName).SelectMany
-                   (r => r.Rela_Role_Person).Select(r => r.Role);
-            var menus = menu.SelectMany(a => a.Authorities).Select(m => m.Menu).OrderBy(m=>m.Sort);
-            //查询菜单下有权限的按钮
-            var generalFunc = accountReps.FindBy(r => r.Name == userName).SelectMany
-                   (r => r.Rela_Role_Person).Select(r => r.Role).SelectMany(a => a.Authorities)
-                   .SelectMany(r => r.Rela_Authority_Function);
+
+            ////根据用户id查询相应的权限菜单
+            //var menu = accountReps.FindBy(r => r.Name == userName).SelectMany
+            //       (r => r.Rela_Role_Person).Select(r => r.Role);
+
+            //var menus = menu.SelectMany(a => a.Authorities).Select(m => m.Menu).OrderBy(m=>m.Sort);
+            ////查询菜单下有权限的按钮
+            //var generalFunc = accountReps.FindBy(r => r.Name == userName).SelectMany
+            //       (r => r.Rela_Role_Person).Select(r => r.Role).SelectMany(a => a.Authorities)
+            //       .SelectMany(r => r.Rela_Authority_Function);
 
             //获取遍历出来的菜单节点
-            var treeNodeLists = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
+            //var treeNodeLists = CreateNodeList(allMenus.AsQueryable(), menus, generalFunc);
 
-            return treeNodeLists;
+            //return treeNodeLists;
 
+            return null;
         }
 
         /// <summary>

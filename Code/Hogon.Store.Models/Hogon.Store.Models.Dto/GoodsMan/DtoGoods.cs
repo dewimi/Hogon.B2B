@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Dto.GoodsMan
 {
-    public  abstract class DtoGoods:BaseDto
+    public   class DtoGoods:BaseDto
     {
         public DtoGoods()
         {
@@ -46,7 +46,7 @@ namespace Hogon.Store.Models.Dto.GoodsMan
         /// <summary>
         /// 子商品集合
         /// </summary>
-        public abstract ICollection<DtoGoods> ChildrenGoods { get; set; }
+        public  ICollection<DtoGoods> ChildrenGoods { get; set; }
 
         /// <summary>
         /// 商品商品分类关联集合
