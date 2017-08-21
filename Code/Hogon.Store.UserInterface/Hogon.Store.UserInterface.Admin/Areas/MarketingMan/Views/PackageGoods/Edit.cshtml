@@ -68,14 +68,6 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">套餐图标：</label>
                                 <div class="col-sm-3">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="display:none;" id="fileupload">
-                                <label class="col-sm-4 control-label">上传图标</label>
-                                <div class="col-sm-7">
-
                                     <input type="file" id="input-dim-2" class="file-loading">
                                 </div>
                             </div>
@@ -90,7 +82,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-8">
-                                    <button class="btn btn-primary" type="button" ng-click="saveFreebieMsg()">保存</button>
+                                    <button class="btn btn-primary" type="button" ng-click="saveEditPageMsg()">保存</button>
                                     <button class="btn btn-white" type="button" ng-click="returnIndex()">返回</button>
                                 </div>
                             </div>
@@ -168,7 +160,7 @@
 
             //组合商品模态框加载数据
             $scope.addPackageName = function () {
-                  $("#tbody").empty();
+                $("#tbody").empty();
                 $('#GoodsModal').modal("show");
                 $http({
                     method: 'POST',
@@ -200,8 +192,7 @@
                 $("input:checkbox:checked").each(function () {
                     checked.push($(this).val());
                 })
-                if (checked.length == 0)
-                {
+                if (checked.length == 0) {
                     swal("请至少选择一个商品！");
                     return;
                 }
@@ -215,10 +206,9 @@
                     { return; }
                     $.each(response.data, function (index, v) {
                         var $tr = $("<tr name='DataTr'></tr>");
-                        var $td0 = $("<td></td>").text(v.GoodsName);
-                        var $td1 = $("<td></td>").text(v.GoodsName);
+                        var $td0 = $("<td id='" + v.Id + "'></td>").text(v.GoodsName);
+                        var $td1 = $("<td></td>").text(v.GoodsAlias);
                         var $td2 = $("<td></td>").text(v.GoodsCode);
-                        //var $td3 = $("<td></td>").text(v.SalePrice);
                         var $td3 = $("<td id='" + ('price' + index) + "'></td>").text(v.SalePrice);
                         var $td4 = $("<td></td>")
                              .append("&nbsp&nbsp<a title='删除' class='delet' id = '" + v.Id + "'> "
@@ -255,8 +245,7 @@
                             button_d.parent().parent().remove();
                             //tabel行数判断
                             var rowsLengthAfterDelete = $('#editable tr').length;
-                            if (rowsLengthBegin == rowsLengthAfterDelete + 1)
-                            {
+                            if (rowsLengthBegin == rowsLengthAfterDelete + 1) {
                                 swal("删除成功", "", "success");
                             }
                         })
@@ -270,8 +259,7 @@
             //计算套餐原价
             $scope.CaculatePrice = function () {
                 var rowsLength = $('#editable tr').length;
-                if (rowsLength < 2)
-                {
+                if (rowsLength < 2) {
                     swal("请至少选择一个商品！");
                     return;
                 }
@@ -286,24 +274,62 @@
                 }
                 var c = b.toString();
                 $("#originalPrice").val(c);
-
-                //var row = m.row($(this).parents("tr"));
-                //var tds = $(this).parents("tr").children();
-                //$.each(tds, function (i, val) {
-                //    var jqob = $(val);
-                //    //把input变为字符串
-                //        var idValue = jqob.children("input").val();
-               //});
             }
 
+            ////图片上传成功回调函数
+            $("#input-dim-2").on("fileuploaded", function (event, data, previewId, index) {
 
+                fileUrl = data.response.fileUrl;
+                fileName = data.response.fileName;
+                fileSize = data.response.fileSize;
+                fileType = data.response.fileType;
+            });
 
-
+            //创建图片上传控件
+            $("#input-dim-2").fileinput({
+                uploadUrl: '/FileUpload/FileUpload',
+                allowedFileExtensions: ["jpg", "png", "gif"],
+                maxImageWidth: 50,
+                maxImageHeight: 50,
+                uploadLabel: "",
+                uploadTitle: "上传文件",
+                removeLabel: "",
+                removeTitle: "删除文件",
+                browseLabel: "",
+                maxFileCount: 1,
+                previewFileType: "image",
+                browseLabel: "",
+                browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            });
 
             $scope.returnIndex = function () {
-                window.location.href = "/MarketingMan/Freebie/Index"
+                window.location.href = "/MarketingMan/PackageGoods/Index"
             }
 
+            //var $tables = $(".div").find("table[name='info']");
+            ////alert($tables.prop("tagName")); //TABLE
+            //var length = $tables.length;
+            ////alert(length); //3
+            //for (var i = 0; i < length; i++) {
+            //    var $table = $tables.eq(i);
+            //    //alert($table.prop("tagName")); //TABLE
+            //    //eq(i)表示第i行
+            //    var nameTd = $table.find("tr").eq(i).children("td").eq(0);
+            //    //alert(nameTd.prop("tagName")); //TD
+            //    alert(nameTd.text());var val = $(this).attr("id") 
+            //alert(b.indexOf(a));
+
+            $scope.saveEditPageMsg = function () {
+                var goodsId=[];
+                var length = $('#editable tr').length;
+                for (var i = 1; i < length; i++) {
+                    var $table = $('#editable').eq(i);
+                    //eq(i)表示第i行
+                    var tdName = $table.find("tr").eq(i).children("td").eq(0);
+                    goodsId.push(tdName.attr("id"));
+                }
+
+            }
         })
     </script>
 

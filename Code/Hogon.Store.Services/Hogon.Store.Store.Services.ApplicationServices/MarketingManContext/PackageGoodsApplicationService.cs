@@ -43,6 +43,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             {
                 Id = m.Id,
                 GoodsName = m.GoodsName,
+                GoodsAlias = m.GoodsAlias,
                 SalePrice = m.SalePrice,
                 GoodsCode = m.GoodsCode
             });
