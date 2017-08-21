@@ -4,15 +4,10 @@
     Layout = "~/Views/Shared/_DetailLayout.cshtml";
 }
 
-@section formHeader{
-    <div class="header">
-        <h2 class="headerline">产品类型详情</h2>
-    </div>
-}
 @{
     var render = ViewBag.ListRender;
 }
-<form name="myForm" novalidate>
+@*<form name="myForm" novalidate>
     <div class="form-group">
         <div class="basic">
             <input type="hidden" name="id" ng-model="proTypeId" />
@@ -64,7 +59,65 @@
             </div>
         </div>
     </div>
-</form>
+</form>*@
+
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>产品类型详情</h5>
+                </div>
+                <div class="ibox-content form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">类型名称：</label>
+                        <div class="col-sm-7">
+                            <span id="TypeName"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">所属分类：</label>
+                        <div class="col-sm-7">
+                            <span id="CategoryName"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作人：</label>
+                        <div class="col-sm-7">
+                            <span id="UpdatePerson"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">操作时间：</label>
+                        <div class="col-sm-7">
+                            <span id="UpdateTime"></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">规格类型：</label>
+                        <div class="col-sm-7">
+                            <div class="tablelist">
+                                <table class="table" id="table_local">
+                                    <thead>
+                                        <tr>
+                                            <th>规格名称</th>
+                                            <th>规格备注</th>
+                                            <th>规格别名</th>
+                                            <th>显示类型</th>
+                                            <th>显示方式</th>
+                                            <th>操作</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="tbodylist"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
 

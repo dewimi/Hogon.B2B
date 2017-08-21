@@ -248,7 +248,6 @@
                 if ($scope.phoneNumber.length != 11) {
                     alert("手机号必须为11位");
                 } else {
-
                     $scope.info = {
                         Name: $scope.name,
                         EmailAddress: $scope.email,
@@ -269,13 +268,12 @@
                             alert("手机号已存在");
                         else
                             alert("添加成功");
+                        window.location.reload();
                     }, function errorCallback(response) {
                         // 请求失败执行代码
                     });
                 }
-
-            }
-         
+            } 
         }
     });
 
