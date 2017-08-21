@@ -432,7 +432,6 @@
                         confirmButtonText: "确定",
                         closeOnConfirm: false
                     }, function () {
-
                         $http({
                             method: 'POST',
                             url: '/GoodsMan/SpecType/Remove',
@@ -449,7 +448,7 @@
                 });
 
             }, function errorCallback(response) {
-                // 请求失败执行代码
+                //请求失败执行代码
             });
 
         };

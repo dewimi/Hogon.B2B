@@ -18,6 +18,7 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         ProductTypeRepository productTypeReps = new ProductTypeRepository();
         ProductTypeCategoryRepository proTypeCategoryReps = new ProductTypeCategoryRepository();
         SpecTypeRepository spectypeReps = new SpecTypeRepository();
+        ProductRepository productReps = new ProductRepository();
 
 
         /// <summary>
@@ -139,6 +140,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public void DeleteProductType(Guid Id)
         {
             var productType = productTypeReps.FindBy(t => t.Id == Id).First();
+            var product = productReps.FindAll().Where(m => m.ProductType.Id == Id);
+            if (product.Count() > 0)
+            {
+                throw new UserFriendlyException("请确认该产品类型下是否还存在产品！");
+            }
             productTypeReps.Remove(productType);
 
             Commit();

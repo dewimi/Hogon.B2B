@@ -60,16 +60,16 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public int FindBrandByBrandName(DtoBrand dtoBrand)
         {
-            int count = 0;
+            ICollection<Brand> brand =new List<Brand>();
             if (dtoBrand.Id == new Guid())
             {
-                count = brandReps.FindBy(f => f.BrandName == dtoBrand.BrandName).Count(); ;
+                brand = brandReps.FindBy(f => f.BrandName == dtoBrand.BrandName).ToList();
             }
             else
             {
-                count = brandReps.FindBy(f => f.BrandName == dtoBrand.BrandName && f.Id == dtoBrand.Id).Count();
+                brand = brandReps.FindBy(f => f.BrandName == dtoBrand.BrandName && f.Id != dtoBrand.Id).ToList();
             }
-            return count;
+            return brand.Count();
         }
 
         /// <summary>
@@ -136,14 +136,17 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
             else
             {
                 //Id不为空进行修改
-                var brand = brandReps.FindBy(p => p.Id == dtoBrand.Id).First();
 
                 Mapper.Initialize(cfg => cfg.CreateMap<DtoBrand, Brand>());
-                Mapper.Map<DtoBrand, Brand>(dtoBrand, brand);
+                var brandData = Mapper.Map<Brand>(dtoBrand);
+                var brand = brandReps.FindBy(p => p.Id == dtoBrand.Id).First();
+                brand = brandData;
                 brand.FileUpload = fileUploadReps.FindBy(m => m.Id == dtoBrand.FileUploadId).First();
+
                 //删除商品-商品分类关系表对应数据
                 var goodsType_Rela_Brand_GoodsType = goodsTypeReps.FindAll().SelectMany(m => m.Rela_Brand_GoodsType);
-                var rela_Brand_GoodsTypeS = goodsType_Rela_Brand_GoodsType.Where(m => m.Brand.Id == dtoBrand.Id);
+                
+                var rela_Brand_GoodsTypeS = goodsType_Rela_Brand_GoodsType.Where(m => m.Brand.Id == brand.Id);
                 if (rela_Brand_GoodsTypeS.Count() > 0)
                 {
                     var rela_Brand_GoodsTypeData = brandReps.FindBy(s => s.Id == brand.Id).SelectMany(m => m.Rela_Brand_GoodsType);
@@ -152,9 +155,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                         brandReps.DeleteRela_Brand_GoodsType(item);
                     }
                 }
+
                 //重建关系
                 if (dtoBrand.GoodsTypeIds.Count() > 0)
                 {
+                    //brand.Rela_Brand_GoodsType = new List<Rela_Brand_GoodsType>();
                     foreach (var item in dtoBrand.GoodsTypeIds)
                     {
                         Rela_Brand_GoodsType rela_Brand_GoodsType = new Rela_Brand_GoodsType();
