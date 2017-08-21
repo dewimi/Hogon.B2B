@@ -2,17 +2,15 @@
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.Owin;
 using Hogon.Framework.Core.UnitOfWork;
-using Hogon.Store.Models.Dto.HRMan;
 using Hogon.Store.Models.Dto.MemberMan;
 using Hogon.Store.Models.Dto.Security;
 using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
+using Hogon.Store.Models.Module.Security;
 using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Repositories.Security;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web.Security;
@@ -25,8 +23,8 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         EnterpriseRepository _enterpriseReoisitory = new EnterpriseRepository();
         PersonRepository _personRepository = new PersonRepository();
         RoleRepository _roleRepository = new RoleRepository();
-        AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
+        IRoleFactory _roleFactory = new RoleFactory();
 
         public AccountApplicationService()
         {
@@ -43,7 +41,8 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
             var account = _accountReoisitory.FindBy(r => r.Id == userId)
                 .OfType<Person>().First();
 
-            var role = new Role();
+            var roleFactory = new RoleFactory();
+            var role = account.GetCurrentRole(roleFactory);
 
             Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
             var roleData = Mapper.Map<DtoRole>(role);
@@ -137,11 +136,12 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                 Email = currentAccount.EmailAddress
             };
 
-            userState.AvailableMenus = currentAccount.GetAvailableMenus()
+            userState.AvailableMenus = currentAccount
+                .GetAvailableMenus(_roleFactory).AsQueryable()
                 .ConvertTo<Menu, MenuState>().ToList();
 
             userState.AvailableFunctions = currentAccount
-                .GetAvailableFunctions().Select(m => new FunctionState()
+                .GetAvailableFunctions(_roleFactory).Select(m => new FunctionState()
                 {
                     Id = m.Id,
                     Name = m.Name,
@@ -192,15 +192,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                 account.Name = dtoAccount.Name;
                 account.IsEnable = true;
                 account.Password = dtoAccount.Password;
-
-                //account.Responsor = new Person()
-                //{
-                //    Id = Guid.NewGuid(),
-                //    EmailAddress = userInfo.EmailAddress,
-                //    IsEnable = true,
-                //    PersonName = userInfo.PersonName,
-                //    PhoneNumber = userInfo.PhoneNumber
-                //};
+                
                 _accountReoisitory.Add(account);
             }
 

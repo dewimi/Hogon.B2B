@@ -51,6 +51,10 @@
       <Project>{08F1B603-99F3-4740-9F94-303C1664D92D}</Project>
       <Name>Hogon.Store.Models.Dto</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Hogon.Store.Models\Hogon.Store.Models.Module\Hogon.Store.Models.Module.csproj">
+      <Project>{47075E2E-F1C3-4138-A472-7EA8BA9D3AA4}</Project>
+      <Name>Hogon.Store.Models.Module</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Hogon.Store.Models\HogonStore.Models.Entities\Hogon.Store.Models.Entities.csproj">
       <Project>{4cf3a89c-099a-46ad-ab39-060b45b2c17b}</Project>
       <Name>Hogon.Store.Models.Entities</Name>
@@ -63,9 +67,10 @@
   <ItemGroup>
     <Compile Include="GoodsManContext\GoodsDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecurityContext\AuthorizationDomainService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SecurityContext\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -8,7 +8,6 @@ using Hogon.Store.Models.Dto.Security;
 using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Framework.Core.Owin;
 using Hogon.Framework.Core.Common;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Models.Entities.MemberMan;
 

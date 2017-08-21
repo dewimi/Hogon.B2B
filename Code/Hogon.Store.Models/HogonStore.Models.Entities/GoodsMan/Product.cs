@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Hogon.Store.Utilities.Constants.GoodsMan;
 using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 

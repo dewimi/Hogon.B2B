@@ -1,17 +1,13 @@
 ﻿using Hogon.Framework.Core.UnitOfWork.EntityFramework;
 using Hogon.Store.Models.Entities.Security;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Entities.MemberMan
 {
     /// <summary>
     /// 账号
     /// </summary>
-    public abstract class Account:BaseEntity
+    public abstract class Account : BaseEntity
     {
         public Account()
         {
@@ -43,15 +39,36 @@ namespace Hogon.Store.Models.Entities.MemberMan
         public string EmailAddress { get; set; }
 
         /// <summary>
+        /// 当前账号身份
+        /// </summary>
+        public virtual Account CurrentIdentity { get; set; }
+
+        /// <summary>
+        /// 获取当前角色
+        /// </summary>
+        /// <param name="administorFactory"></param>
+        /// <returns></returns>
+        public IRole GetCurrentRole(IRoleFactory roleFactory)
+        {
+            return roleFactory.Create(this);
+        }
+
+        /// <summary>
         /// 获取可用的菜单集合
         /// </summary>
         /// <returns></returns>
-        public abstract IQueryable<Menu> GetAvailableMenus();
+        public IEnumerable<Menu> GetAvailableMenus(IRoleFactory roleFactory)
+        {
+            return GetCurrentRole(roleFactory).GetAuthroizedMenus();
+        }
 
         /// <summary>
         /// 获取可用的功能集合
         /// </summary>
         /// <returns></returns>
-        public abstract IQueryable<Function> GetAvailableFunctions();
+        public IEnumerable<Function> GetAvailableFunctions(IRoleFactory roleFactory)
+        {
+            return GetCurrentRole(roleFactory).GetAuthorizedFunctions();
+        }
     }
 }
