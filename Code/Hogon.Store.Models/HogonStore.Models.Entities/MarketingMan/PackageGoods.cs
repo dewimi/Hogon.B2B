@@ -1,9 +1,5 @@
 ﻿using Hogon.Store.Models.Entities.GoodsMan;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Entities.MarketingMan
 {
@@ -26,5 +22,21 @@ namespace Hogon.Store.Models.Entities.MarketingMan
         /// 组合商品 产品商品关联
         /// </summary>
          public  ICollection<Rel_PackageGoods_ProductGoods> Rel_PackageGoods_ProductGoodses { get; set; }
+
+        /// <summary>
+        /// 是否包邮
+        /// </summary>
+        public bool IsFreePost { get; set; }
+
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int SortNum { get; set; }
+
+        /// <summary>
+        /// 套餐现价
+        /// </summary>
+        public decimal CurrentPrice { get; set; }
+
     }
 }

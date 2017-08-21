@@ -147,7 +147,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
 
         protected override IQueryable<RoleViewModel> GetAllModels()
         {
-            var dtoRoles = roleSvc.GetRole().OrderByDescending(m => m.CreatedTime);
+            var dtoRoles = roleSvc.GetRole().OrderByDescending(m => m.CreateTime);
 
             var viewModels = dtoRoles.ConvertTo<DtoRole, RoleViewModel>();
 

@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Dto.Security
 {
-    public class DtoRole
+    public class DtoRole : BaseDto
     {
-        /// <summary>
-        /// 角色Id
-        /// </summary>
-        public Guid Id { get; set; }
-      
         /// <summary>
         /// 角色名称
         /// </summary>
@@ -25,21 +20,5 @@ namespace Hogon.Store.Models.Dto.Security
         /// 是否管理员
         /// </summary>
         public bool IsAdministrator { get; set; }
-        /// <summary>
-        /// 角色创建时间
-        /// </summary>
-        public DateTime CreatedTime { get; set; }
-        /// <summary>
-        /// 角色修改时间
-        /// </summary>
-        public DateTime UpdatedTime { get; set; }
-        /// <summary>
-        /// 角色创建人Id
-        /// </summary>
-        public Guid CreatorId { get; set; }
-        /// <summary>
-        /// 角色修改人Id
-        /// </summary>
-        public Guid UpdaterId { get; set; }
     }
 }

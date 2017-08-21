@@ -395,11 +395,14 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public void RemoveServiceGoodsInProduct(Guid ServiceGoodsId, Guid productId)
         {
             var product = productReps.Include("ServiceGoods").Where(m => m.Id == productId).First();
-            var serviceGoods = product.ServiceGoods.Where(m => m.Id == ServiceGoodsId).First();
+            if (product.ServiceGoods.Count() > 0)
+            {
+                var serviceGoods = product.ServiceGoods.Where(m => m.Id == ServiceGoodsId).First();
 
-            product.ServiceGoods.Remove(serviceGoods);
+                product.ServiceGoods.Remove(serviceGoods);
 
-            Commit();
+                Commit();
+            }
         }
 
         /// <summary>
@@ -528,6 +531,9 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
                 UpdateTime = s.UpdateTime,
                 GoodsTypeId = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Id),
                 GoodsTypeNames = s.Rela_Goods_GoodsType.Select(m => m.GoodsType.Name),
+                FileUploadName=s.FileUpload.FileName,
+                FIleUploadId=s.FileUpload.Id,
+                ServicerName=s.ServicerName,
             }).First();
 
             return dtoServiceGoods;
@@ -684,7 +690,11 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         public void RemoveServiceGoods(Guid Id)
         {
             var goods = goodsReps.FindBy(p => p.Id == Id).First();
-
+            var product = productReps.FindAll().SelectMany(m=>m.ServiceGoods).Where(m=>m.Id==Id);
+            if (product.Count() > 0)
+            {
+                throw new UserFriendlyException("请确认是否有产品关联该商品服务！");
+            }
             goodsReps.Remove(goods);
 
             Commit();
@@ -920,13 +930,15 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public IQueryable<AppCase> FindAppCaseByLike(DtoAppCase dtoAppCase)
         {
-            //if (dtoAppCase.Author.Length > 0 && dtoAppCase.AppIndustry.Length > 0 && dtoAppCase.Subject.Length > 0)
-            //{
-            //}
-            var appCases = appCaseReps.FindAll().Where(m => m.Author.Contains(dtoAppCase.Author)
-            || m.AppIndustry.Contains(dtoAppCase.AppIndustry) || m.Subject.Contains(dtoAppCase.Subject));
+            ICollection<AppCase> appCase = new List<AppCase>();
+            
+                appCase = appCaseReps.FindAll().Where(m => dtoAppCase.Author != null ? m.Author.Contains(dtoAppCase.Author) : 0==0&&
+                dtoAppCase.AppIndustry != null ? m.AppIndustry.Contains(dtoAppCase.AppIndustry) : 0 == 0&&
+                dtoAppCase.Subject != null ? m.Subject.Contains(dtoAppCase.Subject) : 0 == 0&&
+                m.Product.Id==dtoAppCase.ProductId
+                ).ToList();
 
-            return appCases;
+            return appCase.AsQueryable();
         }
 
         ///<summary>
@@ -1040,12 +1052,15 @@ namespace Hogon.Store.Services.ApplicationServices.GoodsManContext
         /// <returns></returns>
         public IQueryable<Instruction> FindInstructionByLike(DtoInstruction dtoInstruction)
         {
-            //if (dtoInstruction.Author.Length > 0 && dtoInstruction.AppIndustry.Length > 0 && dtoInstruction.Subject.Length > 0)
-            //{
-            //}
-            var dtoInstructions = instructionReps.FindAll().Where(m => m.Author.Contains(dtoInstruction.Author) || m.AppIndustry.Contains(dtoInstruction.AppIndustry) || m.Subject.Contains(dtoInstruction.Subject));
+            ICollection<Instruction> instructions = new List<Instruction>();
 
-            return dtoInstructions;
+            instructions = instructionReps.FindAll().Where(m => dtoInstruction.Author != null ? m.Author.Contains(dtoInstruction.Author) : 0 == 0 &&
+            dtoInstruction.AppIndustry != null ? m.AppIndustry.Contains(dtoInstruction.AppIndustry) : 0 == 0 &&
+            dtoInstruction.Subject != null ? m.Subject.Contains(dtoInstruction.Subject) : 0 == 0&&
+            m.Product.Id == dtoInstruction.ProductId
+            ).ToList();
+
+            return instructions.AsQueryable();
         }
 
         /// <summary>

@@ -2,13 +2,14 @@
     ViewBag.Title = "产品类型管理";
     Layout = "~/Views/Shared/_FormLayout.cshtml";
 }
-    <!-- jQuery 表单验证-->
+<!-- jQuery 表单验证-->
 <script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
 
 <!-- Data Tables -->
 <script src="~/Scripts/hogon/js/plugins/dataTables/jquery.dataTables.js"></script>
 <script src="~/Scripts/hogon/js/plugins/dataTables/dataTables.bootstrap.js"></script>
+
 
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
@@ -88,9 +89,9 @@
     </div>
 
 </div>
-<div class="modal fade" id="specTypeview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="margin-left:372px;width:675px;">
+<div class="modal fade" id="specTypeview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content col-sm-5">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">新增功能菜单</h4>
@@ -161,7 +162,7 @@
 
                                     </div>
                                 </div>
-                                <div class="form-group" style="display" id="fileupload">
+                                <div class="form-group" style="display:none;" id="fileupload">
                                     <label class="col-sm-4 control-label">图片上传</label>
                                     <div class="col-sm-7">
 
@@ -169,10 +170,10 @@
                                     </div>
                                 </div>
                                 <div class="form-group" style="display:none" id="spectypeparameter">
-                                    @*<label class="col-sm-4 control-label">规格参数</label>*@
                                     <div class="col-sm-12">
                                         <input type="hidden" name="id" ng-model="specId" />
                                         <input type="hidden" name="displayName" ng-model="displayName" />
+                                        <input type="hidden" name="parameter" ng-model="parameterId" />
                                         <div class="ibox float-e-margins">
                                             <div class="ibox-content">
                                                 <div class="">
@@ -191,7 +192,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                             </form>
                         </div>
                     </div>
@@ -276,8 +276,8 @@
                 $scope.ProductTypeName = response.data.TypeName;
                 $scope.SpecCatalog = response.data.ProductTypeCategoryName;
                 $("[name='SpecCatalog']").attr("id", response.data.CategoryId)
-                $(".specTypeDiv").show();
-                $(".tablelist").show();
+                $("#specTypeDiv").show();
+                $("#tablelist").show();
                 $scope.BindSpecTypeList(response.data.Id);
                 $scope.skipSpecType(response.data.Id);
             }, function errorCallback(response) {
@@ -432,7 +432,6 @@
                         confirmButtonText: "确定",
                         closeOnConfirm: false
                     }, function () {
-
                         $http({
                             method: 'POST',
                             url: '/GoodsMan/SpecType/Remove',
@@ -449,7 +448,7 @@
                 });
 
             }, function errorCallback(response) {
-                // 请求失败执行代码
+                //请求失败执行代码
             });
 
         };
@@ -474,7 +473,7 @@
                             data: JSON.stringify($scope.master)
                         }).then(function successCallback(response) {
                             //绑定规格参数列表
-                            swal("保存参数图片成功！");
+                            swal("保存图片参数成功！");
                         }, function errorCallback(response) {
                             // 请求失败执行代码
                         });
@@ -484,7 +483,7 @@
                 }
             }
         };
-        
+
         //绑定规格参数列表
         $scope.bindSpecParameter = function (specTypeId) {
 
@@ -535,47 +534,11 @@
             browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
         });
 
-        $("#saveparameter").on("click", function () {
-            $scope.parameterName
-
-                $http({
-                    method: 'POST',
-                    url: '/GoodsMan/SpecType/SaveSpecParameter',
-                    data: JSON.stringify($scope.master)
-                }).then(function successCallback(response) {
-                    //绑定规格参数列表
-                    swal("保存参数图片成功！");
-                }, function errorCallback(response) {
-                    // 请求失败执行代码
-                });
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-
-    
-
-    });
-
-    $(function () {
-
-        $("#basicForm").validate();
-        $("#commentForm").validate();
-
-        //创建规格参数列表
-        function CreateTable() {
-            $("tr[name='DataTr']").remove();
-            $.each(5, function (index, v) {
-                var $tr = $("<tr name='DataTr'></tr>");
-                var $td1 = $("<td></td>").text();
-                $tr.append($td1);
-                $(".parameterlist").append($tr);
-            });
-        }
-
         var t = $('#editable').DataTable({
-            "bFilter": false,
+            "bInfo": false,
             "bPaginate": false,
-            "bInfo":false
+            "bFilter": false
+
         });
         $("#editable tbody").on("click", ".edit-btn", function () {
             var tds = $(this).parents("tr").children();
@@ -605,30 +568,49 @@
                     var txt = jqob.children("input").val();
                     jqob.html(txt);
                     //t.cell(jqob).data(txt);//修改DataTables对象的数据
+                    var parameterNameId = $(".save-btn").attr("id");
+                    $scope.master = { Id: parameterNameId, ParameterName: txt, specTypeId: $scope.specId };
+                    $http({
+                        method: 'POST',
+                        url: '/GoodsMan/SpecType/SaveSpecParameter',
+                        data: JSON.stringify($scope.master)
+                    }).then(function successCallback(response) {
+                        //绑定规格参数列表
+                        $("#saveParameterName").attr("id",response.data)
+                    }, function errorCallback(response) {
+                        // 请求失败执行代码
+                    });
                 }
             });
             $(this).html("编辑");
             $(this).toggleClass("edit-btn");
             $(this).toggleClass("save-btn");
-            //var data=row.data();
-            //$.ajax({
-            //    "url":"",
-            //    "data":data,
-            //    "type":"post",
-            //    "error":function(){
-            //        //alert("服务器未正常响应，请重试");
-            //    },
-            //    "success":function(response){
-            //        //alert(response);
-            //    }
-            //});
+
         });
         $("#addNewTr").on("click", function () {
             t.row.add([
-                "<input type='text' ng-model = 'parameterName'/>",
-                "<button class='save-btn btn btn-primary btn-xs' id = 'saveparameter'>保存</button>"
+                "<input type='text'/>",
+                "<button class='save-btn btn btn-primary btn-xs'id='saveParameterName'>保存</button>"
             ]).draw();
         });
+
+    });
+
+    $(function () {
+
+        $("#basicForm").validate();
+        $("#commentForm").validate();
+
+        //创建规格参数列表
+        function CreateTable() {
+            $("tr[name='DataTr']").remove();
+            $.each(5, function (index, v) {
+                var $tr = $("<tr name='DataTr'></tr>");
+                var $td1 = $("<td></td>").text();
+                $tr.append($td1);
+                $(".parameterlist").append($tr);
+            });
+        }
 
     });
 

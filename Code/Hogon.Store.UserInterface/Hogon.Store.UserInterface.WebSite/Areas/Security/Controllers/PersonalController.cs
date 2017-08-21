@@ -107,13 +107,13 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
                 else
                 {
                     userName = UserState.Current.UserName;
-                    var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
+                    var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.AccountId);
                     return Json(menus);
                 }
             }
             else
             {
-                var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
+                var menus = _accountSvc.GetAuthorityByAccountId(UserState.Current.AccountId);
                 return Json(menus);
             }
           
@@ -132,7 +132,7 @@ namespace Hogon.Store.UserInterface.WebSite.Areas.Security.Controllers
             }
             else
             {
-                var role = _accountSvc.GetRoleByAccountId(UserState.Current.UserId);
+                var role = _accountSvc.GetRoleByAccountId(UserState.Current.AccountId);
                 return Json(role);
 
             }

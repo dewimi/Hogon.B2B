@@ -69,6 +69,7 @@
     <Compile Include="MarketingMan\DtoFreebie.cs" />
     <Compile Include="MarketingMan\DtoFreebieLine.cs" />
     <Compile Include="MarketingMan\DtoFreebieLines.cs" />
+    <Compile Include="MarketingMan\DtoPackageGoods.cs" />
     <Compile Include="MemberMan\DtoAccount.cs" />
     <Compile Include="MemberMan\DtoPerson.cs" />
     <Compile Include="MemberMan\DtoUserInfo.cs" />
@@ -78,7 +79,6 @@
     <Compile Include="Security\DtoFunction.cs" />
     <Compile Include="Security\DtoMeun.cs" />
     <Compile Include="Security\DtoRole.cs" />
-    <Compile Include="Security\UserDto.cs" />
     <Compile Include="TestContext\DtoInformation.cs" />
     <Compile Include="TestContext\DtoInquiry.cs" />
     <Compile Include="TestContext\DtoTestUser.cs" />

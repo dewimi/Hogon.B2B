@@ -191,17 +191,17 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
             return Json(productId);
         }
 
-        ///// <summary>
-        ///// 删除产品信息
-        ///// </summary>
-        ///// <param name="ProductId">产品Id</param>
-        ///// <returns></returns>
-        //public ActionResult DeleteProductInfo(Guid ProductId)
-        //{
-        //    productGoodsSvc.DeleteProduct(ProductId);
+        /// <summary>
+        /// 删除产品信息
+        /// </summary>
+        /// <param name="ProductId">产品Id</param>
+        /// <returns></returns>
+        public ActionResult Remove(Guid Id)
+        {
+            goodsSvc.RemoveProduct(Id);
 
-        //    return Json(" ");
-        //}
+            return Json(" ");
+        }
         #endregion
 
         #region 商品信息操作
@@ -518,6 +518,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.GoodsMan.Controllers
 
             return Json(dtoServiceGoods);
         }
+
+
 
         /// <summary>
         /// 根据Id查询指定服务商品信息

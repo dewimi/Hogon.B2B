@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Hogon.Framework.Core">
+      <HintPath>..\..\Libraries\Hogon.Framework.Core.dll</HintPath>
+    </Reference>
     <Reference Include="Hogon.Framework.Core.UnitOfWork">
       <HintPath>..\..\Libraries\Hogon.Framework.Core.UnitOfWork.dll</HintPath>
     </Reference>
@@ -38,6 +41,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,17 +79,18 @@
     <Compile Include="MemberMan\Account.cs" />
     <Compile Include="MemberMan\Enterprise.cs" />
     <Compile Include="MemberMan\Person.cs" />
+    <Compile Include="Security\Administrator.cs" />
     <Compile Include="Security\Authority.cs" />
     <Compile Include="Security\CustomFunction.cs" />
     <Compile Include="Security\Function.cs" />
     <Compile Include="Security\GeneralFunction.cs" />
+    <Compile Include="Security\IRole.cs" />
+    <Compile Include="Security\IRoleFactory.cs" />
     <Compile Include="Security\Menu.cs" />
     <Compile Include="Security\Rela_Authority_Function.cs" />
-    <Compile Include="Security\Rela_Role_Person.cs" />
     <Compile Include="Security\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HRMan\Staff.cs" />
-    <Compile Include="Security\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -97,6 +102,10 @@
     <ProjectReference Include="..\..\Hogon.Store.Utilities\Hogon.Store.Utilities.Constants\Hogon.Store.Utilities.Constants.csproj">
       <Project>{e77056be-ce57-470b-8d7b-76a5481a152a}</Project>
       <Name>Hogon.Store.Utilities.Constants</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Hogon.Store.Models.Dto\Hogon.Store.Models.Dto.csproj">
+      <Project>{08F1B603-99F3-4740-9F94-303C1664D92D}</Project>
+      <Name>Hogon.Store.Models.Dto</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

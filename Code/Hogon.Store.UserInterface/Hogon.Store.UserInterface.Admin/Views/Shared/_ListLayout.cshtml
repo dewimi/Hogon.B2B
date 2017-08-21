@@ -201,6 +201,7 @@
                                 // 请求成功执行代码
                                 swal("删除成功", "", "success");
                                 $scope.inquire();
+                                parent.location.reload();
                             }, function errorCallback(response) {
                                 // 请求失败执行代码
                                 swal(response.data, "", "warning");

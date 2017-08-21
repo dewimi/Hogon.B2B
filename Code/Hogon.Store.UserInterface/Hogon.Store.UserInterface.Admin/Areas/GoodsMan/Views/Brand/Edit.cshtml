@@ -7,10 +7,10 @@
 <script src="~/Scripts/plugins/content.js"></script>
 <script src="~/Scripts/plugins/china_area.js" type="text/javascript"></script>
 <!-- jQuery 表单验证-->
-<script src="js/plugins/validate/jquery.validate.min.js"></script>
-<script src="js/plugins/validate/messages_zh.min.js"></script>
+<script src="~/Scripts/hogon/js/plugins/validate/jquery.validate.min.js"></script>
+<script src="~/Scripts/hogon/js/plugins/validate/messages_zh.min.js"></script>
 <!-- 自定义js -->
-<script src="js/content.js?v=1.0.0"></script>
+<script src="~/Scripts/hogon/js/content.js?v=1.0.0"></script>
 <!-- iCheck-->
 <script src="~/Scripts/hogon/js/plugins/iCheck/icheck.min.js"></script>
 <script src="~/Scripts/hogon/js/plugins/fileinput/fileinput.min.js"></script>
@@ -123,7 +123,7 @@
                             <div class="form-group" id="fileupload">
                                 <label class="col-sm-3 control-label">品牌Logo</label>
                                 <div class="col-sm-7">
-                                    <input type="file" id="file-Portrait1" class="file-loading">
+                                    <input type="file" id="file-Portrait1" class="file-loading" value="http://localhost:11901/Content/fileupload/02eb103e-7b1f-4def-b0bc-e5809699c03d.png">
                                 </div>
                             </div>
                             <div class="hr-line-dashed"></div>
@@ -193,14 +193,18 @@
                     } else {
                         $("#foreignCountry").val(response.data.Country);
                     }
+                   
+                  FileUploadImg("<img src='http://localhost:11901/Content/fileupload/02eb103e-7b1f-4def-b0bc-e5809699c03d.png' />");
                 }, function errorCallback(response) {
                     // 请求失败执行代码
                 });
             }
+            else {
+                FileUploadImg();
+            }
         }, function errorCallback(response) {
             // 请求失败执行代码
         });
-
 
         ChangeNation();
         //判断品牌名是否重复
@@ -289,9 +293,8 @@
                 data: $scope.Brand
             }).then(function successCallback(response) {
                 // 请求成功执行代码
-                if (response.data == 1) {
+                if (response.data>0) {
                     $scope.BrandName = "";
-
                 }
             }, function errorCallback(response) {
                 // 请求失败执行代码
@@ -313,7 +316,35 @@
             $("#Foreign").hide();
         }
     }
-
+    //创建图片上传控件
+    function FileUploadImg(str) {
+        $('.file-loading').fileinput({
+            //minImageWidth: 50, //图片的最小宽度
+            //minImageHeight: 50,//图片的最小高度
+            maxImageWidth: 160,//图片的最大宽度
+            //maxImageHeight: 1000,//图片的最大高度
+            language: 'zh',
+            showUpload: true,
+            uploadUrl: '/FileUpload/FileUpload',
+            uploadLabel: "",
+            uploadTitle: "上传文件",
+            removeLabel: "",
+            removeTitle: "删除文件",
+            browseLabel: "",
+            maxFileCount: 1,
+            previewFileType: "image",
+            browseLabel: "",
+            mainClass: "input-group-lg",
+            allowedFileExtensions: ["jpg", "png", "gif"],
+            initialPreview: [
+                //预览图片的设置
+                //"<img src='' class='file-preview-image' alt='' title=''>",
+                //"<img src='http://localhost:11901/Content/fileupload/02eb103e-7b1f-4def-b0bc-e5809699c03d.png' />"
+                str
+            ],
+        });
+        
+    }
     //图片上传
     $(document).ready(function () {
         ////图片上传成功回调函数
@@ -324,27 +355,9 @@
             fileType = data.response.fileType;
         });
 
-            $('.i-checks').iCheck({
-                checkboxClass: 'icheckbox_square-green',
-                radioClass: 'iradio_square-green',
-            });
-
-            //创建图片上传控件
-            $('.file-loading').fileinput({
-                language: 'zh',
-                showUpload: true,
-                uploadUrl: '/FileUpload/FileUpload',
-                uploadLabel: "",
-                uploadTitle: "上传文件",
-                removeLabel: "",
-                removeTitle: "删除文件",
-                browseLabel: "",
-                maxFileCount: 1,
-                previewFileType: "image",
-                browseLabel: "",
-                //browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
-                mainClass: "input-group-lg",
-                allowedFileExtensions: ["jpg", "png", "gif", "pdf"],
-            });
+        $('.i-checks').iCheck({
+            checkboxClass: 'icheckbox_square-green',
+            radioClass: 'iradio_square-green',
+        });
     });
 </script>

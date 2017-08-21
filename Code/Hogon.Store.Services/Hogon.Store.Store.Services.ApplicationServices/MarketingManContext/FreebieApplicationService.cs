@@ -8,7 +8,6 @@ using Hogon.Store.Models.Entities.GoodsMan;
 using Hogon.Store.Models.Entities.MarketingMan;
 using Hogon.Store.Repositories.GoodsMan;
 using Hogon.Store.Repositories.MarketingMan;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,8 +23,6 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
         FreebieCatalogRepository freebieCatalogRepository = new FreebieCatalogRepository();
         ProductGoodsRepository productGoodsRes = new ProductGoodsRepository();
         GoodsRepository goodsRes = new GoodsRepository();
-
-        AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
 
         public FreebieApplicationService()
@@ -116,6 +113,7 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             freebie.FreebiSortNum = dtoFreebie.FreebiSortNum;
             //freebie.FreebieCatalog.Id = dtoFreebie.FreebieCatalogId;
             freebie.FreebieCatalog = freebieCatalogRepository.FindBy(m => m.Id == FreebieCatalogId).First();
+
             freebie.Product = productRepository.FindBy(m => m.Id == ProductId).First();
             freebieRepository.Add(freebie);
 
@@ -165,11 +163,8 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
             var freebie = freebieRepository.FindBy(t => t.Id == id).Select(m => new DtoFreebie()
             {
                 Description = m.Description,
-                //dtoFreebieCatalog = m.FreebieCatalog,
                 FreebieCatalogName = m.FreebieCatalog.FreebieCatalogName,
                 Sort = m.FreebieCatalog.Sort,
-                //FreebieLines = m.FreebieLines,
-                //Product = m.Product,
                 FreebiSortNum = m.FreebiSortNum,
                 IsPublish = m.IsPublish,
                 LimitBuyAmount = m.LimitBuyAmount,
@@ -177,7 +172,9 @@ namespace Hogon.Store.Services.ApplicationServices.MarketingManContext
                 FreebieCatalogId = m.FreebieCatalog.Id,
                 ProductId = m.Product.Id,
                 ProductCode = m.Product.ProductCode,
-                ProductName = m.Product.ProductName
+                ProductName = m.Product.ProductName,
+                //FreebieLines = m.FreebieLines
+
 
             }).FirstOrDefault();
 

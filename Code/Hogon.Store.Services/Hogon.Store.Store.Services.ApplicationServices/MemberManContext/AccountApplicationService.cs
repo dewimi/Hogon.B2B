@@ -2,15 +2,14 @@
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.Owin;
 using Hogon.Framework.Core.UnitOfWork;
-using Hogon.Store.Models.Dto.HRMan;
 using Hogon.Store.Models.Dto.MemberMan;
 using Hogon.Store.Models.Dto.Security;
 using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
+using Hogon.Store.Models.Module.Security;
 using Hogon.Store.Repositories.MemberMan;
 using Hogon.Store.Repositories.Security;
-using Hogon.Store.Services.DomainServices.SecurityContext;
 using System;
 using System.Data.Entity.Validation;
 using System.Linq;
@@ -24,8 +23,8 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         EnterpriseRepository _enterpriseReoisitory = new EnterpriseRepository();
         PersonRepository _personRepository = new PersonRepository();
         RoleRepository _roleRepository = new RoleRepository();
-        AuthorizationDomainService _authorizationService = new AuthorizationDomainService();
         Md5Encryptor _encryptor = new Md5Encryptor();
+        RoleFactory _roleFactory = new RoleFactory();
 
         public AccountApplicationService()
         {
@@ -39,8 +38,12 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <returns></returns>
         public DtoRole GetRoleByAccountId(Guid userId)
         {
-            var role = _accountReoisitory.FindBy(r => r.Id == userId).SelectMany
-               (r => r.Rela_Role_Person).Select(r => r.Role).First();
+            var account = _accountReoisitory.FindBy(r => r.Id == userId)
+                .OfType<Person>().First();
+
+            var roleFactory = new RoleFactory();
+            var role = account.GetCurrentRole(roleFactory);
+
             Mapper.Initialize(cfg => cfg.CreateMap<Role, DtoRole>());
             var roleData = Mapper.Map<DtoRole>(role);
 
@@ -116,9 +119,9 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         public bool Login(string userName, string password)
         {
             // Check user login credential.
-            var user = Validate(userName, password);
+            var currentAccount = Validate(userName, password);
 
-            if (user == null)
+            if (currentAccount == null)
             {
                 return false;
             }
@@ -128,30 +131,27 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
 
             UserState userState = new UserState()
             {
-                UserId = user.Id,
-                UserName = user.Name,
-                Email = user.EmailAddress
+                AccountId = currentAccount.Id,
+                UserName = currentAccount.Name,
+                Email = currentAccount.EmailAddress
             };
-
-            var availableRoles = user.Rela_Role_Person.Select(m => m.Role)
-                .Where(m => m.IsEnable == true).AsQueryable();
-            userState.Roles = availableRoles.ConvertTo<Role, RoleState>().ToArray();
-
-            userState.AvailableMenus = _authorizationService.GetAvailableMenusByUser(user)
-                .AsQueryable().ConvertTo<Menu, MenuState>().ToArray();
-
-            userState.AvailableFunctions = _authorizationService
-                .GetAvailableFunctionsByUser(user).Select(m => new FunctionState()
+            
+            userState.AvailableMenus = currentAccount
+                .GetAvailableMenus(_roleFactory).AsQueryable()
+                .ConvertTo<Menu, MenuState>().ToList();
+            
+            userState.AvailableFunctions = currentAccount
+                .GetAvailableFunctions(_roleFactory).Select(m => new FunctionState()
                 {
                     Id = m.Id,
                     Name = m.Name,
                     MenuCode = m.Menu.Code,
                     FunctionCode = m.Code,
                     IsEnable = m.IsEnable,
-                }).Where(m => m.IsEnable == true).ToArray();
+                }).Where(m => m.IsEnable == true).ToList();
 
             UserState.Current = userState;
-            if (user == null)
+            if (currentAccount == null)
             {
                 return false;
             }
@@ -192,15 +192,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                 account.Name = dtoAccount.Name;
                 account.IsEnable = true;
                 account.Password = dtoAccount.Password;
-
-                //account.Responsor = new Person()
-                //{
-                //    Id = Guid.NewGuid(),
-                //    EmailAddress = userInfo.EmailAddress,
-                //    IsEnable = true,
-                //    PersonName = userInfo.PersonName,
-                //    PhoneNumber = userInfo.PhoneNumber
-                //};
+                
                 _accountReoisitory.Add(account);
             }
 
@@ -283,7 +275,7 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         {
             password = _encryptor.Encrypt(password);
 
-            // 使用加密后的密码进行比较  
+            // 使用加密后的密码进行比较
             var currentUser = _accountReoisitory.FindAll()
                 .Where(u => u.Name == userName && u.Password == password)
                 .FirstOrDefault();
@@ -295,12 +287,6 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
                                 .FirstOrDefault();
             }
 
-            if (currentUser == null)
-            {
-                currentUser = _accountReoisitory.FindAll().OfType<Person>()
-                .Where(u => u.EmailAddress == userName && u.Password == password)
-                .FirstOrDefault();
-            }
             return currentUser;
         }
 
@@ -430,6 +416,24 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         }
 
         /// <summary>
+        /// 判断个人账号是否存在企业中
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public bool IsExist(Guid id)
+        {
+            bool result = false;
+            var staff = _enterpriseReoisitory.FindAll().SelectMany(m => m.Staffs)
+                .Where(s => s.Id == id).FirstOrDefault();
+            if (staff == null)
+                result = true;
+            else
+                result = false;
+
+            return result;         
+        }
+
+        /// <summary>
         /// 保存用户信息到企业下
         /// </summary>
         /// <param name="id"></param>
@@ -460,7 +464,6 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         {
           var roles = _roleRepository.FindBy(m => m.Enterprise.Id 
                 == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663"));
-
            var data = roles.ConvertTo<Role, DtoRole>();
 
             return data;
@@ -472,17 +475,43 @@ namespace Hogon.Store.Services.ApplicationServices.MemberManContext
         /// <param name="person"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public void AddAccount(DtoPerson dtoPerson, Guid roleId)
+        public int AddAccount(DtoPerson dtoPerson, Guid roleId)
         {
-            Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
-            var person = Mapper.Map<Person>(dtoPerson);
-            person.Password = _encryptor.Encrypt("123456");
-            person.IsEnable = true;
-           // person.Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(m => m.Id == roleId).First();
-            _personRepository.Add(person);
+           var result = _personRepository.FindBy(m => m.Name == dtoPerson.Name).FirstOrDefault();
+           var email = _personRepository.FindBy(m => m.EmailAddress == dtoPerson.EmailAddress).FirstOrDefault();
+           var phoneNumber = _personRepository.FindBy(m => m.PhoneNumber == dtoPerson.PhoneNumber).FirstOrDefault();
+            if (result != null)
+            {
+                return 1;
+            }
+            else if (email != null)
+            {
+                return 2;
+            }
+            else if (phoneNumber != null)
+            {
+                return 3;
+            }
+            else
+            {
+                Mapper.Initialize(cfg => cfg.CreateMap<DtoPerson, Person>());
+                var person = Mapper.Map<Person>(dtoPerson);
+                person.Password = _encryptor.Encrypt("123456");
+                person.IsEnable = true;
+                _personRepository.Add(person);
+
+                Enterprise enterprise = _enterpriseReoisitory.FindBy
+                       (m => m.Id == new Guid("b744d6f9-8ec7-4d65-ae5a-05b712e51663")).First();
+                Staff staff = new Staff
+                {
+                    Person = person,
+                    Role = _enterpriseReoisitory.FindAll().SelectMany(m => m.Roles).Where(r => r.Id == roleId).First()
+                };
+                enterprise.Staffs.Add(staff);
+            }
 
             Commit();
-      
+            return 0;
         }
     }
 }

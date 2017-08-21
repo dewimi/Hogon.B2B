@@ -17,38 +17,46 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label"><span class="must">*</span>套餐名称：</label>
                                 <div class="col-sm-3">
-                                    <input type="text"  class="form-control" id="packageName" required /> <input type="hidden" id="packageNameFlag" value="">
+                                    <input type="text" class="form-control" id="packageName" required />
                                 </div>
                             </div>
-
                             <div class="form-group">
+                                <span class="col-sm-2">
+                                    <label class="form-control" id="">搭配商品：</label>
+                                </span>
                                 <table class="table table-responsive table-striped table-bordered table-hover " id="editable">
                                     <thead>
                                         <tr>
                                             <th>商品名称</th>
                                             <th>显示名称</th>
+                                            <th>商品编码</th>
                                             <th>市场价</th>
-                                            <th>排序</th>
+                                            <th>操作</th>
                                         </tr>
                                     </thead>
                                     <tbody id="tbodylist"></tbody>
                                 </table>
                                 <span class="col-sm-2">
-                                    <button class="form-control" id="addPackageName" ng-click="addPackageName()" ng-model="">添加搭配商品</button>
+                                    <button class="form-control" id="addPackageName" ng-click="addPackageName()">添加搭配商品</button>
                                 </span>
                             </div>
-                           
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">套餐原价：</label>
                                 <div class="col-sm-3">
-                                    <label  id="originalPrice" class="form-control" />
+                                    <input readonly id="originalPrice" class="form-control" placeholder="请点击" ng-click="CaculatePrice()" />
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">套餐现价：</label>
                                 <div class="col-sm-3">
-                                    <input type="text"  id="currentPrice" class="form-control" />
+                                    <input type="text" id="currentPrice" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">排序：</label>
+                                <div class="col-sm-3">
+                                    <input type="text" id="sortNumber" class="form-control" />
                                 </div>
                             </div>
                             <div class="form-group">
@@ -60,14 +68,6 @@
                             <div class="form-group">
                                 <label class="col-sm-3 control-label">套餐图标：</label>
                                 <div class="col-sm-3">
-                                   
-                                </div>
-                            </div>
-
-                            <div class="form-group" style="display:none;" id="fileupload">
-                                <label class="col-sm-4 control-label">上传图标</label>
-                                <div class="col-sm-7">
-
                                     <input type="file" id="input-dim-2" class="file-loading">
                                 </div>
                             </div>
@@ -82,12 +82,51 @@
                             <div class="form-group">
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-8">
-                                    <button class="btn btn-primary" type="button" ng-click="saveFreebieMsg()">保存</button>
+                                    <button class="btn btn-primary" type="button" ng-click="saveEditPageMsg()">保存</button>
                                     <button class="btn btn-white" type="button" ng-click="returnIndex()">返回</button>
                                 </div>
                             </div>
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @*组合商品模态框（选择组合商品服务）*@
+    <div class="modal fade" id="GoodsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;margin-left:-300px !important;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">组合商品选择</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="ibox float-e-margins">
+                                <form method="get" class="form-horizontal" id="commentForm">
+                                    <div class="ibox float-e-margins" style="padding-top:20px;">
+                                        <table class="table table-responsive table-striped table-bordered table-hover " id="modalTable">
+                                            <thead>
+                                                <tr>
+                                                    <th>请选择</th>
+                                                    <th>商品名称</th>
+                                                    <th>商品价格</th>
+                                                    <th>商品编码</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tbody"></tbody>
+                                        </table>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" data-dismiss="modal" ng-click="">关闭</button>
+                    <button type="button" class="btn btn-primary" ng-click="SaveModalData()">保存</button>
                 </div>
             </div>
         </div>
@@ -119,266 +158,178 @@
         var app = angular.module('myApp', []);
         app.controller('validateCtrl', function ($scope, $http) {
 
+            //组合商品模态框加载数据
             $scope.addPackageName = function () {
+                $("#tbody").empty();
+                $('#GoodsModal').modal("show");
                 $http({
                     method: 'POST',
-                    url: '/MarketingMan/PackageGoods/GotoDetail',
+                    url: '/MarketingMan/PackageGoods/SelectGoods',
                     data: null
                 }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    
-                    
-                }, function errorCallback(response) {
-                    swal("请求失败！");
-                    // 请求失败执行代码
-                });
-
-            }
-
-
-
-
-            //赠品分类下拉框绑值
-            //$scope.GetFreebieCatalog=function(){
-            $http({
-                method: 'POST',
-                url: '/MarketingMan/Freebie/GetFreebieCatalog',
-                data: null
-            }).then(function successCallback(response) {
-                // 请求成功执行代码
-                $("#freebieCatalog").append("<option value=''  selected='selected'>－－请选择－－</option>");
-                $.each(response.data, function (index, v) {
-                    $("#freebieCatalog").append($("<option value = '" + v.Id + "'></option>").text(v.FreebieCatalogName));
-                })
-
-            }, function errorCallback(response) {
-                // 请求失败执行代码
-            });
-            //  }
-
-
-            //为页面赠品名称和赠品编号绑定数据
-            var id = window.location.search;
-            id = id.substring(id.indexOf('=') + 1);
-            if (id != "") {
-                $http({
-                    method: 'POST',
-                    url: '/MarketingMan/Freebie/GetFreebieMsg',
-                    data: { Id: id }
-                }).then(function successCallback(response) {
-                    // 请求成功执行代码
-                    var Data = response.data;
-                    if (Data == "")
-                    { return;}
-                    $("#freebieNameText").val(Data.ProductName);
-                    $("#freebieCode").val(Data.ProductCode);
-                }, function errorCallback(response) {
-                    //alert("请求失败！")
-                })
-            }
-
-
-            //编辑赠品信息
-            if (id != "") {
-                $http({
-                    method: 'POST',
-                    url: '/MarketingMan/Freebie/EditFreebie',
-                    data: {Id:id}
-                }).then(function successCallback(response) {
                     //请求成功
-                    var Data = response.data;
-                    if (Data=="") {
-                        return;
-                    }
-                    $("#freebieName").attr({ "disabled": "disabled" });//使选择赠品按钮失效
-                    //$("#freebieName").hide();//隐藏按钮
-                    $("#freebieNameText").val(Data.ProductName);
-                    $("#freebieCode").val(Data.ProductCode);
-                    $("#freebieCatalog").val(Data.FreebieCatalogId);
-                    $("input:radio[name='IsPublish']:checked").val(Data.IsPublish);
-                    $("#freebieSort").val(Data.FreebiSortNum);
-                    $("#limitBuyAmount").val(Data.LimitBuyAmount);
-                    $("#freebieDescription").val(Data.Description);
-
-                    if (Data.IsPublish == true) {
-                        $("input[name='IsPublish'][value=True]").attr("checked", true);
-                    }
-                    else {
-                        $("input[name='IsPublish'][value=False]").attr("checked", true);
-                    }
-
-                    $("#freebieNameFlag").val(Data.ProductId);
-                    $scope.AddFreebieList(Data.Id);
-                }, function errorCallback(response) {
-                    //alert("请求失败");
-                })
-            }
-
-            //添加赠品列表
-            $scope.AddFreebieList = function (responserId) {
-                $http({
-                    method: 'POST',
-                    url: '/MarketingMan/Freebie/AddFrebieList',
-                    data: { Id: responserId }
-                }).then(function successCallback(response) {
-                    //请求成功
-
                     $.each(response.data, function (index, v) {
                         var $tr = $("<tr name='DataTr'></tr>");
-                        var $td0 = $("<td><input type='checkbox'  name='productGoods'value='" + v.Id + "'/></td>");
-                        var $td1 = $("<td></td>").text(v.GoodsCode);
-                        var $td2 = $("<td></td>").append("<input type='text'value='" + v.Quota + "'/>");
-                        var $td3 = $("<td></td>").text(v.SpecParameterS);
-                        var $td4 = $("<td></td>").text(v.Weight);
-
-                        $tr.append($td0).append($td1).append($td2).append($td3).append($td4);
-                        $("#tbodylist").append($tr);
-                        $('input:checkbox').each(function () {
-                            $(this).attr('checked', true);
-                        });
+                        var $td0 = $("<td><input type='checkbox' name='packageGood' value='" + v.Id + "'/></td>");
+                        var $td1 = $("<td></td>").text(v.GoodsName);
+                        var $td2 = $("<td></td>").text(v.SalePrice);
+                        var $td3 = $("<td></td>").text(v.GoodsCode);
+                        $tr.append($td0).append($td1).append($td2).append($td3);
+                        $("#tbody").append($tr);
                     });
-
-                    $('#editable').DataTable({
-                        //"bInfo":false,
+                    $('#tbodymode').DataTable({
                         " bScrollInfinite": false
                     });
 
                 }, function errorCallback(response) {
-                    alert("请求失败！");
+                    alert("模态框加载数据失败！");
                 })
-
-
             }
 
-            //根据产品Id获取商品信息
-            var id = window.location.search;
-            id = id.substring(id.indexOf('=') + 1);
-            if (id != "") {
+            $scope.SaveModalData = function () {
+                var checked = [];
+                var t = $('#modalTable').DataTable();
+                $("input:checkbox:checked").each(function () {
+                    checked.push($(this).val());
+                })
+                if (checked.length == 0) {
+                    swal("请至少选择一个商品！");
+                    return;
+                }
+                $('#GoodsModal').modal("hide");
                 $http({
                     method: 'POST',
-                    url: '/MarketingMan/Freebie/GetFreebieLine',
-                    data: { Id: id }
+                    url: '/MarketingMan/PackageGoods/GetPackGoodsMsg',
+                    data: { goodsId: checked }
                 }).then(function successCallback(response) {
-                    if (response.data =="")
-                    { return;}
-                    //请求成功执行代码
+                    if (response.data == "")
+                    { return; }
                     $.each(response.data, function (index, v) {
                         var $tr = $("<tr name='DataTr'></tr>");
-                        var $td0 = $("<td><input type='checkbox'   'checked'  name='productGoods' value='" + v.Id + "'/></td>");
-                        var $td1 = $("<td></td>").text(v.GoodsCode);
-                        var $td2 = $("<td><input type='text' id='textBox'  /></td>");
-                        var $td3 = $("<td></td>").text(v.SpecParameterS);
-                        var $td4 = $("<td></td>").text(v.Weight);
-
-                        //$("#productGoods").attr("checked",true);
-                        //$("[name = productGoods]:checkbox").attr("checked", true);
-
-                        //$('input:checkbox').each(function () {
-                        //    $(this).attr('checked', true);
-                        //});
-
+                        var $td0 = $("<td id='" + v.Id + "'></td>").text(v.GoodsName);
+                        var $td1 = $("<td></td>").text(v.GoodsAlias);
+                        var $td2 = $("<td></td>").text(v.GoodsCode);
+                        var $td3 = $("<td id='" + ('price' + index) + "'></td>").text(v.SalePrice);
+                        var $td4 = $("<td></td>")
+                             .append("&nbsp&nbsp<a title='删除' class='delet' id = '" + v.Id + "'> "
+                              + "<span class='glyphicon glyphicon-trash aria-hidden=' "
+                              + "true''></span></a>");
                         $tr.append($td0).append($td1).append($td2).append($td3).append($td4);
                         $("#tbodylist").append($tr);
                     });
 
                     $('#editable').DataTable({
-                        //"bInfo":false,
                         " bScrollInfinite": false
                     });
-                }, function errorCallback(response) {
-                    alert("请求失败！");
-                })
-            }
 
+                    var m = $('#editable').DataTable({
+                        "bFilter": false,
+                        "bPaginate": false,
+                        "bInfo": false
+                    });
 
-            //进入产品名称、产品编码选择页面
-            $scope.GotoProductPage = function () {
-                window.location.href = "/MarketingMan/Freebie/SelectFreebie"
-            }
-
-            $scope.saveFreebieMsg = function () {
-                var id = window.location.search;
-                id = id.substring(id.indexOf('=') + 1);
-                if (id != "") {
-                    if ($("#freebieNameFlag").val() != "")
-                    {
-                        id = $("#freebieNameFlag").val();
-                    }
-                    //存放产品商品id
-                    var checked = []; var quota = [];
-                    var t = $('#editable').DataTable();
-                    $("input:checkbox:checked").each(function () {
-                        checked.push($(this).val());
-                        var row = t.row($(this).parents("tr"));
-                        var tds = $(this).parents("tr").children();
-                        $.each(tds, function (i, val) {
-                            var jqob = $(val);
-                            var txt = jqob.find("input[type='text']").val();
-                            if (txt != null)
-                            { quota.push(txt); }
-                        });
+                    $(".delet").on("click", function () {
+                        var button_d = $(this);
+                        var id = button_d.attr("id");
+                        swal({
+                            title: "操作提示",
+                            text: "确认删除吗?",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            cancelButtonText: "取消",
+                            confirmButtonText: "确定",
+                            closeOnConfirm: false
+                        }, function () {
+                            var rowsLengthBegin = $('#editable tr').length;
+                            button_d.parent().parent().remove();
+                            //tabel行数判断
+                            var rowsLengthAfterDelete = $('#editable tr').length;
+                            if (rowsLengthBegin == rowsLengthAfterDelete + 1) {
+                                swal("删除成功", "", "success");
+                            }
+                        })
                     })
 
-                    if ($("#freebieCatalog").find("option:selected").val() == "")  //获取选中的option的文本值
-                    {
-                        swal("请选择赠品分类");
-                        return;
-                    }
-
-                    if ($("#limitBuyAmount").val() =="") {
-                        swal("请填写每单限购量");
-                        return;
-                    }
-
-                    if (checked.length == 0)
-                    {
-                        swal("请至少勾选一个赠品！");
-                        return;
-                    }
-
-                    for (var i = 0; i < checked.length ; i++)
-                    {
-                        if (quota[i]=="") {
-                            swal("请填写赠品对应的配额！");
-                            return;
-                        }
-                    }
-
-                    $scope.freebie = {
-                        "FreebieCatalogId": $('#freebieCatalog option:selected').val(),
-                        "IsPublish": $("input:radio[name='IsPublish']:checked").val(),
-                        "FreebiSortNum": $("#freebieSort").val(),//$scope.freebieSort,
-                        "LimitBuyAmount": $("#limitBuyAmount").val(), //$scope.limitBuyAmount,
-                        "Description": $("#freebieDescription").val(),// $scope.freebieDescription,
-                        "ProductId": id,
-                        "ProductGoodsId": checked,
-                        "Quota": quota
-                    };
-
-                    $http({
-                        method: 'POST',
-                        url: '/MarketingMan/Freebie/SaveFreebieMsg',
-                        data: JSON.stringify($scope.freebie)
-                        //{ "FreebieCatalogId": FreebieCatalogId, "dtoFreebie": freebie, "FreebieId": FreebiId }
-                    }).then(function successCallback(response) {
-                        // 请求成功执行代码
-                        swal("保存成功！");
-                    }, function errorCallback(response) {
-                        swal("保存失败！");
-                        // 请求失败执行代码
-                    });
-                }
-                else {
-                    swal("请选择赠品名称！");
-                }
+                }, function errorCallback() {
+                    alert("请求失败！");
+                });
             }
 
+            //计算套餐原价
+            $scope.CaculatePrice = function () {
+                var rowsLength = $('#editable tr').length;
+                if (rowsLength < 2) {
+                    swal("请至少选择一个商品！");
+                    return;
+                }
 
+                var price = $("#editable").find("tr").length;
+                var b = 0;
+                for (var i = 0; i < price; i++) {
+                    var a = $("#editable").find("tr").find("#price" + i).text();
+                    if (a != "") {
+                        b = parseInt(a) + parseInt(b);
+                    }
+                }
+                var c = b.toString();
+                $("#originalPrice").val(c);
+            }
+
+            ////图片上传成功回调函数
+            $("#input-dim-2").on("fileuploaded", function (event, data, previewId, index) {
+
+                fileUrl = data.response.fileUrl;
+                fileName = data.response.fileName;
+                fileSize = data.response.fileSize;
+                fileType = data.response.fileType;
+            });
+
+            //创建图片上传控件
+            $("#input-dim-2").fileinput({
+                uploadUrl: '/FileUpload/FileUpload',
+                allowedFileExtensions: ["jpg", "png", "gif"],
+                maxImageWidth: 50,
+                maxImageHeight: 50,
+                uploadLabel: "",
+                uploadTitle: "上传文件",
+                removeLabel: "",
+                removeTitle: "删除文件",
+                browseLabel: "",
+                maxFileCount: 1,
+                previewFileType: "image",
+                browseLabel: "",
+                browseIcon: "<i class=\"glyphicon glyphicon-picture\"></i> ",
+            });
 
             $scope.returnIndex = function () {
-                window.location.href = "/MarketingMan/Freebie/Index"
+                window.location.href = "/MarketingMan/PackageGoods/Index"
             }
 
+            //var $tables = $(".div").find("table[name='info']");
+            ////alert($tables.prop("tagName")); //TABLE
+            //var length = $tables.length;
+            ////alert(length); //3
+            //for (var i = 0; i < length; i++) {
+            //    var $table = $tables.eq(i);
+            //    //alert($table.prop("tagName")); //TABLE
+            //    //eq(i)表示第i行
+            //    var nameTd = $table.find("tr").eq(i).children("td").eq(0);
+            //    //alert(nameTd.prop("tagName")); //TD
+            //    alert(nameTd.text());var val = $(this).attr("id") 
+            //alert(b.indexOf(a));
+
+            $scope.saveEditPageMsg = function () {
+                var goodsId=[];
+                var length = $('#editable tr').length;
+                for (var i = 1; i < length; i++) {
+                    var $table = $('#editable').eq(i);
+                    //eq(i)表示第i行
+                    var tdName = $table.find("tr").eq(i).children("td").eq(0);
+                    goodsId.push(tdName.attr("id"));
+                }
+
+            }
         })
     </script>
 
