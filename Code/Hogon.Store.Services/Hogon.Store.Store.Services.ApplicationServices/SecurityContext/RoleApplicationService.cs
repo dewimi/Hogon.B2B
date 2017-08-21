@@ -2,8 +2,10 @@
 using Hogon.Framework.Core.Common;
 using Hogon.Framework.Core.UnitOfWork;
 using Hogon.Store.Models.Dto.Common;
+using Hogon.Store.Models.Dto.HRMan;
 using Hogon.Store.Models.Dto.MemberMan;
 using Hogon.Store.Models.Dto.Security;
+using Hogon.Store.Models.Entities.HRMan;
 using Hogon.Store.Models.Entities.MemberMan;
 using Hogon.Store.Models.Entities.Security;
 using Hogon.Store.Repositories.MemberMan;
@@ -193,48 +195,48 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
 
             }
 
-            //添加角色下的用户
-            if (userNode != null)
-            {
-                foreach (var user in userNode)
-                {
-                    if (user != new Guid())
-                    {
-                        Rela_Role_Person rUser = new Rela_Role_Person();
-                        rUser.Role = roleReps.FindBy(r => r.Id == roleId).FirstOrDefault();
-                        rUser.Account = accountReps.FindBy(u => u.Id == user).FirstOrDefault();
+            ////添加角色下的用户
+            //if (userNode != null)
+            //{
+            //    foreach (var user in userNode)
+            //    {
+            //        if (user != new Guid())
+            //        {
+            //            Rela_Role_Person rUser = new Rela_Role_Person();
+            //            rUser.Role = roleReps.FindBy(r => r.Id == roleId).FirstOrDefault();
+            //            rUser.Account = accountReps.FindBy(u => u.Id == user).FirstOrDefault();
 
-                        var IsExist = roleReps.FindBy(r => r.Id == roleId).SelectMany(r =>
-                          r.Rela_Role_Person).Where(r => r.Account.Id == user).FirstOrDefault();
-                        //不存在就添加
-                        if (IsExist == null)
-                        {
-                            rUser.Id = Guid.NewGuid();
-                            rUser.Name = rUser.Account.Name;
-                            rUser.CreatedTime = DateTime.Now;
-                            rUser.UpdatedTime = DateTime.Now;
-                            rUser.Email = rUser.Account.EmailAddress;
-                            rUser.CreatorId = 1;
-                            rUser.UpdaterId = 1;
+            //            var IsExist = roleReps.FindBy(r => r.Id == roleId).SelectMany(r =>
+            //              r.Rela_Role_Person).Where(r => r.Account.Id == user).FirstOrDefault();
+            //            //不存在就添加
+            //            if (IsExist == null)
+            //            {
+            //                rUser.Id = Guid.NewGuid();
+            //                rUser.Name = rUser.Account.Name;
+            //                rUser.CreatedTime = DateTime.Now;
+            //                rUser.UpdatedTime = DateTime.Now;
+            //                rUser.Email = rUser.Account.EmailAddress;
+            //                rUser.CreatorId = 1;
+            //                rUser.UpdaterId = 1;
 
-                            rUser.Role.Rela_Role_Person.Add(rUser);
-                        }
-                    }
-                }
-            }
+            //                rUser.Role.Rela_Role_Person.Add(rUser);
+            //            }
+            //        }
+            //    }
+            //}
 
-            //删除角色下的用户
-            foreach (var userId in unCheckUsers)
-            {
+            ////删除角色下的用户
+            //foreach (var userId in unCheckUsers)
+            //{
 
-                var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Person).
-                    Where(r => r.Account.Id == userId && r.Role.Id == roleId).FirstOrDefault();
-                if (user != null)
-                {
-                    roleReps.DeleteRela_Role_User(user);
-                    //role.Rela_Role_User.Remove(user);
-                }
-            }
+            //    var user = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Person).
+            //        Where(r => r.Account.Id == userId && r.Role.Id == roleId).FirstOrDefault();
+            //    if (user != null)
+            //    {
+            //        roleReps.DeleteRela_Role_User(user);
+            //        //role.Rela_Role_User.Remove(user);
+            //    }
+            //}
             Commit();
         }
 
@@ -243,13 +245,13 @@ namespace Hogon.Store.Services.ApplicationServices.SecurityContext
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
-        public IQueryable<DtoAccount> GetUsersByRoleId(Guid roleId)
+        public IQueryable<DtoStaff> GetUsersByRoleId(Guid roleId)
         {
-            var accounts = roleReps.FindBy(r => r.Id == roleId).SelectMany(r => r.Rela_Role_Person).Select(m => m.Account);
+            var staffs = roleReps.FindBy(r => r.Id == roleId).First().Staffs.AsQueryable();
 
-            var dtoAccounts = accounts.ConvertTo<Account, DtoAccount>();
+            var dtoStaffs = staffs.ConvertTo<Staff, DtoStaff>();
 
-            return dtoAccounts;
+            return dtoStaffs;
         }
     }
 }

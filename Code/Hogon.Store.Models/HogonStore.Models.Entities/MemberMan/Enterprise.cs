@@ -2,16 +2,13 @@
 using Hogon.Store.Models.Entities.Security;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Hogon.Store.Models.Entities.MemberMan
 {
     /// <summary>
     /// 企业
     /// </summary>
-    public class Enterprise :Account
+    public class Enterprise : Account
     {
         public Enterprise()
         {
@@ -65,6 +62,5 @@ namespace Hogon.Store.Models.Entities.MemberMan
                 throw new InvalidOperationException("企业账户不可以设置当前身份");
             }
         }
-
     }
 }

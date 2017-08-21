@@ -29,7 +29,7 @@
                             <div class="form-group">
                                 <label class="col-sm-3"></label>
                                 <div class="col-sm-8">
-                                    <button class="btn btn-primary" type="button" ng-click="savePackageGoods()">保存</button>
+                                    <button class="btn btn-primary" type="button" ng-click="savePackageGoods()">确定</button>
                                     <button class="btn btn-white" type="button" ng-click="returnEdit()">返回</button>
                                 </div>
                             </div>
@@ -96,7 +96,7 @@
             //保存组合商品
             $scope.savePackageGoods = function () {
                 ////存放产品商品id
-                var checked = []; var quota = [];
+                var checked = [];
                 var t = $('#editable').DataTable();
                 $("input:checkbox:checked").each(function () {
                     checked.push($(this).val());
@@ -108,16 +108,17 @@
                     return;
                 }
 
-                $http({
-                    method: 'POST',
-                    url: '/MarketingMan/PackageGoods/GetPackGoodsMsg',
-                    data: { Id: checked }
-                }).then(function successCallback(response) {
+                window.location.href = "/MarketingMan/PackageGoods/Edit?check="+checked;
+                //$http({
+                //    method: 'POST',
+                //    url: '/MarketingMan/PackageGoods/GetPackGoodsMsg',
+                //    data: { Id:  }
+                //}).then(function successCallback(response) {
 
 
-                }, function errorCallback(response) {
-                    alert("请求失败！");
-                });
+                //}, function errorCallback(response) {
+                //    alert("请求失败！");
+                //});
             }
 
             $scope.returnEdit = function () {

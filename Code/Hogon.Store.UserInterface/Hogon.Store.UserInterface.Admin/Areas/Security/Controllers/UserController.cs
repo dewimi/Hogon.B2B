@@ -122,13 +122,13 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
                 }
                 else
                 {
-                    var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
+                    var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.AccountId);
                     return Json(menus);
                 }
             }
             else
             {
-                var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.UserId);
+                var menus = accountSvc.GetAuthorityByAccountId(UserState.Current.AccountId);
                 return Json(menus);
             }
           
@@ -147,7 +147,7 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
             }
             else
             {
-                var role = accountSvc.GetRoleByAccountId(UserState.Current.UserId);
+                var role = accountSvc.GetRoleByAccountId(UserState.Current.AccountId);
                 return Json(role);
 
             }
@@ -208,13 +208,8 @@ namespace Hogon.Store.UserInterface.Admin.Areas.Security.Controllers
         public ActionResult AddAccount(DtoPerson person,Guid roleId)
         {
            var result = accountSvc.AddAccount(person,roleId);
-            if (!result)
-            {
-                throw new UserFriendlyException("");
-            }
 
-            return Json(new { message = "" });
-            return Json(result);
+            return Json(result); ;
         }
 
 
