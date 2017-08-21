@@ -30,9 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Hogon.Framework.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\Hogon_Store\03 Code\Libraries\Hogon.Framework.Core.dll</HintPath>
+    <Reference Include="Hogon.Framework.Core">
+      <HintPath>..\..\Libraries\Hogon.Framework.Core.dll</HintPath>
     </Reference>
     <Reference Include="Hogon.Framework.Core.UnitOfWork">
       <HintPath>..\..\Libraries\Hogon.Framework.Core.UnitOfWork.dll</HintPath>
